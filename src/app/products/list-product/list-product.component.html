@@ -9,7 +9,7 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <ul>
-                <li *ngFor="let product of products">
+                <li *ngFor="let logo of logos">
                   <a class="header__product__show__link" href="#">
                     <img class="header__product__show__logo" src="assets/images/logo111.png">
                   </a>
@@ -18,7 +18,7 @@
             </div>
             <div class="carousel-item">
               <ul>
-                <li *ngFor="let product of products">
+                <li *ngFor="let logo of logos">
                   <a class="header__product__show__link" href="#">
                     <img class="header__product__show__logo" src="assets/images/logo111.png">
                   </a>
@@ -49,17 +49,43 @@
 
   <div class="container-ful">
     <div class="body__center">
-      <div class="body__center_left">
-
+      <div class="body__center__left">
+        <div class="body__center__left__head">
+          <h3 class="body__center__left__title">Departments</h3>
+          <div class="body__center__left__list">
+            <h4 class="body__center__left__title__one">Clear</h4>
+            <li *ngFor="let dpm of departments">
+              <input class="body__center__left__check" type="checkbox"> {{dpm.valueOf()}}
+            </li>
+          </div>
+        </div>
+        <div class="body__center__left__head">
+          <h3 class="body__center__left__title">Price</h3>
+          <div class="body__center__left__list">
+            <h4 class="body__center__left__title__one"></h4>
+            <li *ngFor="let price of prices">
+              <a href="#">{{price.valueOf()}}</a>
+            </li>
+          </div>
+        </div>
+        <div class="body__center__left__head">
+          <h3 class="body__center__left__title">Discount</h3>
+          <div class="body__center__left__list">
+            <h4 class="body__center__left__title__one"></h4>
+            <li *ngFor="let discount of discounts">
+              <a href="#">{{discount.valueOf()}}</a>
+            </li>
+          </div>
+        </div>
       </div>
       <div class="body__center_main">
         <div class="body__center_main__product" *ngFor="let product of products">
           <div class="body__center_main__product__image">
-            <a><img src="assets/images/pexels-fotografierende-1213447.jpg" width="300" height="250"></a>
+            <a><img src="assets/images/41YlQkSRftL.jpg" width="300" height="200"></a>
           </div>
           <div class="body__center_main__product__content">
             <div class="body__center_main__product__content__price">
-             <span>99.99</span> <sub>$</sub>
+             <span>99.99<sub>$</sub></span>
             </div>
             <div class="body__center_main__product__content__name">
               <span>Kindle Monthly Deals</span>
@@ -67,7 +93,7 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
+
 </div>
