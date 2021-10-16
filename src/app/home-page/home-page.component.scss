@@ -1,9 +1,19 @@
 
 .container-ful{
-  //background-image: url("src/assets/images/pexels-johannes-plenio-1632780.jpg");
   margin-top: -39px;
 }
-
+.mt-3{
+  position: relative;
+}
+.head__home__bg{
+  width: 100%;
+}
+#myCarousel{
+  position: absolute;
+  top: 48px;
+  margin: auto;
+  margin-left: 300px;
+}
 .screen__featured{
   display: flex;
   flex-wrap: wrap;

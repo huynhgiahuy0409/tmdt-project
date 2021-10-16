@@ -6,7 +6,7 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {ListProductComponent} from "./products/list-product/list-product.component";
 
 const routes: Routes = [
-  // { path: '',   redirectTo: '/homepage', pathMatch: 'full' },
+  { path: '',   redirectTo: '/homepage', pathMatch: 'full' },
   {path: 'homepage', component: HomePageComponent},
   {
     path: 'product', component: ProductsComponent,
@@ -18,12 +18,10 @@ const routes: Routes = [
   },
 ];
 
-
 @NgModule({
   imports: [
     CommonModule,RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
-
 })
 export class AppRoutingModule {}
