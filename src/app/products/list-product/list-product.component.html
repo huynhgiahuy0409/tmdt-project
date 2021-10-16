@@ -1,0 +1,73 @@
+
+<div class="container-ful">
+  <div class="header">
+    <div class="header__product">
+      <img class="header__product__bg" src="assets/images/HOL21_EDD_Phase4_hero-banner_short_desktop_1500x150.jpg">
+      <div class="header__product__show">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+          <!-- The slideshow -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <ul>
+                <li *ngFor="let product of products">
+                  <a class="header__product__show__link" href="#">
+                    <img class="header__product__show__logo" src="assets/images/logo111.png">
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="carousel-item">
+              <ul>
+                <li *ngFor="let product of products">
+                  <a class="header__product__show__link" href="#">
+                    <img class="header__product__show__logo" src="assets/images/logo111.png">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Left and right controls -->
+          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sort sort-buy">
+    <span>Sort Buy :</span>
+    <select class="sort__list">
+      <option class="sort__content">1</option>
+      <option class="sort__content">2</option>
+      <option class="sort__content">3</option>
+      <option class="sort__content">4</option>
+    </select>
+  </div>
+
+  <div class="container-ful">
+    <div class="body__center">
+      <div class="body__center_left">
+
+      </div>
+      <div class="body__center_main">
+        <div class="body__center_main__product" *ngFor="let product of products">
+          <div class="body__center_main__product__image">
+            <a><img src="assets/images/pexels-fotografierende-1213447.jpg" width="300" height="250"></a>
+          </div>
+          <div class="body__center_main__product__content">
+            <div class="body__center_main__product__content__price">
+             <span>99.99</span> <sub>$</sub>
+            </div>
+            <div class="body__center_main__product__content__name">
+              <span>Kindle Monthly Deals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

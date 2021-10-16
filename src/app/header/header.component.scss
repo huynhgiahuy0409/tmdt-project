@@ -1,0 +1,78 @@
+#mySidebar{
+  display: none;
+  height: auto;
+  background-color: #ef9a06;
+  width: 350px;
+  position: absolute;
+  top: 107px;
+  margin-left: 10px;
+}
+.w3-teal{
+  position: absolute;
+  top: 38px;
+  margin-left: 11px;
+}
+.bg-header{
+  background-color: black;
+}
+
+a{
+  text-decoration: none;
+  color: #0a2a6d;
+  font-weight: 600;
+}
+.bg-header2{
+  background-color: #030639;
+}
+.bg-header2 a , i{color: white}
+.nav-header{
+  background-color: #030639;
+  width: 70%;
+}
+.navbar-header{
+  width: 100%;
+}
+.form-inline{
+  width: 60% !important;
+}
+.form-control-search{
+  width: 60%;
+}
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  #logo{
+    display: none;
+
+  }
+  .reponsive-header{
+    display: block;
+  }
+  #location{
+    display: none;
+  }
+  #location-box{
+    float: left;
+    width: 10%;
+  }
+  .form-inline{
+    float: left;
+  }
+  .form-control-search{
+    width: 40%;
+  }
+  .sign-in{
+    float: left;
+    width: 20%;
+    font-size: 12px;
+  }
+  .list-title-product{
+    display: none;
+  }
+}
+.list-title-product{
+  margin-left: 50px;
+}
+#cars{
+  background-color: gray;
+  height: 38px;
+}

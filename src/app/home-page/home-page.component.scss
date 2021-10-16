@@ -1,0 +1,47 @@
+
+.container-ful{
+  //background-image: url("src/assets/images/pexels-johannes-plenio-1632780.jpg");
+  margin-top: -39px;
+}
+
+.screen__featured{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.title-home{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.flex{
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+.fa-star{
+  color: #ef9a06;
+}
+.text-right{
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 70%;
+  margin: auto;
+}
+.price{
+  color: #ef9a06;
+  margin-left: 30px;
+}
+.price-sale{
+  float: right;
+  margin-right: 30px;
+}
+

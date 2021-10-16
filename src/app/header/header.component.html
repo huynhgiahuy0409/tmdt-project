@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-header">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img id="logo" src="./assets/images/pexels-photo-619419.jpeg" alt="Logo" style="width:60px;">
+  </a>
+
+  <!-- Links -->
+  <ul class="navbar-nav navbar-header reponsive-header">
+    <li class="nav-item" id="location-box">
+      <a class="nav-link " href="#"><i class="fas fa-map-marker-alt"></i>
+        <span id="location">Location?</span></a>
+    </li>
+    <form class="form-inline" action="/action_page.php">
+      <select id="cars" name="cars">
+        <option value="volvo">All</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+      </select>
+      <input class="form-control form-control-search mr-sm-2" type="text" placeholder="Search" >
+      <button class="btn btn-warning" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    <li class="nav-item sign-in">
+      <a class="nav-link" href="#">Sign in,Sign up?</a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-expand-sm bg-header2">
+  <ul class="nav nav-header navbar-nav list-title-product">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" [routerLink]="['/product']">Product</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" [routerLink]="['/product']">Product 1</a>
+        <a class="dropdown-item" [routerLink]="['/product']">Product 2</a>
+        <a class="dropdown-item" [routerLink]="['/product']">Product 3</a>
+      </div>
+
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Customer Service</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">New Releases</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Top Deals</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Books</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Computers</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Fashion</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#">Gifts And Boxes</a>
+    </li>
+  </ul>
+  <div style="float: right"><a>Your Ads<sub>here on this place? </sub></a></div>
+</nav>
+<br>
+<router-outlet></router-outlet>
+
