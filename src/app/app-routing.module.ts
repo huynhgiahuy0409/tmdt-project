@@ -1,3 +1,4 @@
+import { BreadcrumbComponent } from './shared/layout/customer/breadcrumb/breadcrumb.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -12,7 +13,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./buyer/buyer.module').then((m) => m.BuyerModule),
   },
-  { path: 'seller', loadChildren: () => import('./seller/seller.module').then(m => m.SellerModule) },
+  {
+    path: 'seller',
+    loadChildren: () =>
+      import('./seller/seller.module').then((m) => m.SellerModule),
+  },
+  {
+    path: 'bread',
+    component: BreadcrumbComponent
+  },
 ];
 
 @NgModule({
