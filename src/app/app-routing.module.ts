@@ -18,10 +18,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./seller/seller.module').then((m) => m.SellerModule),
   },
-  {
-    path: 'bread',
-    component: BreadcrumbComponent
-  },
 ];
 
 @NgModule({
