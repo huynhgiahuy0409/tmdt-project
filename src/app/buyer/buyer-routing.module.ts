@@ -8,12 +8,17 @@ import { BlogComponent } from './components/blog/blog.component'; */
 import { BlogComponent, BlogDetailComponent } from './components/blog';
 import { CheckoutComponent } from './components/checkout';
 import { AboutUsComponent } from './components/aboutUs';
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 const routes: Routes = [
   { path: '', component: BuyerComponent },
   { path: 'home', component: HomeComponent },
   { path: 'contact-us', component: ContactComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: RegisterComponent },
   {
     path: 'blog',
     component: BlogComponent,

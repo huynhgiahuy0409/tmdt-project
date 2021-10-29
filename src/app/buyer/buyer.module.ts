@@ -10,6 +10,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/aboutUs/aboutUs.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogDetailComponent } from './components/blog/blog-detail/blog.detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot.password.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { BlogDetailComponent } from './components/blog/blog-detail/blog.detail.c
     AboutUsComponent,
     BlogComponent,
     BlogDetailComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
   ],
   imports: [CommonModule, BuyerRoutingModule, BreadcrumbModule],
 })
