@@ -4,12 +4,18 @@ import { CommonModule } from '@angular/common';
 import { BuyerRoutingModule } from './buyer-routing.module';
 import { BuyerComponent } from './buyer.component';
 import { HomeComponent } from './components/home/home.component';
+import {ContactComponent} from "./components/contact/contact.component";
+import {AboutUsComponent} from "./components/aboutUs/aboutUs.component";
+import {BlogComponent} from "./components/blog/blog.component";
 
 
 @NgModule({
   declarations: [
     BuyerComponent,
-    HomeComponent
+    HomeComponent,
+    ContactComponent,
+    AboutUsComponent,
+    BlogComponent
   ],
   imports: [
     CommonModule,
