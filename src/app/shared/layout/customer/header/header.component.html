@@ -96,7 +96,7 @@
                                   <a href="#">Home</a>
                               </li>
                               <li class="menu-item-has-children">
-                                  <a href="product-details.html">product</a>
+                                  <a [routerLink]="['/product']">product</a>
                               </li>
                               <li class="menu-item-has-children">
                                   <a href="#">pages </a>
@@ -262,7 +262,7 @@
                               <nav>
                                   <ul>
                                       <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" >home</a></li>
-                                      <li><a href="product-details.html">Product</a></li>
+                                      <li><a [routerLink]="['/product']">Product</a></li>
 
                                       <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
                                           <ul class="sub_menu pages">

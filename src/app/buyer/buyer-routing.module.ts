@@ -10,6 +10,7 @@ import { CheckoutComponent } from './components/checkout';
 import { AboutUsComponent } from './components/aboutUs';
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {CartComponent} from "./components/cart/cart.component";
 
 const routes: Routes = [
   { path: '', component: BuyerComponent },
@@ -28,9 +29,14 @@ const routes: Routes = [
     component: BlogDetailComponent,
   },
   {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
     path: 'checkout',
     component: CheckoutComponent,
   },
+  { path: 'product', loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule) },
 ];
 
 @NgModule({

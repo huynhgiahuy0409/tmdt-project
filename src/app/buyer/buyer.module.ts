@@ -13,6 +13,7 @@ import { BlogDetailComponent } from './components/blog/blog-detail/blog.detail.c
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot.password.component';
+import {CartComponent} from "./components/cart/cart.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot.pas
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    CartComponent
   ],
   imports: [CommonModule, BuyerRoutingModule, BreadcrumbModule],
 })
