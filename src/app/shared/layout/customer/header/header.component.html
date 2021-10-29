@@ -18,9 +18,10 @@
                       </div>
                       <div class="top_right text-right">
                           <ul>
-                             <li><a href="my-account.html"> My Account </a></li>
-                             <li><a href="checkout.html"> Checkout </a></li>
+                             <li><a href="my-account.html" > My Account </a></li>
+                             <li><a routerLink="/bread"> Checkout </a></li>
                           </ul>
+                          <a routerLink="/bread" routerLinkActive="router-link-active" ></a>
                       </div>
                       <div class="search_container">
                          <form action="#">
@@ -80,7 +81,7 @@
                                           <a href="cart.html">View cart</a>
                                       </div>
                                       <div class="cart_button">
-                                          <a href="checkout.html">Checkout</a>
+                                          <a href="checkout.html"></a>
                                       </div>
 
                                   </div>
@@ -161,7 +162,7 @@
                           <div class="top_right text-right">
                               <ul>
                                  <li><a href="my-account.html">Account</a></li>
-                                 <li><a href="checkout.html">Checkout</a></li>
+                                 <li><a [routerLink]="['/checkout']">Checkout</a></li>
                               </ul>
                           </div>
                       </div>
