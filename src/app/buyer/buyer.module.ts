@@ -9,6 +9,9 @@ import { BreadcrumbModule } from '../shared/layout/customer/breadcrumb';
 import {ContactComponent} from "./components/contact/contact.component";
 import {AboutUsComponent} from "./components/aboutUs/aboutUs.component";
 import {BlogComponent} from "./components/blog/blog.component";
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {ForgotPasswordComponent} from "./components/forgot-password/forgot.password.component";
 
 
 @NgModule({
@@ -18,7 +21,11 @@ import {BlogComponent} from "./components/blog/blog.component";
     CheckoutComponent,
     ContactComponent,
     AboutUsComponent,
-    BlogComponent
+    BlogComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent
+
   ],
   imports: [
     CommonModule,
