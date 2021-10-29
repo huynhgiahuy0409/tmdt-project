@@ -6,10 +6,10 @@ import { BuyerComponent } from './buyer.component';
 import { HomeComponent } from './components/home/home.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { BreadcrumbModule } from '../shared/layout/customer/breadcrumb';
-import {ContactComponent} from "./components/contact/contact.component";
-import {AboutUsComponent} from "./components/aboutUs/aboutUs.component";
-import {BlogComponent} from "./components/blog/blog.component";
-
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutUsComponent } from './components/aboutUs/aboutUs.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogDetailComponent } from './components/blog/blog-detail/blog.detail.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +18,9 @@ import {BlogComponent} from "./components/blog/blog.component";
     CheckoutComponent,
     ContactComponent,
     AboutUsComponent,
-    BlogComponent
+    BlogComponent,
+    BlogDetailComponent,
   ],
-  imports: [
-    CommonModule,
-    BuyerRoutingModule,
-    BreadcrumbModule
-  ]
+  imports: [CommonModule, BuyerRoutingModule, BreadcrumbModule],
 })
-export class BuyerModule { }
+export class BuyerModule {}

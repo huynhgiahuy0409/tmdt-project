@@ -155,7 +155,7 @@
                   <div class="row align-items-center">
                       <div class="col-lg-6 col-md-6">
                           <div class="support_info">
-                              <p>Email: <a href="mailto:">support@drophunt.com</a></p>
+                              <p>Email: <a href="mailto:">toystore@gmail.com</a></p>
                           </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
@@ -238,7 +238,7 @@
                                                   <a href="cart.html">View cart</a>
                                               </div>
                                               <div class="cart_button">
-                                                  <a href="checkout.html">Checkout</a>
+                                                  <a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >Checkout</a>
                                               </div>
 
                                           </div>
@@ -261,31 +261,18 @@
                           <div class="main_menu menu_position">
                               <nav>
                                   <ul>
-                                      <li><a href="index-2.html">home</a></li>
+                                      <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" >home</a></li>
                                       <li><a href="product-details.html">Product</a></li>
 
                                       <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
                                           <ul class="sub_menu pages">
-                                              <li><a href="about.html">About Us</a></li>
-                                              <li><a href="contact.html">contact</a></li>
-                                              <li><a href="privacy-policy.html">privacy policy</a></li>
-                                              <li><a href="faq.html">Frequently Questions</a></li>
-                                              <li><a href="login.html">login</a></li>
-                                              <li><a href="register.html">register</a></li>
-                                              <li><a href="forget-password.html">Forget Password</a></li>
-                                              <li><a href="404.html">Error 404</a></li>
-                                              <li><a href="cart.html">cart</a></li>
-                                              <li><a href="tracking.html">tracking</a></li>
-                                              <li><a href="checkout.html">checkout</a></li>
+                                              <li><a [routerLink]="['/about-us']" routerLinkActive="router-link-active" >About Us</a></li>
+                                              <li><a [routerLink]="['/contact-us']" routerLinkActive="router-link-active" >contact</a></li>
                                           </ul>
                                       </li>
-                                      <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                          <ul class="sub_menu pages">
-                                              <li><a href="blog.html">blog</a></li>
-                                              <li><a href="blog-details.html">blog details</a></li>
-                                          </ul>
+                                      <li><a [routerLink]="['/blog']" routerLinkActive="router-link-active" >blog</a>
                                       </li>
-                                      <li><a href="contact.html"> Contact Us</a></li>
+                                      <li><a [routerLink]="['/contact-us']" routerLinkActive="router-link-active" > Contact Us</a></li>
                                   </ul>
                               </nav>
                           </div>
