@@ -22,6 +22,11 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent},
   { path: 'blog/:id', component: BlogDetailComponent},
   { path: 'checkout',component: CheckoutComponent,},
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+  },
+  { path: 'product', loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule) },
 ];
 
 @NgModule({
