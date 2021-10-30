@@ -1,185 +1,413 @@
+
 <!--Tranding product-->
 <section class="pt-60 pb-30 gray-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <div class="section-title">
-          <h2>Tranding Products</h2>
+  <div class="container-ful row">
+    <div id="reponsive-lap-sibar" style="float: left">
+      <!--sidebar-categores-box start  -->
+      <div class="sidebar-categores-box" >
+        <div class="sidebar-title">
+          <h2>Filter By</h2>
+        </div>
+        <!-- btn-clear-all start -->
+        <button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
+        <!-- btn-clear-all end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area">
+          <h5 class="filter-sub-titel">Brand</h5>
+          <div class="categori-checkbox">
+            <form action="#">
+              <ul>
+                <li><input type="checkbox" name="product-categori"><a href="#">Prime Video (13)</a></li>
+                <li><input type="checkbox" name="product-categori"><a href="#">Computers (12)</a></li>
+                <li><input type="checkbox" name="product-categori"><a href="#">Electronics (11)</a></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pt-xs-10">
+          <h5 class="filter-sub-titel">Categories</h5>
+          <div class="categori-checkbox">
+            <form action="#">
+              <ul>
+                <li><input type="checkbox" name="product-categori"><a href="#">Graphic Corner (10)</a></li>
+                <li><input type="checkbox" name="product-categori"><a href="#"> Studio Design (6)</a></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pt-xs-10">
+          <h5 class="filter-sub-titel">Size</h5>
+          <div class="size-checkbox">
+            <form action="#">
+              <ul>
+                <li><input type="checkbox" name="product-size"><a href="#">S (3)</a></li>
+                <li><input type="checkbox" name="product-size"><a href="#">M (3)</a></li>
+                <li><input type="checkbox" name="product-size"><a href="#">L (3)</a></li>
+                <li><input type="checkbox" name="product-size"><a href="#">XL (3)</a></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pt-xs-10">
+          <h5 class="filter-sub-titel">Color</h5>
+          <div class="color-categoriy">
+            <form action="#">
+              <ul>
+                <li><span class="white"></span><a href="#">White (1)</a></li>
+                <li><span class="black"></span><a href="#">Black (1)</a></li>
+                <li><span class="Orange"></span><a href="#">Orange (3) </a></li>
+                <li><span class="Blue"></span><a href="#">Blue  (2) </a></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pb-sm-15 pb-xs-15">
+          <h5 class="filter-sub-titel">Dimension</h5>
+          <div class="categori-checkbox">
+            <form action="#">
+              <ul>
+                <li><input type="checkbox" name="product-categori"><a href="#">40x60cm (6)</a></li>
+                <li><input type="checkbox" name="product-categori"><a href="#">60x90cm (6)</a></li>
+                <li><input type="checkbox" name="product-categori"><a href="#">80x120cm (6)</a></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+        <!-- filter-sub-area end -->
+      </div>
+      <!--sidebar-categores-box end  -->
+      <!-- category-sub-menu start -->
+      <div class="sidebar-categores-box mb-sm-0 mb-xs-0">
+        <div class="sidebar-title">
+          <h2>Laptop</h2>
+        </div>
+        <div class="category-tags">
+          <ul>
+            <li><a href="# ">Devita</a></li>
+            <li><a href="# ">Cameras</a></li>
+            <li><a href="# ">Sony</a></li>
+            <li><a href="# ">Computer</a></li>
+            <li><a href="# ">Big Sale</a></li>
+            <li><a href="# ">Accessories</a></li>
+          </ul>
+        </div>
+        <!-- category-sub-menu end -->
+      </div>
+    </div>
+    <div id="reponsive-lap-product">
+      <!-- shop-top-bar start -->
+      <div class="shop-top-bar mt-30">
+        <div class="shop-bar-inner">
+          <div class="product-view-mode">
+            <!-- shop-item-filter-list start -->
+            <ul class="nav shop-item-filter-list" role="tablist">
+              <li class="active" role="presentation"><a aria-selected="true" class="active show" data-toggle="tab" role="tab" aria-controls="grid-view" href="#grid-view"><i class="fa fa-th"></i></a></li>
+              <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="list-view" href="#list-view"><i class="fa fa-th-list"></i></a></li>
+            </ul>
+            <!-- shop-item-filter-list end -->
+          </div>
+          <div class="toolbar-amount" id="toolbar-amount-reponsive">
+            <span>Showing 1 to 9 of 15</span>
+          </div>
+        </div>
+        <!-- product-select-box start -->
+        <div class="product-select-box">
+          <div class="product-short">
+            <p id="sort-by-reponsive">Sort By:</p>
+            <select class="nice-select">
+              <option value="trending">Relevance</option>
+              <option value="sales">Name (A - Z)</option>
+              <option value="sales">Name (Z - A)</option>
+              <option value="rating">Price (Low &gt; High)</option>
+              <option value="date">Rating (Lowest)</option>
+              <option value="price-asc">Model (A - Z)</option>
+              <option value="price-asc">Model (Z - A)</option>
+            </select>
+          </div>
+        </div>
+        <!-- product-select-box end -->
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Meyoji Robast Drone</h3>
+                <h4>Drone</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Ut praesentium earum</h3>
+                <h4>Mevrik</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Consectetur adipisicing</h3>
+                <h4>Flyer</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Meyoji Robast Drone</h3>
+                <h4>Drone</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Ut praesentium earum</h3>
+                <h4>Mevrik</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Consectetur adipisicing</h3>
+                <h4>Flyer</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Meyoji Robast Drone</h3>
+                <h4>Drone</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Ut praesentium earum</h3>
+                <h4>Mevrik</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+          <div class="single-tranding">
+            <a [routerLink]="['/product/id']">
+              <div class="tranding-pro-img">
+                <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
+              </div>
+              <div class="tranding-pro-title">
+                <h3>Consectetur adipisicing</h3>
+                <h4>Flyer</h4>
+              </div>
+              <div class="tranding-pro-price">
+                <div class="price_box">
+                  <span class="current_price">$70.00</span>
+                  <span class="old_price">$80.00</span>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Meyoji Robast Drone</h3>
-              <h4>Drone</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
+  </div>
+  <div class="col-12" id="reponsive-phone" >
+    <!--sidebar-categores-box start  -->
+    <div class="sidebar-categores-box" >
+      <div class="sidebar-title">
+        <h2>Filter By</h2>
+      </div>
+      <!-- btn-clear-all start -->
+      <button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
+      <!-- btn-clear-all end -->
+      <!-- filter-sub-area start -->
+      <div class="filter-sub-area">
+        <h5 class="filter-sub-titel">Brand</h5>
+        <div class="categori-checkbox">
+          <form action="#">
+            <ul>
+              <li><input type="checkbox" name="product-categori"><a href="#">Prime Video (13)</a></li>
+              <li><input type="checkbox" name="product-categori"><a href="#">Computers (12)</a></li>
+              <li><input type="checkbox" name="product-categori"><a href="#">Electronics (11)</a></li>
+            </ul>
+          </form>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Ut praesentium earum</h3>
-              <h4>Mevrik</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
+      <!-- filter-sub-area end -->
+      <!-- filter-sub-area start -->
+      <div class="filter-sub-area pt-sm-10 pt-xs-10">
+        <h5 class="filter-sub-titel">Categories</h5>
+        <div class="categori-checkbox">
+          <form action="#">
+            <ul>
+              <li><input type="checkbox" name="product-categori"><a href="#">Graphic Corner (10)</a></li>
+              <li><input type="checkbox" name="product-categori"><a href="#"> Studio Design (6)</a></li>
+            </ul>
+          </form>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Consectetur adipisicing</h3>
-              <h4>Flyer</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
+      <!-- filter-sub-area end -->
+      <!-- filter-sub-area start -->
+      <div class="filter-sub-area pt-sm-10 pt-xs-10">
+        <h5 class="filter-sub-titel">Size</h5>
+        <div class="size-checkbox">
+          <form action="#">
+            <ul>
+              <li><input type="checkbox" name="product-size"><a href="#">S (3)</a></li>
+              <li><input type="checkbox" name="product-size"><a href="#">M (3)</a></li>
+              <li><input type="checkbox" name="product-size"><a href="#">L (3)</a></li>
+              <li><input type="checkbox" name="product-size"><a href="#">XL (3)</a></li>
+            </ul>
+          </form>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Meyoji Robast Drone</h3>
-              <h4>Drone</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
+      <!-- filter-sub-area end -->
+      <!-- filter-sub-area start -->
+      <div class="filter-sub-area pt-sm-10 pt-xs-10">
+        <h5 class="filter-sub-titel">Color</h5>
+        <div class="color-categoriy">
+          <form action="#">
+            <ul>
+              <li><span class="white"></span><a href="#">White (1)</a></li>
+              <li><span class="black"></span><a href="#">Black (1)</a></li>
+              <li><span class="Orange"></span><a href="#">Orange (3) </a></li>
+              <li><span class="Blue"></span><a href="#">Blue  (2) </a></li>
+            </ul>
+          </form>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Ut praesentium earum</h3>
-              <h4>Mevrik</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
+      <!-- filter-sub-area end -->
+      <!-- filter-sub-area start -->
+      <div class="filter-sub-area pt-sm-10 pb-sm-15 pb-xs-15">
+        <h5 class="filter-sub-titel">Dimension</h5>
+        <div class="categori-checkbox">
+          <form action="#">
+            <ul>
+              <li><input type="checkbox" name="product-categori"><a href="#">40x60cm (6)</a></li>
+              <li><input type="checkbox" name="product-categori"><a href="#">60x90cm (6)</a></li>
+              <li><input type="checkbox" name="product-categori"><a href="#">80x120cm (6)</a></li>
+            </ul>
+          </form>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Consectetur adipisicing</h3>
-              <h4>Flyer</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
-        </div>
+      <!-- filter-sub-area end -->
+    </div>
+    <!--sidebar-categores-box end  -->
+    <!-- category-sub-menu start -->
+    <div class="sidebar-categores-box mb-sm-0 mb-xs-0">
+      <div class="sidebar-title">
+        <h2>Laptop</h2>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Meyoji Robast Drone</h3>
-              <h4>Drone</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
-        </div>
+      <div class="category-tags">
+        <ul>
+          <li><a href="# ">Devita</a></li>
+          <li><a href="# ">Cameras</a></li>
+          <li><a href="# ">Sony</a></li>
+          <li><a href="# ">Computer</a></li>
+          <li><a href="# ">Big Sale</a></li>
+          <li><a href="# ">Accessories</a></li>
+        </ul>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Ut praesentium earum</h3>
-              <h4>Mevrik</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-        <div class="single-tranding">
-          <a [routerLink]="['/product/id']">
-            <div class="tranding-pro-img">
-              <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
-            </div>
-            <div class="tranding-pro-title">
-              <h3>Consectetur adipisicing</h3>
-              <h4>Flyer</h4>
-            </div>
-            <div class="tranding-pro-price">
-              <div class="price_box">
-                <span class="current_price">$70.00</span>
-                <span class="old_price">$80.00</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
+      <!-- category-sub-menu end -->
     </div>
   </div>
 </section>
