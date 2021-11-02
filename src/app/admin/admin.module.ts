@@ -5,6 +5,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import {OrderComponent} from "./order/order.component";
 import {AminHeaderModule} from "../shared/layout/admin/header/header.module";
+import {AminSidebarModule} from "../shared/layout/admin/sidebar/sidebar.module";
+
 
 
 @NgModule({
@@ -15,7 +17,11 @@ import {AminHeaderModule} from "../shared/layout/admin/header/header.module";
   imports: [
     CommonModule,
     AdminRoutingModule,
-    AminHeaderModule
+    AminHeaderModule,
+    AminHeaderModule,
+    AminHeaderModule,
+    AminHeaderModule,
+    AminSidebarModule
   ]
 })
 export class AdminModule { }
