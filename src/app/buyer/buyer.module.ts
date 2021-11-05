@@ -14,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot.password.component';
 import {CartComponent} from "./components/cart/cart.component";
+import {CustomerHeaderModule} from "../shared/layout/customer/header";
+import {CustomerFooterModule} from "../shared/layout/customer/footer";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,6 @@ import {CartComponent} from "./components/cart/cart.component";
     ForgotPasswordComponent,
     CartComponent
   ],
-  imports: [CommonModule, BuyerRoutingModule, BreadcrumbModule],
+  imports: [CommonModule, BuyerRoutingModule, BreadcrumbModule, CustomerHeaderModule, CustomerFooterModule],
 })
 export class BuyerModule {}
