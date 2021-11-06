@@ -1,3 +1,4 @@
+import { CartComponent } from './components/cart/cart.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'blog', component: BlogComponent},
     { path: 'blog/:id', component: BlogDetailComponent},
     { path: 'checkout',component: CheckoutComponent,},
+    { path: 'cart',component: CartComponent,},
     {
       path: 'checkout',
       component: CheckoutComponent,
