@@ -12,21 +12,23 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  { path: '', component: BuyerComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'contact-us', component: ContactComponent },
-  { path: 'about-us', component: AboutUsComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'forgot-password', component: RegisterComponent },
-  { path: 'blog', component: BlogComponent},
-  { path: 'blog/:id', component: BlogDetailComponent},
-  { path: 'checkout',component: CheckoutComponent,},
-  {
-    path: 'checkout',
-    component: CheckoutComponent,
-  },
-  { path: 'product', loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule) },
+  { path: '', component: BuyerComponent, children: [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'contact-us', component: ContactComponent },
+    { path: 'about-us', component: AboutUsComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'forgot-password', component: RegisterComponent },
+    { path: 'blog', component: BlogComponent},
+    { path: 'blog/:id', component: BlogDetailComponent},
+    { path: 'checkout',component: CheckoutComponent,},
+    {
+      path: 'checkout',
+      component: CheckoutComponent,
+    },
+    { path: 'product', loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule) },
+  ] },
 ];
 
 @NgModule({

@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import {OrderComponent} from "./order/order.component";
-import {AminHeaderModule} from "../shared/layout/admin/header/header.module";
-import {AminSidebarModule} from "../shared/layout/admin/sidebar/sidebar.module";
+import {AdminHeaderModule} from "../shared/layout/admin/header/header.module";
+import {AdminSidebarModule} from "../shared/layout/admin/sidebar/sidebar.module";
 
 
 
@@ -17,11 +17,8 @@ import {AminSidebarModule} from "../shared/layout/admin/sidebar/sidebar.module";
   imports: [
     CommonModule,
     AdminRoutingModule,
-    AminHeaderModule,
-    AminHeaderModule,
-    AminHeaderModule,
-    AminHeaderModule,
-    AminSidebarModule
+    AdminHeaderModule,
+    AdminSidebarModule
   ]
 })
 export class AdminModule { }

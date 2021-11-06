@@ -9,4 +9,4 @@ import {RouterModule} from "@angular/router";
     AdminHeaderComponent
   ]
 })
-export class AminHeaderModule {}
+export class AdminHeaderModule {}

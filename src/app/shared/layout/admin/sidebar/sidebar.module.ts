@@ -9,4 +9,4 @@ import {AdminSidebarComponent} from "./sidebar.component";
     AdminSidebarComponent
   ]
 })
-export class AminSidebarModule {}
+export class AdminSidebarModule {}

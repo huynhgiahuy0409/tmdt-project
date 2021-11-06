@@ -4,8 +4,9 @@ import { CommonModule } from '@angular/common';
 import { SellerRoutingModule } from './seller-routing.module';
 import { SellerComponent } from './seller.component';
 import {SellerPageComponent} from "./page/page.component";
-import {SellerSidebarModule} from "../shared/layout/seller/sidebar/sidebar.module";
-import {SellerHeaderModule} from "../shared/layout/seller/header/header.module";
+import { AdminModule } from '../admin/admin.module';
+import { AdminHeaderModule } from '../shared/layout/admin/header/header.module';
+import { AdminSidebarModule } from '../shared/layout/admin/sidebar/sidebar.module';
 
 
 @NgModule({
@@ -15,8 +16,8 @@ import {SellerHeaderModule} from "../shared/layout/seller/header/header.module";
   imports: [
     CommonModule,
     SellerRoutingModule,
-    SellerSidebarModule,
-    SellerHeaderModule,
+    AdminHeaderModule,
+    AdminSidebarModule
   ]
 })
 export class SellerModule { }
