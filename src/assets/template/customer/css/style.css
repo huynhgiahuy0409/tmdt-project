@@ -79,11 +79,11 @@ font-family: 'Nunito', sans-serif;
 
 html, body {
   height: 100%;
+  font-size: 62.125%;
 }
 
 body {
   line-height: 24px;
-  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   visibility: visible;

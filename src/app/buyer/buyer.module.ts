@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,9 +14,10 @@ import { BlogDetailComponent } from './components/blog/blog-detail/blog.detail.c
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot.password.component';
-import {CartComponent} from "./components/cart/cart.component";
-import {CustomerHeaderModule} from "../shared/layout/customer/header";
-import {CustomerFooterModule} from "../shared/layout/customer/footer";
+import { CartComponent } from './components/cart/cart.component';
+import { CustomerHeaderModule } from '../shared/layout/customer/header';
+import { CustomerFooterModule } from '../shared/layout/customer/footer';
+import { MaterialModules } from '../material.module';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,15 @@ import {CustomerFooterModule} from "../shared/layout/customer/footer";
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    CartComponent
+    CartComponent,
   ],
-  imports: [CommonModule, BuyerRoutingModule, BreadcrumbModule, CustomerHeaderModule, CustomerFooterModule],
+  imports: [
+    CommonModule,
+    BuyerRoutingModule,
+    BreadcrumbModule,
+    CustomerHeaderModule,
+    CustomerFooterModule,
+    MaterialModules,
+  ],
 })
 export class BuyerModule {}
