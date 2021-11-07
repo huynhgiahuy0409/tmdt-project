@@ -1,0 +1,138 @@
+/* Common */
+.grid {
+  padding-top: 10px
+}
+
+/*  */
+.font-14,
+body {
+  font-size: 14px;
+}
+
+.account-nav-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 20px 0;
+}
+
+.account-nav>div {
+  font-size: 14px;
+  line-height: 1.75;
+  padding: 15px 25px;
+  font-weight: 400;
+  cursor: pointer;
+  width: 100%;
+}
+
+.account-nav>div:hover {
+  background-color: var(--hover-color);
+  color: var(--text-color);
+  border-radius: 4px;
+}
+
+.crimson-color {
+  background-color: crimson;
+  color: var(--text-color)
+}
+
+.sidebar-item-selected {
+  background-color: var(--hover-color);
+  color: var(--text-color)
+}
+
+/* Sidebar */
+.sidebar-container {
+  position: relative;
+  flex-wrap: nowrap;
+}
+
+.sidebar-container::before {
+  position: absolute;
+  border: 1px solid #000;
+  width: 66%;
+  background-color: #000;
+  bottom: 0;
+  left: 17px;
+}
+
+.sidebar-label {}
+
+.sidebar-icon {
+  padding-right: 0;
+}
+
+.sidebar-head {
+  margin-top: 4px;
+  padding-left: 0;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .sidebar-label {
+    font-size: 1.4rem;
+    width: 100%;
+  }
+
+  .sidebar-icon {
+    display: none
+  }
+
+  .account-nav div {
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .account-nav>div:hover {
+    background-color: rgb(255, 255, 255);
+    color: var(--text-color)
+  }
+
+  .sidebar-head {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .sidebar-container::before {
+    position: absolute;
+    border: 1px solid #000;
+    width: 66%;
+    background-color: #000;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .sidebar-label {
+    font-size: 0.9rem;
+    padding: 0;
+    width: 100%;
+  }
+
+  .sidebar-icon {
+    display: none
+  }
+
+  .account-nav div {
+    font-size: 0.8rem;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 0;
+  }
+
+  .account-nav>div:hover {
+    background-color: rgb(255, 255, 255);
+    color: var(--text-color)
+  }
+
+  .sidebar-head {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .sidebar-container::before {
+    position: absolute;
+    border: 1px solid #000;
+    width: 66%;
+    background-color: #000;
+    bottom: 0;
+    left: 0;
+  }
+}

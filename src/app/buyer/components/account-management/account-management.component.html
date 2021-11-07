@@ -1,0 +1,24 @@
+<div class="grid">
+
+</div>
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-2">
+      <div class="row sidebar-container">
+        <div class="col-4 sidebar-icon" >
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="col-8 col-12 sidebar-head">
+          <h4 class="sidebar-label">Tài khoản của bạn</h4>
+        </div>
+      </div>
+      <div class="row account-nav" *ngFor="let item of sidebarLabels; first as fst">
+          <div [routerLink]="['/customer/' + item[1] ]" routerLinkActive="sidebar-item-selected">{{item[0]}}</div>
+      </div>
+    </div>
+    <!-- Content page -->
+    <div class="col-10">
+      <router-outlet></router-outlet>
+    </div>
+</div>

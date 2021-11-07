@@ -1,6 +1,14 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 :root{
   --primary-color: #3e51eb;
-  --sub-color: #909cfb;
-  --white-color: #fff
+  --sub-color: #3e51eb;
+  --white-color: #fff;
+  --text-color: #444;
+  --hover-color: #8f8f8f14
+}
+h4{
+  font-size: 1.6rem;
+}
+html{
+  font-size: 62.5%;
 }

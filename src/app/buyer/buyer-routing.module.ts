@@ -30,6 +30,7 @@ const routes: Routes = [
       component: CheckoutComponent,
     },
     { path: 'product', loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule) },
+    { path: 'customer', loadChildren: () => import('./components/account-management/account-management.module').then(m => m.AccountManagementModule) },
   ] },
 ];
 
