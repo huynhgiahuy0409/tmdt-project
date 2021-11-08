@@ -1,0 +1,91 @@
+.header-shop{
+  background-color:#c9d8f9;
+  display: flex;
+  height: auto;
+  padding-top:50px;
+  padding-bottom: 10px;
+  padding-right: 10%;
+  padding-left: 10%;
+  border-bottom: 1px solid #969595;
+}
+.logo-shop{
+  flex: 1;
+  .logo-shop-border {
+    background-color: #5367e7;
+    margin-right: 10%;
+    margin-left: 10%;
+    padding: 10px;
+    border-radius: 5px;
+    padding-bottom: 7%;
+    font-size: 18px;
+    .logo-shop-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      background-color: #0b0b0b;
+      float: left;
+      margin-top: 5%;
+      margin-right: 20px;
+    }
+
+    .head-title-shop {
+      margin-top: 5%;
+    }
+    .head-button-shop{
+      margin-top: 10px;
+    }
+  }
+}
+.list-profile-shop{
+  flex: 3;
+  display: flex;
+  li{
+    font-size: 18px;
+    list-style: none;
+    margin-left: 0px;
+    height: 50px;
+    .title-profile{
+      p{
+        float: right;
+        margin-right: -25%;
+        margin-left: -15px;
+        color: red;
+      }
+    }
+
+  }
+}
+
+.list-profile-detail{
+  flex: 1;
+}
+
+//content shop
+.content-shop{
+  background-color: rgb(243, 243, 243);
+  .content-shop-profile{
+    position: absolute;
+    color: whitesmoke;
+    margin-left: 5%;
+  }
+  .content-shop-center {
+    display: flex;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #5466e0;
+    .content-shop-left {
+      flex: 1;
+      height: 430px;
+      margin-left: 5%;
+    }
+
+    .content-shop-right {
+      font-size: 18px;
+      flex: 1;
+      margin-left: 50px;
+    }
+  }
+}
+#carousel-shop{
+  background-color: #0b0b0b;
+}

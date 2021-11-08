@@ -9,11 +9,14 @@ import {ProductDetailComponent} from "./product-detail/product-detail.component"
 
 
 @NgModule({
-  declarations: [ProductListComponent,ProductDetailComponent
-  ],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-  ]
+    declarations: [ProductListComponent, ProductDetailComponent
+    ],
+    exports: [
+        ProductListComponent
+    ],
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+    ]
 })
 export class ProductModule { }

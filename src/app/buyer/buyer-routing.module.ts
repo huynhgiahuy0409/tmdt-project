@@ -11,6 +11,7 @@ import { CheckoutComponent } from './components/checkout';
 import { AboutUsComponent } from './components/aboutUs';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import {ShopComponent} from "./components/shop/shop.componet";
 
 const routes: Routes = [
   { path: '', component: BuyerComponent, children: [
@@ -25,10 +26,15 @@ const routes: Routes = [
     { path: 'blog/:id', component: BlogDetailComponent},
     { path: 'checkout',component: CheckoutComponent,},
     { path: 'cart',component: CartComponent,},
+
     {
       path: 'checkout',
       component: CheckoutComponent,
     },
+      {
+        path: 'shop',
+        component: ShopComponent,
+      },
     { path: 'product', loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule) },
     { path: 'customer', loadChildren: () => import('./components/account-management/account-management.module').then(m => m.AccountManagementModule) },
   ] },

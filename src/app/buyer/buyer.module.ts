@@ -18,6 +18,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { CustomerHeaderModule } from '../shared/layout/customer/header';
 import { CustomerFooterModule } from '../shared/layout/customer/footer';
 import { MaterialModules } from '../material.module';
+import {ShopComponent} from "./components/shop/shop.componet";
+import {ProductModule} from "./components/product/product.module";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { MaterialModules } from '../material.module';
     RegisterComponent,
     ForgotPasswordComponent,
     CartComponent,
+    ShopComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { MaterialModules } from '../material.module';
     CustomerHeaderModule,
     CustomerFooterModule,
     MaterialModules,
+    ProductModule,
   ],
 })
 export class BuyerModule {}
