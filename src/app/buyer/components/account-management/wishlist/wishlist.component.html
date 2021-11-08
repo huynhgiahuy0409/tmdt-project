@@ -1,1 +1,43 @@
-<p>wishlist works!</p>
+<ng-template #aProduct>
+  <div class="single-tranding">
+    <mat-card class="card-custom">
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu">
+      <div class="card-custom--detail-product-title">Product name</div>
+      <div class="justity-space">
+        <mat-card-subtitle><b>SKU:</b> 1112302312 </mat-card-subtitle>
+      </div>
+      <div class="price-label justity-space">
+        <div class="price-label--price"><span>{{200000 | currency: "VND"}}</span></div>
+        <div class="price-label--unit">{{400000 | currency: "VND"}}</div>
+      </div>
+      <mat-card-actions class="mat-card-actions-custom">
+        <div class="mat-card-actions-custom--buy-now">
+          <button mat-raised-button color="warn">Mua ngay</button>
+        </div>
+        <div class="mat-card-actions-custom--buy-now">
+          <button mat-raised-button class="mat-card-actions-custom--icon">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </div>
+        <div class="mat-card-actions-custom--buy-now">
+          <button mat-raised-button class="mat-card-actions-custom--icon">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-template>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+      <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+      <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+      <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
+    </div>
+  </div>
+</div>

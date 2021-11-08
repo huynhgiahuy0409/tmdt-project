@@ -1,1 +1,36 @@
-<p>delivery-address works!</p>
+<div class="container">
+  <!-- Địa chỉ giao hàng -->
+  <div class="container">
+    <div class="row row-custom">
+      <div class="col-1">
+        <mat-icon>location_on</mat-icon>
+      </div>
+      <div class="col-11">
+        <h4>Địa chỉ giao hàng</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h5>Địa chỉ giao hàng mặc định</h5>
+        <p>Địa chỉ here</p>
+      </div>
+
+      <div class="col-12">
+        <span class="button-wrapper">
+          <button mat-raised-button color="primary" class="crimson-color"
+            [routerLink]="['/customer/delivery-address/update']">Sửa địa chỉ</button>
+        </span>
+        <span class="button-wrapper">
+          <button mat-raised-button color="primary" class="crimson-color"
+            [routerLink]="['/customer/delivery-address/new']">Quản lí địa chỉ</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 padding">
+      </div>
+    </div>
+  </div>
+</div>
