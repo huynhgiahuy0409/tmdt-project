@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountComponent, PurchaseHistoryComponent } from '.';
+import { AccountComponent, DeliveryAddressComponent, PurchaseHistoryComponent, WishlistComponent } from '.';
 import { AccountManagementComponent } from './account-management.component';
 
 const routes: Routes = [
@@ -11,8 +11,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'account', pathMatch: 'full' },
       { path: 'account', component: AccountComponent },
       { path: 'purchase-history', component: PurchaseHistoryComponent },
-      { path: 'wishlist', component: PurchaseHistoryComponent },
-      { path: 'delivery-address', component: PurchaseHistoryComponent },
+      { path: 'wishlist', component: WishlistComponent },
+      { path: 'delivery-address', component: DeliveryAddressComponent },
     ],
   },
 ];
