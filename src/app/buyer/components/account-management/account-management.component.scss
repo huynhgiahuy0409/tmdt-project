@@ -2,7 +2,9 @@
 .grid {
   padding-top: 10px
 }
-
+.row-custom{
+  flex-wrap: nowrap;
+}
 /*  */
 .font-14,
 body {
