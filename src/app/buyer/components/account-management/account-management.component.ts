@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AccountManagementComponent implements OnInit {
   sidebarLabels: [string, string][] = [
     ['Tài khoản', 'account'],
-    ['Lịch sử mua hàng', 'purchase-history'],
+    ['Đơn mua', 'purchase-history'],
     ['Danh sách yêu thích', 'wishlist'],
     ['Địa chỉ giao hàng', 'delivery-address'],
   ];
