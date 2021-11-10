@@ -48,7 +48,7 @@ Primary Use:      Dropshipping Business
 36. Error Area
 
 -------------------------------------------*/
-/*** 
+/***
 
 ================
 	Fonts
@@ -176,7 +176,7 @@ figure {
   margin: 0;
 }
 
-/*-- 
+/*--
     - Common Classes
 -----------------------------------------*/
 .fix {
@@ -215,7 +215,7 @@ figure {
   margin: 0;
 }
 
-/*-- 
+/*--
     - Background color
 -----------------------------------------*/
 .bg-white {
@@ -261,10 +261,10 @@ figure {
   height: 100%;
 }
 
-/*-- 
+/*--
     - color
 -----------------------------------------*/
-/*-- 
+/*--
     - Input Placeholder
 -----------------------------------------*/
 input:-moz-placeholder, textarea:-moz-placeholder {
@@ -291,8 +291,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
-/*-- 
-    Scroll Up 
+/*--
+    Scroll Up
 -----------------------------------------*/
 #scrollUp {
   background: #1D1678 none repeat scroll 0 0;
@@ -314,7 +314,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   transition: .3s;
 }
 
-/*-- 
+/*--
     - Main Wrapper
 -----------------------------------------*/
 .main-wrapper.header-transparent {
@@ -322,7 +322,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin: 0 !important;
 }
 
-/*-- 
+/*--
     - Section Padding
 -------------------------------------*/
 .section-ptb {
@@ -1295,11 +1295,29 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   top: -7px;
   font-size: 11px;
 }
-.header_wishlist a {
-  font-size: 20px;
-  font-weight: 400;
-  text-transform: capitalize;
-  display: block;
+.info-list{
+  position: absolute;
+  top: 147%;
+  left: 0px;
+  background-color: #fff;
+  width: 150px;
+  border-radius: 3px;
+  box-shadow: 0 0 9px rgba(0,0,0,0.5);
+  z-index: 1;
+  display: none
+}
+.info-item{
+  padding: 10px 0;
+}
+.info-item:hover{
+  background-color: var(--hover-color);
+}
+.header_wishlist:hover .info-list{
+  display: block
+}
+.info-item span{
+  padding: 0 10px;
+  font-size: 1.4rem
 }
 .header_wishlist a:hover {
   color: #1D1678;
@@ -1307,6 +1325,14 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .header_wishlist a span {
   font-size: 32px;
   padding-right: 4px;
+}
+.header_wishlist::before{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header_wishlist a span {

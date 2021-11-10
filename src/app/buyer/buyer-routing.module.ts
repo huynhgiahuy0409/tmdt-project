@@ -12,6 +12,7 @@ import { AboutUsComponent } from './components/aboutUs';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {ShopComponent} from "./components/shop/shop.componet";
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: '', component: BuyerComponent, children: [
@@ -20,13 +21,14 @@ const routes: Routes = [
     { path: 'contact-us', component: ContactComponent },
     { path: 'about-us', component: AboutUsComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignUpComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'forgot-password', component: RegisterComponent },
     { path: 'blog', component: BlogComponent},
     { path: 'blog/:id', component: BlogDetailComponent},
     { path: 'checkout',component: CheckoutComponent,},
     { path: 'cart',component: CartComponent,},
-
+    { path: 'shop',component: ShopComponent,},
     {
       path: 'checkout',
       component: CheckoutComponent,

@@ -93,10 +93,10 @@
                       <div id="menu" class="text-left ">
                           <ul class="offcanvas_main_menu">
                               <li class="menu-item-has-children active">
-                                  <a href="#">Home</a>
+                                  <a href="#">Kênh người bán</a>
                               </li>
                               <li class="menu-item-has-children">
-                                  <a [routerLink]="['/product']">product</a>
+                                  <a [routerLink]="['/product']">Trở thành người bán</a>
                               </li>
                               <li class="menu-item-has-children">
                                   <a href="#">pages </a>
@@ -147,6 +147,24 @@
   </div>
   <!--Offcanvas menu area end-->
   <header>
+      <!--header bottom satrt-->
+      <div class="main_menu_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12">
+                    <div class="main_menu menu_position">
+                        <nav>
+                            <ul>
+                                <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" >Kênh người bán</a></li>
+                                <li><a [routerLink]="['/product']">Trở thành người bán</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header bottom end-->
       <div class="main_header">
           <!--header middel start-->
           <div class="header_middle">
@@ -154,7 +172,7 @@
                   <div class="row align-items-center">
                       <div class="col-lg-3 col-md-6">
                           <div class="logo">
-                              <a href="index-2.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                              <a href="index-2.html"><img src="assets/img/logo/new-logo.png" alt=""></a>
                           </div>
                       </div>
                       <div class="col-lg-9 col-md-6">
@@ -169,7 +187,16 @@
                               </div>
                               <div class="middel_right_info">
                                   <div class="header_wishlist">
-                                      <a href="#"><img src="assets/img/user.png" alt=""></a>
+                                      <img class="header_wishlist--img" src="assets/img/user.png" alt="">
+                                      <ul class="info-list" href="#">
+                                        <li class="info-item"><span>Tài khoản</span></li>
+                                        <li class="info-item"><span>Tình trạng đơn hàng</span></li>
+                                        <li class="info-item"><span>Đăng nhập</span></li>
+                                        <li class="info-item"><span>Đăng kí</span></li>
+                                        <ng-template #logged>
+                                          <li class="info-item"><span>Đăng xuất</span></li>
+                                        </ng-template>
+                                      </ul>
                                   </div>
                                   <div class="mini_cart_wrapper">
                                       <a href="javascript:void(0)"><img src="assets/img/shopping-bag.png" alt=""></a>
@@ -231,34 +258,6 @@
               </div>
           </div>
           <!--header middel end-->
-          <!--header bottom satrt-->
-          <div class="main_menu_area">
-              <div class="container">
-                  <div class="row justify-content-center">
-                      <div class="col-lg-12 col-md-12">
-                          <div class="main_menu menu_position">
-                              <nav>
-                                  <ul>
-                                      <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" >home</a></li>
-                                      <li><a [routerLink]="['/product']">Product</a></li>
-
-                                      <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
-                                          <ul class="sub_menu pages">
-                                              <li><a [routerLink]="['/about-us']" routerLinkActive="router-link-active" >About Us</a></li>
-                                              <li><a [routerLink]="['/contact-us']" routerLinkActive="router-link-active" >contact</a></li>
-                                          </ul>
-                                      </li>
-                                      <li><a [routerLink]="['/blog']" routerLinkActive="router-link-active" >blog</a>
-                                      </li>
-                                      <li><a [routerLink]="['/contact-us']" routerLinkActive="router-link-active" > Contact Us</a></li>
-                                  </ul>
-                              </nav>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!--header bottom end-->
       </div>
   </header>
   <!--header area end-->

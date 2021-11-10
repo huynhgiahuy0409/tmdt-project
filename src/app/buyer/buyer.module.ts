@@ -20,6 +20,9 @@ import { CustomerFooterModule } from '../shared/layout/customer/footer';
 import { MaterialModules } from '../material.module';
 import {ShopComponent} from "./components/shop/shop.componet";
 import {ProductModule} from "./components/product/product.module";
+import { RouterModule } from '@angular/router';
+import { AuthModule } from '../shared/layout/common/auth/auth.module';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import {ProductModule} from "./components/product/product.module";
     RegisterComponent,
     ForgotPasswordComponent,
     CartComponent,
-    ShopComponent
+    ShopComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
@@ -44,6 +48,7 @@ import {ProductModule} from "./components/product/product.module";
     CustomerFooterModule,
     MaterialModules,
     ProductModule,
+    AuthModule
   ],
 })
 export class BuyerModule {}

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModules } from './material.module';
 import { AdminHeaderModule } from './shared/layout/admin/header/header.module';
+import { AuthModule } from './shared/layout/common/auth/auth.module';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { CustomerFooterModule } from './shared/layout/customer/footer';
 import { CustomerHeaderModule } from './shared/layout/customer/header';
@@ -15,7 +16,7 @@ import { CustomerHeaderModule } from './shared/layout/customer/header';
     BrowserModule,
     AppRoutingModule,
     MaterialModules,
-    BreadcrumbModule
+    BreadcrumbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
