@@ -48,7 +48,7 @@ Primary Use:      Dropshipping Business
 36. Error Area
 
 -------------------------------------------*/
-/*** 
+/***
 
 ================
 	Fonts
@@ -176,7 +176,7 @@ figure {
   margin: 0;
 }
 
-/*-- 
+/*--
     - Common Classes
 -----------------------------------------*/
 .fix {
@@ -215,7 +215,7 @@ figure {
   margin: 0;
 }
 
-/*-- 
+/*--
     - Background color
 -----------------------------------------*/
 .bg-white {
@@ -261,10 +261,10 @@ figure {
   height: 100%;
 }
 
-/*-- 
+/*--
     - color
 -----------------------------------------*/
-/*-- 
+/*--
     - Input Placeholder
 -----------------------------------------*/
 input:-moz-placeholder, textarea:-moz-placeholder {
@@ -291,8 +291,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
-/*-- 
-    Scroll Up 
+/*--
+    Scroll Up
 -----------------------------------------*/
 #scrollUp {
   background: #1D1678 none repeat scroll 0 0;
@@ -314,7 +314,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   transition: .3s;
 }
 
-/*-- 
+/*--
     - Main Wrapper
 -----------------------------------------*/
 .main-wrapper.header-transparent {
@@ -322,7 +322,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin: 0 !important;
 }
 
-/*-- 
+/*--
     - Section Padding
 -------------------------------------*/
 .section-ptb {
@@ -6299,6 +6299,26 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: #ffffff;
 }
 
+.product_qa_form button {
+  border: none;
+  background: #242424;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 5px 15px 3px;
+  display: block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.product_qa_form button:hover {
+  background: #1D1678;
+  color: #ffffff;
+}
+
 .product_info_content p {
   line-height: 28px;
 }
@@ -6393,6 +6413,26 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin-bottom: 7px;
 }
 
+.product_qa_form input {
+  border: 1px solid #ddd;
+  background: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 20px;
+}
+.product_qa_form textarea {
+  border: 1px solid #ddd;
+  background: none;
+  height: 120px;
+  resize: none;
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 0 20px;
+}
+.product_qa_form p {
+  margin-bottom: 7px;
+}
+
 .star_rating {
   float: right;
 }
@@ -6407,6 +6447,18 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   display: flex;
   margin-bottom: 22px;
 }
+.qa_answer_box {
+  display: flex;
+  margin-bottom: 22px;
+}
+.qa_answer_box .comment_text {
+  width: 100%;
+  border: 1px solid #ebebeb;
+  position: relative;
+  margin-left: 21px;
+  padding: 12px;
+  border-radius: 3px;
+}
 .reviews_comment_box .comment_text {
   width: 100%;
   border: 1px solid #ebebeb;
@@ -6415,6 +6467,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   padding: 12px;
   border-radius: 3px;
 }
+
 .reviews_comment_box .comment_text::before {
   background: #fff;
   border-bottom: 1px solid #ebebeb;
@@ -6429,6 +6482,22 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   transform: rotate(45deg);
   width: 10px;
 }
+
+.qa_answer_box .comment_text::before {
+  background: #fff;
+  border-bottom: 1px solid #ebebeb;
+  border-left: 1px solid #ebebeb;
+  content: '';
+  display: block;
+  height: 10px;
+  left: 8px;
+  position: absolute;
+  top: -6px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(135deg);
+  width: 10px;
+}
+
 
 .reviews_meta p {
   font-size: 15px;
@@ -9985,6 +10054,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .privacy_content.section_3 h2 {
   margin-bottom: 18px;
 }
+
+.disabled-ripple:hover{
+  background: #FFFFFF !important;
+}
+
 @media only screen and (max-width: 767px) {
   .privacy_content.section_3 h2 {
     margin-bottom: 12px;

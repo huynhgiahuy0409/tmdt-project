@@ -8,6 +8,7 @@ import { AdminHeaderModule } from './shared/layout/admin/header/header.module';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { CustomerFooterModule } from './shared/layout/customer/footer';
 import { CustomerHeaderModule } from './shared/layout/customer/header';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,8 @@ import { CustomerHeaderModule } from './shared/layout/customer/header';
     BrowserModule,
     AppRoutingModule,
     MaterialModules,
-    BreadcrumbModule
+    BreadcrumbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
