@@ -23,6 +23,7 @@ import {ProductModule} from "./components/product/product.module";
 import { RouterModule } from '@angular/router';
 import { AuthModule } from '../shared/layout/common/auth/auth.module';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     ForgotPasswordComponent,
     CartComponent,
     ShopComponent,
-    SignUpComponent
+    SignUpComponent,
+    ResetComponent
   ],
   imports: [
     CommonModule,

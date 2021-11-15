@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {ShopComponent} from "./components/shop/shop.componet";
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 const routes: Routes = [
   { path: '', component: BuyerComponent, children: [
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'about-us', component: AboutUsComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignUpComponent },
+    { path: 'reset', component: ResetComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'forgot-password', component: RegisterComponent },
     { path: 'blog', component: BlogComponent},

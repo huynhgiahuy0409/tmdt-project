@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,9 +15,13 @@ import { CustomerHeaderModule } from './shared/layout/customer/header';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    
     AppRoutingModule,
     MaterialModules,
     BreadcrumbModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
