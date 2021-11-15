@@ -1,25 +1,32 @@
 <app-auth>
   <h2 id="title">Trang đăng ký</h2>
   <ng-container id="form-content">
-    <form action="#">
+    <form [formGroup]="form" action="#">
       <div class="single-acc-field">
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your Email">
+        <input type="email" id="email" placeholder="Enter your Email" formControlName="username">
       </div>
+      <ng-container *ngIf="form.hasError('invalidUsername','username') && form.get('username')?.touched">
+        <div class="alert alert-danger" role="alert">Username không hợp lệ</div>
+      </ng-container>
+      <fieldset formGroupName="passwordGroup">
+        <div class="single-acc-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" formControlName="password">
+        </div>
+        <div class="single-acc-field">
+          <label for="password">Confirm Password</label>
+          <input type="password" id="confir-mpassword" placeholder="Enter your password" formControlName="confirmPassword">
+        </div>
+      </fieldset>
+      <ng-container *ngIf="form.hasError('passwordNotMatch','passwordGroup') && form.get('passwordGroup')?.touched">
+        <div class="alert alert-danger" role="alert">Xác nhận mật khẩu không hợp lệ</div>
+      </ng-container>
       <div class="single-acc-field">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter your password">
-      </div>
-      <div class="single-acc-field boxes">
-        <input type="checkbox" id="checkbox">
-        <label for="checkbox">Remember me</label>
-      </div>
-      <div class="single-acc-field">
-        <button type="submit">Login Account</button>
+        <button type="submit">Đăng ký</button>
       </div>
       <div>
         <a href="forget-password.html">Forget Password?</a>
-        <a href="register.html">Not Account Yet?</a>
       </div>
         <div class="single-acc-field mt-40px">
           <div class="separate-container">

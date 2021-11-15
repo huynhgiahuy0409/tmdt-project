@@ -24,6 +24,7 @@ import { RouterModule } from '@angular/router';
 import { AuthModule } from '../shared/layout/common/auth/auth.module';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ResetComponent } from './components/reset/reset.component';
     CustomerFooterModule,
     MaterialModules,
     ProductModule,
-    AuthModule
+    AuthModule,
+    ReactiveFormsModule
   ],
 })
 export class BuyerModule {}

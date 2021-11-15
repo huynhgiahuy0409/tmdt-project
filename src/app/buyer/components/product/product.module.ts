@@ -18,11 +18,6 @@ import {MatExpansionModule} from "@angular/material/expansion";
     imports: [
         CommonModule,
         ProductsRoutingModule,
-  declarations: [ProductListComponent,ProductDetailComponent
-  ],
-    imports: [
-        CommonModule,
-        ProductsRoutingModule,
         MatExpansionModule,
     ]
 })
