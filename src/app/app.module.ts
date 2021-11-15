@@ -10,6 +10,7 @@ import { AuthModule } from './shared/layout/common/auth/auth.module';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { CustomerFooterModule } from './shared/layout/customer/footer';
 import { CustomerHeaderModule } from './shared/layout/customer/header';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { CustomerHeaderModule } from './shared/layout/customer/header';
     FormsModule,
     ReactiveFormsModule,
 
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

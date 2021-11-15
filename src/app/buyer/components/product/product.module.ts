@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {ProductListComponent} from "./product-list/product-list.component";
 import {ProductsRoutingModule} from "./product-routing.module";
 import {ProductDetailComponent} from "./product-detail/product-detail.component";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 
@@ -17,6 +18,12 @@ import {ProductDetailComponent} from "./product-detail/product-detail.component"
     imports: [
         CommonModule,
         ProductsRoutingModule,
+  declarations: [ProductListComponent,ProductDetailComponent
+  ],
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        MatExpansionModule,
     ]
 })
 export class ProductModule { }
