@@ -1,0 +1,79 @@
+
+<div class="container-fluid">
+  <div class="container-left">
+    <admin-sidebar></admin-sidebar>
+  </div>
+  <div class="product-management">
+    <div class="product-menu-head">
+      <div class="main-order">
+        <div class="menu-head">
+          <ul>
+            <a [routerLink]="['/seller/productManagement']">Tất cả</a>
+            <a [routerLink]="['/seller/productManagement']">Đang hoạt động</a>
+            <a [routerLink]="['/seller/productManagement']">Hết hàng</a>
+            <a [routerLink]="['/seller/productManagement']">Đã ẩn</a>
+          </ul>
+        </div>
+        <div class="product-list">
+          <div class="product-header">
+            <label class="product-quantity">100 Product</label>
+            <div class="input-group" style="width: 40%">
+              <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+              </div>
+              <button type="button" class="btn btn-primary product-search">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+            <div class="product-sort">
+              <label for="sort">Sắp xếp theo:</label>
+              <select id="sort" name="sort">
+                <option value="Tên">Tên</option>
+                <option value="Giá">Giá</option>
+                <option value="Loại">Loại</option>
+                <option value="Số lượng">Số lượng</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-primary product-new" [routerLink]="['/seller/productManagement/add']">+ Thêm sản phẩm mới</button>
+          </div>
+          <div class="row">
+            <div class="col-11">
+              <div class="table-responsive">
+                <table id="order-listing" class="table">
+                  <thead>
+                  <tr class="bg-primary text-white">
+                    <th>Tên sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Phân loại</th>
+                    <th>Giá</th>
+                    <th>Kho hàng</th>
+                    <th>Đã bán</th>
+                    <th>Chỉnh sữa</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let product of products">
+                    <td>Áo Nam</td>
+                    <td><img src="assets/img/product/3.png" width="160" height="70"></td>
+                    <td>Hoodie</td>
+                    <td>120.000 VNĐ</td>
+                    <td>100</td>
+                    <td>27</td>
+                    <td class="text-center">
+                      <button [routerLink]="['/seller/productManagement/add']" class="btn btn-light">
+                        <i class="fa fa-edit" style="font-size: 17px"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

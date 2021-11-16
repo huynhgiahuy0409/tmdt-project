@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SellerComponent } from './seller.component';
-import { SellerPageComponent } from './page/page.component';
+import { SellerPageComponent } from './component/page/page.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,8 @@ const routes: Routes = [
         path: '',
         redirectTo: 'page', pathMatch: 'full'
       },
-      { path: 'page', component: SellerPageComponent }
+      { path: 'page', component: SellerPageComponent },
+      { path: 'productManagement', loadChildren: () => import('./component/product-management/product-management.module').then(m => m.ProductManagementModule) },
     ],
   },
 ];

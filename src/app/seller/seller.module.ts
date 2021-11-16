@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { SellerRoutingModule } from './seller-routing.module';
 import { SellerComponent } from './seller.component';
-import {SellerPageComponent} from "./page/page.component";
-import { AdminModule } from '../admin/admin.module';
+import {SellerPageComponent} from "./component/page/page.component";
 import { AdminHeaderModule } from '../shared/layout/admin/header/header.module';
 import { AdminSidebarModule } from '../shared/layout/admin/sidebar/sidebar.module';
+import {ProductManagementModule} from "./component/product-management/product-management.module";
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { AdminSidebarModule } from '../shared/layout/admin/sidebar/sidebar.modul
     CommonModule,
     SellerRoutingModule,
     AdminHeaderModule,
-    AdminSidebarModule
+    AdminSidebarModule,
+    ProductManagementModule
   ]
 })
 export class SellerModule { }
