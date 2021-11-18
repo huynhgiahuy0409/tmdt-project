@@ -3,11 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 const materialModules = [
   MatButtonModule,
   MatSliderModule,
   MatCardModule,
   MatIconModule,
+  MatCheckboxModule
 ];
 
 @NgModule({
