@@ -1,0 +1,30 @@
+#container{
+  display: flex;
+  margin-top: 100px;
+}
+#sidebar-main{
+  flex: 2;
+}
+#main-panel-order{
+  flex: 10;
+}
+.title{
+  border-bottom: 1px solid #0f6674;
+  margin-bottom: 15px;
+}
+#divChart{
+  display: block;
+  width: 80%;
+  margin-left: 10%;
+  clear: right;
+}
+#select{
+  border: none;
+  color: white;
+  background: #0d6efd;
+  float: right;
+  margin-right: 10%;
+}
+#select option{
+  color: white;
+}

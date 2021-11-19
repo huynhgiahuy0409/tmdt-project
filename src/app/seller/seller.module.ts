@@ -8,10 +8,12 @@ import { AdminHeaderModule } from '../shared/layout/admin/header/header.module';
 import { AdminSidebarModule } from '../shared/layout/admin/sidebar/sidebar.module';
 import {ProductManagementModule} from "./component/product-management/product-management.module";
 
+import { BarchartComponent } from './components/barchart/barchart.component';
+import { PiechartComponent } from './components/piechart/piechart.component';
 
 @NgModule({
   declarations: [
-    SellerComponent,SellerPageComponent
+    SellerComponent,SellerPageComponent, BarchartComponent, PiechartComponent
   ],
   imports: [
     CommonModule,

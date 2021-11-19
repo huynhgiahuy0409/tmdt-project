@@ -7,9 +7,23 @@
         <div class="col-12">
           <div class="table_desc">
             <div class="cart_page table-responsive">
-              <table>
+<!--    products of a Shop          -->
+              <section class="shop-checkbox" *ngFor="let c of checkboxes">
+                  <div class="example-list-section" style="padding-left:2%; padding-top: 2%">
+
+                    <mat-checkbox class="example-margin"
+                      [checked]="c.allComplete"
+                      (change)="setAll($event.checked, c)">
+                      <p style="display: inline-block; margin-bottom: 5px;">{{c.name}}</p>
+                      <div class="comment_thmb" style="float:left; margin-right: -20px; padding-bottom: 8px;">
+                        <img src="assets/img/blog/comment2.jpg" alt="" style="width: 50%; height: 50%; border: 1px solid #ebebeb; border-radius: 50%">
+                      </div>
+                    </mat-checkbox>
+                  </div>
+                  <table>
                 <thead>
                 <tr>
+                  <th class="product-checkbox" style="column-width: 10px">Check</th>
                   <th class="product_thumb">Image</th>
                   <th class="product_name">Product</th>
                   <th class="product-price">Price</th>
@@ -19,26 +33,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a></td>
-                  <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                  <td class="product-price">$65.00</td>
-                  <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                  <td class="product_total">$130.00</td>
+                <tr *ngFor="let p of c.products">
+                  <td class="product-checkbox">
+                    <mat-checkbox [checked]="p.checked"
+                                  (change)="updateAllComplete(c, p, $event.checked)">
+                    </mat-checkbox>
+                  </td>
+                  <td class="product_thumb"><a href="#"><img [src]="p.image" alt=""></a></td>
+                  <td class="product_name"><a href="#">{{p.name}}</a></td>
+                  <td class="product-price">${{p.price}}</td>
+                  <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" [value]="p.quantities" type="number" (change)="changeProductQuantities(c, p, $event)" ></td>
+                  <td class="product_total">${{p.price * p.quantities}}</td>
                   <td class="product_remove"><a href="#"><i class="ion-android-close"></i></a></td>
                 </tr>
 
-                <tr>
-                  <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a></td>
-                  <td class="product_name"><a href="#">Handbags justo</a></td>
-                  <td class="product-price">$90.00</td>
-                  <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                  <td class="product_total">$180.00</td>
-                  <td class="product_remove"><a href="#"><i class="ion-android-close"></i></a></td>
-                </tr>
 
                 </tbody>
               </table>
+              </section>
+<!--    END products of a shop          -->
             </div>
             <div class="cart_submit">
               <button type="submit">update cart</button>
@@ -65,17 +78,15 @@
               <div class="coupon_inner">
                 <div class="cart_subtotal">
                   <p>Subtotal</p>
-                  <p class="cart_amount">$215.00</p>
+                  <p class="cart_amount" id="totalPrice">${{totalPrice}}</p>
                 </div>
-                <div class="cart_subtotal ">
-                  <p>Shipping</p>
-                  <p class="cart_amount"><span>Flat Rate:</span> $255.00</p>
+                <div class="cart_subtotal " style="border-bottom: 1px solid #0d6efd">
+                  <p>Discount</p>
+                  <p class="cart_amount">$0</p>
                 </div>
-                <a href="#">Calculate shipping</a>
-
                 <div class="cart_subtotal">
                   <p>Total</p>
-                  <p class="cart_amount">$215.00</p>
+                  <p class="cart_amount">${{totalPrice}}</p>
                 </div>
                 <div class="checkout_btn">
                   <a href="#">Proceed to Checkout</a>

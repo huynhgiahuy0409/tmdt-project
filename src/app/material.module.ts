@@ -7,6 +7,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 const materialModules = [
   MatButtonModule,
   MatSliderModule,
@@ -16,6 +17,7 @@ const materialModules = [
   MatFormFieldModule,
   MatAutocompleteModule,
   MatInputModule
+  MatCheckboxModule
 ];
 
 @NgModule({
