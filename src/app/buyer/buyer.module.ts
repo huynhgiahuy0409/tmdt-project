@@ -1,4 +1,3 @@
-import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -18,13 +17,17 @@ import { CartComponent } from './components/cart/cart.component';
 import { CustomerHeaderModule } from '../shared/layout/customer/header';
 import { CustomerFooterModule } from '../shared/layout/customer/footer';
 import { MaterialModules } from '../material.module';
-import {ShopComponent} from "./components/shop/shop.componet";
-import {ProductModule} from "./components/product/product.module";
-import { RouterModule } from '@angular/router';
+import { ShopComponent } from './components/shop/shop.componet';
+import { ProductModule } from './components/product/product.module';
 import { AuthModule } from '../shared/layout/common/auth/auth.module';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+} from '..';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CartComponent,
     ShopComponent,
     SignUpComponent,
-    ResetComponent
+    ResetComponent,
   ],
   imports: [
     CommonModule,
@@ -49,10 +52,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     BreadcrumbModule,
     CustomerHeaderModule,
     CustomerFooterModule,
-    MaterialModules,
+    ReactiveFormsModule,
     ProductModule,
     AuthModule,
-    ReactiveFormsModule
+    MaterialModules,
+  ],
+  providers: [
   ],
 })
 export class BuyerModule {}

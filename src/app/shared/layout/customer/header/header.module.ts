@@ -5,7 +5,10 @@ import {RouterModule} from "@angular/router";
 import { MaterialModules } from 'src/app/material.module';
 @NgModule({
   declarations: [CustomerHeaderComponent],
-  imports: [CommonModule, RouterModule,MaterialModules],
+  imports: [
+    CommonModule,
+    RouterModule,
+  ],
   exports: [
     CustomerHeaderComponent
   ]

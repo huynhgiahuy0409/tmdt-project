@@ -1,31 +1,45 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModules } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModules } from './material.module';
-import { AdminHeaderModule } from './shared/layout/admin/header/header.module';
-import { AuthModule } from './shared/layout/common/auth/auth.module';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
-import { CustomerFooterModule } from './shared/layout/customer/footer';
-import { CustomerHeaderModule } from './shared/layout/customer/header';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '.';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    
+    BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModules,
     BreadcrumbModule,
     FormsModule,
     ReactiveFormsModule,
-
-    BrowserAnimationsModule
+    MaterialModules,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('4441618775933631'),
+          },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '42510119300-4pjjafbekic220be3oa9ug0ep3t49p2v.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

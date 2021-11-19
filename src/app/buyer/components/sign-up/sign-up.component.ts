@@ -34,5 +34,6 @@ export class SignUpComponent implements OnInit {
         }
       ),
     });
+    console.log(this.form.get('passwordGroup'))
   }
 }
