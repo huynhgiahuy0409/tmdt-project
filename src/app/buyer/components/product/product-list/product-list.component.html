@@ -135,8 +135,14 @@
         </div>
         <!-- product-select-box end -->
       </div>
-      <div class="row justify-content-center">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+      <div class="row justify-content-center" >
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" *ngFor="let product of productList
+        | paginate: {
+                       itemsPerPage: tableSize,
+                       currentPage: page,
+                       totalItems: count
+                       };
+                       let i = index" [class.active]="i == 1">
           <div class="single-tranding">
             <a [routerLink]="['/product/id']">
               <div class="tranding-pro-img">
@@ -155,158 +161,12 @@
             </a>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Ut praesentium earum</h3>
-                <h4>Mevrik</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Consectetur adipisicing</h3>
-                <h4>Flyer</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Meyoji Robast Drone</h3>
-                <h4>Drone</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Ut praesentium earum</h3>
-                <h4>Mevrik</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Consectetur adipisicing</h3>
-                <h4>Flyer</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Meyoji Robast Drone</h3>
-                <h4>Drone</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-2.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Ut praesentium earum</h3>
-                <h4>Mevrik</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-          <div class="single-tranding">
-            <a [routerLink]="['/product/id']">
-              <div class="tranding-pro-img">
-                <img src="assets/template/customer/img/product/tranding-3.jpg" alt="">
-              </div>
-              <div class="tranding-pro-title">
-                <h3>Consectetur adipisicing</h3>
-                <h4>Flyer</h4>
-              </div>
-              <div class="tranding-pro-price">
-                <div class="price_box">
-                  <span class="current_price">$70.00</span>
-                  <span class="old_price">$80.00</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
+        <nav class="mt-4" aria-label="Page navigation sample">
+          <ul class="pagination">
+            <pagination-controls previousLabel="" nextLabel="" (pageChange)="tabSize($event)">
+            </pagination-controls>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
