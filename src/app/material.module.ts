@@ -3,20 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-<<<<<<< Updated upstream
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-=======
-import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 
->>>>>>> Stashed changes
 const materialModules = [
   MatButtonModule,
   MatSliderModule,
@@ -26,11 +19,8 @@ const materialModules = [
   MatFormFieldModule,
   MatAutocompleteModule,
   MatInputModule,
-<<<<<<< Updated upstream
-  MatCheckboxModule
-=======
+  MatCheckboxModule,
   MatExpansionModule
->>>>>>> Stashed changes
 ];
 
 @NgModule({

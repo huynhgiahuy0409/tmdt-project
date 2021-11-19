@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SellerComponent } from './seller.component';
 import { SellerPageComponent } from './component/page/page.component';
-import { SellerPageComponent } from './page/page.component';
 import {BarchartComponent} from "./components/barchart/barchart.component";
 import {PiechartComponent} from "./components/piechart/piechart.component";
 const routes: Routes = [

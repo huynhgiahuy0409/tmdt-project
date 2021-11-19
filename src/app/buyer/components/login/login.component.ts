@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
 import { ActivatedRoute, Router } from '@angular/router';
-=======
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
   SocialAuthService,
 } from 'src/app';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-login',
