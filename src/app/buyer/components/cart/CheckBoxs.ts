@@ -1,5 +1,4 @@
 import {Product} from "./Product";
-import {each} from "chart.js/helpers";
 
 export class CheckBoxs{
   checked: boolean = false;

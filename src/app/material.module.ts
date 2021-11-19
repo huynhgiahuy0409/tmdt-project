@@ -16,7 +16,7 @@ const materialModules = [
   MatTableModule,
   MatFormFieldModule,
   MatAutocompleteModule,
-  MatInputModule
+  MatInputModule,
   MatCheckboxModule
 ];
 
