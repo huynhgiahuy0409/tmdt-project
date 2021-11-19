@@ -7,11 +7,12 @@ import {SellerPageComponent} from "./page/page.component";
 import { AdminModule } from '../admin/admin.module';
 import { AdminHeaderModule } from '../shared/layout/admin/header/header.module';
 import { AdminSidebarModule } from '../shared/layout/admin/sidebar/sidebar.module';
-
+import { BarchartComponent } from './components/barchart/barchart.component';
+import { PiechartComponent } from './components/piechart/piechart.component';
 
 @NgModule({
   declarations: [
-    SellerComponent,SellerPageComponent
+    SellerComponent,SellerPageComponent, BarchartComponent, PiechartComponent
   ],
   imports: [
     CommonModule,

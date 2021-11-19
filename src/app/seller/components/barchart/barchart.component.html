@@ -1,0 +1,21 @@
+<admin-header></admin-header>
+<div id="container">
+  <div class="right" id="sidebar-main">
+    <admin-sidebar></admin-sidebar>
+  </div>
+  <div class="left" id="main-panel-order">
+   <div class="title">
+     <p class="chartTitle"><strong>BAR CHART FOR YOUR BUSINESS</strong></p>
+   </div>
+    <div class="selection">
+      <select id="select">
+        <option  *ngFor="let opt of options" [value]="opt">{{opt}}</option>
+      </select>
+    </div>
+    <div id="divChart">
+      <canvas id="myChart">
+      </canvas>
+    </div>
+  </div>
+</div>
+
