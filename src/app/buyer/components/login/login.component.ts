@@ -6,6 +6,7 @@ import {
   GoogleLoginProvider,
   SocialAuthService,
 } from 'src/app';
+import { PostService } from '../../post.service';
 
 @Component({
   selector: 'app-login',
@@ -18,17 +19,22 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private socialAuthService: SocialAuthService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
+    console.log(this.postService.random)
     this.form = this.fb.group({
       username: this.fb.control('', [Validators.email]),
       password: this.fb.control('', [Validators.required]),
     });
     this.socialAuthService.authState.subscribe((user) => {
+      console.log(user)
       let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl') || '/';
-      this.router.navigate([returnUrl]);
+      if(user != null){
+        this.router.navigate([returnUrl]);
+      }
     });
   }
   loginWithFacebook() {

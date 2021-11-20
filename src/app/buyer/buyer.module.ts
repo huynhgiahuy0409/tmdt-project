@@ -28,6 +28,7 @@ import {
   GoogleLoginProvider,
   SocialAuthServiceConfig,
 } from '..';
+import { PostService } from './post.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,6 @@ import {
     AuthModule,
     MaterialModules,
   ],
-  providers: [
-  ],
+  providers: [PostService]
 })
 export class BuyerModule {}
