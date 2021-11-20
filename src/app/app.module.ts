@@ -7,11 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '.';
-<<<<<<< Updated upstream
 import { NgxPaginationModule } from 'ngx-pagination';
-=======
 import { PostService } from './buyer/post.service';
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [AppComponent],
