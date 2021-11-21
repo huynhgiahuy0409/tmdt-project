@@ -1,0 +1,106 @@
+.header-container {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 7%);
+  background-color: #fff;
+  z-index: 100001;
+}
+
+.header {
+  position: relative;
+  height: 55px;
+  display: flex;
+  margin: 3px;
+  align-items: center;
+}
+
+.header-left {
+  position: absolute;
+  left: 0;
+  display: flex;
+}
+
+.header-logo {
+  width: 90px;
+  max-height: 55px;
+  object-fit: cover;
+}
+
+.header-title {
+  margin: auto;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.header-right {
+  display: flex;
+  right: 0;
+  position: absolute;
+}
+
+.header-right:hover {
+  opacity: .7;
+}
+.header-right:hover .header-name--wrapper{
+  opacity: 1;
+}
+
+.header-avatar {
+  max-height: 30px;
+  max-width: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header-name {
+  margin: auto;
+  padding: 0 5px;
+}
+
+.header-name--wrapper {
+  display: flex;
+  position: relative
+}
+.header-name--wrapper:hover .header-name--list{
+  display: block;
+}
+
+.header-name--list {
+  position: absolute;
+  left: 0%;
+  top: 100%;
+  z-index: 100002;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 7%);
+  display: none;
+}
+
+.header-name--item {
+  font-size: 1.4rem;
+  z-index: 100002;
+  padding: 0 10px;
+  display: flex;
+}
+
+.header-name--item:hover {
+  background-color: var(--hover-color)
+}
+
+.header-name--item:hover .header-right {
+  opacity: 1;
+}
+
+.header-name--item p {
+  margin: auto
+}
+
+.header-icon {
+  margin: auto;
+  position: relative
+}
+
+.body-container {
+  margin-top: 61px;
+  position: absolute
+}
