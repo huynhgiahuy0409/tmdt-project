@@ -9,7 +9,7 @@ const routes: Routes = [
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: '',
+    path: 'buyer',
     loadChildren: () =>
       import('./buyer/buyer.module').then((m) => m.BuyerModule),
   },
