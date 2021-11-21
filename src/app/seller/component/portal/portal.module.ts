@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BordingComponent } from './bording/bording.component';
+import { PortalRoutingModule } from './portal-routing.module';
 import { BoardingComponent } from './boarding/boarding.component';
 import { ProductComponent } from './product/product.component';
+import { PortalComponent } from './portal.component';
+import { MaterialModules } from 'src/app/material.module';
 
 
 
 @NgModule({
   declarations: [
-    BordingComponent,
+    PortalComponent,
     BoardingComponent,
     ProductComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PortalRoutingModule,
+    MaterialModules
   ]
 })
 export class PortalModule { }
