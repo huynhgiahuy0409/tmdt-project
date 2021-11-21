@@ -1,3 +1,4 @@
+import { PostService } from './../buyer/post.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -21,6 +22,6 @@ import { PiechartComponent } from './components/piechart/piechart.component';
     AdminHeaderModule,
     AdminSidebarModule,
     ProductManagementModule
-  ]
+  ],
 })
 export class SellerModule { }

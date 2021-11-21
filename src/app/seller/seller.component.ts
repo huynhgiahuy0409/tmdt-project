@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../buyer/post.service';
 
 @Component({
   selector: 'app-seller',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ps: PostService) { }
 
   ngOnInit(): void {
   }

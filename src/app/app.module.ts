@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '.';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PostService } from './buyer/post.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: false,
+        autoLogin: true,
         providers: [
           {
             id: FacebookLoginProvider.PROVIDER_ID,

@@ -9,10 +9,7 @@ const routes: Routes = [
     path: '',
     component: SellerComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'page', pathMatch: 'full'
-      },
+      { path: 'portal', loadChildren: () => import('./component/portal/portal.module')},
       { path: 'page', component: SellerPageComponent },
       { path: 'productManagement', loadChildren: () => import('./component/product-management/product-management.module').then(m => m.ProductManagementModule) },
       { path: 'barchart', component: BarchartComponent},

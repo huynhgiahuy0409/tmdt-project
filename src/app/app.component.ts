@@ -39,6 +39,7 @@ import {
   takeWhile,
   throttleTime,
 } from 'rxjs/operators';
+import { PostService } from './buyer/post.service';
 export interface validator {
   (control: string): string;
 }
@@ -53,7 +54,7 @@ export interface validator1 {
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'Toy Store';
-  constructor(private activeRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(private activeRoute: ActivatedRoute, private fb: FormBuilder, private ps: PostService) {}
   ngAfterViewInit(): void {}
   ngOnInit(): void {
   }
