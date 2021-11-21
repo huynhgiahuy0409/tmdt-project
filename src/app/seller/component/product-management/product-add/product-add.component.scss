@@ -1,0 +1,72 @@
+.container{
+  background-color: rgba(243, 247, 248, 0.77);
+  margin-top: 80px;
+  padding-bottom: 60px;
+  .title_add{
+    margin-left: 115px;
+  }
+  .product_name{
+    form{
+      .form-group{
+        .product_add_label{
+          float: left;
+          margin-top: 3px;
+          margin-left: 10%;
+          margin-right: 2%;
+        }
+      }
+    }
+  }
+  .product_box_branch{
+    width: 80%;
+    margin-left: 117px;
+    margin-top: 20px;
+    .product_search_branch{
+      .form-control{
+        border-radius: 15px;
+      }
+    }
+    .product_list_branch{
+      display: flex;
+      position: relative;
+      margin-top: 30px;
+      border: 2px solid rgba(180, 176, 176, 0.51);
+      .product_list_branch_block{
+        width: 400px;
+        height: 400px;
+        overflow-y: scroll;
+        flex: 1;
+        margin-left: 40px;
+        ul{
+          li{
+            margin-top: 5px;
+          }
+          li:hover{
+            background-color: gray;
+          }
+        }
+      }
+      .product_list_branch_1{
+      }
+      .product_list_branch_2{
+      }
+      .product_list_branch_3{
+
+      }
+    }
+    .branch_choose{
+      margin-left: 10px;
+      margin-top: 15px;
+      label{
+        float: left;
+        margin-right: 5px;
+      }
+      p{
+        color: #3f0404;
+      }
+      button{
+        font-size: 15px;
+      }
+    }
+  }
+}
