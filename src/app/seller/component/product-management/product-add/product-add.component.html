@@ -6,15 +6,21 @@
   <hr>
   <div class="product_name">
     <form>
-      <div class="form-group">
+      <div class="input-group mb-3">
         <label class="product_add_label">Tên sản phẩm:</label>
-        <input class="form-control" placeholder="Nhập vào" style="width: 70%">
+        <input type="text" class="form-control" placeholder="Nhập tên">
+        <div class="input-group-prepend">
+          <span class="input-group-text">0/200</span>
+        </div>
       </div>
     </form>
   </div>
   <div class="product_box_branch">
-    <div class="product_search_branch">
-      <input class="form-control" placeholder="Nhập tên ngành hàng" style="width: 30%">
+    <div class="product_search_branch input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+      <input type="text" class="form-control" placeholder="Nhập tên ngành hàng">
     </div>
     <div class="product_list_branch">
       <div class="product_list_branch_block product_list_branch_1" data-spy="scroll" data-target=".navbar" data-offset="50">

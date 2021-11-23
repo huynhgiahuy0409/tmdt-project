@@ -6,13 +6,18 @@
     margin-left: 115px;
   }
   .product_name{
+    width: 90%;
+    margin-bottom: 50px;
     form{
-      .form-group{
+      .input-group{
         .product_add_label{
           float: left;
           margin-top: 3px;
-          margin-left: 10%;
-          margin-right: 2%;
+          margin-left: 112px;
+          margin-right: 20px;
+        }
+        input{
+          height: 35px;
         }
       }
     }
@@ -22,8 +27,10 @@
     margin-left: 117px;
     margin-top: 20px;
     .product_search_branch{
+      width: 30%;
       .form-control{
-        border-radius: 15px;
+        -moz-border-radius-topright: 15px;
+        -moz-border-radius-bottomright: 15px;
       }
     }
     .product_list_branch{

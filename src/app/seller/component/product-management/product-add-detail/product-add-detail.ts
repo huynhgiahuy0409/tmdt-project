@@ -53,7 +53,7 @@ export class SellerProductAddDetailComponent implements OnInit {
             // @ts-ignore
             imgPreview1.style.marginTop = "20px";
             // @ts-ignore
-            imgPreview1.innerHTML = '<img style="width: 155px;height: 90px" src="' + this.result + '" />';
+            imgPreview1.innerHTML = '<img style="width: 155px;height: 87px" src="' + this.result + '" />';
           });
         }
       }
@@ -69,7 +69,7 @@ export class SellerProductAddDetailComponent implements OnInit {
           // @ts-ignore
           imgPreview2.style.marginTop = "20px";
           // @ts-ignore
-          imgPreview2.innerHTML = '<img style="width: 155px;height: 90px" src="' + this.result + '" />';
+          imgPreview2.innerHTML = '<img style="width: 155px;height: 87px" src="' + this.result + '" />';
         });
       }
     }
