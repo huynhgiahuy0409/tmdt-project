@@ -1,4 +1,3 @@
-
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 <div class="container">
   <div class="row">
@@ -11,73 +10,171 @@
           <a class="nav-link" href="#section2">Thông tin chi tiết</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#section3">Thông tin vận chuyển</a>
+          <a class="nav-link" href="#section3">Thông tin bán hàng</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link " href="#section4">Thông tin khác</a>
+          <a class="nav-link " href="#section4">Vận chuyển</a>
         </li>
       </ul>
     </nav>
     <div class="col-sm-10 col-8">
-      <div id="section" class="bg-gray">
+      <div id="section">
         <h1>Thêm thông tin chi tiết</h1>
       </div>
-      <div id="section1" class="bg-success">
+      <div id="section1">
         <h1>Thông tin cơ bản</h1>
         <form>
-          <div class="form-group" >
+          <div class="form-group">
             <label class="label-image">Hình ảnh sản phẩm :</label>
             <li>
               <div class="img-preview" id="img-preview1"></div>
-              <input type="file" accept="image/*" id="choose-file1" name="choose-file" />
+              <input type="file" accept="image/*" id="choose-file1" name="choose-file"/>
               <label id="a1" for="choose-file1"><p>+</p></label>
             </li>
             <li>
               <div class="img-preview" id="img-preview2"></div>
-              <input type="file" accept="image/*" id="choose-file2" name="choose-file" />
+              <input type="file" accept="image/*" id="choose-file2" name="choose-file"/>
               <label id="a2" for="choose-file2"><p>+</p></label>
             </li>
             <li>
               <div class="img-preview" id="img-preview3"></div>
-              <input type="file" accept="image/*" id="choose-file3" name="choose-file" />
+              <input type="file" accept="image/*" id="choose-file3" name="choose-file"/>
               <label id="a3" for="choose-file3"><p>+</p></label>
             </li>
             <li>
               <div class="img-preview" id="img-preview4"></div>
-              <input type="file" accept="image/*" id="choose-file4" name="choose-file" />
+              <input type="file" accept="image/*" id="choose-file4" name="choose-file"/>
               <label id="a4" for="choose-file4"><p>+</p></label>
             </li>
             <li>
               <div class="img-preview" id="img-preview5"></div>
-              <input type="file" accept="image/*" id="choose-file5" name="choose-file" />
+              <input type="file" accept="image/*" id="choose-file5" name="choose-file"/>
               <label id="a5" for="choose-file5"><p>+</p></label>
             </li>
           </div>
           <div class="form-group2">
-            <label >Tên Sản phẩm :</label>
+            <label>Tên Sản phẩm :</label>
             <input class="form-control" placeholder="Tên sản phẩm">
           </div>
-          <div  class="form-group2">
+          <div class="form-group2">
             <label>Mô tả sản phẩm :</label>
             <textarea class="form-control" placeholder="Mô tả sản phẩm"></textarea>
           </div>
-          <div  class="form-group2">
+          <div class="form-group2">
             <label>Danh mục :</label>
             <p>Thời trang nữ / aaaaa/ aaaaa1111</p>
           </div>
         </form>
       </div>
-      <div id="section2" class="bg-warning">
+      <div id="section2">
         <h1>Thông tin chi tiết</h1>
-        <p>a</p>
+        <p>Điền thông tin thuộc tính để tăng mức độ hiển thị cho sản phẩm </p>
+        <form>
+          <div class="form-group">
+            <li class="col-sm-5">
+              <label for="sel1">Thương hiệu :</label>
+              <select class="form-control" id="sel1" name="sellist1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </li>
+            <li class="col-sm-5">
+              <label for="sel2">Chất liệu :</label>
+              <select class="form-control" id="sel2" name="sellist1">
+                <option>Nhựa</option>
+                <option>Kim loại</option>
+                <option>Tattong</option>
+                <option>Kết hợp</option>
+              </select>
+            </li>
+            <li class="col-sm-5">
+              <label for="sel4">Loại :</label>
+              <select class="form-control" id="sel3" name="sellist1">
+                <option>Robot</option>
+                <option>Bupbe</option>
+                <option>Học tập</option>
+                <option>Rấp ráp</option>
+              </select>
+            </li>
+            <li class="col-sm-5">
+              <label for="sel4">Xuất xứ :</label>
+              <select class="form-control" id="sel4" name="sellist1">
+                <option>Hà Nội</option>
+                <option>Đà Nẵng</option>
+                <option>TP.HCM</option>
+                <option>Nha Trang</option>
+              </select>
+            </li>
+            <li class="col-sm-5">
+              <label for="sel5">Tình trạng:</label>
+              <select class="form-control" id="sel5" name="sellist5">
+                <option>Mới</option>
+                <option>Đã sử dụng</option>
+              </select>
+            </li>
+          </div>
+        </form>
       </div>
-      <div id="section3" class="bg-secondary">
-        <h1>Thông tin vận chuyển</h1>
-        <p>b</p>
+      <div id="section3">
+        <h1>Thông tin bán hàng</h1>
+        <form class="">
+          <div class="form-group">
+            <li class="col-12">
+              <label for="price" class="col-2">* Giá:</label>
+              <input type="number" class="form-control col-8" id="price" placeholder="Nhập giá">
+            </li>
+            <li class="col-12">
+              <label for="wahouse" class="col-2">Kho:</label>
+              <input type="number" class="form-control col-8" id="wahouse" placeholder="Nhập số lượng trong kho"
+                     value="0">
+            </li>
+            <li class="col-12 sale">
+                <label for="sale-quantity" class="col-2">Mua nhiều giảm giá:</label>
+                <input style="float: left;margin-right: 20px;margin-left: 24px;" type="number" class="form-control col-3" id="sale-quantity"
+                       placeholder="Nhập số lượng tối thiểu">
+                <input type="number" class="form-control col-4" id="sale-money" placeholder="Nhập số tiền giảm">
+
+            </li>
+          </div>
+        </form>
       </div>
-      <div id="section4" class="bg-danger">
-        <h1>Thông tin khác</h1>
-        <p>c</p>
+      <div id="section4">
+        <h1>Vận chuyển</h1>
+        <form class="">
+          <div class="form-group">
+            <li class="col-12">
+              <label for="gram" class="col-2">* Cân nặng(Sau khi đóng gói):</label>
+              <input type="number" class="form-control col-8" id="gram" placeholder="Nhập cân nặng">
+            </li>
+            <li class="col-12 transport-size">
+            <label class="col-2" style="margin-right: 26px">Kích thước :</label>
+            <div class="input-group col-3" >
+              <input type="text" class="form-control" placeholder="D">
+              <div class="input-group-prepend">
+                <span class="input-group-text">cm</span>
+              </div>
+            </div>
+            <div class="input-group col-3" >
+              <input type="text" class="form-control" placeholder="R">
+              <div class="input-group-prepend">
+                <span class="input-group-text">cm</span>
+              </div>
+            </div>
+            <div class="input-group col-3" >
+              <input type="text" class="form-control" placeholder="C">
+              <div class="input-group-prepend">
+                <span class="input-group-text">cm</span>
+              </div>
+            </div>
+            </li>
+          </div>
+        </form>
+      </div>
+      <div class="action_button">
+        <button class="btn btn-primary">Thêm</button>
+        <button class="btn btn-light">Hủy</button>
       </div>
     </div>
   </div>

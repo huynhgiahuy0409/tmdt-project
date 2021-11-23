@@ -1,17 +1,17 @@
 .body {
   position: relative;
+  font-size: 20px;
 }
 ul.nav-pills {
   top: 20px;
   position: fixed;
 }
-div.col-8 div {
-  height: 500px;
-}
 .container{
   border: 3px solid #e9ebfa;
 }
-
+#myScrollspy{
+  border: 2px solid rgba(225, 216, 216, 0.68);
+}
 #section{
   height: 60px;
   h1{
@@ -24,6 +24,8 @@ div.col-8 div {
 }
 #section1{
   height: 600px;
+  margin-bottom: 10px;
+  background-color: #d9e7fa;
   h1{
     width: 100%;
   }
@@ -38,6 +40,7 @@ div.col-8 div {
     margin-bottom: 20px;
   }
   li{
+    margin-right: 5px;
     margin-top: 15px;
     float: left;
   }
@@ -96,11 +99,97 @@ li{
   color: #f44336;
 }
 #section2{
-  height: 600px;
+  height: 350px;
+  background-color: #d9e7fa;
+  margin-bottom: 10px;
+  h1{
+
+  }
+  form{
+    .form-group{
+      li{
+        label{
+          float: left;
+        }
+        select{
+          float: right;
+          height: 34px;
+          width: 78%!important;
+        }
+      }
+    }
+  }
 }
 #section3{
-  height: 600px;
+  height: 360px;
+  background-color: #d9e7fa;
+  margin-bottom: 10px;
+  h1{
+
+  }
+  form{
+    .form-group {
+      li {
+        label {
+          float: left;
+          text-align: end;
+          margin-left: -80px;
+        }
+
+        .form-control {
+          float: right;
+          height: 34px;
+          margin-right: 190px;
+        }
+      }
+    }
+  }
 }
 #section4{
-  height: 600px;
+  background-color: #d9e7fa;
+  height: 270px;
+  margin-bottom: 10px;
+  h1{
+
+  }
+  form{
+    .form-group {
+      li {
+        label {
+          float: left;
+          text-align: end;
+          margin-left: -80px;
+        }
+
+        .form-control {
+          float: right;
+          height: 34px;
+          margin-right: 190px;
+        }
+        .input-group{
+          float: left;
+          width: 175px;
+          margin-right: 10px;
+          .form-control{
+            margin-right: 0px;
+          }
+          .input-group-prepend{
+            .input-group-text{
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.action_button{
+  margin-top: 20px;
+  padding-bottom: 50px;
+  button{
+    float: right;
+    margin-right: 30px;
+    padding: 5px;
+    font-size: 18px;
+  }
 }
