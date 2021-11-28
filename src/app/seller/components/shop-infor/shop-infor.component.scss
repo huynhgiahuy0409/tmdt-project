@@ -1,0 +1,93 @@
+#container{
+  display: flex;
+  margin-top: 100px;
+}
+#sidebar-main{
+  flex: 2;
+}
+#content-main{
+  flex: 10;
+}
+.right{
+  background-color: #76979a;
+}
+.frame{
+  background-color: white;
+  margin: 15px 15px;
+  padding: 15px 15px;
+  border-radius: 3px;
+}
+.title{
+  border-bottom: 1px solid #1d1678;
+  padding-left: 2%;
+}
+h1{
+  margin-bottom: 5px;
+}
+.bottomTitle{
+  margin-top: 15px;
+  margin-bottom: -1px;
+  display: inline-block;
+  border-bottom: 3px solid #0d6efd;
+}
+.content{
+  display: flex;
+  margin-top: 30px;
+  padding-left: 2%;
+}
+.content > .left > div{
+  width: 100%;
+  border: 1px solid #001d6d;
+  margin-bottom: -1px;
+  padding-top: 8px;
+  padding-left: 7px;
+}
+.avartar{
+  background-color: #80808c;
+  color: white;
+}
+.image{
+  float: left;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+.infor{
+  float: left;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+.changeImg{
+  width: 100%;
+  border: none;
+  background-color: #1d1678;
+  color: white;
+  height: 30px;
+}
+.product > p, .replyRate > p, .replyTime > p, .shopRate > p, .unsuccesBillRate > p{
+  display: inline-block;
+}
+.unsuccesBillRate{
+  border-bottom: none;
+}
+.content-right{
+  padding-right: 10%;
+}
+.content-right >div{
+  margin-bottom: 27px;
+}
+.content-right > div > p{
+  font-size: 18px;
+}
+#saveBtn{
+  background-color: #1d1678;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  width: 10%;
+}
+#saveBtn:hover{
+  background-color: #2d22b6;
+}
+#saveBtn:active{
+  background-color: #1a125b;
+}

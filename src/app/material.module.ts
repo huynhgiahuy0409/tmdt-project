@@ -9,7 +9,8 @@ const materialModules = [
   MatSliderModule,
   MatCardModule,
   MatIconModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatIconModule
 ];
 
 @NgModule({
