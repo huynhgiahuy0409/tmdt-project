@@ -5,6 +5,7 @@ import { ProductsRoutingModule } from './product-routing.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { MaterialModules } from 'src/app/material.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [ProductListComponent, ProductDetailComponent],
@@ -13,6 +14,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProductsRoutingModule,
     MaterialModules,
     NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [ProductListComponent],
 })

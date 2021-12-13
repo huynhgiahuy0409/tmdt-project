@@ -115,7 +115,10 @@
             <!-- shop-item-filter-list end -->
           </div>
           <div class="toolbar-amount" id="toolbar-amount-reponsive">
-            <span>Showing 1 to 9 of 15</span>
+            <div class="container" style="margin-bottom: 30px">
+              <input class="form-control" name="contentCM" [(ngModel)]="contentCM" style="width: 60%; float: left;height: 30px;margin-right: 20px">
+              <button class="btn btn-primary" (click)="searchProduct(contentCM)" style="width: 60px ; height: 30px">Tìm kiếm</button>
+            </div>
           </div>
         </div>
         <!-- product-select-box start -->
@@ -161,13 +164,13 @@
             </a>
           </div>
         </div>
-        <nav class="mt-4" aria-label="Page navigation sample">
-          <ul class="pagination">
-            <pagination-controls previousLabel="" nextLabel="" (pageChange)="tabSize($event)">
-            </pagination-controls>
-          </ul>
-        </nav>
       </div>
+      <nav class="mt-4" aria-label="Page navigation sample">
+        <ul class="pagination">
+          <pagination-controls previousLabel="" nextLabel="" (pageChange)="tabSize($event)">
+          </pagination-controls>
+        </ul>
+      </nav>
     </div>
   </div>
   <div class="col-12" id="reponsive-phone" >
