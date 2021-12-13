@@ -22,13 +22,14 @@ import { ProductModule } from './components/product/product.module';
 import { AuthModule } from '../shared/layout/common/auth/auth.module';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
   SocialAuthServiceConfig,
 } from '..';
 import { PostService } from './post.service';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,9 @@ import { PostService } from './post.service';
     ReactiveFormsModule,
     ProductModule,
     AuthModule,
+    FormsModule,
     MaterialModules,
+    HttpClientModule
   ],
   providers: [PostService]
 })
