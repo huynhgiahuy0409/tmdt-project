@@ -136,7 +136,7 @@
         <!-- product-select-box end -->
       </div>
       <div class="row justify-content-center" >
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" *ngFor="let product of productList
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12" *ngFor="let product of products
         | paginate: {
                        itemsPerPage: tableSize,
                        currentPage: page,
@@ -149,7 +149,7 @@
                 <img src="assets/template/customer/img/product/tranding-1.jpg" alt="">
               </div>
               <div class="tranding-pro-title">
-                <h3>Meyoji Robast Drone</h3>
+                <h3>{{product.name}}</h3>
                 <h4>Drone</h4>
               </div>
               <div class="tranding-pro-price">
