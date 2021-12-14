@@ -15,5 +15,7 @@ export class PostService{
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiServerUrl}/product/all`);
   }
-
+  public addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${this.apiServerUrl}/product/add`, product);
+  }
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
+import {PostService} from "../../../../buyer/post.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {Product} from "../../../../buyer/product";
 
 @Component({
   selector: 'seller-product-add-detail',
@@ -6,12 +11,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-add-detail.scss']
 })
 export class SellerProductAddDetailComponent implements OnInit {
-
+  productList!: any[];
+  page = 1;
+  star:any;
+  count = 0;
+  tableSize = 9;
+  public products!: Product[];
+  contentCM: any;
   imglist!:any[];
-  constructor() { }
+  constructor(private route: ActivatedRoute,private productService : PostService) { }
 
   ngOnInit(): void {
     this.imglist = [1,2,3,4,5,6,7];
+
+
     // const chooseFile1 = document.getElementById("choose-file"+this.imglist[1]);
     const chooseFile1 = document.getElementById("choose-file1");
     const a1 = document.getElementById("a1");
@@ -74,4 +87,29 @@ export class SellerProductAddDetailComponent implements OnInit {
       }
     }
     }
+  public getProducts(): void {
+    this.productService.getProducts().subscribe(
+      (response: Product[]) => {
+        this.products = response;
+        console.log(this.products);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+  public onAddProduct(addForm: NgForm): void {
+    this.productService.addProduct(addForm.value).subscribe(
+      (response: Product) => {
+        console.log(response);
+        this.getProducts();
+        addForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset();
+      }
+    );
+  }
+
 }
