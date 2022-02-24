@@ -1,6 +1,8 @@
 import { BreadcrumbComponent } from './shared/layout/customer/breadcrumb/breadcrumb.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
+import { I18nComponent } from './demo/i18n/i18n.component';
 
 const routes: Routes = [
   {
@@ -18,12 +20,27 @@ const routes: Routes = [
     loadChildren: () =>
       import('./seller/seller.module').then((m) => m.SellerModule),
   },
+  {
+    path: 'i18n',
+    component: I18nComponent
+  },
+  {
+    path: '',
+    redirectTo: 'buyer',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

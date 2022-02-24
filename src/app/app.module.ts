@@ -9,9 +9,11 @@ import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '.';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PostService } from './buyer/post.service';
+import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
+import { DemoModule } from './demo/demo.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -20,7 +22,8 @@ import { PostService } from './buyer/post.service';
     FormsModule,
     ReactiveFormsModule,
     MaterialModules,
-    SocialLoginModule
+    SocialLoginModule,
+    DemoModule
   ],
   providers: [
     {
