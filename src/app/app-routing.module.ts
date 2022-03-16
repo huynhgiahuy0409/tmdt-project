@@ -14,6 +14,11 @@ const routes: Routes = [
       import('./buyer/buyer.module').then((m) => m.BuyerModule),
   },
   {
+    path: '',
+    loadChildren: () =>
+      import('./buyer/buyer.module').then((m) => m.BuyerModule),
+  },
+  {
     path: 'seller',
     loadChildren: () =>
       import('./seller/seller.module').then((m) => m.SellerModule),

@@ -155,8 +155,8 @@
                     <div class="main_menu menu_position">
                         <nav>
                             <ul>
-                                <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" >Kênh người bán</a></li>
-                                <li><a [routerLink]="['/product']">Trở thành người bán</a></li>
+                                <li><a [routerLink]="['/shop']" routerLinkActive="router-link-active" >Kênh người bán</a></li>
+                                <li><a [routerLink]="['/seller/barchart']">Trở thành người bán</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -189,17 +189,17 @@
                                   <div class="header_wishlist">
                                       <img class="header_wishlist--img" src="assets/img/user.png" alt="">
                                       <ul class="info-list" href="#">
-                                        <li class="info-item"><span>Tài khoản</span></li>
-                                        <li class="info-item"><span>Tình trạng đơn hàng</span></li>
-                                        <li class="info-item"><span>Đăng nhập</span></li>
-                                        <li class="info-item"><span>Đăng kí</span></li>
+                                        <li class="info-item"><a [routerLink]="['/customer']">Tài khoản</a></li>
+                                        <li class="info-item"><a [routerLink]="['/login']">Tình trạng đơn hàng</a></li>
+                                        <li class="info-item" ><a [routerLink]="['/login']">Đăng nhập</a></li>
+                                        <li class="info-item"><a [routerLink]="['/register']">Đăng kí</a></li>
                                         <ng-template #logged>
                                           <li class="info-item"><span>Đăng xuất</span></li>
-                                        </ng-template>
+                                        </ng-template>\
                                       </ul>
                                   </div>
                                   <div class="mini_cart_wrapper">
-                                      <a href="javascript:void(0)"><img src="assets/img/shopping-bag.png" alt=""></a>
+                                      <a href="javascript:void(0)" [routerLink]="['/cart']"><img src="assets/img/shopping-bag.png" alt=""></a>
                                       <span class="cart_quantity">2</span>
                                       <!--mini cart-->
                                        <div class="mini_cart">

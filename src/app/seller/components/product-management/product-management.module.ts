@@ -6,6 +6,7 @@ import {AdminSidebarModule} from "../../../shared/layout/admin/sidebar/sidebar.m
 import {ProductManagementRoutingModule} from "./product-management-routing.module";
 import {SellerProductAddDetailComponent} from "./product-add-detail/product-add-detail";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AdminHeaderModule} from "../../../shared/layout/admin/header/header.module";
 @NgModule({
   declarations: [
     SellerProductAllComponent,
@@ -16,13 +17,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   exports: [
   SellerProductAllComponent
   ],
-  imports: [
-    CommonModule,
-    AdminSidebarModule,
-    ProductManagementRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    imports: [
+        CommonModule,
+        AdminSidebarModule,
+        ProductManagementRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AdminHeaderModule,
 
-  ]
+    ]
 })
 export class ProductManagementModule { }
