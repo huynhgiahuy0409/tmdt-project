@@ -1,33 +1,40 @@
 .body {
   position: relative;
   font-size: 20px;
+  background-color: rgb(225,152,75)
+;
 }
 ul.nav-pills {
   top: 20px;
   position: fixed;
 }
-.container{
-  border: 3px solid #e9ebfa;
+.container-ful{
+  border: 2px solid #eaeaf3;
+  background-color: rgba(239, 238, 238, 0.56);
 }
 #myScrollspy{
-  border: 2px solid rgba(225, 216, 216, 0.68);
+  li{
+    margin-left: 25px;
+  }
+
+
 }
 #section{
   height: 60px;
-  h1{
-    color: blue;
-    font-size: 40px;
-    font-weight: 700;
-    margin-top: 25px;
-    text-align: center;
-  }
+
 }
 #section1{
   height: 600px;
   margin-bottom: 10px;
-  background-color: #d9e7fa;
+  border: rgba(169, 167, 167, 0.46) solid 1px;
+  background-color: white;
+  margin-top: 15px;
+  margin-right: 10%;
   h1{
     width: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #ef741c;
   }
 }
 .form-group{
@@ -38,6 +45,7 @@ ul.nav-pills {
   .label-image{
     position: absolute;
     margin-bottom: 20px;
+    font-size: 14px;
   }
   li{
     margin-right: 5px;
@@ -50,11 +58,17 @@ ul.nav-pills {
   label{
     float: left;
     margin-left: 70px;
+    font-size: 15px;
+  }
+  p{
+    font-size: 15px;
+    margin-left: 5px;
   }
   .form-control{
-    width: 70%;
+    width: 65%;
     float: right;
-    margin-right: 120px;
+    margin-right: 205px;
+    font-size: 13px;
   }
 }
 #img-preview1,#img-preview2,#img-preview3,#img-preview4,#img-preview5,#img-preview6 {
@@ -62,7 +76,7 @@ ul.nav-pills {
   width: 155px;
   height: 90px;
   border: 2px solid #333;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 #img-preview1 img {
   width: 155px;
@@ -92,7 +106,7 @@ li{
   text-align-all: center;
   p{
     margin-top: 22px;
-    font-size: 16px;}
+    font-size: 20px;}
 }
 [type="file"] + label:hover {
   background-color: #f6e9e9;
@@ -100,16 +114,25 @@ li{
 }
 #section2{
   height: 350px;
-  background-color: #d9e7fa;
+  border: rgba(169, 167, 167, 0.46) solid 1px;
   margin-bottom: 10px;
+  background-color: white;
+  margin-right: 10%;
   h1{
-
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #ef741c;
   }
-  form{
+  p{
+    font-size: 13px;
+    margin-left: 20px;
+  }
     .form-group{
       li{
         label{
           float: left;
+          font-size: 14px!important;
         }
         select{
           float: right;
@@ -117,23 +140,27 @@ li{
           width: 78%!important;
         }
       }
-    }
   }
 }
 #section3{
   height: 360px;
-  background-color: #d9e7fa;
+  border: rgba(169, 167, 167, 0.46) solid 1px;
   margin-bottom: 10px;
+  background-color: white;
+  margin-right: 10%;
   h1{
-
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #ef741c;
   }
-  form{
     .form-group {
       li {
         label {
           float: left;
           text-align: end;
-          margin-left: -80px;
+          margin-left: -112px;
+          font-size: 14px;
         }
 
         .form-control {
@@ -143,22 +170,26 @@ li{
         }
       }
     }
-  }
 }
 #section4{
-  background-color: #d9e7fa;
+  border: rgba(169, 167, 167, 0.46) solid 1px;
   height: 270px;
   margin-bottom: 10px;
+  background-color: white;
+  margin-right: 10%;
   h1{
-
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #ef741c;
   }
-  form{
     .form-group {
       li {
         label {
           float: left;
           text-align: end;
-          margin-left: -80px;
+          margin-left: -18px;
+          font-size: 15px;
         }
 
         .form-control {
@@ -180,12 +211,12 @@ li{
           }
         }
       }
-    }
   }
 }
 .action_button{
   margin-top: 20px;
   padding-bottom: 50px;
+  margin-right: 167px;
   button{
     float: right;
     margin-right: 30px;
