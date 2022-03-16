@@ -51,7 +51,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'customer',
+        path: '',
         loadChildren: () =>
           import(
             './components/account-management/account-management.module'

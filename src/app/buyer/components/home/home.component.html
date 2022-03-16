@@ -56,7 +56,7 @@
   <div class="single-tranding">
     <mat-card class="card-custom">
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <div class="card-custom--detail-product-title">Product name</div>
+      <div [routerLink]="['/product/:id']" class="card-custom--detail-product-title">Product name</div>
       <div class="justity-space">
         <mat-card-subtitle><b>SKU:</b> 1112302312 </mat-card-subtitle>
         <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent">favorite_border</mat-icon>
@@ -67,7 +67,7 @@
       </div>
       <mat-card-actions class="mat-card-actions-custom">
         <div class="mat-card-actions-custom--buy-now">
-          <button mat-raised-button color="warn">Mua ngay</button>
+          <button mat-raised-button color="warn" [routerLink]="['/checkout']">Mua ngay</button>
         </div>
         <div class="mat-card-actions-custom--buy-now">
           <button mat-raised-button class="mat-card-actions-custom--icon">
