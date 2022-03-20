@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '',
     component: SellerComponent,
     children: [
-      { path: 'home', redirectTo: 'page', pathMatch: 'full' },
+      { path: 'home', redirectTo: 'product-management', pathMatch: 'full' },
       {
         path: 'portal',
         loadChildren: () =>

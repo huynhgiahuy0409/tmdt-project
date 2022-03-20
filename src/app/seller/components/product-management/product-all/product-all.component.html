@@ -8,10 +8,10 @@
       <div class="main-order">
         <div class="menu-head">
           <ul>
-            <a [routerLink]="['/seller/productManagement']">Tất cả</a>
-            <a [routerLink]="['/seller/productManagement']">Đang hoạt động</a>
-            <a [routerLink]="['/seller/productManagement']">Hết hàng</a>
-            <a [routerLink]="['/seller/productManagement']">Đã ẩn</a>
+            <a [routerLink]="['/seller/product-management']">Tất cả</a>
+            <a [routerLink]="['/seller/product-management']">Đang hoạt động</a>
+            <a [routerLink]="['/seller/product-management']">Hết hàng</a>
+            <a [routerLink]="['/seller/product-management']">Đã ẩn</a>
           </ul>
         </div>
         <div class="product-list">
@@ -34,7 +34,8 @@
                 <option value="Số lượng">Số lượng</option>
               </select>
             </div>
-            <button type="button" class="btn btn-primary product-new" [routerLink]="['/seller/productManagement/add']">+
+            <button type="button" class="btn btn-primary product-new"
+              [routerLink]="['/seller/product-management/add']">+
               Thêm sản phẩm mới</button>
           </div>
           <div class="row">
@@ -61,7 +62,7 @@
                       <td>100</td>
                       <td>27</td>
                       <td class="text-center">
-                        <button [routerLink]="['/seller/productManagement/add']" class="btn btn-light">
+                        <button [routerLink]="['/seller/product-management/add']" class="btn btn-light">
                           <i class="fa fa-edit" style="font-size: 17px"></i>
                         </button>
                       </td>
