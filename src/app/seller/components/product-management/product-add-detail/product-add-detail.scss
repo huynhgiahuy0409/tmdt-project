@@ -1,8 +1,32 @@
+
+@mixin section-all() {
+  border: rgba(169, 167, 167, 0.46) solid 1px;
+  margin-bottom: 10px;
+  background-color: white;
+  margin-right: 10%;
+}
+@mixin section-h1-all(){
+  width: 100%;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #ef741c;
+}
+@mixin section-lable-all(){
+  float: left;
+  text-align: end;
+  font-size: 15px;
+}
+@mixin section-form-control-all(){
+  float: right;
+  height: 34px;
+  margin-right: 190px;
+  font-size: 13px;
+}
+
 .body {
   position: relative;
   font-size: 20px;
-  background-color: rgb(225,152,75)
-;
+  background-color: rgb(225,152,75);
 }
 ul.nav-pills {
   top: 20px;
@@ -13,11 +37,11 @@ ul.nav-pills {
   background-color: rgba(239, 238, 238, 0.56);
 }
 #myScrollspy{
+  margin-right: -30px;
+  margin-left: 30px;
   li{
     margin-left: 25px;
   }
-
-
 }
 #section{
   height: 60px;
@@ -26,15 +50,9 @@ ul.nav-pills {
 #section1{
   height: 600px;
   margin-bottom: 10px;
-  border: rgba(169, 167, 167, 0.46) solid 1px;
-  background-color: white;
-  margin-top: 15px;
-  margin-right: 10%;
+  @include section-all();
   h1{
-    width: 100%;
-    margin-left: 10px;
-    margin-top: 10px;
-    color: #ef741c;
+   @include section-h1-all();
   }
 }
 .form-group{
@@ -114,15 +132,9 @@ li{
 }
 #section2{
   height: 350px;
-  border: rgba(169, 167, 167, 0.46) solid 1px;
-  margin-bottom: 10px;
-  background-color: white;
-  margin-right: 10%;
+  @include section-all();
   h1{
-    width: 100%;
-    margin-left: 10px;
-    margin-top: 10px;
-    color: #ef741c;
+    @include section-h1-all();
   }
   p{
     font-size: 13px;
@@ -138,64 +150,48 @@ li{
           float: right;
           height: 34px;
           width: 78%!important;
+          font-size: 13px;
         }
       }
   }
 }
 #section3{
   height: 360px;
-  border: rgba(169, 167, 167, 0.46) solid 1px;
-  margin-bottom: 10px;
-  background-color: white;
-  margin-right: 10%;
+  @include section-all();
   h1{
-    width: 100%;
-    margin-left: 10px;
-    margin-top: 10px;
-    color: #ef741c;
+    @include section-h1-all();
   }
     .form-group {
       li {
         label {
-          float: left;
-          text-align: end;
+          @include section-lable-all();
           margin-left: -112px;
-          font-size: 14px;
         }
 
         .form-control {
-          float: right;
-          height: 34px;
-          margin-right: 190px;
+          @include section-form-control-all();
+          option{
+            font-size: 14px;
+          }
         }
       }
     }
 }
 #section4{
-  border: rgba(169, 167, 167, 0.46) solid 1px;
   height: 270px;
-  margin-bottom: 10px;
-  background-color: white;
-  margin-right: 10%;
+  @include section-all();
   h1{
-    width: 100%;
-    margin-left: 10px;
-    margin-top: 10px;
-    color: #ef741c;
+    @include section-h1-all();
   }
     .form-group {
       li {
         label {
-          float: left;
-          text-align: end;
           margin-left: -18px;
-          font-size: 15px;
+          @include section-lable-all();
         }
 
         .form-control {
-          float: right;
-          height: 34px;
-          margin-right: 190px;
+          @include section-form-control-all();
         }
         .input-group{
           float: left;
