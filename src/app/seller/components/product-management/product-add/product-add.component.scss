@@ -1,82 +1,108 @@
-.container{
+.container {
   background-color: rgba(243, 247, 248, 0.77);
   margin-top: 80px;
   padding-bottom: 60px;
-  .title_add{
+
+  .title_add {
     margin-left: 115px;
   }
-  .product_name{
+
+  .product_name {
     width: 90%;
     margin-bottom: 50px;
-    form{
-      .input-group{
-        .product_add_label{
-          float: left;
-          margin-top: 3px;
-          margin-left: 112px;
-          margin-right: 20px;
-        }
-        input{
+
+    .input-group {
+      .product_add_label {
+        float: left;
+        margin-top: 3px;
+        margin-left: 112px;
+        margin-right: 20px;
+      }
+
+      form {
+        flex-grow: 1;
+
+        input {
+          outline: unset !important;
           height: 35px;
+          border: none;
         }
       }
     }
   }
-  .product_box_branch{
+
+  .product_box_branch {
     width: 80%;
     margin-left: 117px;
     margin-top: 20px;
-    .product_search_branch{
+
+    .product_search_branch {
       width: 30%;
-      .form-control{
+
+      .form-control {
         -moz-border-radius-topright: 15px;
         -moz-border-radius-bottomright: 15px;
       }
     }
-    .product_list_branch{
+
+    .product_list_branch {
       display: flex;
       position: relative;
       margin-top: 30px;
       border: 2px solid rgba(180, 176, 176, 0.51);
-      .product_list_branch_block{
+
+      .product_list_branch_block {
         width: 400px;
         height: 400px;
         overflow-y: scroll;
         flex: 1;
-        margin-left: 40px;
-        ul{
-          li{
+        margin-left: 10px;
+
+        ul {
+          li {
             margin-top: 5px;
           }
-          li:hover{
+
+          li:hover {
             background-color: gray;
           }
         }
       }
-      .product_list_branch_1{
-      }
-      .product_list_branch_2{
-      }
-      .product_list_branch_3{
 
-      }
+      .product_list_branch_1 {}
+
+      .product_list_branch_2 {}
+
+      .product_list_branch_3 {}
     }
-    .branch_choose{
+
+    .branch_choose {
       margin-left: 10px;
       margin-top: 15px;
-      label{
+
+      label {
         float: left;
         margin-right: 5px;
       }
-      p{
+
+      p {
         color: #3f0404;
       }
-      .btn-danger{
+
+      .btn-danger {
         margin-right: 7px;
       }
-      button{
+
+      button {
         font-size: 15px;
       }
     }
   }
+}
+
+.product_list_branch_block ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 }

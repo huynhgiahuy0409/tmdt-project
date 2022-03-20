@@ -1,64 +1,76 @@
-
-.container-left{
+.container-left {
   float: left;
   font-size: 18px;
   font-weight: 500;
   margin-top: 75px;
-
 }
-.product-management{
+
+.product-management {
   float: right;
   width: 80%;
 }
-.main-order{
+
+.main-order {
   border: 2px solid #d3d3d3;
   margin-top: 75px;
   font-size: 18px;
-  .menu-head{
+
+  .menu-head {
     border: 1px solid #e1dcdc;
     padding: 5px;
-    ul{
-      a{
+
+    ul {
+      a {
         font-size: 18px;
         margin-left: 70px;
       }
     }
   }
-  .product-list{
+
+  .product-list {
     border: 1px solid #cad0f5;
     margin-top: 5px;
-    .product-header{
+
+    .product-header {
       padding-top: 25px;
       margin-bottom: 20px;
-      .product-new{
+
+      .product-new {
         font-size: 17px;
         float: right;
         margin-right: 69px;
       }
-      .input-group{
+
+      .input-group {
         float: left;
-        .form-outline{
-          .form-control{
+
+        .form-outline {
+          .form-control {
             width: 380px;
           }
         }
-        .product-search{
+
+        .product-search {
           width: 50px;
         }
       }
-      .product-sort{
+
+      .product-sort {
         float: left;
       }
-      .product-quantity{
+
+      .product-quantity {
         margin-left: 60px;
         float: left;
         margin-right: 30px;
       }
     }
-    .product-detail{
+
+    .product-detail {
       margin-top: 15px;
       border-top: 2px solid #c5c3c3;
-      img{
+
+      img {
         background-color: #0b0b0b;
         width: 100px;
         height: 100px;
@@ -67,39 +79,49 @@
         margin-right: 20px;
         margin-left: 10px;
       }
-      p{
-      }
-      .product-name{
+
+      p {}
+
+      .product-name {
         margin-top: 15px;
       }
-      .product-price{
+
+      .product-price {
         float: right;
         margin-top: -65px;
       }
     }
-    .product-footer{
+
+    .product-footer {
       margin-bottom: 100px;
-      .product-footer-right{
+
+      .product-footer-right {
         float: right;
         margin-right: 100px;
-        .product-total-money{
+
+        .product-total-money {
           float: left;
-          p{
+
+          p {
             float: right;
           }
         }
-        button{
+
+        button {
           font-size: 17px;
           margin-right: 15px;
         }
       }
     }
-    .row{
+
+    .row {
       margin-top: 80px;
-      .col-11{
+
+      .col-11 {
         margin-left: 4%;
-        .table-responsive{
-          #order-listing{
+
+        .table-responsive {
+          #order-listing {
             background-color: #f6f6f8;
           }
         }

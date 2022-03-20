@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { PostService } from './../buyer/post.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,8 @@ import { AdminSidebarModule } from '../shared/layout/admin/sidebar/sidebar.modul
 import { ProductManagementModule } from './components/product-management/product-management.module';
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { PiechartComponent } from './components/piechart/piechart.component';
+import { MaterialModules } from '../material.module';
+import { PortalModule } from './components/portal/portal.module';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,14 @@ import { PiechartComponent } from './components/piechart/piechart.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     SellerRoutingModule,
     AdminHeaderModule,
     AdminSidebarModule,
     ProductManagementModule,
+    PortalModule,
+
+    MaterialModules,
   ],
 })
 export class SellerModule {}
