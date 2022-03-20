@@ -1,35 +1,56 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-:root{
+
+:root {
   --primary-color: #3e51eb;
   --sub-color: #3e51eb;
   --white-color: #fff;
   --text-color: #444;
-  --hover-color: #8f8f8f14
+  --hover-color: #8f8f8f14;
+  --test--: rgb(225, 152, 75)
 }
-h4{
+
+h4 {
   font-size: 1.6rem;
 }
-html{
+
+html {
   font-size: 62.5%;
 }
+
 /* Common */
 .grid {
   padding-top: 10px
 }
-.row-custom{
+
+.row-custom {
   flex-wrap: nowrap;
 }
-.mt-40px{
+
+.mt-40px {
   margin-top: 40px
 }
-.pt-20px{
+
+.pt-20px {
   padding-top: 20px
 }
-.pl-20px{
+
+.pl-20px {
   padding-left: 20px;
 }
 
 /*  */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+input {
+  outline: none;
+  border: none
+}

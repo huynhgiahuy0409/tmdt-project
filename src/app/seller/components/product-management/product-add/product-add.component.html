@@ -1,3 +1,4 @@
+<admin-header></admin-header>
 <div class="container">
   <div class="title_add">
     <h2>Thêm 1 sản phẩm mới</h2>
@@ -5,15 +6,15 @@
   </div>
   <hr>
   <div class="product_name">
-    <form>
-      <div class="input-group mb-3">
-        <label class="product_add_label">Tên sản phẩm:</label>
-        <input type="text" class="form-control" placeholder="Nhập tên">
-        <div class="input-group-prepend">
-          <span class="input-group-text">0/200</span>
-        </div>
+    <div class="input-group mb-3">
+      <label class="product_add_label">Tên sản phẩm:</label>
+      <form action="" [formGroup]="searchForm">
+        <input formControlName="search" [(ngModel)]="productNameValue" class="form-control" placeholder="Nhập tên">
+      </form>
+      <div class="input-group-prepend">
+        <span class="input-group-text">{{productNameValue.length}}/200</span>
       </div>
-    </form>
+    </div>
   </div>
   <div class="product_box_branch">
     <div class="product_search_branch input-group mb-3">
@@ -23,77 +24,64 @@
       <input type="text" class="form-control" placeholder="Nhập tên ngành hàng">
     </div>
     <div class="product_list_branch">
-      <div class="product_list_branch_block product_list_branch_1" data-spy="scroll" data-target=".navbar" data-offset="50">
+      <div class="product_list_branch_block product_list_branch_1" data-spy="scroll" data-target=".navbar"
+        data-offset="50">
         <ul>
-          <li>Thời trang nữ ></li>
-          <li>Thời trang nam ></li>
-          <li>Sắc đẹp ></li>
-          <li>Sức Khỏe ></li>
-          <li>Thiết bị điện tử ></li>
-          <li>Laptop và máy tính ></li>
-          <li>Điện Thoại và phụ kiện ></li>
-          <li>Du lịch và hành lý ></li>
-          <li>Túi ví nam ></li>
-          <li>Túi vi nữ ></li>
-          <li>Giày dép nam</li>
-          <li>Giày dép nữ ></li>
-          <li>Thực phẩm và đồ ăn uống ></li>
-          <li>Văn Phòng phẩm ></li>
-          <li>Thể thao và dã ngoại ></li>
-          <li>Sách và tạp chí ></li>
-          <li>Mô tô , xe máy ></li>
-          <li>Đồ chơi trẻ em</li>
+          <li *ngFor="let item of categoryList" (click)="selectType(item)">{{item.type}} <mat-icon>
+              keyboard_arrow_right</mat-icon>
+          </li>
         </ul>
       </div>
       <div class="product_list_branch_block product_list_branch_2">
-        <ul>
-          <li>Thời trang nữ ></li>
-          <li>Thời trang nam ></li>
-          <li>Sắc đẹp ></li>
-          <li>Sức Khỏe ></li>
-          <li>Thiết bị điện tử ></li>
-          <li>Laptop và máy tính ></li>
-          <li>Điện Thoại và phụ kiện ></li>
-          <li>Du lịch và hành lý ></li>
-          <li>Túi ví nam ></li>
-          <li>Túi vi nữ ></li>
-          <li>Giày dép nam</li>
-          <li>Giày dép nữ ></li>
-          <li>Thực phẩm và đồ ăn uống ></li>
-          <li>Văn Phòng phẩm ></li>
-          <li>Thể thao và dã ngoại ></li>
-          <li>Sách và tạp chí ></li>
-          <li>Mô tô , xe máy ></li>
-          <li>Đồ chơi trẻ em</li>
-        </ul>
+        <ng-container *ngIf="selectedType">
+          <ul>
+            <li *ngFor="let item of getDetailType(selectedType)" (click)="selectDetailType(item[0])">{{item[0]}}
+              <mat-icon>
+                keyboard_arrow_right</mat-icon>
+            </li>
+          </ul>
+        </ng-container>
       </div>
       <div class="product_list_branch_block product_list_branch_3">
-        <ul>
-          <li>Thời trang nữ ></li>
-          <li>Thời trang nam ></li>
-          <li>Sắc đẹp ></li>
-          <li>Sức Khỏe ></li>
-          <li>Thiết bị điện tử ></li>
-          <li>Laptop và máy tính ></li>
-          <li>Điện Thoại và phụ kiện ></li>
-          <li>Du lịch và hành lý ></li>
-          <li>Túi ví nam ></li>
-          <li>Túi vi nữ ></li>
-          <li>Giày dép nam</li>
-          <li>Giày dép nữ ></li>
-          <li>Thực phẩm và đồ ăn uống ></li>
-          <li>Văn Phòng phẩm ></li>
-          <li>Thể thao và dã ngoại ></li>
-          <li>Sách và tạp chí ></li>
-          <li>Mô tô , xe máy ></li>
-          <li>Đồ chơi trẻ em</li>
-        </ul>
+        <ng-container *ngIf="selectedDetailType">
+          <ul>
+            <li *ngFor="let item of getProductName(selectedDetailType)" (click)="selectProductName(item)">{{item}}
+            </li>
+          </ul>
+        </ng-container>
       </div>
     </div>
     <div class="branch_choose">
-      <label >Đã chọn : </label>
-      <p>Thời trang nữ/áo/111</p>
-      <button class="btn btn-danger" [routerLink]="['/seller/productManagement']">Hủy</button>
+      <label>Đã chọn : </label>
+      <div *ngIf="!selectedType; then default else else1"></div>
+      <ng-template #else1>
+        <ng-container *ngIf="selectedType && !selectedDetailType && !selectedProductName; then first else else2">
+        </ng-container>
+      </ng-template>
+      <ng-template #else2>
+        <ng-container *ngIf="selectedType && selectedDetailType  && !selectedProductName; then second else third">
+        </ng-container>
+      </ng-template>
+      <ng-template #default>
+        <p>
+          Chưa chọn ngành hàng
+        </p>
+      </ng-template>
+      <ng-template #first>
+        <p>
+          {{selectedType}}
+        </p>
+      </ng-template>
+      <ng-template #second>
+        <p>
+          {{selectedType}} > {{selectedDetailType}}
+        </p>
+      </ng-template>
+      <ng-template #third>
+        <p>
+          {{selectedType}} > {{selectedDetailType}} > {{selectedProductName}}
+        </p>
+      </ng-template>
       <button class="btn btn-primary" [routerLink]="['/seller/productManagement/add_detail']">Tiếp theo</button>
     </div>
   </div>
