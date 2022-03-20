@@ -24,25 +24,23 @@
           margin-left: 275px;
           position: absolute;
           mat-error{
+            span ::before{
+              border-color: #ee4d2d transparent transparent;
+              border-width: 6px 8px;
+              content: "";
+              width: 0;
+              height: 0;
+              border-style: solid;
+              position: absolute;
+              top: 100%;
+              left: 16px;
+              bottom: 1px;
+            }
             span{
               color: white;
             }
           }
         }
-        .product-name-error ::before{
-          border-color: #ee4d2d transparent transparent;
-          border-width: 6px 8px;
-          content: "";
-          width: 0;
-          height: 0;
-          border-style: solid;
-          position: absolute;
-          top: 100%;
-          left: 16px;
-          bottom: 1px;
-          display: inline;
-        }
-
         .product-name-form{
           flex: 1;
           display: flex;
