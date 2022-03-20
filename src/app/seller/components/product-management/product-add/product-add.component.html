@@ -10,6 +10,15 @@
       <label class="product_add_label">Tên sản phẩm:</label>
       <form action="" [formGroup]="searchForm">
         <input formControlName="search" [(ngModel)]="productNameValue" class="form-control" placeholder="Nhập tên">
+        <mat-error>
+          <span
+            *ngIf="searchForm.get('search')!.errors?.whitespace && searchForm.get('search')!.touched && !searchForm.get('search')!.pristine">Không
+            được để trống ô</span>
+          <span *ngIf="searchForm.get('search')!.errors?.minlength">Tên sản phẩm của bạn quá ngắn. Vui lòng nhập ít nhất
+            10 ký tự</span>
+          <span *ngIf="searchForm.get('search')!.errors?.maxlength">Tên sản phẩm của bạn quá dài. Vui lòng nhập tối đa
+            200 ký tự</span>
+        </mat-error>
       </form>
       <div class="input-group-prepend">
         <span class="input-group-text">{{productNameValue.length}}/200</span>
@@ -68,21 +77,21 @@
         </p>
       </ng-template>
       <ng-template #first>
-        <p>
+        <p class="selected-category">
           {{selectedType}}
         </p>
       </ng-template>
       <ng-template #second>
-        <p>
+        <p class="selected-category">
           {{selectedType}} > {{selectedDetailType}}
         </p>
       </ng-template>
       <ng-template #third>
-        <p>
+        <p class="selected-category">
           {{selectedType}} > {{selectedDetailType}} > {{selectedProductName}}
         </p>
       </ng-template>
-      <button class="btn btn-primary" [routerLink]="['/seller/productManagement/add_detail']">Tiếp theo</button>
+      <button class="btn btn-primary" [routerLink]="['/seller/product-management/add-detail']">Tiếp theo</button>
     </div>
   </div>
 </div>
