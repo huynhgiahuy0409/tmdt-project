@@ -12,13 +12,14 @@
           <div id="drow-up">
           </div>
           <mat-error>
-          <span
-            *ngIf="searchForm.get('search')!.errors?.whitespace && searchForm.get('search')!.touched && !searchForm.get('search')!.pristine">Không
-            được để trống ô</span>
-            <span *ngIf="searchForm.get('search')!.errors?.minlength">Tên sản phẩm của bạn quá ngắn. Vui lòng nhập ít nhất
-            10 ký tự</span>
+            <span
+              *ngIf="searchForm.get('search')!.errors?.whitespace && searchForm.get('search')!.touched && !searchForm.get('search')!.pristine">Không
+              được để trống ô</span>
+            <span *ngIf="searchForm.get('search')!.errors?.minlength">Tên sản phẩm của bạn quá ngắn. Vui lòng nhập ít
+              nhất
+              10 ký tự</span>
             <span *ngIf="searchForm.get('search')!.errors?.maxlength">Tên sản phẩm của bạn quá dài. Vui lòng nhập tối đa
-            200 ký tự</span>
+              200 ký tự</span>
           </mat-error>
         </div>
         <div class="product-name-form">
@@ -40,7 +41,7 @@
     </div>
     <div class="product_list_branch">
       <div class="product_list_branch_block product_list_branch_1" data-spy="scroll" data-target=".navbar"
-           data-offset="50">
+        data-offset="50">
         <ul>
           <li *ngFor="let item of categoryList" (click)="selectType(item)">{{item.type}}
             <mat-icon>
@@ -97,10 +98,11 @@
       </ng-template>
       <ng-template #third>
         <p class="selected-category">
-          {{selectedType}} > {{selectedDetailType}} > {{selectedProductName}}
+          {{selectedType}} > {{ selectedDetailType}} > {{selectedProductName}}
         </p>
       </ng-template>
-      <button class="btn btn-primary" [routerLink]="['/seller/product-management/add-detail']">Tiếp theo</button>
+      <button class="btn btn-primary" [routerLink]="['/seller/product-management/add-detail']"
+        (click)="onSubmit(productNameValue, selectedType, selectedDetailType, selectedProductName)">Tiếp theo</button>
     </div>
   </div>
 </div>

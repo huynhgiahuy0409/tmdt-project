@@ -1,6 +1,10 @@
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import {
+  CategoryPage,
+  ProductManagementService,
+} from '../product-management.service';
 interface categoryList {
   type: string;
   detailType: [string, string[]][];
@@ -24,11 +28,14 @@ export function notWhitespaceValidator(): ValidatorFn {
 export class SellerProductAddComponent implements OnInit {
   productNameValue: string = '';
   categoryList!: categoryList[];
-  selectedType!: string | null;
-  selectedDetailType!: string | null;
-  selectedProductName!: string | null;
+  selectedType!: string;
+  selectedDetailType!: string;
+  selectedProductName!: string;
   searchForm!: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private _productManagementService: ProductManagementService
+  ) {
     this.categoryList = [
       {
         type: 'Thời Trang Nữ',
@@ -55,24 +62,39 @@ export class SellerProductAddComponent implements OnInit {
           ['Nhẫn', ['Innox', 'Bạc', 'Khác']],
           ['Kính mắt', ['Kính mát', 'Hộp kính', 'Gọng kính']],
           ['Lắc tay', ['Innox', 'Bạc', 'Khác']],
-          ['Mủ', ['Mủ len','Mủ lưỡi trai']],
-          ['Phụ kiện thêm', ['Cài tóc','Khăn tay']],
+          ['Mủ', ['Mủ len', 'Mủ lưỡi trai']],
+          ['Phụ kiện thêm', ['Cài tóc', 'Khăn tay']],
           ['Khác', ['']],
         ],
       },
       {
         type: 'Chăm sóc thú cưng',
         detailType: [
-          ['Thức ăn', ['Thức ăn cho chó', 'Thuwsca ăn cho mèo', 'Thức ăn cho cá', 'Thức ăn cho chim','Khác']],
+          [
+            'Thức ăn',
+            [
+              'Thức ăn cho chó',
+              'Thuwsca ăn cho mèo',
+              'Thức ăn cho cá',
+              'Thức ăn cho chim',
+              'Khác',
+            ],
+          ],
           ['Phụ kiện', ['Vòng cổ', 'Quần áo', 'Nội thất cho thú cưng']],
-          ['Làm đẹp cho thú cưng', ['Chăm sóc lông ', 'Chăm sóc răng miệng', 'Chăm sóc móng']],
+          [
+            'Làm đẹp cho thú cưng',
+            ['Chăm sóc lông ', 'Chăm sóc răng miệng', 'Chăm sóc móng'],
+          ],
           ['Khác', ['']],
         ],
       },
       {
         type: 'Thể thao & Dã ngoại',
         detailType: [
-          ['Dụng cụ', ['Cần câu', 'Cầu lông', 'Xe leo núi','DỤng cụ cấm trại', 'Khác']],
+          [
+            'Dụng cụ',
+            ['Cần câu', 'Cầu lông', 'Xe leo núi', 'DỤng cụ cấm trại', 'Khác'],
+          ],
           ['Giày thể thao', ['Giày bóng rổ', 'Giày bóng đá', 'Giày leo núi']],
           ['Thời trang ', ['Đồng phục dã ngoại ', 'Đồ bơi', 'Áo khoác CLB']],
           ['Khác', ['']],
@@ -81,13 +103,17 @@ export class SellerProductAddComponent implements OnInit {
       {
         type: 'Đồ chơi trẻ am',
         detailType: [
-          ['Robot', ['Robot điều khiển', 'Robot rắp ráp', 'Robot biến hình', 'Khác']],
+          [
+            'Robot',
+            ['Robot điều khiển', 'Robot rắp ráp', 'Robot biến hình', 'Khác'],
+          ],
           ['Xe', ['Xe điều khiển', 'Xe rắp ráp', 'Xe kết hợp']],
           ['Buppe ', ['Buppe con người ', 'Buppe con vật', 'Khác']],
           ['Khác', ['']],
         ],
       },
     ];
+    this._productManagementService.category$.subscribe((v) => console.log(v));
   }
 
   ngOnInit(): void {
@@ -108,12 +134,12 @@ export class SellerProductAddComponent implements OnInit {
   }
   selectType(item: categoryList) {
     this.selectedType = item.type;
-    this.selectedDetailType = null;
-    this.selectedProductName = null;
+    this.selectedDetailType = '';
+    this.selectedProductName = '';
   }
   selectDetailType(detailType: string) {
     this.selectedDetailType = detailType;
-    this.selectedProductName = null;
+    this.selectedProductName = '';
   }
   selectProductName(productName: string) {
     this.selectedProductName = productName;
@@ -139,5 +165,18 @@ export class SellerProductAddComponent implements OnInit {
       }
     });
     return result;
+  }
+  onSubmit(
+    productName: string,
+    selectedType: string,
+    selectedDetailType: string,
+    selectedProductName: string
+  ) {
+    this._productManagementService.categoryBSub.next({
+      productName: productName,
+      selectedType: selectedType,
+      selectedDetailType: selectedDetailType,
+      selectedProductName: selectedProductName,
+    });
   }
 }
