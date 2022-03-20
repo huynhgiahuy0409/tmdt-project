@@ -86,9 +86,12 @@
             </div>
             <div class="form-group2">
               <label>Danh mục:
-                <span *ngIf="category$ | async as category">
+                <span *ngIf="category$ | async as category; else else1Block">
                   {{category.selectedType}} > {{category.selectedDetailType}} > {{category.selectedProductName}}
                 </span>
+                <ng-template #else1Block>
+                  <span>Không có danh mục được hiển thị</span>
+                </ng-template>
               </label>
             </div>
           </div>

@@ -123,7 +123,7 @@ export class SellerProductAddComponent implements OnInit {
         Validators.compose([
           notWhitespaceValidator(),
           Validators.minLength(10),
-          Validators.maxLength(15),
+          Validators.maxLength(200),
         ]),
       ],
     });
