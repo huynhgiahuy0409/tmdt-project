@@ -10,22 +10,57 @@
   .product_name {
     width: 90%;
     margin-bottom: 50px;
-
+    margin-top: 2%;
     .input-group {
-      .product_add_label {
-        float: left;
-        margin-top: 3px;
-        margin-left: 112px;
-        margin-right: 20px;
-      }
-
       form {
-        flex-grow: 1;
+        width: 100%;
+        display: block;
+        margin-top: 1%;
+        .product-name-error {
+          flex: 1;
+          background-color: #ef5a1b;
+          margin-bottom: 5px;
+          margin-top: -20px;
+          margin-left: 275px;
+          position: absolute;
+          mat-error{
+            span{
+              color: white;
+            }
+          }
+        }
+        .product-name-error ::before{
+          border-color: #ee4d2d transparent transparent;
+          border-width: 6px 8px;
+          content: "";
+          width: 0;
+          height: 0;
+          border-style: solid;
+          position: absolute;
+          top: 100%;
+          left: 16px;
+          bottom: 1px;
+          display: inline;
+        }
 
-        input {
-          outline: unset !important;
-          height: 35px;
-          border: none;
+        .product-name-form{
+          flex: 1;
+          display: flex;
+          margin-top: 10px;
+          .product_add_label {
+            float: left;
+            margin-top: 3px;
+            margin-left: 112px;
+            margin-right: 20px;
+            flex: 1;
+          }
+
+          input {
+            flex: 5;
+            outline: unset !important;
+            height: 35px;
+            border: none;
+          }
         }
       }
     }
