@@ -7,22 +7,28 @@
   <hr>
   <div class="product_name">
     <div class="input-group mb-3">
-      <label class="product_add_label">Tên sản phẩm:</label>
       <form action="" [formGroup]="searchForm">
-        <input formControlName="search" [(ngModel)]="productNameValue" class="form-control" placeholder="Nhập tên">
-        <mat-error>
+        <div class="product-name-error">
+          <div id="drow-up">
+          </div>
+          <mat-error>
           <span
             *ngIf="searchForm.get('search')!.errors?.whitespace && searchForm.get('search')!.touched && !searchForm.get('search')!.pristine">Không
             được để trống ô</span>
-          <span *ngIf="searchForm.get('search')!.errors?.minlength">Tên sản phẩm của bạn quá ngắn. Vui lòng nhập ít nhất
+            <span *ngIf="searchForm.get('search')!.errors?.minlength">Tên sản phẩm của bạn quá ngắn. Vui lòng nhập ít nhất
             10 ký tự</span>
-          <span *ngIf="searchForm.get('search')!.errors?.maxlength">Tên sản phẩm của bạn quá dài. Vui lòng nhập tối đa
+            <span *ngIf="searchForm.get('search')!.errors?.maxlength">Tên sản phẩm của bạn quá dài. Vui lòng nhập tối đa
             200 ký tự</span>
-        </mat-error>
+          </mat-error>
+        </div>
+        <div class="product-name-form">
+          <label class="product_add_label">Tên sản phẩm:</label>
+          <input formControlName="search" [(ngModel)]="productNameValue" class="form-control" placeholder="Nhập tên">
+          <div class="input-group-prepend">
+            <span class="input-group-text">{{productNameValue.length}}/200</span>
+          </div>
+        </div>
       </form>
-      <div class="input-group-prepend">
-        <span class="input-group-text">{{productNameValue.length}}/200</span>
-      </div>
     </div>
   </div>
   <div class="product_box_branch">
@@ -34,10 +40,12 @@
     </div>
     <div class="product_list_branch">
       <div class="product_list_branch_block product_list_branch_1" data-spy="scroll" data-target=".navbar"
-        data-offset="50">
+           data-offset="50">
         <ul>
-          <li *ngFor="let item of categoryList" (click)="selectType(item)">{{item.type}} <mat-icon>
-              keyboard_arrow_right</mat-icon>
+          <li *ngFor="let item of categoryList" (click)="selectType(item)">{{item.type}}
+            <mat-icon>
+              keyboard_arrow_right
+            </mat-icon>
           </li>
         </ul>
       </div>
@@ -46,7 +54,8 @@
           <ul>
             <li *ngFor="let item of getDetailType(selectedType)" (click)="selectDetailType(item[0])">{{item[0]}}
               <mat-icon>
-                keyboard_arrow_right</mat-icon>
+                keyboard_arrow_right
+              </mat-icon>
             </li>
           </ul>
         </ng-container>
