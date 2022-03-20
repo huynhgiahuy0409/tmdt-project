@@ -1,8 +1,20 @@
+import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 interface categoryList {
   type: string;
   detailType: [string, string[]][];
+}
+export function notWhitespaceValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    let controlVal = control.value;
+    if (typeof controlVal === 'number') {
+      controlVal = `${controlVal}`;
+    }
+    let isWhitespace = (controlVal || '').trim().length === 0;
+    let isValid = !isWhitespace;
+    return isValid ? null : { whitespace: 'value is only whitespace' };
+  };
 }
 @Component({
   selector: 'seller-product-add',
@@ -80,7 +92,18 @@ export class SellerProductAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      search: '',
+      search: [
+        '',
+        Validators.compose([
+          notWhitespaceValidator(),
+          Validators.minLength(10),
+          Validators.maxLength(15),
+        ]),
+      ],
+    });
+    console.log(this.searchForm);
+    this.searchForm.valueChanges.subscribe((v) => {
+      console.log(v);
     });
   }
   selectType(item: categoryList) {

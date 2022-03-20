@@ -98,6 +98,10 @@
       }
     }
   }
+
+  .selected-category {
+    color: var(--primary-color) !important
+  }
 }
 
 .product_list_branch_block ul li {
