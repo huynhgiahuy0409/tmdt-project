@@ -180,16 +180,22 @@ li {
 
   .form-group {
     li {
+      display: flex;
+      margin-left: 5%;
       label {
         float: left;
+        flex: 1;
         font-size: 14px !important;
       }
 
-      select {
-        float: right;
-        height: 34px;
-        width: 78% !important;
-        font-size: 13px;
+      div{
+        flex: 3;
+      mat-form-field{
+        mat-select{
+          margin-top: -10%;
+          font-size: 15px;
+        }
+      }
       }
     }
   }
@@ -205,17 +211,31 @@ li {
 
   .form-group {
     li {
+      display: flex;
       label {
+        flex: 1;
         @include section-lable-all();
-        margin-left: -112px;
+        margin-right: 120px;
+        margin-left: -95px;
       }
 
       .form-control {
+        flex: 2;
         @include section-form-control-all();
 
         option {
           font-size: 14px;
         }
+      }
+    }
+    .sale{
+      display: flex;
+      label{
+        flex: 1;
+        top: 3px;
+      }
+      input{
+        flex: 1;
       }
     }
   }
@@ -259,6 +279,11 @@ li {
 .lable-group{
   font-weight: 600;
   color: #0c0c0cb0;
+}
+.lable-group2{
+  font-weight: 600;
+  color: #0c0c0cb0;
+  margin-top: 2%;
 }
 .action_button {
   margin-top: 20px;

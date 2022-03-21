@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminHeaderModule } from '../../../shared/layout/admin/header/header.module';
 import { ProductManagementComponent } from './product-management.component';
 import { MaterialModules } from 'src/app/material.module';
+import {MatSelectModule} from "@angular/material/select";
 @NgModule({
   declarations: [
     SellerProductAllComponent,
@@ -18,16 +19,17 @@ import { MaterialModules } from 'src/app/material.module';
     SellerProductAddDetailComponent,
     ProductManagementComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    ProductManagementRoutingModule,
-    ReactiveFormsModule,
-    AdminSidebarModule,
-    AdminHeaderModule,
-    MaterialModules,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        ProductManagementRoutingModule,
+        ReactiveFormsModule,
+        AdminSidebarModule,
+        AdminHeaderModule,
+        MaterialModules,
+        MatSelectModule,
+    ],
   exports: [SellerProductAllComponent],
 })
 export class ProductManagementModule {}
