@@ -131,4 +131,11 @@ export class SellerProductAddDetailComponent implements OnInit {
       }
     );
   }
+
+  addProduct() {
+    // @ts-ignore
+    document.getElementById("container-product").style.filter = "grayscale(70%) blur(3px)";
+    // @ts-ignore
+    document.getElementById("notification").style.display = "inline";
+  }
 }
