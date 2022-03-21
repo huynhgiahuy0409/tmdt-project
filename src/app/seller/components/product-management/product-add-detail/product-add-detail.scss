@@ -1,22 +1,24 @@
-
 @mixin section-all() {
   border: rgba(169, 167, 167, 0.46) solid 1px;
   margin-bottom: 10px;
   background-color: white;
   margin-right: 10%;
 }
-@mixin section-h1-all(){
+
+@mixin section-h1-all() {
   width: 100%;
   margin-left: 10px;
   margin-top: 10px;
   color: #ef741c;
 }
-@mixin section-lable-all(){
+
+@mixin section-lable-all() {
   float: left;
   text-align: end;
   font-size: 15px;
 }
-@mixin section-form-control-all(){
+
+@mixin section-form-control-all() {
   float: right;
   height: 34px;
   margin-right: 190px;
@@ -26,90 +28,119 @@
 .body {
   position: relative;
   font-size: 20px;
-  background-color: rgb(225,152,75);
+  background-color: rgb(225, 152, 75);
 }
+
 ul.nav-pills {
   top: 20px;
   position: fixed;
 }
-.container-ful{
+
+.container-ful {
   border: 2px solid #eaeaf3;
   background-color: rgba(239, 238, 238, 0.56);
 }
-#myScrollspy{
+
+#myScrollspy {
   margin-right: -30px;
   margin-left: 30px;
-  li{
+
+  li {
     margin-left: 25px;
   }
 }
-#section{
+
+#section {
   height: 60px;
 
 }
-#section1{
+
+#section1 {
   height: 600px;
   margin-bottom: 10px;
   @include section-all();
-  h1{
-   @include section-h1-all();
+
+  h1 {
+    @include section-h1-all();
   }
 }
-.form-group{
+
+.form-group {
   margin-bottom: 20px;
   margin-top: 50px;
   margin-left: 67px;
-  height: 215px!important;
-  .label-image{
+  height: 215px !important;
+
+  .label-image {
     position: absolute;
     margin-bottom: 20px;
     font-size: 14px;
   }
-  li{
+
+  li {
     margin-right: 5px;
     margin-top: 15px;
     float: left;
   }
 }
-.form-group2{
-  height: 100px!important;
-  label{
+
+.form-group2 {
+  height: 100px !important;
+
+  label {
     float: left;
     margin-left: 70px;
     font-size: 15px;
+
+    span {
+      font-weight: 400;
+      color: var(--primary-color)
+    }
   }
-  p{
+
+  p {
     font-size: 15px;
     margin-left: 5px;
   }
-  .form-control{
+
+  .form-control {
     width: 65%;
     float: right;
     margin-right: 205px;
     font-size: 13px;
   }
 }
-#img-preview1,#img-preview2,#img-preview3,#img-preview4,#img-preview5,#img-preview6 {
+
+#img-preview1,
+#img-preview2,
+#img-preview3,
+#img-preview4,
+#img-preview5,
+#img-preview6 {
   display: none;
   width: 155px;
   height: 90px;
   border: 2px solid #333;
   margin-bottom: 18px;
 }
+
 #img-preview1 img {
   width: 155px;
   height: 90px;
   display: block;
 }
-li{
+
+li {
   list-style: none;
 }
+
 [type="file"] {
   height: 0;
   width: 0;
   overflow: hidden;
 }
-[type="file"] + label {
+
+[type="file"]+label {
   font-family: sans-serif;
   padding: 10px 30px;
   border-radius: 3px;
@@ -122,98 +153,116 @@ li{
   margin-top: 20px;
   text-align: center;
   text-align-all: center;
-  p{
+
+  p {
     margin-top: 22px;
-    font-size: 20px;}
+    font-size: 20px;
+  }
 }
-[type="file"] + label:hover {
+
+[type="file"]+label:hover {
   background-color: #f6e9e9;
   color: #f44336;
 }
-#section2{
+
+#section2 {
   height: 350px;
   @include section-all();
-  h1{
+
+  h1 {
     @include section-h1-all();
   }
-  p{
+
+  p {
     font-size: 13px;
     margin-left: 20px;
   }
-    .form-group{
-      li{
-        label{
-          float: left;
-          font-size: 14px!important;
-        }
-        select{
-          float: right;
-          height: 34px;
-          width: 78%!important;
-          font-size: 13px;
-        }
+
+  .form-group {
+    li {
+      label {
+        float: left;
+        font-size: 14px !important;
       }
+
+      select {
+        float: right;
+        height: 34px;
+        width: 78% !important;
+        font-size: 13px;
+      }
+    }
   }
 }
-#section3{
+
+#section3 {
   height: 360px;
   @include section-all();
-  h1{
+
+  h1 {
     @include section-h1-all();
   }
-    .form-group {
-      li {
-        label {
-          @include section-lable-all();
-          margin-left: -112px;
-        }
 
-        .form-control {
-          @include section-form-control-all();
-          option{
-            font-size: 14px;
-          }
+  .form-group {
+    li {
+      label {
+        @include section-lable-all();
+        margin-left: -112px;
+      }
+
+      .form-control {
+        @include section-form-control-all();
+
+        option {
+          font-size: 14px;
         }
       }
     }
+  }
 }
-#section4{
+
+#section4 {
   height: 270px;
   @include section-all();
-  h1{
+
+  h1 {
     @include section-h1-all();
   }
-    .form-group {
-      li {
-        label {
-          margin-left: -18px;
-          @include section-lable-all();
-        }
+
+  .form-group {
+    li {
+      label {
+        margin-left: -18px;
+        @include section-lable-all();
+      }
+
+      .form-control {
+        @include section-form-control-all();
+      }
+
+      .input-group {
+        float: left;
+        width: 175px;
+        margin-right: 10px;
 
         .form-control {
-          @include section-form-control-all();
+          margin-right: 0px;
         }
-        .input-group{
-          float: left;
-          width: 175px;
-          margin-right: 10px;
-          .form-control{
-            margin-right: 0px;
-          }
-          .input-group-prepend{
-            .input-group-text{
 
-            }
-          }
+        .input-group-prepend {
+          .input-group-text {}
         }
       }
+    }
   }
 }
-.action_button{
+
+.action_button {
   margin-top: 20px;
   padding-bottom: 50px;
   margin-right: 167px;
-  button{
+
+  button {
     float: right;
     margin-right: 30px;
     padding: 5px;
