@@ -30,6 +30,7 @@ import {
 } from '..';
 import { PostService } from './post.service';
 import {HttpClientModule} from "@angular/common/http";
+import { FindingShopComponent } from './components/finding-shop/finding-shop.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {HttpClientModule} from "@angular/common/http";
     ShopComponent,
     SignUpComponent,
     ResetComponent,
+    FindingShopComponent,
   ],
   imports: [
     CommonModule,

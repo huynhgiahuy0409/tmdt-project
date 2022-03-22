@@ -15,6 +15,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
 
 import { AuthGuardService } from '../shared/layout/common/auth/auth-guard.component';
+import {FindingShopComponent} from './components/finding-shop/finding-shop.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
         path: 'shop',
         component: ShopComponent,
       },
+      {path: 'finding-shop', component: FindingShopComponent},
       {
         path: 'product',
         loadChildren: () =>
