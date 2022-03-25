@@ -1,5 +1,5 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-  <div class="container-ful">
+  <div class="container-ful" id="container-product">
     <div class="row">
       <nav class="col-sm-2 col-4" id="myScrollspy">
         <ul class="nav nav-pills flex-column">
@@ -25,7 +25,7 @@
           <div id="section1">
             <h1>Thông tin cơ bản</h1>
             <div class="form-group">
-              <label class="label-image">Hình ảnh sản phẩm :</label>
+              <label class="label-image lable-group">Hình ảnh sản phẩm :</label>
               <li>
                 <div class="img-preview" id="img-preview1"></div>
                 <input ngModel name="imageUrl" type="file" accept="image/*" id="choose-file1" name="choose-file" />
@@ -70,7 +70,7 @@
               </li>
             </div>
             <div class="form-group2">
-              <label>Tên Sản phẩm :</label>
+              <label class="lable-group">Tên Sản phẩm :</label>
               <ng-container *ngIf="category$ | async as category; else elseBlock">
                 <input [value]="category.productName" type="text" name="name" class="form-control" id="name"
                   placeholder="Tên sản phẩm" required>
@@ -81,7 +81,7 @@
               </ng-template>
             </div>
             <div class="form-group2">
-              <label>Mô tả sản phẩm :</label>
+              <label class="lable-group">Mô tả sản phẩm :</label>
               <textarea rows="4" class="form-control" placeholder="Mô tả sản phẩm"></textarea>
             </div>
             <div class="form-group2">
@@ -89,6 +89,7 @@
                 <span *ngIf="category$ | async as category; else else1Block">
                   {{category.selectedType}} > {{category.selectedDetailType}} > {{category.selectedProductName}}
                 </span>
+                <i  class="fa-solid fa-pencil"></i>
                 <ng-template #else1Block>
                   <span>Không có danh mục được hiển thị</span>
                 </ng-template>
@@ -100,47 +101,72 @@
             <p>Điền thông tin thuộc tính để tăng mức độ hiển thị cho sản phẩm </p>
             <div class="form-group">
               <li class="col-sm-5">
-                <label for="sel1">Thương hiệu :</label>
-                <select class="form-control" id="sel1" name="sellist1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select>
+                <label class="lable-group2">Thương hiệu :</label>
+                <div>
+                  <mat-form-field>
+                    <mat-select >
+                      <mat-option value="option">1</mat-option>
+                      <mat-option value="option">2</mat-option>
+                      <mat-option value="option">3</mat-option>
+                      <mat-option value="option">4</mat-option>
+                    </mat-select>
+                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
+                  </mat-form-field>
+                </div>
               </li>
               <li class="col-sm-5">
-                <label for="sel2">Chất liệu :</label>
-                <select class="form-control" id="sel2" name="sellist1">
-                  <option>Nhựa</option>
-                  <option>Kim loại</option>
-                  <option>Tattong</option>
-                  <option>Kết hợp</option>
-                </select>
+                <label class="lable-group2" >Chất liệu :</label>
+                <div>
+                  <mat-form-field>
+                    <mat-select >
+                      <mat-option value="option">Nhựa</mat-option>
+                      <mat-option value="option">Kim loại</mat-option>
+                      <mat-option value="option">Tattong</mat-option>
+                      <mat-option value="option">Kết hợp</mat-option>
+                    </mat-select>
+                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
+                  </mat-form-field>
+                </div>
               </li>
               <li class="col-sm-5">
-                <label for="sel4">Loại :</label>
-                <select class="form-control" id="sel3" name="sellist1">
-                  <option>Robot</option>
-                  <option>Bupbe</option>
-                  <option>Học tập</option>
-                  <option>Rấp ráp</option>
-                </select>
+                <label class="lable-group2" >Loại :</label>
+                <div>
+                  <mat-form-field>
+                    <mat-select >
+                      <mat-option value="option">Robot</mat-option>
+                      <mat-option value="option">Bupbe</mat-option>
+                      <mat-option value="option">Học tập</mat-option>
+                      <mat-option value="option">Rấp ráp</mat-option>
+                    </mat-select>
+                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
+                  </mat-form-field>
+                </div>
               </li>
               <li class="col-sm-5">
-                <label for="sel4">Xuất xứ :</label>
-                <select class="form-control" id="sel4" name="sellist1">
-                  <option>Hà Nội</option>
-                  <option>Đà Nẵng</option>
-                  <option>TP.HCM</option>
-                  <option>Nha Trang</option>
-                </select>
+                <label class="lable-group2" >Xuất xứ :</label>
+                <div>
+                  <mat-form-field>
+                    <mat-select >
+                      <mat-option value="option">Hà Nội</mat-option>
+                      <mat-option value="option">Đà Nẵng</mat-option>
+                      <mat-option value="option">TP.HCM</mat-option>
+                      <mat-option value="option">Nha Trang</mat-option>
+                    </mat-select>
+<!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
+                  </mat-form-field>
+                </div>
               </li>
               <li class="col-sm-5">
-                <label for="sel5">Tình trạng:</label>
-                <select class="form-control" id="sel5" name="sellist5">
-                  <option>Mới</option>
-                  <option>Đã sử dụng</option>
-                </select>
+                <label class="lable-group2" >Tình trạng:</label>
+                <div>
+                  <mat-form-field>
+                    <mat-select >
+                      <mat-option value="option">Mới</mat-option>
+                      <mat-option value="option">Đã sử dụng</mat-option>
+                    </mat-select>
+                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
+                  </mat-form-field>
+                </div>
               </li>
             </div>
           </div>
@@ -148,16 +174,16 @@
             <h1>Thông tin bán hàng</h1>
             <div class="form-group">
               <li class="col-12">
-                <label for="price" class="col-2">* Giá:</label>
+                <label for="price" class="col-2 lable-group">* Giá:</label>
                 <input type="number" ngModel name="price" class="form-control col-8" id="price" placeholder="Nhập giá">
               </li>
               <li class="col-12">
-                <label for="wahouse" class="col-2">Kho:</label>
+                <label  for="wahouse" class="col-2 lable-group">Kho:</label>
                 <input type="number" class="form-control col-8" id="wahouse" placeholder="Nhập số lượng trong kho"
                   value="0">
               </li>
               <li class="col-12 sale">
-                <label for="sale-quantity" class="col-2" style="float: left;margin-left: 10px">Mua nhiều giảm
+                <label for="sale-quantity" class="col-2 lable-group" style="float: left;margin-left: 10px">Mua nhiều giảm
                   giá:</label>
                 <input style="float: left;margin-right: 20px;margin-left: 24px;" type="number"
                   class="form-control col-3" id="sale-quantity" placeholder="Nhập số lượng tối thiểu">
@@ -170,11 +196,11 @@
             <h1>Vận chuyển</h1>
             <div class="form-group">
               <li class="col-12">
-                <label for="gram" class="col-2">* Cân nặng(Sau khi đóng gói):</label>
+                <label for="gram" class="col-2 lable-group">* Cân nặng(Sau khi đóng gói):</label>
                 <input type="number" class="form-control col-8" id="gram" placeholder="Nhập cân nặng">
               </li>
               <li class="col-12 transport-size">
-                <label class="col-2" style="float: left">* Kích thước :</label>
+                <label class="col-2 lable-group" style="float: left">* Kích thước :</label>
                 <div class="input-group col-3" style="float:left;">
                   <input type="text" class="form-control" placeholder="D">
                   <div class="input-group-prepend">
@@ -199,11 +225,20 @@
           </div>
           <div class="action_button">
             <!--        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>-->
-            <button [routerLink]="['/seller/product-management']" class="btn btn-primary">Thêm</button>
-            <button [routerLink]="['/seller/product-management']" class="btn btn-light">Hủy</button>
+            <button (click)="addProduct()" class="btn btn-primary">Thêm</button>
+            <button [routerLink]="['/seller/product-management']" class="btn btn-danger">Hủy</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+<div class="form-notification" id="notification">
+  <form>
+    <label>
+      Sản phẩm được thêm thành công !
+    </label>
+    <button class="btn btn-danger" [routerLink]="['/seller/product-management']">Trở về</button>
+    <button class="btn btn-primary" [routerLink]="['/seller/category']">Thêm sản phẩm khác</button>
+  </form>
+</div>
 </body>
