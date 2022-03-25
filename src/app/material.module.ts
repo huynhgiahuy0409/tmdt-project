@@ -9,7 +9,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 const materialModules = [
   MatButtonModule,
   MatSliderModule,
@@ -21,6 +22,8 @@ const materialModules = [
   MatInputModule,
   MatCheckboxModule,
   MatExpansionModule,
+  MatTabsModule,
+  MatProgressBarModule,
 ];
 
 @NgModule({
