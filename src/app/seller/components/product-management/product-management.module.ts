@@ -12,12 +12,14 @@ import { AdminHeaderModule } from '../../../shared/layout/admin/header/header.mo
 import { ProductManagementComponent } from './product-management.component';
 import { MaterialModules } from 'src/app/material.module';
 import {MatSelectModule} from "@angular/material/select";
+import { ProductListSectionComponent } from './product-all/product-list-section/product-list-section.component';
 @NgModule({
   declarations: [
     SellerProductAllComponent,
     SellerProductAddComponent,
     SellerProductAddDetailComponent,
     ProductManagementComponent,
+    ProductListSectionComponent,
   ],
     imports: [
         CommonModule,

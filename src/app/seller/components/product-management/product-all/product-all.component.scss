@@ -179,7 +179,7 @@
 
 .view-models {
   display: flex;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(224, 224, 224);
   border-radius: 3px;
   align-items: center;
   justify-content: center;
@@ -189,7 +189,6 @@
 }
 
 .view-model-item {
-  background-color: white;
   color: var(--primary-color);
   width: 34px;
   height: 34px;
@@ -198,35 +197,16 @@
   justify-content: center;
 }
 
+.view-model-item.active {
+  background-color: white;
+}
+
+.view-model-item:hover {
+  background-color: white;
+}
+
 .list-view,
 .grid-view {
   text-align: center;
   height: 24px;
-}
-
-.grid-view {}
-
-.product-list-section {
-  margin-top: 20px;
-  border-radius: 3px;
-  border: 1px solid rgb(245, 245, 245);
-}
-
-.product-list-container table {
-  width: 100%;
-}
-
-.product-thumbnail-wrappr {
-  max-width: 100px;
-}
-
-.product-thumbnail {}
-
-table th,
-td {
-  text-align: center;
-}
-
-td button {
-  margin: 5px
 }
