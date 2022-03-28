@@ -86,14 +86,39 @@
   justify-content: center;
 }
 
+// begin color icon background
 .item-icon---circle mat-icon {
   color: white
 }
 
-.item-icon---circle.purple {
+//.item-icon---circle.purple {
+//  background-color: rgb(113, 123, 235);
+//}
+.item-icon---background-1{
   background-color: rgb(113, 123, 235);
 }
-
+.item-icon---background-2{
+  background-color: rgb(114, 166, 52);
+}
+.item-icon---background-3{
+  background-color: rgb(246, 69, 29);
+}
+.item-icon---background-4{
+  background-color: rgb(84, 217, 222);
+}
+.item-icon---background-5{
+  background-color: rgb(238, 192, 29);
+}
+.item-icon---background-6{
+  background-color: rgb(127, 168, 245);
+}
+.item-icon---background-7{
+  background-color: rgb(99, 190, 222);
+}
+.item-icon---background-8{
+  background-color: rgb(131, 131, 136);
+}
+// end color icon background
 .item-name {
   text-align: center;
   color: var(--text-color);
