@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '.';
 import {HttpClientModule} from "@angular/common/http";
+import { PageNotFoundComponent } from './shared/layout/common/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './shared/layout/common/page-not-found/page-not-found.component';
 import { BreadcrumbComponent } from './shared/layout/customer/breadcrumb/breadcrumb.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'seller',
     loadChildren: () =>
       import('./seller/seller.module').then((m) => m.SellerModule),
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 

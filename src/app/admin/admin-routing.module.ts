@@ -10,13 +10,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'order', pathMatch: 'full'
+        redirectTo: 'order',
+        pathMatch: 'full',
       },
       {
         path: 'order',
         component: OrderComponent,
       },
-    ]
+    ],
   },
 ];
 

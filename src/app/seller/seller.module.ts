@@ -26,13 +26,11 @@ import { PortalModule } from './components/portal/portal.module';
   ],
   imports: [
     CommonModule,
-    RouterModule,
     SellerRoutingModule,
     AdminHeaderModule,
     AdminSidebarModule,
     ProductManagementModule,
     PortalModule,
-
     MaterialModules,
   ],
 })

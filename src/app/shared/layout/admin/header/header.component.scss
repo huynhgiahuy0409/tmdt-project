@@ -13,6 +13,7 @@
 .navbar .navbar-menu-wrapper {
   flex: 1;
   justify-content: flex-end;
+  margin-right: 160px
 }
 
 .account-info-wrap {
@@ -176,6 +177,110 @@
   display: block;
 }
 
+
+/* .notify */
+.dropdown-button--has-notify {
+  width: 450px;
+  max-height: 550px;
+  background-color: white;
+  position: absolute;
+  top: 55px;
+  right: -150px;
+  display: none;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 0px 15px 1px #ccc;
+  -webkit-box-shadow: 0px 0px 15px 1px #ccc;
+  box-shadow: 0px 0px 15px 1px #ccc;
+  animation: growth ease-in 0.25s;
+  will-change: opacity, transform;
+  transform-origin: 58% top;
+  z-index: 1;
+}
+
+.dropdown-button--has-notify::before {
+  content: "";
+  border-width: 25px 35px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+  position: absolute;
+  top: -32px;
+  right: 131px;
+  z-index: -1;
+}
+
+.notify-hover:hover .dropdown-button--has-notify {
+  display: block;
+}
+
+.notify-header {
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  min-height: 30px;
+}
+
+.notify-header div {
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 12px
+}
+
+.notify-list {
+  overflow-y: auto;
+  max-height: 450px;
+}
+
+.notify-item {
+  padding: 10px;
+}
+
+.notify-item:hover {
+  background-color: var(--hover-color)
+}
+
+.notify-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.notify-img {
+  width: 48px;
+  object-fit: contain;
+  padding: 10px 0;
+  border-radius: 2px;
+}
+
+.notify-info {
+  margin-left: 10px;
+}
+
+.notify-name {
+  color: var(--text-color);
+  margin: 0
+}
+
+.notify-description {
+  max-height: 40px;
+  overflow: hidden;
+  color: var(--text-color);
+}
+
+.notify-footer {
+  text-align: center;
+  border-top: 1px solid #ccc;
+  min-height: 30px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.notify-footer a {
+  width: 100%;
+}
+
+/* notify end */
 .dropdown-button mat-icon {
   border-radius: 50%;
   -webkit-text-fill-color: unset;
@@ -188,6 +293,10 @@
 
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini {
   display: none;
+}
+
+.brand-logo img {
+  height: inherit;
 }
 
 .navbar .navbar-menu-wrapper .count-indicator {

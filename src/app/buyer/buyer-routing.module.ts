@@ -53,7 +53,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: '',
+        path: 'account-management',
         loadChildren: () =>
           import(
             './components/account-management/account-management.module'

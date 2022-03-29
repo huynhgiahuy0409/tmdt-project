@@ -10,7 +10,10 @@ const routes: Routes = [
     path: '',
     component: SellerComponent,
     children: [
-      { path: 'home', redirectTo: 'product-management', pathMatch: 'full' },
+      { path: '', redirectTo: 'product-management', pathMatch: 'full' },
+      { path: 'page', component: SellerPageComponent },
+      { path: 'barchart', component: BarchartComponent },
+      { path: 'piechart', component: PiechartComponent },
       {
         path: 'portal',
         loadChildren: () =>
@@ -25,10 +28,13 @@ const routes: Routes = [
             './components/product-management/product-management.module'
           ).then((m) => m.ProductManagementModule),
       },
+<<<<<<< Updated upstream
       { path: 'page', component: SellerPageComponent },
       { path: 'barchart', component: BarchartComponent },
       { path: 'piechart', component: PiechartComponent },
       { path: 'rating', component: RatingManagementComponent },
+=======
+>>>>>>> Stashed changes
     ],
   },
 ];
