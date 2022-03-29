@@ -4,6 +4,7 @@ import { SellerComponent } from './seller.component';
 import { SellerPageComponent } from './components/page/page.component';
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { PiechartComponent } from './components/piechart/piechart.component';
+import {RatingManagementComponent} from "./components/rating-management/rating-management.component";
 const routes: Routes = [
   {
     path: '',
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'page', component: SellerPageComponent },
       { path: 'barchart', component: BarchartComponent },
       { path: 'piechart', component: PiechartComponent },
+      { path: 'rating', component: RatingManagementComponent },
     ],
   },
 ];

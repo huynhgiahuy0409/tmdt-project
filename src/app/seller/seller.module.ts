@@ -12,6 +12,7 @@ import { AdminSidebarModule } from '../shared/layout/admin/sidebar/sidebar.modul
 import { ProductManagementModule } from './components/product-management/product-management.module';
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { PiechartComponent } from './components/piechart/piechart.component';
+import { RatingManagementComponent } from './components/rating-management/rating-management.component';
 import { MaterialModules } from '../material.module';
 import { PortalModule } from './components/portal/portal.module';
 
@@ -21,6 +22,7 @@ import { PortalModule } from './components/portal/portal.module';
     SellerPageComponent,
     BarchartComponent,
     PiechartComponent,
+    RatingManagementComponent,
   ],
   imports: [
     CommonModule,
