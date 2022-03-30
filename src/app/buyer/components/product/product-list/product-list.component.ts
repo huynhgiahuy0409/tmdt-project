@@ -45,7 +45,7 @@ export class ProductListComponent implements OnInit {
     }
     this.products = results;
     if (results.length === 0 || !key) {
-      this.getProducts();
+      // this.getProducts();
     }
   }
 
