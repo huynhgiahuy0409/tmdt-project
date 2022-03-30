@@ -5,7 +5,8 @@ import { SellerProductAddComponent } from './product-add/product-add.component';
 import { SellerProductAddDetailComponent } from './product-add-detail/product-add-detail';
 
 const routes: Routes = [
-  { path: '', component: SellerProductAllComponent },
+  { path: '', redirectTo: 'all', pathMatch: 'full' },
+  { path: 'all', component: SellerProductAllComponent },
   { path: 'category', component: SellerProductAddComponent },
   { path: 'add-detail', component: SellerProductAddDetailComponent },
 ];

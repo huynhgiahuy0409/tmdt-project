@@ -22,7 +22,9 @@ import { ProductModule } from './components/product/product.module';
 import { AuthModule } from '../shared/layout/common/auth/auth.module';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
+import {FindingShopComponent} from './components/finding-shop/finding-shop.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
@@ -47,6 +49,7 @@ import {HttpClientModule} from "@angular/common/http";
     ShopComponent,
     SignUpComponent,
     ResetComponent,
+    FindingShopComponent,
   ],
   imports: [
     CommonModule,
