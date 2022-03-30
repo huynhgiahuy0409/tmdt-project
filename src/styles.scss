@@ -1,8 +1,9 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
-  --primary-color: #3e51eb;
-  --sub-color: #3e51eb;
+  --primary-color: rgb(255,163,127);
+  --sub-color: rgb(255 163 127 / 59%);
+  --button-color: rgb(255 112 56);
   --white-color: #fff;
   --text-color: #444;
   --hover-color: #8f8f8f14;
