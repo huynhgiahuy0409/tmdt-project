@@ -4,6 +4,13 @@
   padding-bottom: 60px;
   box-shadow: 0 0 4px 1px #ccc;
 
+  #productInfoForm {
+    mat-form-field {
+      display: block;
+      width: 50%;
+    }
+  }
+
   .title_add {
     margin-left: 115px;
   }
@@ -77,7 +84,7 @@
     margin-top: 20px;
 
     .product_search_branch {
-      width: 30%;
+      width: 100%;
 
       .form-control {
         -moz-border-radius-topright: 15px;
@@ -117,7 +124,6 @@
     }
 
     .branch_choose {
-      margin-left: 10px;
       margin-top: 15px;
 
       label {

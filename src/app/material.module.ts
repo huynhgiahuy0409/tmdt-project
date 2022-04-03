@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 const materialModules = [
   MatButtonModule,
   MatSliderModule,
@@ -24,6 +25,7 @@ const materialModules = [
   MatExpansionModule,
   MatTabsModule,
   MatProgressBarModule,
+  MatSelectModule,
 ];
 
 @NgModule({

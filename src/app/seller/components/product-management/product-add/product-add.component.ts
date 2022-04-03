@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,8 @@ import {
   CategoryPage,
   ProductManagementService,
 } from '../product-management.service';
+import { CategoryService } from './category.service';
+import { CategoryRequest } from 'src/app/_models/response';
 interface categoryList {
   type: string;
   detailType: [string, string[]][];
@@ -26,112 +29,39 @@ export function notWhitespaceValidator(): ValidatorFn {
   styleUrls: ['./product-add.component.scss'],
 })
 export class SellerProductAddComponent implements OnInit {
-  productNameValue: string = '';
+  minLength: number = 10;
+  maxLength: number = 200;
   categoryList!: categoryList[];
   selectedType!: string;
   selectedDetailType!: string;
   selectedProductName!: string;
   searchForm!: FormGroup;
+  categories$!: Observable<CategoryRequest[]>;
+  selectedCategory!: string;
+  infoProductForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private _productManagementService: ProductManagementService
+    private _productManagementService: ProductManagementService,
+    private _categoryService: CategoryService
   ) {
-    this.categoryList = [
-      {
-        type: 'Thời Trang Nữ',
-        detailType: [
-          ['Áo', ['Áo hai dây và ba lỗ', 'Áo ông', 'Áo thun', 'Khác']],
-          ['Quần', ['Quần legging', 'Quần dài', 'Khác']],
-          ['Sắc đẹp', ['Chăm sóc tay, chân & móng ', 'Chăm sóc tóc', 'Khác']],
-          ['Giày', ['Giày Snaeker', 'Giày boot', 'Khác']],
-        ],
-      },
-      {
-        type: 'Thời Trang Nam',
-        detailType: [
-          ['Áo ', ['Hoodie & Áo nỉ', 'Áo len', 'Áo khoác', 'Khác']],
-          ['Quần ', ['Quần jean', 'Quần dài', 'Khác']],
-          ['Sắc đẹp', ['Chăm sóc tóc & râu ', 'Dao cạo', 'Khác']],
-          ['Giày', ['Giày thể thao', 'Giày da', 'Khác']],
-          ['Khác', ['']],
-        ],
-      },
-      {
-        type: 'Phụ Kiện thời trang',
-        detailType: [
-          ['Nhẫn', ['Innox', 'Bạc', 'Khác']],
-          ['Kính mắt', ['Kính mát', 'Hộp kính', 'Gọng kính']],
-          ['Lắc tay', ['Innox', 'Bạc', 'Khác']],
-          ['Mủ', ['Mủ len', 'Mủ lưỡi trai']],
-          ['Phụ kiện thêm', ['Cài tóc', 'Khăn tay']],
-          ['Khác', ['']],
-        ],
-      },
-      {
-        type: 'Chăm sóc thú cưng',
-        detailType: [
-          [
-            'Thức ăn',
-            [
-              'Thức ăn cho chó',
-              'Thuwsca ăn cho mèo',
-              'Thức ăn cho cá',
-              'Thức ăn cho chim',
-              'Khác',
-            ],
-          ],
-          ['Phụ kiện', ['Vòng cổ', 'Quần áo', 'Nội thất cho thú cưng']],
-          [
-            'Làm đẹp cho thú cưng',
-            ['Chăm sóc lông ', 'Chăm sóc răng miệng', 'Chăm sóc móng'],
-          ],
-          ['Khác', ['']],
-        ],
-      },
-      {
-        type: 'Thể thao & Dã ngoại',
-        detailType: [
-          [
-            'Dụng cụ',
-            ['Cần câu', 'Cầu lông', 'Xe leo núi', 'DỤng cụ cấm trại', 'Khác'],
-          ],
-          ['Giày thể thao', ['Giày bóng rổ', 'Giày bóng đá', 'Giày leo núi']],
-          ['Thời trang ', ['Đồng phục dã ngoại ', 'Đồ bơi', 'Áo khoác CLB']],
-          ['Khác', ['']],
-        ],
-      },
-      {
-        type: 'Đồ chơi trẻ am',
-        detailType: [
-          [
-            'Robot',
-            ['Robot điều khiển', 'Robot rắp ráp', 'Robot biến hình', 'Khác'],
-          ],
-          ['Xe', ['Xe điều khiển', 'Xe rắp ráp', 'Xe kết hợp']],
-          ['Buppe ', ['Buppe con người ', 'Buppe con vật', 'Khác']],
-          ['Khác', ['']],
-        ],
-      },
-    ];
-    this._productManagementService.category$.subscribe((v) => console.log(v));
+    this.categories$ = this._categoryService.findAll();
+    this.categoryList = [];
   }
 
   ngOnInit(): void {
-    this.searchForm = this.fb.group({
+    this.infoProductForm = this.fb.group({
       search: [
         '',
         Validators.compose([
           notWhitespaceValidator(),
-          Validators.minLength(10),
-          Validators.maxLength(200),
+          Validators.minLength(this.minLength),
+          Validators.maxLength(this.maxLength),
         ]),
       ],
-    });
-    console.log(this.searchForm);
-    this.searchForm.valueChanges.subscribe((v) => {
-      console.log(v);
+      category: ['', Validators.required],
     });
   }
+
   selectType(item: categoryList) {
     this.selectedType = item.type;
     this.selectedDetailType = '';
