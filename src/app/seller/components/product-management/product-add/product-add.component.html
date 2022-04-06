@@ -5,106 +5,37 @@
     <p>Vui lòng chọn ngành hàng phù hợp cho sản phẩm của bạn.</p>
   </div>
   <hr>
-  <div class="product_name">
-    <div class="input-group mb-3">
-      <form action="" [formGroup]="searchForm">
-        <div class="product-name-error">
-          <div id="drow-up">
-          </div>
-          <mat-error>
-            <span
-              *ngIf="searchForm.get('search')!.errors?.whitespace && searchForm.get('search')!.touched && !searchForm.get('search')!.pristine">Không
-              được để trống ô</span>
-            <span *ngIf="searchForm.get('search')!.errors?.minlength">Tên sản phẩm của bạn quá ngắn. Vui lòng nhập ít
-              nhất
-              10 ký tự</span>
-            <span *ngIf="searchForm.get('search')!.errors?.maxlength">Tên sản phẩm của bạn quá dài. Vui lòng nhập tối đa
-              200 ký tự</span>
-          </mat-error>
-        </div>
-        <div class="product-name-form">
-          <label class="product_add_label">Tên sản phẩm:</label>
-          <input formControlName="search" [(ngModel)]="productNameValue" class="form-control" placeholder="Nhập tên">
-          <div class="input-group-prepend">
-            <span class="input-group-text">{{productNameValue.length}}/200</span>
-          </div>
-        </div>
+  <div class="product_box_branch">
+    <div class="product_search_branch">
+      <form id="productInfoForm" [formGroup]="infoProductForm">
+        <ng-container *ngIf="categories$ | async as categories">
+          <mat-form-field appearance="fill" class="min-width: 100%">
+            <mat-label>Tên sản phẩm</mat-label>
+            <input #productNameInput matInput placeholder="Vui lòng nhập tên sản phẩm" required
+              formControlName="search">
+            <mat-hint align="end">{{productNameInput.value.length}} / {{maxLength}}</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Chọn thể loại</mat-label>
+            <mat-select [(ngModel)]="selectedCategory" name="food" formControlName="category">
+              <mat-option *ngFor="let category of categories" [value]="category.name">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <ng-container *ngIf="!selectedCategory; else elseBlock">
+            <p> <b>Selected category:</b> Chưa có thể loại được chọn! </p>
+          </ng-container>
+          <ng-template #elseBlock>
+            <p> <b>Selected category:</b> {{selectedCategory}} </p>
+          </ng-template>
+        </ng-container>
       </form>
     </div>
-  </div>
-  <div class="product_box_branch">
-    <div class="product_search_branch input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-search"></i></span>
-      </div>
-      <input type="text" class="form-control" placeholder="Nhập tên ngành hàng">
-    </div>
-    <div class="product_list_branch">
-      <div class="product_list_branch_block product_list_branch_1" data-spy="scroll" data-target=".navbar"
-        data-offset="50">
-        <ul>
-          <li *ngFor="let item of categoryList" (click)="selectType(item)">{{item.type}}
-            <mat-icon>
-              keyboard_arrow_right
-            </mat-icon>
-          </li>
-        </ul>
-      </div>
-      <div class="product_list_branch_block product_list_branch_2">
-        <ng-container *ngIf="selectedType">
-          <ul>
-            <li *ngFor="let item of getDetailType(selectedType)" (click)="selectDetailType(item[0])">{{item[0]}}
-              <mat-icon>
-                keyboard_arrow_right
-              </mat-icon>
-            </li>
-          </ul>
-        </ng-container>
-      </div>
-      <div class="product_list_branch_block product_list_branch_3">
-        <ng-container *ngIf="selectedDetailType">
-          <ul>
-            <li *ngFor="let item of getProductName(selectedDetailType)" (click)="selectProductName(item)">{{item}}
-            </li>
-          </ul>
-        </ng-container>
-      </div>
-    </div>
     <div class="branch_choose">
-      <label>Đã chọn : </label>
-      <div *ngIf="!selectedType; then default else else1"></div>
-      <ng-template #else1>
-        <ng-container *ngIf="selectedType && !selectedDetailType && !selectedProductName; then first else else2">
-        </ng-container>
-      </ng-template>
-      <ng-template #else2>
-        <ng-container *ngIf="selectedType && selectedDetailType  && !selectedProductName; then second else third">
-        </ng-container>
-      </ng-template>
-      <ng-template #default>
-        <p>
-          Chưa chọn ngành hàng
-        </p>
-      </ng-template>
-      <ng-template #first>
-        <p class="selected-category">
-          {{selectedType}}
-        </p>
-      </ng-template>
-      <ng-template #second>
-        <p class="selected-category">
-          {{selectedType}} > {{selectedDetailType}}
-        </p>
-      </ng-template>
-      <ng-template #third>
-        <p class="selected-category">
-          {{selectedType}} > {{ selectedDetailType}} > {{selectedProductName}}
-        </p>
-      </ng-template>
-      <button class="btn btn-primary" [routerLink]="['/seller/product-management/add-detail']"
-        (click)="onSubmit(productNameValue, selectedType, selectedDetailType, selectedProductName)"
-        [disabled]="!selectedProductName && searchForm.invalid ? true : false">Tiếp
+      <button style="background-color: var(--button-color); border: none" mat-raise-button class="btn btn-primary"
+        [routerLink]="['/seller/product-management/add-detail']"
+        [disabled]="infoProductForm.invalid ? true : false">Tiếp
         theo</button>
     </div>
   </div>
-</div>
