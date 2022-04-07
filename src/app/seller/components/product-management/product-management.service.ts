@@ -1,23 +1,22 @@
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Injectable, OnInit } from '@angular/core';
-export interface CategoryPage {
+export interface ProductInfo {
   productName: string;
-  selectedType: string;
-  selectedDetailType: string;
-  selectedProductName: string;
+  category: string;
 }
 @Injectable({
   providedIn: 'root',
 })
 export class ProductManagementService implements OnInit {
-  public categoryBSub: BehaviorSubject<CategoryPage> =
-    new BehaviorSubject<CategoryPage>({
+  public categoryBSub: BehaviorSubject<ProductInfo> =
+    new BehaviorSubject<ProductInfo>({
       productName: '',
-      selectedType: '',
-      selectedDetailType: '',
-      selectedProductName: '',
+      category: '',
     });
   public category$ = this.categoryBSub.asObservable();
   constructor() {}
   ngOnInit(): void {}
+  get productInfoCurValue() {
+    return this.categoryBSub.value;
+  }
 }

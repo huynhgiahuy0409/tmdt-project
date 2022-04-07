@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,6 +9,7 @@ import { CategoryRequest } from 'src/app/_models/response';
   providedIn: 'root',
 })
 export class CategoryService {
+  categories!: CategoryRequest[];
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

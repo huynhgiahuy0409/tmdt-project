@@ -1,17 +1,15 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {
-  CategoryPage,
+  ProductInfo,
   ProductManagementService,
 } from '../product-management.service';
 import { CategoryService } from './category.service';
 import { CategoryRequest } from 'src/app/_models/response';
-interface categoryList {
-  type: string;
-  detailType: [string, string[]][];
-}
+import { tap } from 'rxjs/operators';
 export function notWhitespaceValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     let controlVal = control.value;
@@ -31,21 +29,20 @@ export function notWhitespaceValidator(): ValidatorFn {
 export class SellerProductAddComponent implements OnInit {
   minLength: number = 10;
   maxLength: number = 200;
-  categoryList!: categoryList[];
-  selectedType!: string;
-  selectedDetailType!: string;
-  selectedProductName!: string;
-  searchForm!: FormGroup;
   categories$!: Observable<CategoryRequest[]>;
   selectedCategory!: string;
   infoProductForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private _productManagementService: ProductManagementService,
-    private _categoryService: CategoryService
+    private _categoryService: CategoryService,
+    private _router: Router
   ) {
-    this.categories$ = this._categoryService.findAll();
-    this.categoryList = [];
+    this.categories$ = this._categoryService.findAll().pipe(
+      tap((c) => {
+        this._categoryService.categories = c;
+      })
+    );
   }
 
   ngOnInit(): void {
@@ -62,51 +59,11 @@ export class SellerProductAddComponent implements OnInit {
     });
   }
 
-  selectType(item: categoryList) {
-    this.selectedType = item.type;
-    this.selectedDetailType = '';
-    this.selectedProductName = '';
-  }
-  selectDetailType(detailType: string) {
-    this.selectedDetailType = detailType;
-    this.selectedProductName = '';
-  }
-  selectProductName(productName: string) {
-    this.selectedProductName = productName;
-  }
-  getDetailType(selectedType: string) {
-    let result: [string, string[]][] | null = null;
-    this.categoryList.forEach((e) => {
-      if (e.type === selectedType) {
-        result = e.detailType;
-      }
-    });
-    return result;
-  }
-  getProductName(detailType: string) {
-    let result!: string[];
-    this.categoryList.forEach((e) => {
-      if (e.type === this.selectedType) {
-        e.detailType.forEach((e) => {
-          if (e[0] == detailType) {
-            result = e[1];
-          }
-        });
-      }
-    });
-    return result;
-  }
-  onSubmit(
-    productName: string,
-    selectedType: string,
-    selectedDetailType: string,
-    selectedProductName: string
-  ) {
+  onSubmit() {
     this._productManagementService.categoryBSub.next({
-      productName: productName,
-      selectedType: selectedType,
-      selectedDetailType: selectedDetailType,
-      selectedProductName: selectedProductName,
+      productName: this.infoProductForm.get('search')!.value,
+      category: this.infoProductForm.get('category')!.value,
     });
+    this._router.navigate(['/seller/product-management/add-detail']);
   }
 }

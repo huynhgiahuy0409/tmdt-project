@@ -1,4 +1,3 @@
-<admin-header></admin-header>
 <div class="container">
   <div class="title_add">
     <h2>Thêm 1 sản phẩm mới</h2>
@@ -7,7 +6,7 @@
   <hr>
   <div class="product_box_branch">
     <div class="product_search_branch">
-      <form id="productInfoForm" [formGroup]="infoProductForm">
+      <form (ngSubmit)="onSubmit()" id="productInfoForm" [formGroup]="infoProductForm">
         <ng-container *ngIf="categories$ | async as categories">
           <mat-form-field appearance="fill" class="min-width: 100%">
             <mat-label>Tên sản phẩm</mat-label>
@@ -30,12 +29,12 @@
             <p> <b>Selected category:</b> {{selectedCategory}} </p>
           </ng-template>
         </ng-container>
+        <div class="branch_choose">
+          <button type="submit" style="background-color: var(--button-color); border: none" mat-raise-button
+            class="btn btn-primary" [disabled]="infoProductForm.invalid ? true : false">Tiếp
+            theo
+          </button>
+        </div>
       </form>
-    </div>
-    <div class="branch_choose">
-      <button style="background-color: var(--button-color); border: none" mat-raise-button class="btn btn-primary"
-        [routerLink]="['/seller/product-management/add-detail']"
-        [disabled]="infoProductForm.invalid ? true : false">Tiếp
-        theo</button>
     </div>
   </div>

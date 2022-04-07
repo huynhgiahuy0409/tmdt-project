@@ -1,0 +1,9 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-select style="font-size: 15px;" [(ngModel)]="field.value" [formControlName]="field.name">
+      <mat-option *ngFor="let o of field.option" [value]="o.name">
+        {{o.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>

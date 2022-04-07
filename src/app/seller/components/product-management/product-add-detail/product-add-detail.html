@@ -18,227 +18,30 @@
         </ul>
       </nav>
       <div class="col-sm-10 col-8">
-        <form #addForm="ngForm" (ngSubmit)="onAddProduct(addForm)">
-          <!--      <div id="section">-->
-          <!--        <h1>Thêm thông tin chi tiết</h1>-->
-          <!--      </div>-->
-          <div id="section1">
-            <h1>Thông tin cơ bản</h1>
-            <div class="form-group">
-              <label class="label-image lable-group">Hình ảnh sản phẩm :</label>
-              <li>
-                <div class="img-preview" id="img-preview1"></div>
-                <input ngModel name="imageUrl" type="file" accept="image/*" id="choose-file1" name="choose-file" />
-                <label id="a1" for="choose-file1">
-                  <p>+</p>
-                </label>
-              </li>
-              <li>
-                <div class="img-preview" id="img-preview2"></div>
-                <input type="file" accept="image/*" id="choose-file2" name="choose-file" />
-                <label id="a2" for="choose-file2">
-                  <p>+</p>
-                </label>
-              </li>
-              <li>
-                <div class="img-preview" id="img-preview3"></div>
-                <input type="file" accept="image/*" id="choose-file3" name="choose-file" />
-                <label id="a3" for="choose-file3">
-                  <p>+</p>
-                </label>
-              </li>
-              <li>
-                <div class="img-preview" id="img-preview4"></div>
-                <input type="file" accept="image/*" id="choose-file4" name="choose-file" />
-                <label id="a4" for="choose-file4">
-                  <p>+</p>
-                </label>
-              </li>
-              <li>
-                <div class="img-preview" id="img-preview5"></div>
-                <input type="file" accept="image/*" id="choose-file5" name="choose-file" />
-                <label id="a5" for="choose-file5">
-                  <p>+</p>
-                </label>
-              </li>
-              <li>
-                <div class="img-preview" id="img-preview6"></div>
-                <input type="file" accept="image/*" id="choose-file6" name="choose-file" />
-                <label id="a6" for="choose-file5">
-                  <p>+</p>
-                </label>
-              </li>
-            </div>
-            <div class="form-group2">
-              <label class="lable-group">Tên Sản phẩm :</label>
-              <ng-container *ngIf="category$ | async as category; else elseBlock">
-                <input [value]="category.productName" type="text" name="name" class="form-control" id="name"
-                  placeholder="Tên sản phẩm" required>
-              </ng-container>
-              <ng-template #elseBlock>
-                <input value="" type="text" name="name" class="form-control" id="name" placeholder="Tên sản phẩm"
-                  required>
-              </ng-template>
-            </div>
-            <div class="form-group2">
-              <label class="lable-group">Mô tả sản phẩm :</label>
-              <textarea rows="4" class="form-control" placeholder="Mô tả sản phẩm"></textarea>
-            </div>
-            <div class="form-group2">
-              <label>Danh mục:
-                <span *ngIf="category$ | async as category; else else1Block">
-                  {{category.selectedType}} > {{category.selectedDetailType}} > {{category.selectedProductName}}
-                </span>
-                <i  class="fa-solid fa-pencil"></i>
-                <ng-template #else1Block>
-                  <span>Không có danh mục được hiển thị</span>
-                </ng-template>
-              </label>
-            </div>
-          </div>
-          <div id="section2">
-            <h1>Thông tin chi tiết</h1>
-            <p>Điền thông tin thuộc tính để tăng mức độ hiển thị cho sản phẩm </p>
-            <div class="form-group">
-              <li class="col-sm-5">
-                <label class="lable-group2">Thương hiệu :</label>
-                <div>
-                  <mat-form-field>
-                    <mat-select >
-                      <mat-option value="option">1</mat-option>
-                      <mat-option value="option">2</mat-option>
-                      <mat-option value="option">3</mat-option>
-                      <mat-option value="option">4</mat-option>
-                    </mat-select>
-                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
-                  </mat-form-field>
+        <form id="product-info-form" [formGroup]="form">
+          <ng-container *ngFor="let fieldGroup of fieldGroups">
+            <fieldset [formGroupName]="fieldGroup.fieldName">
+              <div class="section">
+                <h1>{{fieldGroup.label}}</h1>
+                <div *ngIf="fieldGroup.fieldName as fn">
+                  <ng-container *ngFor="let f of productFieldsGroup[fn]">
+                    <field-builder [field]="f" [form]="form.get(fn)"></field-builder>
+                  </ng-container>
                 </div>
-              </li>
-              <li class="col-sm-5">
-                <label class="lable-group2" >Chất liệu :</label>
-                <div>
-                  <mat-form-field>
-                    <mat-select >
-                      <mat-option value="option">Nhựa</mat-option>
-                      <mat-option value="option">Kim loại</mat-option>
-                      <mat-option value="option">Tattong</mat-option>
-                      <mat-option value="option">Kết hợp</mat-option>
-                    </mat-select>
-                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
-                  </mat-form-field>
-                </div>
-              </li>
-              <li class="col-sm-5">
-                <label class="lable-group2" >Loại :</label>
-                <div>
-                  <mat-form-field>
-                    <mat-select >
-                      <mat-option value="option">Robot</mat-option>
-                      <mat-option value="option">Bupbe</mat-option>
-                      <mat-option value="option">Học tập</mat-option>
-                      <mat-option value="option">Rấp ráp</mat-option>
-                    </mat-select>
-                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
-                  </mat-form-field>
-                </div>
-              </li>
-              <li class="col-sm-5">
-                <label class="lable-group2" >Xuất xứ :</label>
-                <div>
-                  <mat-form-field>
-                    <mat-select >
-                      <mat-option value="option">Hà Nội</mat-option>
-                      <mat-option value="option">Đà Nẵng</mat-option>
-                      <mat-option value="option">TP.HCM</mat-option>
-                      <mat-option value="option">Nha Trang</mat-option>
-                    </mat-select>
-<!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
-                  </mat-form-field>
-                </div>
-              </li>
-              <li class="col-sm-5">
-                <label class="lable-group2" >Tình trạng:</label>
-                <div>
-                  <mat-form-field>
-                    <mat-select >
-                      <mat-option value="option">Mới</mat-option>
-                      <mat-option value="option">Đã sử dụng</mat-option>
-                    </mat-select>
-                    <!--                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>-->
-                  </mat-form-field>
-                </div>
-              </li>
-            </div>
-          </div>
-          <div id="section3">
-            <h1>Thông tin bán hàng</h1>
-            <div class="form-group">
-              <li class="col-12">
-                <label for="price" class="col-2 lable-group">* Giá:</label>
-                <input type="number" ngModel name="price" class="form-control col-8" id="price" placeholder="Nhập giá">
-              </li>
-              <li class="col-12">
-                <label  for="wahouse" class="col-2 lable-group">Kho:</label>
-                <input type="number" class="form-control col-8" id="wahouse" placeholder="Nhập số lượng trong kho"
-                  value="0">
-              </li>
-              <li class="col-12 sale">
-                <label for="sale-quantity" class="col-2 lable-group" style="float: left;margin-left: 10px">Mua nhiều giảm
-                  giá:</label>
-                <input style="float: left;margin-right: 20px;margin-left: 24px;" type="number"
-                  class="form-control col-3" id="sale-quantity" placeholder="Nhập số lượng tối thiểu">
-                <input type="number" class="form-control col-4" id="sale-money" placeholder="Nhập số tiền giảm">
-
-              </li>
-            </div>
-          </div>
-          <div id="section4">
-            <h1>Vận chuyển</h1>
-            <div class="form-group">
-              <li class="col-12">
-                <label for="gram" class="col-2 lable-group">* Cân nặng(Sau khi đóng gói):</label>
-                <input type="number" class="form-control col-8" id="gram" placeholder="Nhập cân nặng">
-              </li>
-              <li class="col-12 transport-size">
-                <label class="col-2 lable-group" style="float: left">* Kích thước :</label>
-                <div class="input-group col-3" style="float:left;">
-                  <input type="text" class="form-control" placeholder="D">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">cm</span>
-                  </div>
-                </div>
-                <div class="input-group col-3" style="float:left;">
-                  <input type="text" class="form-control" placeholder="R">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">cm</span>
-                  </div>
-                </div>
-                <div class="input-group col-3" style="float:left;">
-                  <input type="text" class="form-control" placeholder="C">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">cm</span>
-                  </div>
-                </div>
-              </li>
-            </div>
-
-          </div>
-          <div class="action_button">
-            <!--        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>-->
-            <button (click)="addProduct()" class="btn btn-primary">Thêm</button>
-            <button [routerLink]="['/seller/product-management']" class="btn btn-danger">Hủy</button>
-          </div>
+              </div>
+            </fieldset>
+          </ng-container>
         </form>
       </div>
     </div>
   </div>
-<div class="form-notification" id="notification">
-  <form>
-    <label>
-      Sản phẩm được thêm thành công !
-    </label>
-    <button class="btn btn-danger" [routerLink]="['/seller/product-management']">Trở về</button>
-    <button class="btn btn-primary" [routerLink]="['/seller/category']">Thêm sản phẩm khác</button>
-  </form>
-</div>
+  <div class="form-notification" id="notification">
+    <form>
+      <label>
+        Sản phẩm được thêm thành công !
+      </label>
+      <button class="btn btn-danger" [routerLink]="['/seller/product-management']">Trở về</button>
+      <button class="btn btn-primary" [routerLink]="['/seller/category']">Thêm sản phẩm khác</button>
+    </form>
+  </div>
 </body>

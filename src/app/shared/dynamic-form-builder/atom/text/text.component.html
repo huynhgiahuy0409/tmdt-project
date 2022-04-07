@@ -1,0 +1,10 @@
+<ng-container [formGroup]="form">
+  <ng-container *ngIf="field.element == 'textarea'; else elseBlock">
+    <textarea class="w-100" maxlength="3000" cols="30" rows="10" [formControlName]="field.name"></textarea>
+  </ng-container>
+  <ng-template #elseBlock>
+    <mat-form-field class="w-100" appearance="fill">
+      <input matInput #message maxlength="256" [formControlName]="field.name">
+    </mat-form-field>
+  </ng-template>
+</ng-container>

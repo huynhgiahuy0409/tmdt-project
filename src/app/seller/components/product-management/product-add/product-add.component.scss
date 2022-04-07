@@ -1,8 +1,7 @@
 .container {
   background-color: rgb(255, 255, 255);
-  margin-top: 65px;
-  padding-bottom: 60px;
   box-shadow: 0 0 4px 1px #ccc;
+  padding: 20px;
 
   #productInfoForm {
     mat-form-field {
@@ -12,7 +11,7 @@
   }
 
   .title_add {
-    margin-left: 115px;
+    margin-left: 118px;
   }
 
   .product_name {
