@@ -16,7 +16,7 @@ export class ProductManagementService implements OnInit {
   public category$ = this.categoryBSub.asObservable();
   constructor() {}
   ngOnInit(): void {}
-  get productInfoCurValue() {
+  get productInfoCurValue(): ProductInfo {
     return this.categoryBSub.value;
   }
 }

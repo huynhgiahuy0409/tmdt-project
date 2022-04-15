@@ -16,6 +16,8 @@ export class SelectComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe((v) => {});
+    if (!this.field.name) {
+      console.log(localStorage['categories'][0]);
+    }
   }
 }

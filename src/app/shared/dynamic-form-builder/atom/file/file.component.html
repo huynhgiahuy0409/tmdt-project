@@ -1,14 +1,30 @@
-<div class="drop-container" *ngIf="!field.value">
-  <p class="m-0">
-    Drag a file here or
-    <label class="upload-button">
-      <input type="file" multiple=""> browse
-    </label>
-    to upload.
-  </p>
-</div>
-<!-- <div *ngIf="field.value">
-  <div class="card">
-    <img class="card-img-top" [src]="field.value">
-  </div>
-</div> -->
+<ng-container [formGroup]="form">
+  <ng-container *ngIf=" field.abstractControl=='array' ; else elseBlock">
+    <div class="d-flex flex-wrap" [formArrayName]="field.name">
+      <ng-container *ngIf="formAttr">
+        <ng-container *ngFor="let c of formArray.controls; index as i">
+          <div class="drop-container" *ngIf="!field.value">
+            <p class="m-0">
+              Drag a file here or
+              <label class="upload-button">
+                <input type="file" multiple="" [formControlName]="i"> browse
+              </label>
+              to upload.
+            </p>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #elseBlock>
+    <div class="drop-container" *ngIf="!field.value">
+      <p class="m-0">
+        Drag a file here or
+        <label class="upload-button">
+          <input type="file" multiple="" [formControlName]="field.name"> browse
+        </label>
+        to upload.
+      </p>
+    </div>
+  </ng-template>
+</ng-container>

@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'file',
@@ -10,6 +15,13 @@ export class FileComponent implements OnInit {
   @Input() field: any = {};
   @Input() form!: FormGroup;
   constructor() {}
-
-  ngOnInit(): void {}
+  get formAttr(): AbstractControl {
+    return this.form.get(this.field.name) as AbstractControl;
+  }
+  get formArray(): FormArray {
+    return this.form.get(this.field.name) as FormArray;
+  }
+  ngOnInit(): void {
+    console.log(this.formAttr);
+  }
 }

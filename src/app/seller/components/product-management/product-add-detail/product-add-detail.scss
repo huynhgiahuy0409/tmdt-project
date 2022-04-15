@@ -36,10 +36,7 @@ ul.nav-pills {
   position: fixed;
 }
 
-.container-ful {
-  border: 2px solid #eaeaf3;
-  background-color: rgba(239, 238, 238, 0.56);
-}
+.container-ful {}
 
 #myScrollspy {
   margin-right: -30px;
@@ -53,7 +50,8 @@ ul.nav-pills {
 .section {
   padding: 40px;
   background-color: #fff;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px 0px #ccc
 }
 
 #section {

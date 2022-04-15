@@ -1,8 +1,14 @@
 <ng-container [formGroup]="form">
-  <mat-form-field appearance="fill">
-    <mat-select style="font-size: 15px;" [(ngModel)]="field.value" [formControlName]="field.name">
-      <mat-option *ngFor="let o of field.option" [value]="o.name">
-        {{o.name}}
+  <mat-form-field appearance="fill" style="font-size: 15px;">
+    <mat-label *ngIf="!field.value">Vui lòng chọn</mat-label>
+    <mat-select [formControlName]="field.name">
+      <mat-option *ngFor="let option of field.options" [value]="option">
+        <ng-container *ngIf="field.name == 'brand'; else notUpperCase">
+          {{ option | uppercase}}
+        </ng-container>
+        <ng-template #notUpperCase>
+          {{option}}
+        </ng-template>
       </mat-option>
     </mat-select>
   </mat-form-field>

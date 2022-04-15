@@ -1,41 +1,29 @@
-<div [formGroup]="form">
-  <div class="form-group row">
-    <div class="col-md-3 form-control-label" [attr.for]="field.label">
-      <p style="color: var(--text-color); font-size: 18px;"> {{field.label}}</p>
-      <strong class="text-danger" *ngIf="field.required">*</strong>
-    </div>
-    <div class="col-md-9 d-flex align-item-center" [ngSwitch]="field.type">
-      <div class="d-flex align-item-center">
-        <ng-container *ngSwitchCase="'file'">
-          <ng-container *ngIf=" field.abstractControl=='array' ; else elseBlock">
-            <div class="d-flex flex-wrap" [formArrayName]="field.name">
-              <ng-container *ngFor="let c of formAttr.controls; index as i">
-                <div class="drop-container" *ngIf="!field.value">
-                  <p class="m-0">
-                    Drag a file here or
-                    <label class="upload-button">
-                      <input type="file" multiple="" [formControlName]="i"> browse
-                    </label>
-                    to upload.
-                  </p>
-                </div>
-              </ng-container>
-            </div>
-          </ng-container>
-          <ng-template #elseBlock>
-            <file [field]="field" [form]="form"></file>
-          </ng-template>
-        </ng-container>
-        <ng-container *ngSwitchCase="'text'">
+<div class="form-group row">
+  <div class="col-md-3 form-control-label" [attr.for]="field.label">
+    <p style="color: var(--text-color); font-size: 18px;"> {{field.label}}</p>
+    <strong class="text-danger" *ngIf="field.required">*</strong>
+  </div>
+  <div class="col-md-9 d-flex align-item-center" [ngSwitch]="field.type">
+    <div class="d-flex align-item-center w-100">
+      <ng-container *ngSwitchCase="'file'">
+        <file class="w-100" [field]="field" [form]="form"></file>
+      </ng-container>
+      <ng-template #elseBlock>
+        <file class="w-100" [field]="field" [form]="form"></file>
+      </ng-template>
+      <ng-container *ngSwitchCase="'text'">
+        <textbox *ngIf="field.name === 'size'; else textElseBlock"
+          class="w-100 d-flex justify-content-between align-item-center" [field]="field" [form]="form"></textbox>
+        <ng-template #textElseBlock>
           <textbox class="w-100" [field]="field" [form]="form"></textbox>
-        </ng-container>
-        <ng-container *ngSwitchCase="'dropdown'">
-          <dropdown class="w-100" [field]="field" [form]="form"></dropdown>
-        </ng-container>
-        <ng-container *ngSwitchCase="'label'">
-          <label style="font-size:18px" for="">{{formAttr.value}}</label>
-        </ng-container>
-      </div>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngSwitchCase="'dropdown'">
+        <dropdown class="w-100" [field]="field" [form]="form"></dropdown>
+      </ng-container>
+      <ng-container *ngSwitchCase="'label'">
+        <label style="font-size:18px" for="">{{formAttr.value}}</label>
+      </ng-container>
     </div>
   </div>
 </div>

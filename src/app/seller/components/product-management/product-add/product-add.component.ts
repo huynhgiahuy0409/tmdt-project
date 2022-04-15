@@ -8,7 +8,7 @@ import {
   ProductManagementService,
 } from '../product-management.service';
 import { CategoryService } from './category.service';
-import { CategoryRequest } from 'src/app/_models/response';
+import { CategoryResponse } from 'src/app/_models/response';
 import { tap } from 'rxjs/operators';
 export function notWhitespaceValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -29,9 +29,9 @@ export function notWhitespaceValidator(): ValidatorFn {
 export class SellerProductAddComponent implements OnInit {
   minLength: number = 10;
   maxLength: number = 200;
-  categories$!: Observable<CategoryRequest[]>;
+  categories$!: Observable<CategoryResponse[]>;
   selectedCategory!: string;
-  infoProductForm!: FormGroup;
+  baseProductInfoForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private _productManagementService: ProductManagementService,
@@ -46,7 +46,7 @@ export class SellerProductAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.infoProductForm = this.fb.group({
+    this.baseProductInfoForm = this.fb.group({
       search: [
         '',
         Validators.compose([
@@ -61,8 +61,8 @@ export class SellerProductAddComponent implements OnInit {
 
   onSubmit() {
     this._productManagementService.categoryBSub.next({
-      productName: this.infoProductForm.get('search')!.value,
-      category: this.infoProductForm.get('category')!.value,
+      productName: this.baseProductInfoForm.get('search')!.value,
+      category: this.baseProductInfoForm.get('category')!.value,
     });
     this._router.navigate(['/seller/product-management/add-detail']);
   }

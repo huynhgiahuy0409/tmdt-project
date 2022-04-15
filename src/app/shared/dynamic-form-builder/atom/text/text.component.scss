@@ -1,4 +1,12 @@
 textarea {
   border: unset;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #818181;
+  background: rgb(245, 245, 245);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+mat-form-field {
+  margin: 10px;
+  margin-left: 0px
 }

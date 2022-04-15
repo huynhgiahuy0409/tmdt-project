@@ -6,7 +6,7 @@
   <hr>
   <div class="product_box_branch">
     <div class="product_search_branch">
-      <form (ngSubmit)="onSubmit()" id="productInfoForm" [formGroup]="infoProductForm">
+      <form (ngSubmit)="onSubmit()" id="productInfoForm" [formGroup]="baseProductInfoForm">
         <ng-container *ngIf="categories$ | async as categories">
           <mat-form-field appearance="fill" class="min-width: 100%">
             <mat-label>Tên sản phẩm</mat-label>
@@ -16,7 +16,7 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Chọn thể loại</mat-label>
-            <mat-select [(ngModel)]="selectedCategory" name="food" formControlName="category">
+            <mat-select name="food" formControlName="category">
               <mat-option *ngFor="let category of categories" [value]="category.name">
                 {{category.name}}
               </mat-option>
@@ -31,7 +31,7 @@
         </ng-container>
         <div class="branch_choose">
           <button type="submit" style="background-color: var(--button-color); border: none" mat-raise-button
-            class="btn btn-primary" [disabled]="infoProductForm.invalid ? true : false">Tiếp
+            class="btn btn-primary" [disabled]="baseProductInfoForm.invalid ? true : false">Tiếp
             theo
           </button>
         </div>

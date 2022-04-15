@@ -1,10 +1,28 @@
 <ng-container [formGroup]="form">
-  <ng-container *ngIf="field.element == 'textarea'; else elseBlock">
-    <textarea class="w-100" maxlength="3000" cols="30" rows="10" [formControlName]="field.name"></textarea>
+  <ng-container *ngIf="field.abstractControl == 'array';else isNotFormArray" [formArrayName]="field.name">
+    <ng-container *ngFor="let c of formArray.controls || 0; index as i">
+      <ng-container *ngIf="field.element == 'textarea'; else isNotTextArea">
+        <mat-form-field appearance="fill" style="margin: 10px;">
+          <mat-label *ngIf="field.placeholder">{{field.placeholder[i]}}</mat-label>
+          <textarea matInput #message maxlength="256" [formControlName]="i"> </textarea>
+        </mat-form-field>
+      </ng-container>
+      <ng-template #isNotTextArea>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label *ngIf="field.placeholder">{{field.placeholder[i]}}</mat-label>
+          <input matInput #message maxlength="256" [formControlName]="i">
+        </mat-form-field>
+      </ng-template>
+    </ng-container>
   </ng-container>
-  <ng-template #elseBlock>
-    <mat-form-field class="w-100" appearance="fill">
-      <input matInput #message maxlength="256" [formControlName]="field.name">
-    </mat-form-field>
+  <ng-template #isNotFormArray>
+    <ng-container *ngIf="field.element == 'textarea'; else elseBlock">
+      <textarea class="w-100" maxlength="3000" cols="30" rows="10" [formControlName]="field.name"></textarea>
+    </ng-container>
+    <ng-template #elseBlock>
+      <mat-form-field class="w-100" appearance="fill">
+        <input matInput #message maxlength="256" [formControlName]="field.name">
+      </mat-form-field>
+    </ng-template>
   </ng-template>
 </ng-container>
