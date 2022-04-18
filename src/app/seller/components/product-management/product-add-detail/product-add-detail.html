@@ -1,19 +1,11 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-  <div class="container-ful" id="container-product">
+  <div class=" container-full" id="container-product">
     <div class="row">
       <nav class="col-sm-2 col-4" id="myScrollspy">
-        <ul class="nav nav-pills flex-column">
-          <li class="nav-item">
-            <a class="nav-link " href="#section1">Thông tin cơ bản</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#section2">Thông tin chi tiết</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#section3">Thông tin bán hàng</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link " href="#section4">Vận chuyển</a>
+        <ul #navUl class="nav nav-pills flex-column">
+          <li #navItem (click)="scrollTo(fieldGroup['fieldName'], navUl)" class="nav-item-custom"
+            *ngFor="let fieldGroup of fieldGroups; index as i" [tabindex]="i">
+            <a class="">{{fieldGroup['label']}}</a>
           </li>
         </ul>
       </nav>
@@ -21,7 +13,7 @@
         <form id="product-info-form" [formGroup]="form">
           <ng-container *ngFor="let fieldGroup of fieldGroups">
             <fieldset [formGroupName]="fieldGroup['fieldName']">
-              <div class="section">
+              <div [id]="fieldGroup['fieldName']" class="section">
                 <h1>{{fieldGroup['label']}}</h1>
                 <div *ngIf="fieldGroup.fieldName as fn">
                   <ng-container *ngFor="let f of productFieldsGroup[fn]">
@@ -31,6 +23,13 @@
               </div>
             </fieldset>
           </ng-container>
+          <div id="fixed-container" class="fixed-container">
+            <div class="container d-flex justify-content-end">
+              <button mat-raised-button>Huỷ</button>
+              <button mat-raised-button>Lưu & Ẩn</button>
+              <button mat-raised-button>Lưu và hiển thị</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>

@@ -1,3 +1,26 @@
+* {
+  font-size: 15px;
+}
+
+button {
+  background-color: var(--button-color);
+  color: white;
+}
+
+.fixed-container button:nth-child(1),
+.fixed-container button:nth-child(2) {
+  background-color: #fff;
+  color: unset
+}
+
+.fixed-container.container {
+  margin: 0
+}
+
+.fixed-container button {
+  margin: 0 10px
+}
+
 @mixin section-all() {
   border: rgba(169, 167, 167, 0.46) solid 1px;
   margin-bottom: 10px;
@@ -36,7 +59,38 @@ ul.nav-pills {
   position: fixed;
 }
 
-.container-ful {}
+.nav-item-custom {
+  font-size: 15px
+}
+
+.nav-item-custom:first-child {
+  /* background-color: var(--sub-color);
+  border-radius: 4px; */
+}
+
+.nav-item-custom:focus {
+  background-color: var(--sub-color);
+  border-radius: 4px;
+  color: var(--text-color)
+}
+
+/* .nav-item-custom:focus~:first-child {
+  background-color: blue !important;
+  border-radius: 4px;
+} */
+
+
+.container-full {
+  padding-bottom: 30px
+}
+
+.fixed-bottom {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  box-shadow: 0 0 20px 0px #ccc;
+  padding: 10px 0
+}
 
 #myScrollspy {
   margin-right: -30px;

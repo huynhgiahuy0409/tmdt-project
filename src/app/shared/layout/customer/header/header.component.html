@@ -172,7 +172,7 @@
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-6">
             <div class="logo">
-            <img src="assets/img/logo/new-logo.png" alt="">
+              <img src="assets/img/logo/new-logo.png" alt="">
             </div>
           </div>
           <div class="col-lg-9 col-md-6">
@@ -180,7 +180,8 @@
               <div class="search_container">
                 <form action="#">
                   <div class="search_box">
-                    <input placeholder="Search product..." type="text">
+                    <input [(ngModel)]="abc" placeholder="Search product..." type="text">
+                    <div>{{abc}}</div>
                     <button type="submit">Search</button>
                   </div>
                 </form>

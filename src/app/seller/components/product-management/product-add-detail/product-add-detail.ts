@@ -3,7 +3,13 @@ import {
   ProductInfo,
   ProductManagementService,
 } from './../product-management.service';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -46,6 +52,7 @@ export interface FieldGroup {
   styleUrls: ['./product-add-detail.scss'],
 })
 export class SellerProductAddDetailComponent implements OnInit {
+  isEndOfPage = false;
   productFieldsGroup: ProductFieldGroup = {
     productBaseInfo: [
       {
@@ -201,6 +208,10 @@ export class SellerProductAddDetailComponent implements OnInit {
           f['value'] =
             this.productManagementService.productInfoCurValue.category;
         }
+        if (f.name === 'name') {
+          f['value'] =
+            this.productManagementService.productInfoCurValue.productName;
+        }
         if (f.options) {
           if (f.name == 'category') {
             this._categoryService.findAll().subscribe((v) => {
@@ -253,5 +264,32 @@ export class SellerProductAddDetailComponent implements OnInit {
       }
     });
     return abstractControls;
+  }
+  scrollTo(id: string, navUl: HTMLElement): void {
+    const element = document.getElementById(id);
+    console.log(element);
+    element!.scrollIntoView({ behavior: 'smooth' });
+  }
+  @HostListener('window:scroll', ['$event'])
+  checkEndOfPage() {
+    //In chrome and some browser scroll is given to body tag
+    let pos =
+      (document.documentElement.scrollTop || document.body.scrollTop) +
+      document.documentElement.offsetHeight;
+    let max = document.documentElement.scrollHeight;
+    let actualPos = Math.round(pos);
+    console.log(actualPos);
+    console.log(max);
+    // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+    const fixedContainer = document.getElementById('fixed-container');
+    if (actualPos == max) {
+      this.isEndOfPage = true;
+    }
+    if (actualPos + 20 < max && this.isEndOfPage) {
+      //Do your action here
+      fixedContainer?.classList.add('fixed-bottom');
+    } else {
+      fixedContainer?.classList.remove('fixed-bottom');
+    }
   }
 }

@@ -78,6 +78,10 @@
   align-items: center;
 }
 
+.item-icon:hover {
+  background: var(--hover-color);
+}
+
 .item-icon---circle {
   width: 70px;
   height: 70px;
@@ -86,6 +90,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.item-icon---circle:hover {
+  transform: translateY(-3px);
 }
 
 // begin color icon background
@@ -180,6 +188,7 @@
   position: absolute;
   top: -32px;
   right: 140px;
+  z-index: -1;
 }
 
 .dropdown-button:hover .dropdown-button--has-category {
@@ -299,6 +308,9 @@
   background-color: #e8e8e8;
 }
 
+.navbar {
+  z-index: 1;
+}
 
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini {
   display: none;
