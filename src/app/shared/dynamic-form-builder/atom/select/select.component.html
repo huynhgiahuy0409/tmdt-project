@@ -1,6 +1,6 @@
 <ng-container [formGroup]="form">
   <mat-form-field appearance="fill" style="font-size: 15px;">
-    <mat-label *ngIf="!field.value">Vui lòng chọn</mat-label>
+    <mat-label *ngIf="!field.value">Chọn một</mat-label>
     <mat-select [formControlName]="field.name">
       <mat-option *ngFor="let option of field.options" [value]="option">
         <ng-container *ngIf="field.name == 'brand'; else notUpperCase">
@@ -11,5 +11,8 @@
         </ng-template>
       </mat-option>
     </mat-select>
+    <mat-error *ngIf="form.get(field.name)?.hasError('required')">
+      Vui lòng chọn {{field.label | lowercase}}
+    </mat-error>
   </mat-form-field>
 </ng-container>

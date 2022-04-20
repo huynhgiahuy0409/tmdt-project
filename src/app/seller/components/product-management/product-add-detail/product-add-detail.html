@@ -10,7 +10,7 @@
         </ul>
       </nav>
       <div class="col-sm-10 col-8">
-        <form id="product-info-form" [formGroup]="form">
+        <form (ngSubmit)="onSubmit()" id="product-info-form" [formGroup]="form">
           <ng-container *ngFor="let fieldGroup of fieldGroups">
             <fieldset [formGroupName]="fieldGroup['fieldName']">
               <div [id]="fieldGroup['fieldName']" class="section">
@@ -27,7 +27,7 @@
             <div class="container d-flex justify-content-end">
               <button mat-raised-button>Huỷ</button>
               <button mat-raised-button>Lưu & Ẩn</button>
-              <button mat-raised-button>Lưu và hiển thị</button>
+              <button [disabled]="form.invalid? true: false" type="submit" mat-raised-button>Lưu và hiển thị</button>
             </div>
           </div>
         </form>

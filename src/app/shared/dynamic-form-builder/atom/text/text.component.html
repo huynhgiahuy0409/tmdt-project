@@ -16,13 +16,17 @@
     </ng-container>
   </ng-container>
   <ng-template #isNotFormArray>
-    <ng-container *ngIf="field.element == 'textarea'; else elseBlock">
-      <textarea class="w-100" maxlength="3000" cols="30" rows="10" [formControlName]="field.name"></textarea>
-    </ng-container>
-    <ng-template #elseBlock>
-      <mat-form-field class="w-100" appearance="fill">
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>{{field.label}}</mat-label>
+      <ng-container *ngIf="field.element == 'textarea'; else elseBlock">
+        <textarea matInput class="w-100" maxlength="3000" cols="30" rows="10" [formControlName]="field.name"></textarea>
+      </ng-container>
+      <mat-error *ngIf="form.get(field.name)?.hasError('required')">
+        Không được để ô trống
+      </mat-error>
+      <ng-template #elseBlock>
         <input matInput #message maxlength="256" [formControlName]="field.name">
-      </mat-form-field>
-    </ng-template>
+      </ng-template>
+    </mat-form-field>
   </ng-template>
 </ng-container>

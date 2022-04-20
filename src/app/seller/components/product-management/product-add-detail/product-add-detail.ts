@@ -4,11 +4,14 @@ import {
   ProductManagementService,
 } from './../product-management.service';
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
   HostListener,
   OnChanges,
   OnInit,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import {
   FormArray,
@@ -38,6 +41,10 @@ export interface DynamicField {
   length?: number;
   element?: string;
   placeholder?: string[];
+  required: boolean;
+  title?: string;
+  aPlaceHolder?: string;
+  accept?: string;
 }
 export interface ProductFieldGroup {
   [key: string]: DynamicField[];
@@ -51,7 +58,8 @@ export interface FieldGroup {
   templateUrl: './product-add-detail.html',
   styleUrls: ['./product-add-detail.scss'],
 })
-export class SellerProductAddDetailComponent implements OnInit {
+export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
+  @ViewChild('navItem') el!: ElementRef;
   isEndOfPage = false;
   productFieldsGroup: ProductFieldGroup = {
     productBaseInfo: [
@@ -61,18 +69,25 @@ export class SellerProductAddDetailComponent implements OnInit {
         name: 'images',
         label: 'Hình ảnh sản phẩm',
         length: 9,
+        required: true,
+        title: 'Ảnh bìa',
+        accept: 'image/*',
       },
       {
         abstractControl: 'control',
         type: 'file',
         name: 'video',
         label: 'Video sản phẩm',
+        required: false,
+        title: 'Video bìa',
+        accept: 'video/*',
       },
       {
         abstractControl: 'control',
         type: 'text',
         name: 'name',
         label: 'Tên sản phẩm',
+        required: true,
       },
       {
         abstractControl: 'control',
@@ -80,6 +95,7 @@ export class SellerProductAddDetailComponent implements OnInit {
         name: 'description',
         label: 'Mô tả sản phẩm',
         element: 'textarea',
+        required: true,
       },
       {
         abstractControl: 'control',
@@ -87,6 +103,7 @@ export class SellerProductAddDetailComponent implements OnInit {
         name: 'category',
         label: 'Danh mục',
         options: [],
+        required: true,
       },
     ],
     productDetailInfo: [
@@ -96,6 +113,7 @@ export class SellerProductAddDetailComponent implements OnInit {
         name: 'brand',
         label: 'Thương hiệu',
         options: [],
+        required: true,
       },
       {
         abstractControl: 'control',
@@ -103,6 +121,7 @@ export class SellerProductAddDetailComponent implements OnInit {
         name: 'material',
         label: 'Chất liệu',
         options: [],
+        required: true,
       },
       {
         abstractControl: 'control',
@@ -110,6 +129,7 @@ export class SellerProductAddDetailComponent implements OnInit {
         name: 'recommendAge',
         label: 'Độ tuổi khuyến nghị',
         options: [],
+        required: true,
       },
     ],
     salesInfo: [
@@ -118,6 +138,7 @@ export class SellerProductAddDetailComponent implements OnInit {
         type: 'text',
         name: 'warehouse',
         label: 'Kho',
+        required: true,
       },
     ],
     transport: [
@@ -126,6 +147,7 @@ export class SellerProductAddDetailComponent implements OnInit {
         type: 'text',
         name: 'weight',
         label: 'Cân nặng (Sau khi đóng gói)',
+        required: true,
       },
       /*  */
       {
@@ -136,6 +158,7 @@ export class SellerProductAddDetailComponent implements OnInit {
           'Kích thước đóng gói (Phí vận chuyển thực tế sẽ thay đổi nếu bạn nhập sai kích thước)',
         length: 3,
         placeholder: ['R', 'D', 'C'],
+        required: false,
       },
       /*  {
         abstractControl: 'control',
@@ -151,12 +174,14 @@ export class SellerProductAddDetailComponent implements OnInit {
         name: 'status',
         label: 'Tình trạng',
         options: ['Mới', 'Đã sử dụng'],
+        required: true,
       },
       {
         abstractControl: 'control',
         type: 'text',
         name: 'SKU',
         label: 'SKU sản phẩm',
+        required: false,
       },
     ],
   };
@@ -196,10 +221,13 @@ export class SellerProductAddDetailComponent implements OnInit {
     private __recommendAgeService: RecommendAgeService,
     private __materialService: MaterialServiceService
   ) {}
+  ngAfterViewInit(): void {
+    this.el.nativeElement.focus();
+  }
   ngOnInit(): void {
-    if (!this.productManagementService.productInfoCurValue.category) {
+    /* if (!this.productManagementService.productInfoCurValue.category) {
       this.router.navigate(['/seller/product-management/category']);
-    }
+    } */
     let productGroup: any = {};
     this.fieldGroups.forEach((fieldGroup) => {
       const { fieldName } = fieldGroup;
@@ -253,7 +281,14 @@ export class SellerProductAddDetailComponent implements OnInit {
     let abstractControls: any = {};
     this.productFieldsGroup[name].forEach((f) => {
       if (f.abstractControl == 'control') {
-        abstractControls[f.name] = this._fb.control(f.value || '');
+        if (f.required) {
+          abstractControls[f.name] = this._fb.control(
+            f.value || '',
+            Validators.required
+          );
+        } else {
+          abstractControls[f.name] = this._fb.control(f.value || '');
+        }
       } else if (f.abstractControl == 'array') {
         const arrayLength = f.length || 0;
         let formArray: FormControl[] = [];
@@ -266,8 +301,8 @@ export class SellerProductAddDetailComponent implements OnInit {
     return abstractControls;
   }
   scrollTo(id: string, navUl: HTMLElement): void {
+    navUl.tabIndex == 0;
     const element = document.getElementById(id);
-    console.log(element);
     element!.scrollIntoView({ behavior: 'smooth' });
   }
   @HostListener('window:scroll', ['$event'])
@@ -278,8 +313,6 @@ export class SellerProductAddDetailComponent implements OnInit {
       document.documentElement.offsetHeight;
     let max = document.documentElement.scrollHeight;
     let actualPos = Math.round(pos);
-    console.log(actualPos);
-    console.log(max);
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
     const fixedContainer = document.getElementById('fixed-container');
     if (actualPos == max) {
@@ -292,4 +325,5 @@ export class SellerProductAddDetailComponent implements OnInit {
       fixedContainer?.classList.remove('fixed-bottom');
     }
   }
+  onSubmit() {}
 }

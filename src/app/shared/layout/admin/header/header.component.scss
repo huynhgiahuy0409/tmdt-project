@@ -189,6 +189,7 @@
   top: -32px;
   right: 140px;
   z-index: -1;
+  animation: fadeIn ease-in 0.3s;
 }
 
 .dropdown-button:hover .dropdown-button--has-category {
@@ -209,7 +210,7 @@
   -moz-box-shadow: 0px 0px 15px 1px #ccc;
   -webkit-box-shadow: 0px 0px 15px 1px #ccc;
   box-shadow: 0px 0px 15px 1px #ccc;
-  animation: growth ease-in 0.25s;
+  animation: growth ease-in 0.3s;
   will-change: opacity, transform;
   transform-origin: 58% top;
   z-index: 1;
@@ -409,16 +410,4 @@
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown i {
   margin-right: .5rem;
   vertical-align: middle;
-}
-
-@keyframes growth {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
 }

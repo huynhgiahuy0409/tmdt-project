@@ -1,5 +1,9 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+* {
+  font-size: 16px;
+}
+
 :root {
   --primary-color: rgb(255, 163, 127);
   --sub-color: rgb(255 163 127 / 59%);
@@ -8,6 +12,16 @@
   --text-color: #444;
   --hover-color: #8f8f8f14;
   --test--: rgb(225, 152, 75)
+}
+
+button {
+  background-color: var(--button-color);
+  color: #fff
+}
+
+label {
+  color: var(--text-color);
+  font-weight: unset;
 }
 
 ul,
@@ -76,4 +90,30 @@ input {
   border: none
 }
 
-button {}
+@keyframes growth {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+button {
+  background-color: var(--button-color);
+  color: #fff
+}

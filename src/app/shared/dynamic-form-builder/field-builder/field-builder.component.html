@@ -1,16 +1,12 @@
 <div class="form-group row">
   <div class="col-md-3 form-control-label" [attr.for]="field.label">
     <p style="color: var(--text-color); font-size: 18px;"> {{field.label}}</p>
-    <strong class="text-danger" *ngIf="field.required">*</strong>
   </div>
   <div class="col-md-9 d-flex align-item-center" [ngSwitch]="field.type">
     <div class="d-flex align-item-center w-100">
       <ng-container *ngSwitchCase="'file'">
         <file class="w-100" [field]="field" [form]="form"></file>
       </ng-container>
-      <ng-template #elseBlock>
-        <file class="w-100" [field]="field" [form]="form"></file>
-      </ng-template>
       <ng-container *ngSwitchCase="'text'">
         <textbox *ngIf="field.name === 'size'; else textElseBlock"
           class="w-100 d-flex justify-content-between align-item-center" [field]="field" [form]="form"></textbox>
