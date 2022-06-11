@@ -9,6 +9,8 @@ import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '.';
 import {HttpClientModule} from "@angular/common/http";
 import { PageNotFoundComponent } from './shared/layout/common/page-not-found/page-not-found.component';
+import { RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -39,8 +41,15 @@ import { PageNotFoundComponent } from './shared/layout/common/page-not-found/pag
               '42510119300-4pjjafbekic220be3oa9ug0ep3t49p2v.apps.googleusercontent.com'
             ),
           },
+          
         ],
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
     },
   ],
   bootstrap: [AppComponent],

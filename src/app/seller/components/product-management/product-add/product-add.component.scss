@@ -1,5 +1,5 @@
 button {
-  background-color: var(--button-color);
+  background-color: var(--button-color--);
   color: #fff
 }
 
@@ -150,7 +150,7 @@ button {
   }
 
   .selected-category {
-    color: var(--primary-color) !important
+    color: var(--primary-color--) !important
   }
 }
 

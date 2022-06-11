@@ -157,7 +157,7 @@
 
 .percent-des {
   font-size: 12px;
-  color: var(--text-color)
+  color: var(--text-color--)
 }
 
 .product-list-wrap__right {
@@ -174,7 +174,7 @@
   border: none;
   height: 40px;
   padding: 0 20px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color--);
   border-radius: 3px;
   color: white
 }
@@ -191,7 +191,7 @@
 }
 
 .view-model-item {
-  color: var(--primary-color);
+  color: var(--primary-color--);
   width: 34px;
   height: 34px;
   display: flex;

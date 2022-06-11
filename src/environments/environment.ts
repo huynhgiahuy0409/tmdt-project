@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080'
+  apiBaseUrl: 'http://localhost:8080',
+  recaptcha: {
+    siteKey: '6LdL3SMgAAAAAKpGozgxFpEIzRbiBVIoYhGEdLMk',
+  },
 };
 /*
  * For easier debugging in development mode, you can import the following file

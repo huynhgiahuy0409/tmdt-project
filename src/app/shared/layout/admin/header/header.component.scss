@@ -79,7 +79,7 @@
 }
 
 .item-icon:hover {
-  background: var(--hover-color);
+  background: var(--hover-color--);
 }
 
 .item-icon---circle {
@@ -139,7 +139,7 @@
 // end color icon background
 .item-name {
   text-align: center;
-  color: var(--text-color);
+  color: var(--text-color--);
   font-weight: 500;
 }
 
@@ -254,7 +254,7 @@
 }
 
 .notify-item:hover {
-  background-color: var(--hover-color)
+  background-color: var(--hover-color--)
 }
 
 .notify-link {
@@ -276,14 +276,14 @@
 }
 
 .notify-name {
-  color: var(--text-color);
+  color: var(--text-color--);
   margin: 0
 }
 
 .notify-description {
   max-height: 40px;
   overflow: hidden;
-  color: var(--text-color);
+  color: var(--text-color--);
 }
 
 .notify-footer {

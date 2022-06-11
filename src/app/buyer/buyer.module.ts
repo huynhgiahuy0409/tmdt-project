@@ -24,7 +24,12 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
 import {FindingShopComponent} from './components/finding-shop/finding-shop.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import {
+  RECAPTCHA_SETTINGS,
+  RecaptchaFormsModule,
+  RecaptchaModule,
+  RecaptchaSettings,
+} from 'ng-recaptcha';
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
@@ -32,6 +37,8 @@ import {
 } from '..';
 import { PostService } from './post.service';
 import {HttpClientModule} from "@angular/common/http";
+import { environment } from 'src/environments/environment';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +57,7 @@ import {HttpClientModule} from "@angular/common/http";
     SignUpComponent,
     ResetComponent,
     FindingShopComponent,
+    DialogComponent,
   ],
   imports: [
     CommonModule,
@@ -62,8 +70,17 @@ import {HttpClientModule} from "@angular/common/http";
     AuthModule,
     FormsModule,
     MaterialModules,
-    HttpClientModule
+    HttpClientModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
-  providers: [PostService]
+  providers: [PostService,
+    {
+    provide: RECAPTCHA_SETTINGS,
+    useValue: {
+      siteKey: environment.recaptcha.siteKey,
+    } as RecaptchaSettings,
+  },
+  ]
 })
 export class BuyerModule {}
