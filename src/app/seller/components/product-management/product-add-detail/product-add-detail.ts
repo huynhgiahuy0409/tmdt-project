@@ -15,9 +15,9 @@ import {
 } from '@angular/core';
 import {
   FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   NgForm,
   Validators,
 } from '@angular/forms';
@@ -207,7 +207,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
       label: 'Thông tin khác',
     },
   ];
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   /* ----- */
   category$!: Observable<ProductInfo>;
   constructor(
@@ -215,7 +215,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
     private router: Router,
     private productService: PostService,
     public productManagementService: ProductManagementService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private _categoryService: CategoryService,
     private _brandService: BrandServiceService,
     private __recommendAgeService: RecommendAgeService,
@@ -266,11 +266,11 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
     this.category$ = this.productManagementService.category$;
   }
 
-  get productBaseInfo(): FormGroup {
-    return this.form.get('productBaseInfo') as FormGroup;
+  get productBaseInfo(): UntypedFormGroup {
+    return this.form.get('productBaseInfo') as UntypedFormGroup;
   }
-  get productDetailInfo(): FormGroup {
-    return this.form.get('productDetailInfo') as FormGroup;
+  get productDetailInfo(): UntypedFormGroup {
+    return this.form.get('productDetailInfo') as UntypedFormGroup;
   }
   private setUpOptions(list: any[], fieldName: string): string[] {
     return list.map((i) => {
@@ -291,7 +291,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
         }
       } else if (f.abstractControl == 'array') {
         const arrayLength = f.length || 0;
-        let formArray: FormControl[] = [];
+        let formArray: UntypedFormControl[] = [];
         for (let index = 0; index < arrayLength; index++) {
           formArray.push(this._fb.control(f.value || ''));
         }

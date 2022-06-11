@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'dropdown',
@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SelectComponent implements OnInit {
   @Input() field: any = {};
-  @Input() form!: FormGroup;
+  @Input() form!: UntypedFormGroup;
   formAttrValue!: any;
   get formAttr() {
     return this.form.get(this.field.name);

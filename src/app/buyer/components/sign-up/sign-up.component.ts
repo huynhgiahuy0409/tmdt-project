@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   ValidationErrors,
   ValidatorFn,
   Validators,
@@ -14,8 +14,8 @@ import { CustomizeValidators } from 'src/app/shared/util/validators';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  form!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  form!: UntypedFormGroup;
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {
   ProductInfo,
@@ -31,9 +31,9 @@ export class SellerProductAddComponent implements OnInit {
   maxLength: number = 200;
   categories$!: Observable<CategoryResponse[]>;
   selectedCategory!: string;
-  baseProductInfoForm!: FormGroup;
+  baseProductInfoForm!: UntypedFormGroup;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _productManagementService: ProductManagementService,
     private _categoryService: CategoryService,
     private _router: Router

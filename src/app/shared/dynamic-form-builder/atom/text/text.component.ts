@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
@@ -10,7 +10,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
-    control: FormControl | null,
+    control: UntypedFormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
     const isSubmitted = form && form.submitted;
@@ -28,10 +28,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class TextComponent implements OnInit {
   @Input() field: any = {};
-  @Input() form!: FormGroup;
+  @Input() form!: UntypedFormGroup;
   matcher = new MyErrorStateMatcher();
-  get formArray(): FormArray {
-    return this.form.get(this.field.name) as FormArray;
+  get formArray(): UntypedFormArray {
+    return this.form.get(this.field.name) as UntypedFormArray;
   }
   constructor() {}
 

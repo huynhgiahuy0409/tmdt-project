@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
-  FormBuilder,
+  UntypedFormBuilder,
   FormControl,
   FormGroup,
   Validators,
@@ -54,7 +54,7 @@ export interface validator1 {
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'Toy Store';
-  constructor(private activeRoute: ActivatedRoute, private fb: FormBuilder, private ps: PostService) {}
+  constructor(private activeRoute: ActivatedRoute, private fb: UntypedFormBuilder, private ps: PostService) {}
   ngAfterViewInit(): void {}
   ngOnInit(): void {
   }

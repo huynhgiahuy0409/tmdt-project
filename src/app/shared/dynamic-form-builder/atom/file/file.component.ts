@@ -7,9 +7,9 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import {
-  FormArray,
+  UntypedFormArray,
   FormControl,
-  FormGroup,
+  UntypedFormGroup,
   AbstractControl,
 } from '@angular/forms';
 import { reduce } from 'rxjs/operators';
@@ -25,7 +25,7 @@ export class FileComponent implements OnInit, AfterViewInit {
   fileInputLabelPrefix: string = 'file-input-label-prefix-';
   fileInputLabelSuffix: string = 'file-input-label-suffix-';
   @Input() field: any = {};
-  @Input() form!: FormGroup;
+  @Input() form!: UntypedFormGroup;
   imageURL!: string | ArrayBuffer | null;
   imageURLs!: any[];
   constructor() {}
@@ -39,8 +39,8 @@ export class FileComponent implements OnInit, AfterViewInit {
       });
     });
   }
-  get formArray(): FormArray {
-    return this.form.get(this.field.name) as FormArray;
+  get formArray(): UntypedFormArray {
+    return this.form.get(this.field.name) as UntypedFormArray;
   }
   ngOnInit(): void {
     if (this.field.abstractControl == 'array') {
