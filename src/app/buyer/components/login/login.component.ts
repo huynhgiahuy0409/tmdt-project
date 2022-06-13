@@ -1,15 +1,18 @@
 import { interval, of } from 'rxjs';
-import { RegisterAccountRequest } from './../../model/request';
+import {
+  AuthenticationRequest,
+  RegisterAccountRequest,
+} from './../../model/request';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
-  UntypedFormGroup,
-  UntypedFormBuilder,
+  FormGroup,
+  FormBuilder,
   Validators,
-  UntypedFormControl,
+  FormControl,
   AbstractControl,
   NgForm,
-  UntypedFormArray,
+  FormArray,
 } from '@angular/forms';
 import {
   FacebookLoginProvider,
@@ -18,7 +21,18 @@ import {
 } from 'src/app';
 import { PostService } from '../../post.service';
 import { AuthService } from '../../services/auth.service';
-import { debounce, debounceTime, switchMap, take, tap } from 'rxjs/operators';
+import {
+  debounce,
+  debounceTime,
+  map,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { UserService } from '../../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 export function matchedPassword(c: AbstractControl) {
   const passwordValue = c.get('password')?.value;
   const confirmPasswordValue = c.get('confirmPassword')?.value;
@@ -37,35 +51,39 @@ export class LoginComponent implements OnInit {
   isLogin: boolean = true;
   countSlide: number = 0;
   token: string | undefined;
-  loginForm!: UntypedFormGroup;
-  registerForm!: UntypedFormGroup;
+  loginForm!: FormGroup;
+  registerForm!: FormGroup;
+  OTPForm!: FormGroup;
+  forgetPasswordForm!: FormGroup;
   public log: string[] = [];
-  OTPForm!: UntypedFormGroup;
+  isForgetPassword: boolean = false;
+  pageRedirect: 'login' | 'register' | 'forget-password' = 'login';
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private socialAuthService: SocialAuthService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private postService: PostService,
     public renderer: Renderer2,
     private authService: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private userService: UserService
   ) {
-    this.loginForm = new UntypedFormGroup({
-      username: new UntypedFormControl('', [Validators.required]),
-      password: new UntypedFormControl('', [
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
       ]),
-      recaptchaReactive: new UntypedFormControl('recaptcha', Validators.required),
+      /*  recaptchaReactive: new FormControl('recaptcha', Validators.required), */
     });
-    this.registerForm = new UntypedFormGroup({
-      email: new UntypedFormControl('', [Validators.required]),
-      fullName: new UntypedFormControl('', [Validators.required]),
-      passwordGr: new UntypedFormGroup(
+    this.registerForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      fullName: new FormControl('', [Validators.required]),
+      passwordGr: new FormGroup(
         {
-          password: new UntypedFormControl(null, Validators.required),
-          confirmPassword: new UntypedFormControl(null, Validators.required),
+          password: new FormControl(null, Validators.required),
+          confirmPassword: new FormControl(null, Validators.required),
         },
         matchedPassword
       ),
@@ -80,19 +98,22 @@ export class LoginComponent implements OnInit {
         this.fb.control('', Validators.required),
       ]),
     });
-   
+    this.forgetPasswordForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+    });
   }
-  get OTPNumbers(): UntypedFormArray{
-    return this.OTPForm.get('OTPNumbers') as UntypedFormArray
+  get OTPNumbers(): FormArray {
+    return this.OTPForm.get('OTPNumbers') as FormArray;
   }
   ngOnInit(): void {
-    console.log(this.OTPNumbers.controls)
+    console.log(this.OTPNumbers.controls);
     this.runSlideShow(5000);
     this.registerForm.valueChanges.subscribe((e) => {
       if (e.passwordGr['password'] || e.passwordGr['confirm-password']) {
         this.setLevelPassword('level-password__progress-bar', e);
       }
     });
+    this.loginForm.valueChanges.subscribe((v) => {});
   }
   loginWithFacebook() {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
@@ -152,10 +173,32 @@ export class LoginComponent implements OnInit {
     console.log(message);
     console.log(token);
   }
+  isFailLogin: boolean = false;
+  onLoginSubmit() {
+    this.isLoading = true;
+    let loginFormValue: AuthenticationRequest = this.loginForm.value;
+    this.authService
+      .login(loginFormValue)
+      .pipe(
+        tap((result) => {
+          this.isLoading = false;
+          if (result) {
+            this.openRegisterDialog('500ms', '500ms', {
+              title: 'Thành công',
+              content: 'Bạn đã đăng nhập thành công. Mua sắm ngay!',
+              action: [{ type: 'login-success', title: 'Trở lại trang chủ' }],
+            });
+          } else {
+            this.isFailLogin = true;
+          }
+        })
+      )
+      .subscribe();
+  }
   isExistUsername: boolean = false;
   isLoading: boolean = false;
   isValidOTPPage: boolean = false;
-  registerAccount!: RegisterAccountRequest
+  registerAccount!: RegisterAccountRequest;
   onRegisterSubmit(formValue: any) {
     this.isLoading = true;
     const registerAccountRequest: RegisterAccountRequest = {
@@ -169,36 +212,67 @@ export class LoginComponent implements OnInit {
         switchMap((response) => {
           if (response) {
             this.isLoading = true;
-            this.registerAccount = response
+            this.registerAccount = response;
             return this.authService.generateMailOTP(response);
           } else {
             this.isLoading = false;
-            this.isExistUsername = true
+            this.isExistUsername = true;
             return of(null);
           }
         }),
         tap((value) => {
-          if(value){
-            this.isValidOTPPage = true
+          if (value) {
+            this.isValidOTPPage = true;
             this.isLoading = false;
           }
         })
       )
       .subscribe();
   }
-  onValidOTPSubmit(){
-    let OTPNumberValue = this.OTPForm.get('OTPNumbers')!.value
-    this.authService.validOTP(OTPNumberValue,this.registerAccount).pipe(tap(value => {
-      if(value){
-        this.router.navigate(['/home'])
-      }else{
-
+  onValidOTPSubmit() {
+    let OTPNumberValue = this.OTPForm.get('OTPNumbers')!.value;
+    this.authService
+      .validOTP(OTPNumberValue, this.registerAccount)
+      .pipe(
+        tap((value) => {
+          if (value) {
+            this.openRegisterDialog('1000ms', '500ms', {
+              title: 'Thành công',
+              content: 'Đăng kí thành công. Đăng nhập ngay!',
+              action: [
+                { type: 'register-success', title: 'Trở lại trang đăng nhập' },
+              ],
+            });
+          } else {
+          }
+        })
+      )
+      .subscribe();
+  }
+  private openRegisterDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    data: any
+  ): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: 'auto',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: data,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      if (result.event === 'login') {
+        this.isValidOTPPage = false;
+        this.isLogin = true;
+        this.OTPForm.reset();
+      } else if (result.event === 'home') {
+        this.router.navigate(['/home']);
+        this.loginForm.reset();
       }
-    })).subscribe()
+    });
   }
-  openSuccussDialog(enterAnimationDuration: string, exitAnimationDuration: string): void{
 
-  }
   checkStrength(p: string) {
     let force = 0;
     const regex = /[$-/:-?{-~!"^_@`\[\]]/g;
@@ -269,5 +343,19 @@ export class LoginComponent implements OnInit {
         this.renderer.setStyle(nextSiblingProgressBarEle, 'color', colors[4]);
       }
     });
+  }
+  setPageRedirect(pageRedirect: 'login' | 'register' | 'forget-password') {
+    this.pageRedirect = pageRedirect;
+  }
+  isExistUser: boolean = false
+  checkUser() {
+    const forgetPasswordFormValue = this.forgetPasswordForm.value;
+    let isExistUser = this.authService
+      .checkExistUser(forgetPasswordFormValue['email'])
+      .subscribe((isExistUser) => {
+        console.log(isExistUser)
+        return isExistUser == true ? true : false;
+      });
+    return isExistUser;
   }
 }

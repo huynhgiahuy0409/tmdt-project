@@ -1,1 +1,7 @@
-<p>dialog works!</p>
+<h1 mat-dialog-title style="text-align: center;">{{this.data.title}}</h1>
+<div mat-dialog-content>
+  {{this.data.content}}
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+  <button [class.btn--primary-color]="i.type === 'register-success' "  mat-button mat-dialog-close *ngFor="let i of data.action" (click)="onClickAction()">{{i['title']}}</button>
+</div>

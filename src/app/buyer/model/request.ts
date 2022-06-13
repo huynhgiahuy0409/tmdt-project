@@ -3,3 +3,7 @@ export interface RegisterAccountRequest{
     password: string,
     fullName: string
 }
+export interface AuthenticationRequest{
+    username: string,
+    password: string,
+}

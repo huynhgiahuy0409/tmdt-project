@@ -1,6 +1,51 @@
-.middel_right_info{
-  a{
+.middel_right_info {
+  a {
     margin-left: 20px;
     color: black;
   }
+}
+.notification {
+  position: absolute;
+  top: 150%;
+  left: 0;
+  z-index: 999;
+  overflow: hidden;
+  display: none;
+}
+.notification__list {
+  min-width: 200px;
+  box-shadow: 0 0 2px #ccc;
+  border-radius: 3px;
+  padding: 5px 0;
+}
+.notification__list--color {
+  background-color: #fff;
+}
+.notification__item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 10px;
+}
+.notification__item:hover {
+  background-color: var(--hover-color--);
+}
+.notification__item i {
+  padding: 0 10px;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+}
+.user-info img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.user-info .username {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 550;
+  color: #fff;
 }

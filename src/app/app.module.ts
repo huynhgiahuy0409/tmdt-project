@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { PageNotFoundComponent } from './shared/layout/common/page-not-found/page-not-found.component';
 import { RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -23,7 +25,8 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     MaterialModules,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
   providers: [
     {

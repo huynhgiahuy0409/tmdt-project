@@ -249,7 +249,7 @@ p {
   .left {
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
-    width: 62%;
+    width: 60%;
     position: relative;
     height: 100%;
     overflow: hidden;
@@ -367,7 +367,9 @@ p {
 
   .right {
     flex: 1;
-
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    overflow: hidden;
     &-form {
       display: flex;
       flex-direction: column;
@@ -406,7 +408,7 @@ p {
             p {
               color: #23262e;
               font-size: 2rem;
-              font-weight: 700;
+              font-weight: 550;
               text-align: center;
               padding: 20px 0;
             }
@@ -532,7 +534,8 @@ p {
               justify-content: center;
               align-items: center;
               color: #fff;
-
+              border: unset;
+              box-shadow: 0 0 3px #ccc;
               &:disabled {
                 border: 1px solid #999999;
                 background-color: #cccccc;
@@ -559,11 +562,11 @@ p {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        background-color: var(--background-color-1--);
+        background-color: var(--primary-color--);
         padding: 10px 0;
 
         p {
-          color: var(--primary-color--);
+          color: #fff;
         }
       }
     }

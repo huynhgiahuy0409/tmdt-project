@@ -37,11 +37,26 @@
       <div class="left-content">
         <div class="left-content__header"></div>
 
-        <div class="left-content__action-btn" (click)="isLogin = !isLogin">
-          <p *ngIf="isLogin; else isRegister">Đăng ký</p>
-          <ng-template #isRegister>
-            <p>Đăng nhập</p>
-          </ng-template>
+        <div
+          class="left-content__action-btn"
+          *ngIf="pageRedirect == 'login'"
+          (click)="setPageRedirect('register')"
+        >
+          <p>Đăng ký</p>
+        </div>
+        <div
+          class="left-content__action-btn"
+          *ngIf="pageRedirect == 'register'"
+          (click)="setPageRedirect('login')"
+        >
+          <p>Đăng nhập</p>
+        </div>
+        <div
+          class="left-content__action-btn"
+          *ngIf="pageRedirect == 'forget-password'"
+          (click)="setPageRedirect('login')"
+        >
+          <p>Đăng nhập</p>
         </div>
 
         <div class="left-content__progress-bar-wrap">
@@ -62,42 +77,46 @@
         <div class="right-form__content">
           <div class="content">
             <div class="content__title">
-              <p *ngIf="isLogin; else isRegisterContentTitle">
-                Đăng nhập tài khoản của bạn
-              </p>
-              <ng-template #isRegisterContentTitle>
-                <p>Đăng ký tài khoản của bạn</p>
-              </ng-template>
+              <p *ngIf="pageRedirect == 'login'">Đăng nhập tài khoản của bạn</p>
+              <p *ngIf="pageRedirect == 'register'">Đăng kí tài khoản</p>
+              <p *ngIf="pageRedirect == 'forget-password'">Đặt lại mật khẩu</p>
             </div>
-            <ng-container *ngIf="isLogin; else registerFormTemplate">
-              <form [formGroup]="loginForm" class="content__form">
-                <!-- username -->
+            <ng-container *ngIf="pageRedirect == 'login'">
+              <form
+                [formGroup]="loginForm"
+                (ngSubmit)="onLoginSubmit()"
+                class="content__form"
+              >
+                <!-- email -->
                 <div class="content__form__input-wrap">
                   <div class="content__form__input">
                     <i class="far fa-paper-plane"></i>
                     <input
-                      #username
-                      id="username"
+                      #email
+                      id="email"
                       type="text"
-                      placeholder="Tài khoản"
-                      formControlName="username"
+                      placeholder="Email"
+                      formControlName="email"
                     />
                   </div>
                   <div
                     class="content__form__input-notify"
                     *ngIf="
-                      loginForm.hasError('email', ['username']) &&
-                      loginForm.get('username')?.touched
+                      loginForm.hasError('email', ['email']) &&
+                      loginForm.get('email')?.touched
                     "
                   >
                     <p>Tài khoản không hợp lệ</p>
                     <p>Ví dụ: nguyenvana@gmail.com</p>
                   </div>
+                  <div class="content__form__input-notify" *ngIf="isFailLogin">
+                    <p>Tài khoản hoặc mật khẩu không đúng</p>
+                  </div>
                   <div
                     class="content__form__input-notify"
                     *ngIf="
-                      loginForm.hasError('required', ['username']) &&
-                      loginForm.get('username')?.touched
+                      loginForm.hasError('required', ['email']) &&
+                      loginForm.get('email')?.touched
                     "
                   >
                     <p>Tài khoản không được để trống</p>
@@ -109,14 +128,14 @@
                   </div> -->
                   <ng-container
                     *ngIf="
-                      loginForm.get('username')!.errors &&
-                        loginForm.get('username')?.touched;
+                      loginForm.get('email')!.errors &&
+                        loginForm.get('email')?.touched;
                       else validUsernameInput
                     "
                   >
                     {{
                       this.renderer.addClass(
-                        username.parentElement,
+                        email.parentElement,
                         "content__form__input--invalid"
                       )
                     }}
@@ -124,7 +143,7 @@
                   <ng-template #validUsernameInput>
                     {{
                       this.renderer.removeClass(
-                        username.parentElement,
+                        email.parentElement,
                         "content__form__input--invalid"
                       )
                     }}
@@ -196,13 +215,13 @@
                     }}
                   </ng-template>
                 </div>
-                <re-captcha
+                <!--  <re-captcha
                   formControlName="recaptchaReactive"
                   (resolved)="
                     addTokenLog('Reactive form mode resolved', $event)
                   "
                 >
-                </re-captcha>
+                </re-captcha> -->
                 <button
                   type="submit"
                   class="content__form__btn"
@@ -213,11 +232,11 @@
                 <div class="separate-line"></div>
                 <div class="content__form__more-wrap">
                   <p>Đăng ký tài khoản</p>
-                  <p>Quên mật khẩu?</p>
+                  <p (click)="setPageRedirect('forget-password')">Quên mật khẩu?</p>
                 </div>
               </form>
             </ng-container>
-            <ng-template #registerFormTemplate>
+            <ng-container *ngIf="pageRedirect == 'register'">
               <form
                 [formGroup]="registerForm"
                 (ngSubmit)="onRegisterSubmit(registerForm.value)"
@@ -229,7 +248,7 @@
                     <i class="far fa-paper-plane"></i>
                     <input
                       #email
-                      id="username"
+                      id="email"
                       type="text"
                       placeholder="Email"
                       formControlName="email"
@@ -247,9 +266,7 @@
                   </div>
                   <div
                     class="content__form__input-notify"
-                    *ngIf="
-                      isExistUsername
-                    "
+                    *ngIf="isExistUsername"
                   >
                     <p>Tài khoản đăng kí đã tồn tại</p>
                   </div>
@@ -447,41 +464,141 @@
                   Đăng ký
                 </button>
               </form>
-            </ng-template>
+            </ng-container>
+            <!-- forget-password form -->
+            <ng-container *ngIf="pageRedirect == 'forget-password'">
+              <form
+                [formGroup]="forgetPasswordForm"
+                (ngSubmit)="checkUser()"
+                class="content__form"
+              >
+                <!-- email -->
+                <div class="content__form__input-wrap">
+                  <div class="content__form__input">
+                    <i class="far fa-paper-plane"></i>
+                    <input
+                      #email
+                      id="email"
+                      type="text"
+                      placeholder="Email"
+                      formControlName="email"
+                    />
+                  </div>
+                  <div
+                    class="content__form__input-notify"
+                    *ngIf="
+                    forgetPasswordForm.hasError('email', ['email']) &&
+                    forgetPasswordForm.get('email')?.touched
+                    "
+                  >
+                    <p>Tài khoản không hợp lệ</p>
+                    <p>Ví dụ: nguyenvana@gmail.com</p>
+                  </div>
+                  <div class="content__form__input-notify" *ngIf="isExistUser">
+                    <p>Tài khoản không tồn tại</p>
+                  </div>
+                  <div
+                    class="content__form__input-notify"
+                    *ngIf="
+                    forgetPasswordForm.hasError('required', ['email']) &&
+                    forgetPasswordForm.get('email')?.touched
+                    "
+                  >
+                    <p>Tài khoản không được để trống</p>
+                  </div>
+                  <ng-container
+                    *ngIf="
+                    forgetPasswordForm.get('email')!.errors &&
+                        loginForm.get('email')?.touched;
+                      else validUsernameInput
+                    "
+                  >
+                    {{
+                      this.renderer.addClass(
+                        email.parentElement,
+                        "content__form__input--invalid"
+                      )
+                    }}
+                  </ng-container>
+                  <ng-template #validUsernameInput>
+                    {{
+                      this.renderer.removeClass(
+                        email.parentElement,
+                        "content__form__input--invalid"
+                      )
+                    }}
+                  </ng-template>
+                </div>
+                <button
+                  type="submit"
+                  class="content__form__btn"
+                  [disabled]="forgetPasswordForm.invalid"
+                >
+                  Tiếp theo
+                </button>
+                <div class="separate-line"></div>
+              </form>
+            </ng-container>
           </div>
         </div>
         <div class="right-form__footer">
-          <ng-container *ngIf="isLogin; else footRegister">
+          <ng-container *ngIf="pageRedirect == 'login'">
             <p>Chính sách bảo mật</p>
             <p>Điều khoản sử dụng</p>
           </ng-container>
-          <ng-template #footRegister>
+          <ng-container *ngIf="pageRedirect == 'register'">
             <p>
-              Bạn đó có tài khoản?
+              Bạn đã có tài khoản?
               <span
                 style="font-weight: 700; cursor: pointer"
                 (click)="isLogin = !isLogin"
                 >Đăng nhập</span
               >
             </p>
-          </ng-template>
+          </ng-container>
         </div>
       </div>
       <div class="right-otp" *ngIf="isValidOTPPage && isLogin === false">
         <div class="right-otp__header">
-          <img src="assets/login-page/email.png" alt="" class="">
+          <img src="assets/login-page/email.png" alt="" class="" />
           <h1>Hãy xác thực email của bạn</h1>
         </div>
-        <form [formGroup]="OTPForm" (ngSubmit)="onValidOTPSubmit()" class="right-otp__main" *ngIf="OTPNumbers.controls.length">
-          <div class="right-otp__title">Chúng tôi đã gửi cho bạn một "Mã xác thực" đến Email của bạn gồm 6 CHỮ SỐ, hãy nhập để chắc chắn đó là bạn!</div>
+        <form
+          [formGroup]="OTPForm"
+          (ngSubmit)="onValidOTPSubmit()"
+          class="right-otp__main"
+          *ngIf="OTPNumbers.controls.length"
+        >
+          <div class="right-otp__title">
+            Chúng tôi đã gửi cho bạn một "Mã xác thực" đến Email của bạn gồm 6
+            CHỮ SỐ, hãy nhập để chắc chắn đó là bạn!
+          </div>
           <div class="right-otp__form" formArrayName="OTPNumbers">
             <ng-container *ngFor="let c of OTPNumbers.controls; index as i">
-              <input type="text" maxlength="1" pattern="\d*" [formControlName]="i">
+              <input
+                type="text"
+                maxlength="1"
+                pattern="\d*"
+                [formControlName]="i"
+              />
             </ng-container>
           </div>
           <div class="right-otp__action-list">
-            <button class="back-btn back-btn--color"><i _ngcontent-qsc-c128="" class="fas fa-angle-left"></i>Trở lại</button>
-            <button type="submit" class="valid-otp-btn valid-otp-btn--color" [disabled]="OTPForm.invalid"><i _ngcontent-qsc-c128="" class="fab fa-cloudversify" (click)="onValidOTPSubmit()"></i>Xác thực</button>
+            <button class="back-btn back-btn--color">
+              <i _ngcontent-qsc-c128="" class="fas fa-angle-left"></i>Trở lại
+            </button>
+            <button
+              type="submit"
+              class="valid-otp-btn valid-otp-btn--color"
+              [disabled]="OTPForm.invalid"
+            >
+              <i
+                _ngcontent-qsc-c128=""
+                class="fab fa-cloudversify"
+                (click)="onValidOTPSubmit()"
+              ></i
+              >Xác thực
+            </button>
           </div>
           <div class="right-otp__resend-otp">
             Bạn không nhận được mã?
@@ -491,29 +608,6 @@
             </p>
           </div>
         </form>
-      </div>
-    </div>
-
-    <div class="quen-mat-khau" id="quen-mat-khau">
-      <div class="content">
-        <div class="right_header2">
-          <p>Quên mật khẩu</p>
-        </div>
-        <div class="input_data" id="qmk-email">
-          <i class="far fa-paper-plane"></i>
-          <input type="text" placeholder="Email" />
-        </div>
-        <p class="error" id="qmk-error">Email không thể thiếu</p>
-
-        <div class="buttons">
-          <div class="go-back">
-            <i class="fas fa-angle-left"></i>
-            <p>Trở lại</p>
-          </div>
-          <div class="login">
-            <p>Gửi yêu cầu</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>

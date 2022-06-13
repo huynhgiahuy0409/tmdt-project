@@ -22,8 +22,8 @@ import { ProductModule } from './components/product/product.module';
 import { AuthModule } from '../shared/layout/common/auth/auth.module';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
-import {FindingShopComponent} from './components/finding-shop/finding-shop.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FindingShopComponent } from './components/finding-shop/finding-shop.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   RECAPTCHA_SETTINGS,
   RecaptchaFormsModule,
@@ -36,10 +36,10 @@ import {
   SocialAuthServiceConfig,
 } from '..';
 import { PostService } from './post.service';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DialogComponent } from './components/dialog/dialog.component';
-
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     BuyerComponent,
@@ -74,13 +74,15 @@ import { DialogComponent } from './components/dialog/dialog.component';
     RecaptchaModule,
     RecaptchaFormsModule,
   ],
-  providers: [PostService,
+  providers: [
+    PostService,
     {
-    provide: RECAPTCHA_SETTINGS,
-    useValue: {
-      siteKey: environment.recaptcha.siteKey,
-    } as RecaptchaSettings,
-  },
-  ]
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
+    },
+    CookieService,
+  ],
 })
 export class BuyerModule {}
