@@ -1,15 +1,15 @@
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {
   ProductInfo,
   ProductManagementService,
 } from '../product-management.service';
-import { CategoryService } from './category.service';
 import { CategoryResponse } from 'src/app/_models/response';
 import { tap } from 'rxjs/operators';
+import { CategoryService } from 'src/app/seller/services/category.service';
 export function notWhitespaceValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     let controlVal = control.value;
@@ -31,23 +31,18 @@ export class SellerProductAddComponent implements OnInit {
   maxLength: number = 200;
   categories$!: Observable<CategoryResponse[]>;
   selectedCategory!: string;
-  baseProductInfoForm!: UntypedFormGroup;
+  baseProductInfoForm!: FormGroup;
   constructor(
     private fb: UntypedFormBuilder,
-    private _productManagementService: ProductManagementService,
-    private _categoryService: CategoryService,
-    private _router: Router
-  ) {
-    this.categories$ = this._categoryService.findAll().pipe(
-      tap((c) => {
-        this._categoryService.categories = c;
-      })
-    );
-  }
+    private productManagementService: ProductManagementService,
+    private categoryService: CategoryService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.categories$ = this.categoryService.findAll();
     this.baseProductInfoForm = this.fb.group({
-      search: [
+      productName: [
         '',
         Validators.compose([
           notWhitespaceValidator(),
@@ -60,10 +55,8 @@ export class SellerProductAddComponent implements OnInit {
   }
 
   onSubmit() {
-    this._productManagementService.categoryBSub.next({
-      productName: this.baseProductInfoForm.get('search')!.value,
-      category: this.baseProductInfoForm.get('category')!.value,
-    });
-    this._router.navigate(['/seller/product-management/add-detail']);
+    console.log(this.baseProductInfoForm.value)
+    this.productManagementService.categoryBSub.next(this.baseProductInfoForm.value);
+    this.router.navigate(['/seller/product-management/add-detail']);
   }
 }

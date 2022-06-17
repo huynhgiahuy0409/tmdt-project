@@ -3,21 +3,21 @@
     <div class="row">
       <nav class="col-sm-2 col-4" id="myScrollspy">
         <ul #navUl class="nav nav-pills flex-column">
-          <li #navItem (click)="scrollTo(fieldGroup['fieldName'], navUl)" class="nav-item-custom"
-            *ngFor="let fieldGroup of fieldGroups; index as i" [tabindex]="i">
-            <a class="">{{fieldGroup['label']}}</a>
+          <li #navItem (click)="scrollTo(formGroupName['formGroupName'], navUl)" class="nav-item-custom"
+            *ngFor="let formGroupName of formGroupNames; index as i" [tabindex]="i">
+            <a class="">{{formGroupName['label']}}</a>
           </li>
         </ul>
       </nav>
       <div class="col-sm-10 col-8">
         <form (ngSubmit)="onSubmit()" id="product-info-form" [formGroup]="form">
-          <ng-container *ngFor="let fieldGroup of fieldGroups">
-            <fieldset [formGroupName]="fieldGroup['fieldName']">
-              <div [id]="fieldGroup['fieldName']" class="section">
-                <h1>{{fieldGroup['label']}}</h1>
-                <div *ngIf="fieldGroup.fieldName as fn">
-                  <ng-container *ngFor="let f of productFieldsGroup[fn]">
-                    <field-builder [field]="f" [form]="form.get(fn)"></field-builder>
+          <ng-container *ngFor="let formGroupName of formGroupNames">
+            <fieldset [formGroupName]="formGroupName['formGroupName']">
+              <div [id]="formGroupName['formGroupName']" class="section">
+                <h1>{{formGroupName['label']}}</h1>
+                <div *ngIf="formGroupName.formGroupName as formGroupName">
+                  <ng-container *ngFor="let f of productFieldGroup[formGroupName]">
+                    <field-builder [field]="f" [form]="form.get(formGroupName)"></field-builder>
                   </ng-container>
                 </div>
               </div>
@@ -26,8 +26,7 @@
           <div id="fixed-container" class="fixed-container">
             <div class="container d-flex justify-content-end">
               <button mat-raised-button>Huỷ</button>
-              <button mat-raised-button>Lưu & Ẩn</button>
-              <button [disabled]="form.invalid? true: false" type="submit" mat-raised-button>Lưu và hiển thị</button>
+              <button class="submit-btn" [disabled]="form.invalid" type="submit" mat-raised-button>Lưu và hiển thị</button>
             </div>
           </div>
         </form>

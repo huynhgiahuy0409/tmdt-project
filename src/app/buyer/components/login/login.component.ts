@@ -33,6 +33,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ReAccount } from '../../model/re-account';
 export function matchedPassword(c: AbstractControl) {
   const passwordValue = c.get('password')?.value;
   const confirmPasswordValue = c.get('confirmPassword')?.value;
@@ -48,6 +49,7 @@ export function matchedPassword(c: AbstractControl) {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  page!: string;
   isLogin: boolean = true;
   countSlide: number = 0;
   token: string | undefined;
@@ -55,9 +57,11 @@ export class LoginComponent implements OnInit {
   registerForm!: FormGroup;
   OTPForm!: FormGroup;
   forgetPasswordForm!: FormGroup;
+  resetPasswordForm!: FormGroup;
   public log: string[] = [];
   isForgetPassword: boolean = false;
-  pageRedirect: 'login' | 'register' | 'forget-password' = 'login';
+  pageRedirect: 'login' | 'register' | 'forget-password' | 'valid-otp' =
+    'login';
   constructor(
     private fb: FormBuilder,
     private socialAuthService: SocialAuthService,
@@ -76,6 +80,9 @@ export class LoginComponent implements OnInit {
         Validators.minLength(10),
       ]),
       /*  recaptchaReactive: new FormControl('recaptcha', Validators.required), */
+    });
+    this.loginForm.valueChanges.subscribe((e) => {
+      console.log(e);
     });
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -100,20 +107,37 @@ export class LoginComponent implements OnInit {
     });
     this.forgetPasswordForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
     });
+    this.resetPasswordForm = new FormGroup({
+      password: new FormControl('', [Validators.required]),
+    });
+    this.forgetPasswordForm.valueChanges.subscribe((value) =>
+      console.log(value)
+    );
   }
   get OTPNumbers(): FormArray {
     return this.OTPForm.get('OTPNumbers') as FormArray;
   }
   ngOnInit(): void {
-    console.log(this.OTPNumbers.controls);
     this.runSlideShow(5000);
-    this.registerForm.valueChanges.subscribe((e) => {
-      if (e.passwordGr['password'] || e.passwordGr['confirm-password']) {
-        this.setLevelPassword('level-password__progress-bar', e);
-      }
+    this.registerForm.get('passwordGr')?.valueChanges.subscribe((e) => {
+      let passwordValue = this.registerForm
+        .get('passwordGr')!
+        .get('password')!.value;
+      this.setLevelPassword(
+        'level-password__progress-bar-password',
+        passwordValue
+      );
     });
-    this.loginForm.valueChanges.subscribe((v) => {});
+    this.forgetPasswordForm.get('password')!.valueChanges.subscribe((e) => {
+      console.log(e);
+      this.setLevelPassword('level-password__progress-bar-reset-password', e);
+    });
+    this.page = this.activatedRoute.snapshot.url[0].path;
   }
   loginWithFacebook() {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
@@ -176,9 +200,13 @@ export class LoginComponent implements OnInit {
   isFailLogin: boolean = false;
   onLoginSubmit() {
     this.isLoading = true;
-    let loginFormValue: AuthenticationRequest = this.loginForm.value;
+    let { email, password } = this.loginForm.value;
+    const authenticationRequest: AuthenticationRequest = {
+      username: email,
+      password: password,
+    };
     this.authService
-      .login(loginFormValue)
+      .login(authenticationRequest)
       .pipe(
         tap((result) => {
           this.isLoading = false;
@@ -210,6 +238,7 @@ export class LoginComponent implements OnInit {
       .register(registerAccountRequest)
       .pipe(
         switchMap((response) => {
+          console.log(response);
           if (response) {
             this.isLoading = true;
             this.registerAccount = response;
@@ -222,7 +251,7 @@ export class LoginComponent implements OnInit {
         }),
         tap((value) => {
           if (value) {
-            this.isValidOTPPage = true;
+            this.setPageRedirect('valid-otp');
             this.isLoading = false;
           }
         })
@@ -263,8 +292,7 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
       if (result.event === 'login') {
-        this.isValidOTPPage = false;
-        this.isLogin = true;
+        this.setPageRedirect('login');
         this.OTPForm.reset();
       } else if (result.event === 'home') {
         this.router.navigate(['/home']);
@@ -297,6 +325,7 @@ export class LoginComponent implements OnInit {
     return force;
   }
   setLevelPassword(id: string, e: any) {
+    console.log(e);
     const colors = [
       '#ccc',
       'rgb(255, 123, 92)',
@@ -307,7 +336,7 @@ export class LoginComponent implements OnInit {
     const progressBarEle = document.getElementById(id);
     const barsEle = progressBarEle?.childNodes;
     const nextSiblingProgressBarEle = this.renderer.nextSibling(progressBarEle);
-    const force = this.checkStrength(e.passwordGr.password);
+    const force = this.checkStrength(e);
     barsEle?.forEach((bar, i) => {
       if (force == 0) {
         this.renderer.setStyle(bar, 'background-color', colors[0]);
@@ -344,18 +373,66 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  setPageRedirect(pageRedirect: 'login' | 'register' | 'forget-password') {
+  setPageRedirect(
+    pageRedirect: 'login' | 'register' | 'forget-password' | 'valid-otp'
+  ) {
     this.pageRedirect = pageRedirect;
+    if (this.pageRedirect === 'login') {
+      this.registerForm.reset();
+      this.forgetPasswordForm.reset();
+    } else if (this.pageRedirect === 'register') {
+      this.loginForm.reset();
+      this.forgetPasswordForm.reset();
+    } else if (this.pageRedirect === 'forget-password') {
+      this.loginForm.reset();
+      this.registerForm.reset();
+    }
   }
-  isExistUser: boolean = false
+  isExistUser: boolean = false;
+  isNotifyNotExistUser = false;
+  isSuccessResetPassword = false;
   checkUser() {
-    const forgetPasswordFormValue = this.forgetPasswordForm.value;
-    let isExistUser = this.authService
-      .checkExistUser(forgetPasswordFormValue['email'])
-      .subscribe((isExistUser) => {
-        console.log(isExistUser)
+    const { email, password } = this.forgetPasswordForm.value;
+    this.authService.checkExistUser(email).subscribe((isExistUser) => {
+      this.isExistUser = isExistUser === true ? true : false;
+      this.isNotifyNotExistUser = isExistUser === false ? true : false;
+      return isExistUser == true ? true : false;
+    });
+  }
+  resetPassword() {
+    const { email, password } = this.forgetPasswordForm.value;
+    if (this.isExistUser === false) {
+      this.authService.checkExistUser(email).subscribe((isExistUser) => {
+        this.isExistUser = isExistUser === true ? true : false;
+        this.isNotifyNotExistUser = isExistUser === false ? true : false;
         return isExistUser == true ? true : false;
       });
-    return isExistUser;
+    } else {
+      const reAccount: ReAccount = {
+        username: email,
+        newPassword: password,
+      };
+      this.authService
+        .resetPassword(reAccount)
+        .pipe(
+          tap((update) => {
+            if (update == true) {
+              this.isSuccessResetPassword = true;
+              this.openRegisterDialog('500ms', '500ms', {
+                title: 'Mật khẩu đặt lại thành công',
+                content: `Bạn đã thành công đặt lại mật khẩu cho tài khoản ${reAccount.username}`,
+                action: [
+                  {
+                    type: 'reset-password-success',
+                    title: 'Trở lại trang đăng nhập',
+                  },
+                ],
+              });
+              this.forgetPasswordForm.reset();
+            }
+          })
+        )
+        .subscribe();
+    }
   }
 }

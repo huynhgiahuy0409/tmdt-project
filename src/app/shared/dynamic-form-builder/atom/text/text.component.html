@@ -12,6 +12,9 @@
           <mat-label *ngIf="field.placeholder">{{field.placeholder[i]}}</mat-label>
           <input matInput #message maxlength="256" [formControlName]="i">
         </mat-form-field>
+        <mat-error *ngIf="form.get(field.name)?.hasError('required')">
+          Không được để ô trống
+        </mat-error>
       </ng-template>
     </ng-container>
   </ng-container>

@@ -72,14 +72,17 @@
     </div>
 
     <div class="right">
-      <div class="right-form" *ngIf="!isValidOTPPage">
+      <div class="right-form" *ngIf="pageRedirect != 'valid-otp'">
         <div class="right-form__header"></div>
         <div class="right-form__content">
           <div class="content">
             <div class="content__title">
-              <p *ngIf="pageRedirect == 'login'">Đăng nhập tài khoản của bạn</p>
-              <p *ngIf="pageRedirect == 'register'">Đăng kí tài khoản</p>
-              <p *ngIf="pageRedirect == 'forget-password'">Đặt lại mật khẩu</p>
+              <p *ngIf="pageRedirect == 'login' && this.page == 'login'">Đăng nhập</p>
+              <p *ngIf="pageRedirect == 'register' && this.page == 'login'">Đăng kí</p>
+              <p *ngIf="pageRedirect == 'login' && this.page == 'sign-in'">Đăng nhập vào Kênh người bán</p>
+              <p *ngIf="pageRedirect == 'register' && this.page == 'sign-in'">Đăng kí với tư cách người bán</p>
+              <p *ngIf="pageRedirect == 'forget-password'&& !isExistUser ">Đặt lại mật khẩu</p>
+              <p *ngIf="pageRedirect == 'forget-password' && isExistUser">Thiết lập mật khẩu</p>
             </div>
             <ng-container *ngIf="pageRedirect == 'login'">
               <form
@@ -231,7 +234,7 @@
                 </button>
                 <div class="separate-line"></div>
                 <div class="content__form__more-wrap">
-                  <p>Đăng ký tài khoản</p>
+                  <p (click)="setPageRedirect('register')">Đăng ký tài khoản</p>
                   <p (click)="setPageRedirect('forget-password')">Quên mật khẩu?</p>
                 </div>
               </form>
@@ -370,7 +373,7 @@
                     </div>
                     <div class="content__form__level-password">
                       <div
-                        id="level-password__progress-bar"
+                        id="level-password__progress-bar-password"
                         class="level-password__progress-bar"
                       >
                         <div class="level-password__progress-bar__child"></div>
@@ -380,22 +383,6 @@
                       </div>
                       <p>Hãy nhập mật khẩu</p>
                     </div>
-                    <!--  <div class="content__form__input-notify" *ngIf="registerForm.hasError('required', ['password']) &&
-                    registerForm.get('password')?.touched">
-                      <p> Mật khẩu không được để trống</p>
-                    </div>
-                    <div class="content__form__input-notify" *ngIf="registerForm.hasError('minlength', ['password']) &&
-                    registerForm.get('password')?.touched">
-                      <p> Mật khẩu yêu cầu tối thiểu {{registerForm.get('password')?.errors?.minlength.requiredLength}} kí tự
-                      </p>
-                    </div>
-                    <ng-container
-                      *ngIf="registerForm.get('password')!.errors && registerForm.get('password')?.touched ; else validPasswordInput">
-                      {{this.renderer.addClass(password.parentElement, 'content__form__input--invalid')}}
-                    </ng-container>
-                    <ng-template #validPasswordInput>
-                      {{this.renderer.removeClass(password.parentElement, 'content__form__input--invalid')}}
-                    </ng-template> -->
                   </div>
                   <!-- confirm password -->
                   <div
@@ -420,22 +407,6 @@
                         "
                       ></i>
                     </div>
-                    <!--  <div class="content__form__input-notify" *ngIf="registerForm.hasError('required', ['password']) &&
-                    registerForm.get('password')?.touched">
-                      <p> Mật khẩu không được để trống</p>
-                    </div>
-                    <div class="content__form__input-notify" *ngIf="registerForm.hasError('minlength', ['password']) &&
-                    registerForm.get('password')?.touched">
-                      <p> Mật khẩu yêu cầu tối thiểu {{registerForm.get('password')?.errors?.minlength.requiredLength}} kí tự
-                      </p>
-                    </div>
-                    <ng-container
-                      *ngIf="registerForm.get('password')!.errors && registerForm.get('password')?.touched ; else validPasswordInput">
-                      {{this.renderer.addClass(password.parentElement, 'content__form__input--invalid')}}
-                    </ng-container>
-                    <ng-template #validPasswordInput>
-                      {{this.renderer.removeClass(password.parentElement, 'content__form__input--invalid')}}
-                    </ng-template> -->
                   </div>
                   <div
                     class="content__form__input-notify"
@@ -469,11 +440,11 @@
             <ng-container *ngIf="pageRedirect == 'forget-password'">
               <form
                 [formGroup]="forgetPasswordForm"
-                (ngSubmit)="checkUser()"
+                (ngSubmit)="resetPassword()"
                 class="content__form"
               >
                 <!-- email -->
-                <div class="content__form__input-wrap">
+                <div class="content__form__input-wrap" *ngIf="isExistUser === false">
                   <div class="content__form__input">
                     <i class="far fa-paper-plane"></i>
                     <input
@@ -494,7 +465,7 @@
                     <p>Tài khoản không hợp lệ</p>
                     <p>Ví dụ: nguyenvana@gmail.com</p>
                   </div>
-                  <div class="content__form__input-notify" *ngIf="isExistUser">
+                  <div class="content__form__input-notify" *ngIf="isNotifyNotExistUser && forgetPasswordForm.get('email')!.valid">
                     <p>Tài khoản không tồn tại</p>
                   </div>
                   <div
@@ -529,10 +500,41 @@
                     }}
                   </ng-template>
                 </div>
+                <!-- password -->
+                <div class="content__form__input-wrap" *ngIf="isExistUser">
+                  <div class="content__form__input">
+                    <i class="fa-solid fa-key"></i>
+                    <input
+                      #password
+                      id="password"
+                      type="password"
+                      placeholder="Mật khẩu"
+                      formControlName="password"
+                    />
+                    <i
+                      #eyeIcon
+                      class="fa fa-eye"
+                      aria-hidden="true"
+                      (click)="showPassword(eyeIcon, password)"
+                    ></i>
+                  </div>
+                  <div class="content__form__level-password">
+                    <div
+                      id="level-password__progress-bar-reset-password"
+                      class="level-password__progress-bar"
+                    >
+                      <div class="level-password__progress-bar__child"></div>
+                      <div class="level-password__progress-bar__child"></div>
+                      <div class="level-password__progress-bar__child"></div>
+                      <div class="level-password__progress-bar__child"></div>
+                    </div>
+                    <p>Hãy nhập mật khẩu</p>
+                  </div>
+                </div>
                 <button
                   type="submit"
                   class="content__form__btn"
-                  [disabled]="forgetPasswordForm.invalid"
+                  [disabled]="(forgetPasswordForm.get('email')!.invalid && isExistUser === false ) || (forgetPasswordForm.get('password')!.invalid && isExistUser === true ) "
                 >
                   Tiếp theo
                 </button>
@@ -541,7 +543,7 @@
             </ng-container>
           </div>
         </div>
-        <div class="right-form__footer">
+        <div class="right-form__footer" *ngIf="pageRedirect != 'forget-password'">
           <ng-container *ngIf="pageRedirect == 'login'">
             <p>Chính sách bảo mật</p>
             <p>Điều khoản sử dụng</p>
@@ -558,7 +560,7 @@
           </ng-container>
         </div>
       </div>
-      <div class="right-otp" *ngIf="isValidOTPPage && isLogin === false">
+      <div class="right-otp" *ngIf="pageRedirect == 'valid-otp'">
         <div class="right-otp__header">
           <img src="assets/login-page/email.png" alt="" class="" />
           <h1>Hãy xác thực email của bạn</h1>

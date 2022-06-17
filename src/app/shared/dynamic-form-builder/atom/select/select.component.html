@@ -1,13 +1,14 @@
 <ng-container [formGroup]="form">
   <mat-form-field appearance="fill" style="font-size: 15px;">
     <mat-label *ngIf="!field.value">Chọn một</mat-label>
+    <mat-label *ngIf="field.value">{{field.value.name}}</mat-label>
     <mat-select [formControlName]="field.name">
-      <mat-option *ngFor="let option of field.options" [value]="option">
+      <mat-option *ngFor="let option of field.options" [value]="option.code">
         <ng-container *ngIf="field.name == 'brand'; else notUpperCase">
-          {{ option | uppercase}}
+          {{ option.name | uppercase}}
         </ng-container>
         <ng-template #notUpperCase>
-          {{option}}
+          {{option.name }}
         </ng-template>
       </mat-option>
     </mat-select>
@@ -16,3 +17,4 @@
     </mat-error>
   </mat-form-field>
 </ng-container>
+ 

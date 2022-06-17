@@ -11,6 +11,7 @@ import { UserService } from './user.service';
 import { AuthenticationResponse } from '../model/response';
 import { CookieOptions, CookieService } from 'ngx-cookie-service';
 import { JWT } from '../model/jwt';
+import { ReAccount } from '../model/re-account';
 @Injectable({
   providedIn: 'root',
 })
@@ -44,9 +45,9 @@ export class AuthService {
       this.httpOptions
     );
   }
-  generateMailOTP(registerAccountRequest: RegisterAccountRequest) {
+  generateMailOTP(registerAccountRequest: RegisterAccountRequest): Observable<RegisterAccountRequest> {
     const url = `${DOMAIN}/api/otp/generateOtp`;
-    return this.httpClient.post(url, registerAccountRequest, this.httpOptions);
+    return this.httpClient.post<RegisterAccountRequest>(url, registerAccountRequest, this.httpOptions);
   }
   validOTP(
     OTPNumbers: number[],
@@ -70,6 +71,7 @@ export class AuthService {
       .post<AuthenticationResponse>(url, authenticateRequest, this.httpOptions)
       .pipe(
         tap((authentication) => {
+          console.log(authenticateRequest)
           if (authentication) {
             console.log(authentication)
             this.userService.userBehaviorSubject.next(authentication.user);
@@ -155,9 +157,9 @@ export class AuthService {
     return this.httpClient
       .get<boolean>(url, this.httpOptions)
   }
-  resetPassword(newPassword: string){
+  resetPassword(reAccount: ReAccount): Observable<boolean>{
     const url = `${DOMAIN}/api/reset-password`;
     return this.httpClient
-      .post<boolean>(url, newPassword, this.httpOptions)
+      .post<boolean>(url, reAccount, this.httpOptions)
   }
 }

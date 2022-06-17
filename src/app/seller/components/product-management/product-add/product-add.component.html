@@ -11,13 +11,13 @@
           <mat-form-field appearance="fill" class="min-width: 100%">
             <mat-label>Tên sản phẩm</mat-label>
             <input #productNameInput matInput placeholder="Vui lòng nhập tên sản phẩm" required
-              formControlName="search">
+              formControlName="productName">
             <mat-hint align="end">{{productNameInput.value.length}} / {{maxLength}}</mat-hint>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Chọn thể loại</mat-label>
             <mat-select name="food" formControlName="category">
-              <mat-option *ngFor="let category of categories" [value]="category.name">
+              <mat-option *ngFor="let category of categories" [value]="category">
                 {{category.name}}
               </mat-option>
             </mat-select>
@@ -30,7 +30,7 @@
           </ng-template>
         </ng-container>
         <div class="branch_choose">
-          <button type="submit" mat-raised-button [disabled]="baseProductInfoForm.invalid ? true : false">Tiếp
+          <button type="submit" mat-raised-button [disabled]="baseProductInfoForm.invalid">Tiếp
             theo
           </button>
         </div>

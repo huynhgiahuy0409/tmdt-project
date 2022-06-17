@@ -145,6 +145,11 @@ button {
 
       button {
         font-size: 15px;
+        background-color: var(--primary-color--);
+      }
+      button:disabled {
+        background-color: var(--grey-color--);
+        cursor: not-allowed;
       }
     }
   }

@@ -1,0 +1,31 @@
+.filter{
+    width: 100%;
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 3px;
+    padding:5px
+}
+.filter--color{
+    background-color: #fff;
+}
+.filter__title{
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.filter__title mat-icon{
+    margin-right: 10px;
+}
+.filter__list{
+
+}
+.filter__item{
+    border-bottom: 1px solid #ccc;
+}
+.filter__item-name{
+    font-size: 1.4rem;
+    font-weight: 550;
+}
+.filter-select__item span{
+    font-size: 1.4rem;
+}

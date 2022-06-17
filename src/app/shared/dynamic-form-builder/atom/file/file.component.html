@@ -1,23 +1,24 @@
 <ng-container [formGroup]="form">
+  <!-- File FormArray -->
   <ng-container *ngIf=" field.abstractControl=='array' ; else elseBlock">
     <div class="d-flex flex-wrap" [formArrayName]="field.name">
       <ng-container *ngIf="formArray">
         <ng-container *ngFor="let c of formArray.controls; index as i">
           <div class="drop-wrapper">
-            <div class="drop-container" *ngIf="!field.value">
+            <label [for]="findInputId + i" class="drop-container" *ngIf="!field.value">
               <div class="m-0">
                 <p>
-                  <label [id]="fileInputLabelPrefix+ i">Drag a file here or</label>
+                  <label [id]="fileInputLabelPrefix + i">Drag a file here or</label>
                   <label class="upload-button">
-                    <input #imageInput (change)="preview(imageInput.files, i)" type="file" multiple=""
+                    <input [id]="findInputId + i" (change)="onFileChange($event,i)" type="file" multiple=""
                       [formControlName]="i">
                     browse
-                    <img [src]="this.imageURLs[i]" alt="">
                   </label>
                   <label [id]="fileInputLabelSuffix + i">to upload.</label>
                 </p>
               </div>
-            </div>
+              <img class="review-image" [src]="imageURLs.get(i)" alt="">
+            </label>
             <div style="text-align: center;">
               <label *ngIf="i == 0 && field.required; else notTitle">{{field.title}} <strong
                   class="text-danger">*</strong>
@@ -31,6 +32,7 @@
       </ng-container>
     </div>
   </ng-container>
+  <!-- Video FormControl -->
   <ng-template #elseBlock>
     <div class="d-flex flex-wrap">
       <div class="drop-wrapper">

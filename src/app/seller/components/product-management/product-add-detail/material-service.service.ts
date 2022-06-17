@@ -1,7 +1,6 @@
 import { MaterialResponse } from './../../../../_models/response';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PREFIX_API } from 'src/app/seller/models/Constance';
 import { DOMAIN } from 'src/app/_models/constance';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class MaterialServiceService {
   };
   constructor(private httpClient: HttpClient) {}
   findAll() {
-    const url = `${DOMAIN}${PREFIX_API}/material/all`;
+    const url = `${DOMAIN}/api/material`;
     return this.httpClient.get<MaterialResponse[]>(url, this.httpOptions);
   }
 }

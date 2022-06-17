@@ -6,9 +6,11 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { MaterialModules } from 'src/app/material.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ProductFilterComponent } from './product-filter/product-filter.component';
+import { ProductComponent } from './product.component';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailComponent],
+  declarations: [ProductComponent, ProductListComponent, ProductDetailComponent, ProductFilterComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,

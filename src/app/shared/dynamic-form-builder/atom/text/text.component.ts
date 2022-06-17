@@ -36,10 +36,5 @@ export class TextComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(
-      this.field.name +
-        ' ' +
-        this.form.get(this.field.name)!.hasError('required')
-    );
   }
 }

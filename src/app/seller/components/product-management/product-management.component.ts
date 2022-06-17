@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
   selector: 'product-management',
   templateUrl: './product-management.component.html',
 })
-export class ProductManagementComponent {}
+export class ProductManagementComponent {
+  constructor() {}
+}

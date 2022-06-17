@@ -49,3 +49,45 @@
   font-weight: 550;
   color: #fff;
 }
+.search-container{
+  width: 20;
+  border-radius: 3px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  width: 100%;
+}
+.search-container input{
+  flex: 1
+}
+.search-container button{
+  background-color: var(--primary-color--);
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px
+}
+.search-container.search-container--color{
+  background-color: #fff;
+}
+.page-redirect__list{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 5px 0;
+}
+.page-redirect__item{
+  cursor: pointer;
+}
+.page-redirect__item{
+  cursor: pointer;
+}
+.page-redirect__item:hover{
+  text-decoration: underline;
+}

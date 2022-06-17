@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="filter-container">
+    <app-product-filter></app-product-filter>
+  </div>
+  <div class="product-container">
+    <div class="search-result-label">
+      <mat-icon>spa</mat-icon>
+      Kết quả tìm kiếm cho từ khóa: <span>Máy in nhiệt</span>
+    </div>
+    <div class="product-sort-container product-sort-container--bg-color">
+      <span class="product-sort__label">Sắp xếp theo</span>
+      <div class="product-sort__action">
+        <button class="btn--primary-color">Mới nhất</button>
+        <button class="btn--primary-color">Bán chạy</button>
+        <div class="product-sort__action-select">
+          <mat-form-field >
+            <mat-select>
+              <mat-option> 1 </mat-option>
+              <mat-option> 1 </mat-option>
+              <mat-option> 1 </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="product-sort__paging">
+        <div class="product-sort__paging-label"><span>1</span>/10</div>
+        <div class="product-sort__paging-action">
+          <button><mat-icon>keyboard_arrow_left</mat-icon></button>
+          <button><mat-icon>keyboard_arrow_right</mat-icon></button>
+        </div>
+      </div>
+    </div>
+    <div class="product-list-container">
+      <app-product-list></app-product-list>
+    </div>
+  </div>
+</div>

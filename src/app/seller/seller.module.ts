@@ -1,5 +1,4 @@
 import { RouterModule } from '@angular/router';
-import { PostService } from './../buyer/post.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

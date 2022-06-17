@@ -7,12 +7,14 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import {
-  UntypedFormArray,
+  FormArray,
   FormControl,
   UntypedFormGroup,
   AbstractControl,
+  FormGroup,
 } from '@angular/forms';
 import { reduce } from 'rxjs/operators';
+import { FileUploadService } from 'src/app/seller/services/file-upload.service';
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -24,44 +26,31 @@ class ImageSnippet {
 export class FileComponent implements OnInit, AfterViewInit {
   fileInputLabelPrefix: string = 'file-input-label-prefix-';
   fileInputLabelSuffix: string = 'file-input-label-suffix-';
+  findInputId = 'file-input-'
   @Input() field: any = {};
-  @Input() form!: UntypedFormGroup;
-  imageURL!: string | ArrayBuffer | null;
-  imageURLs!: any[];
-  constructor() {}
-  ngAfterViewInit(): void {
-    this.formArray.valueChanges.subscribe((v: any[]) => {
-      v.forEach((e, i) => {
-        if (e) {
-          document.getElementById(this.fileInputLabelPrefix + i)?.remove();
-          document.getElementById(this.fileInputLabelSuffix + i)?.remove();
-        }
-      });
-    });
+  @Input() form!: FormGroup;
+  imageURLs!: Map<number,string | ArrayBuffer | null>;
+  constructor(private fileUploadService: FileUploadService) {
+    this.imageURLs = new Map<number,string>([])
   }
-  get formArray(): UntypedFormArray {
-    return this.form.get(this.field.name) as UntypedFormArray;
+  ngAfterViewInit(): void {
+  }
+  get formArray(): FormArray {
+    return this.form.get(this.field.name) as FormArray;
   }
   ngOnInit(): void {
-    if (this.field.abstractControl == 'array') {
-      this.imageURLs = [...this.formArray.value];
-    }
-    this.formArray.valueChanges.subscribe((v) => console.log(this.imageURLs));
   }
-  preview(files: FileList | null, i: number) {
-    if (files?.length === 1) {
-      const reader = new FileReader();
-      const selectedFile = files.item(0) as File;
-      /* selected File  =  lastModified: 1620836195592
-                          lastModifiedDate: Wed May 12 2021 23:16:35 GMT+0700 (Giờ Đông Dương) {}
-                          name: "file-name.png"
-                          size: 238154
-                          type: "image/png"
-                          webkitRelativePath: "" */
-      reader.readAsDataURL(selectedFile);
-      reader.onload = (event) => {
-        this.imageURLs[i] = reader.result;
-      };
-    }
+  onFileChange(event: any, i: number) {
+    event.stopPropagation()
+    event.preventDefault()
+    let fileInput = document.getElementById(`${this.findInputId} + ${i}`) as HTMLInputElement
+    let files: FileList = event.target.files
+    const selectedFile = files!.item(0) as File;
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onload = (event) => {
+      this.imageURLs.set(i,reader.result)
+      this.fileUploadService.files.set(i, selectedFile);
+    };
   }
 }

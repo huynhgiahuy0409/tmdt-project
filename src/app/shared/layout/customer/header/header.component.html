@@ -23,15 +23,7 @@
             </ul>
             <a routerLink="/bread" routerLinkActive="router-link-active"></a>
           </div>
-          <div class="search_container">
-            <form action="#">
-              <div class="search_box">
-                <input placeholder="Search product..." type="text">
-                <button type="submit">Search</button>
-              </div>
-            </form>
-          </div>
-
+          
           <div class="middel_right_info">
             <div class="header_wishlist">
               <a href="wishlist.html"><img src="assets/img/user.png" alt=""></a>
@@ -202,29 +194,13 @@
           </div>
           <div class="col-lg-9 col-md-6">
             <div class="middel_right">
-              <div class="search_container">
-                <form action="#">
-                  <div class="search_box">
-                    <input  placeholder="Search product..." type="text">
-                    <button type="submit">Search</button>
-                  </div>
-                </form>
+              <div class="search-container search-container--color">
+                <input type="text">
+                <button class="search-btn"><mat-icon>search</mat-icon></button>
               </div>
               <div class="middel_right_info">
-                <div class="header_wishlist">
-                  <img class="header_wishlist--img" src="assets/img/user.png" alt="">
-                  <ul class="info-list" href="#">
-                    <li class="info-item"><a [routerLink]="['/customer']">Tài khoản</a></li>
-                    <li class="info-item"><a [routerLink]="['/login']">Tình trạng đơn hàng</a></li>
-                    <li class="info-item"><a [routerLink]="['/login']">Đăng nhập</a></li>
-                    <li class="info-item"><a [routerLink]="['/register']">Đăng kí</a></li>
-                    <ng-template #logged>
-                      <li class="info-item"><span>Đăng xuất</span></li>
-                    </ng-template>
-                  </ul>
-                </div>
                 <div class="mini_cart_wrapper">
-                  <a href="javascript:void(0)" [routerLink]="['/cart']"><img src="assets/img/shopping-bag.png"
+                  <a  [routerLink]="['/cart']"><img src="assets/img/shopping-bag.png"
                       alt=""></a>
                   <span class="cart_quantity">2</span>
                   <!--mini cart-->
@@ -278,6 +254,15 @@
                   <!--mini cart end-->
                 </div>
               </div>
+            </div>
+            <div class="middel_right">
+              <ul class="page-redirect__list">
+                <li class="page-redirect__item">Hàng mới</li>
+                <li class="page-redirect__item">Sản phẩm</li>
+                <li class="page-redirect__item">Giới tính</li>
+                <li class="page-redirect__item">Độ tuổi</li>
+                <li class="page-redirect__item">Thương hiệu</li>
+              </ul>
             </div>
           </div>
         </div>

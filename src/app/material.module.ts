@@ -12,8 +12,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import {
+  MatPaginatorIntl,
+  MatPaginatorModule,
+} from '@angular/material/paginator';
+import { MatPaginatorIntlCro } from './shared/custom/mat-paginator-initl-custom.service';
 const materialModules = [
   MatButtonModule,
   MatSliderModule,
@@ -29,11 +34,18 @@ const materialModules = [
   MatProgressBarModule,
   MatSelectModule,
   MatProgressSpinnerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({
   imports: [materialModules],
   exports: [materialModules],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useClass: MatPaginatorIntlCro,
+    },
+  ],
 })
 export class MaterialModules {}

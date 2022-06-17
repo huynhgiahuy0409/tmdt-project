@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import {
   ProductInfo,
   ProductManagementService,
@@ -24,13 +24,18 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../../buyer/post.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Product } from '../../../../buyer/product';
 import { Observable } from 'rxjs/internal/Observable';
-import { CategoryService } from '../product-add/category.service';
 import { NgIf } from '@angular/common';
 import { BrandServiceService } from './brand-service.service';
 import { RecommendAgeService } from './recommend-age.service';
 import { MaterialServiceService } from './material-service.service';
+import { CategoryService } from 'src/app/seller/services/category.service';
+import { Product, ProductRequest, Size } from 'src/app/_models/request';
+import { OriginService } from 'src/app/seller/services/origin.service';
+import { StatusService } from 'src/app/seller/services/status.service';
+import { ProductService } from 'src/app/seller/services/product.service';
+import { switchMap } from 'rxjs/operators';
+import { FileUploadService } from 'src/app/seller/services/file-upload.service';
 export interface DynamicField {
   abstractControl: string;
   type: string;
@@ -49,8 +54,8 @@ export interface DynamicField {
 export interface ProductFieldGroup {
   [key: string]: DynamicField[];
 }
-export interface FieldGroup {
-  fieldName: string;
+export interface FormGroupName {
+  formGroupName: string;
   label: string;
 }
 @Component({
@@ -61,7 +66,7 @@ export interface FieldGroup {
 export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
   @ViewChild('navItem') el!: ElementRef;
   isEndOfPage = false;
-  productFieldsGroup: ProductFieldGroup = {
+  productFieldGroup: ProductFieldGroup = {
     productBaseInfo: [
       {
         abstractControl: 'array',
@@ -88,6 +93,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
         name: 'name',
         label: 'Tên sản phẩm',
         required: true,
+        value: '',
       },
       {
         abstractControl: 'control',
@@ -131,6 +137,14 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
         options: [],
         required: true,
       },
+      {
+        abstractControl: 'control',
+        type: 'dropdown',
+        name: 'origin',
+        label: 'Xuất xứ',
+        options: [],
+        required: true,
+      },
     ],
     salesInfo: [
       {
@@ -138,6 +152,20 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
         type: 'text',
         name: 'warehouse',
         label: 'Kho',
+        required: true,
+      },
+      {
+        abstractControl: 'control',
+        type: 'text',
+        name: 'price',
+        label: "Giá",
+        required: true,
+      },
+      {
+        abstractControl: 'control',
+        type: 'text',
+        name: 'discount',
+        label: "Giảm giá",
         required: true,
       },
     ],
@@ -158,7 +186,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
           'Kích thước đóng gói (Phí vận chuyển thực tế sẽ thay đổi nếu bạn nhập sai kích thước)',
         length: 3,
         placeholder: ['R', 'D', 'C'],
-        required: false,
+        required: true,
       },
       /*  {
         abstractControl: 'control',
@@ -173,7 +201,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
         type: 'dropdown',
         name: 'status',
         label: 'Tình trạng',
-        options: ['Mới', 'Đã sử dụng'],
+        options: [],
         required: true,
       },
       {
@@ -185,85 +213,100 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
       },
     ],
   };
-  fieldGroups: FieldGroup[] = [
+  formGroupNames: FormGroupName[] = [
     {
-      fieldName: 'productBaseInfo',
+      formGroupName: 'productBaseInfo',
       label: 'Thông tin cơ bản',
     },
     {
-      fieldName: 'productDetailInfo',
+      formGroupName: 'productDetailInfo',
       label: 'Thông tin chi tiết',
     },
     {
-      fieldName: 'salesInfo',
-      label: 'Thông tin kho',
+      formGroupName: 'salesInfo',
+      label: 'Thông tin bán hàng',
     },
     {
-      fieldName: 'transport',
+      formGroupName: 'transport',
       label: 'Vận chuyển',
     },
     {
-      fieldName: 'diffInfo',
+      formGroupName: 'diffInfo',
       label: 'Thông tin khác',
     },
   ];
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   /* ----- */
   category$!: Observable<ProductInfo>;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private productService: PostService,
     public productManagementService: ProductManagementService,
-    private _fb: UntypedFormBuilder,
-    private _categoryService: CategoryService,
-    private _brandService: BrandServiceService,
-    private __recommendAgeService: RecommendAgeService,
-    private __materialService: MaterialServiceService
+    private fb: UntypedFormBuilder,
+    private categoryService: CategoryService,
+    private brandService: BrandServiceService,
+    private recommendAgeService: RecommendAgeService,
+    private materialService: MaterialServiceService,
+    private originService: OriginService,
+    private statusService: StatusService,
+    private productService: ProductService,
+    private fileUploadService: FileUploadService
   ) {}
   ngAfterViewInit(): void {
     this.el.nativeElement.focus();
   }
   ngOnInit(): void {
-    /* if (!this.productManagementService.productInfoCurValue.category) {
-      this.router.navigate(['/seller/product-management/category']);
-    } */
-    let productGroup: any = {};
-    this.fieldGroups.forEach((fieldGroup) => {
-      const { fieldName } = fieldGroup;
-      this.productFieldsGroup[fieldName].forEach((f) => {
-        if (f.name === 'category') {
-          f['value'] =
+    console.log(this.productManagementService.productInfoCurValue);
+    let productForm: any = {};
+    this.formGroupNames.forEach((item) => {
+      const { formGroupName } = item;
+      this.productFieldGroup[formGroupName].forEach((field) => {
+        const nameControl = field.name;
+        if (nameControl === 'category') {
+          field['value'] =
             this.productManagementService.productInfoCurValue.category;
         }
-        if (f.name === 'name') {
-          f['value'] =
+        if (nameControl === 'name') {
+          field['value'] =
             this.productManagementService.productInfoCurValue.productName;
         }
-        if (f.options) {
-          if (f.name == 'category') {
-            this._categoryService.findAll().subscribe((v) => {
-              f['options'] = this.setUpOptions(v, 'name');
+        const type = field.type;
+        if (type === 'dropdown') {
+          if (nameControl == 'category') {
+            this.categoryService.findAll().subscribe((v) => {
+              field['options'] = v;
             });
-          } else if (f.name == 'brand') {
-            this._brandService.findAll().subscribe((v) => {
-              f['options'] = this.setUpOptions(v, 'name');
+          } else if (nameControl == 'brand') {
+            this.brandService.findAll().subscribe((v) => {
+              field['options'] = v;
             });
-          } else if (f.name == 'recommendAge') {
-            this.__recommendAgeService.findAll().subscribe((v) => {
-              f['options'] = this.setUpOptions(v, 'code');
+          } else if (nameControl == 'recommendAge') {
+            this.recommendAgeService.findAll().subscribe((v) => {
+              field['options'] = v;
             });
-          } else if (f.name == 'material') {
-            this.__materialService.findAll().subscribe((v) => {
-              f['options'] = this.setUpOptions(v, 'name');
+          } else if (nameControl == 'material') {
+            this.materialService.findAll().subscribe((v) => {
+              field['options'] = v;
+            });
+          } else if (nameControl == 'origin') {
+            this.originService.findAll().subscribe((v) => {
+              field['options'] = v;
+            });
+          } else if (nameControl == 'status') {
+            this.statusService.findAll().subscribe((v) => {
+              field['options'] = v;
             });
           }
         }
       });
-      productGroup[fieldName] = this._fb.group(this.buildFormGroup(fieldName));
+      productForm[formGroupName] = this.fb.group(
+        this.buildFieldGroup(formGroupName)
+      );
     });
-    this.form = this._fb.group(productGroup);
-    this.category$ = this.productManagementService.category$;
+    this.form = this.fb.group(productForm);
+    this.form.valueChanges.subscribe((v) => {
+      console.log(v);
+    });
   }
 
   get productBaseInfo(): UntypedFormGroup {
@@ -272,33 +315,29 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
   get productDetailInfo(): UntypedFormGroup {
     return this.form.get('productDetailInfo') as UntypedFormGroup;
   }
-  private setUpOptions(list: any[], fieldName: string): string[] {
-    return list.map((i) => {
-      return i[fieldName];
-    });
-  }
-  private buildFormGroup(name: string) {
-    let abstractControls: any = {};
-    this.productFieldsGroup[name].forEach((f) => {
+  private buildFieldGroup(name: string) {
+    let fieldGroup: any = {};
+    this.productFieldGroup[name].forEach((f) => {
       if (f.abstractControl == 'control') {
-        if (f.required) {
-          abstractControls[f.name] = this._fb.control(
-            f.value || '',
-            Validators.required
-          );
-        } else {
-          abstractControls[f.name] = this._fb.control(f.value || '');
-        }
+        fieldGroup[f.name] = f.required
+          ? this.fb.control(f.value || '', Validators.required)
+          : this.fb.control(f.value || '');
       } else if (f.abstractControl == 'array') {
         const arrayLength = f.length || 0;
-        let formArray: UntypedFormControl[] = [];
+        let formArray: FormControl[] = [];
         for (let index = 0; index < arrayLength; index++) {
-          formArray.push(this._fb.control(f.value || ''));
+          if (f.name === 'images') {
+            index == 0
+              ? formArray.push(this.fb.control(null, Validators.required))
+              : formArray.push(this.fb.control(null));
+          } else {
+            formArray.push(this.fb.control(null, Validators.required));
+          }
         }
-        abstractControls[f.name] = this._fb.array(formArray);
+        fieldGroup[f.name] = this.fb.array(formArray);
       }
     });
-    return abstractControls;
+    return fieldGroup;
   }
   scrollTo(id: string, navUl: HTMLElement): void {
     navUl.tabIndex == 0;
@@ -325,5 +364,42 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
       fixedContainer?.classList.remove('fixed-bottom');
     }
   }
-  onSubmit() {}
+  onSubmit() {
+    const {
+      productBaseInfo,
+      productDetailInfo,
+      salesInfo,
+      transport,
+      diffInfo,
+    } = this.form.value;
+    let size: Size = {
+      weight: transport.weight,
+      width: transport.size[0],
+      length: transport.size[1],
+      height: transport.size[2],
+    };
+    let product: Product = {
+      name: productBaseInfo.name,
+      SKU: diffInfo.SKU,
+      description: productBaseInfo.description,
+      sourcePrice: salesInfo.price,
+      discountPercent: salesInfo.discount,
+      repository: salesInfo.warehouse,
+      size: size,
+      originCode: productDetailInfo.origin,
+      statusCode: diffInfo.status,
+      categoryCode: productBaseInfo.category,
+      materialCode: productDetailInfo.material,
+      brandCode: productDetailInfo.brand,
+      recommendAgeCode: productDetailInfo.recommendAge,
+    };
+    this.productService
+      .addProduct(product)
+      .pipe(
+        switchMap((productId) => {
+          return this.fileUploadService.addProductImages(productId);
+        })
+      )
+      .subscribe();
+  }
 }
