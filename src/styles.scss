@@ -3,7 +3,9 @@
 * {
   font-size: 1.4rem;
 }
-
+.container{
+  min-width: 90%
+}
 :root {
   --primary-color--: rgb(255, 163, 127);
   --grey-color--: #ccc;
@@ -45,7 +47,7 @@ li {
 }
 
 body {
-  background-color: rgb(246, 246, 246)
+  background-color: rgb(251 251 251);
 }
 
 h1,

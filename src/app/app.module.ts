@@ -13,6 +13,8 @@ import { RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from './core/core.module';
+import { SpinnerService } from './shared/services/spinner.service';
+import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -54,6 +56,7 @@ import { CoreModule } from './core/core.module';
         siteKey: environment.recaptcha.siteKey,
       } as RecaptchaSettings,
     },
+    SpinnerService,
   ],
   bootstrap: [AppComponent],
 })

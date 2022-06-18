@@ -15,7 +15,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
 
 import { AuthGuardService } from '../shared/layout/common/auth/auth-guard.component';
-import {FindingShopComponent} from "./components/finding-shop/finding-shop.component";
+import { FindingShopComponent } from './components/finding-shop/finding-shop.component';
+import { CategoryResolve } from '../shared/services/resolve.ts/category.resolve';
+import { BrandResolve } from '../shared/services/resolve.ts/brand.resolve';
+import { ProductResolve } from '../shared/services/resolve.ts/product.resolve';
+import { RecommendAgeResolve } from '../shared/services/resolve.ts/recommend-age.resolve';
 
 const routes: Routes = [
   {
@@ -51,6 +55,12 @@ const routes: Routes = [
           import('./components/product/product.module').then(
             (m) => m.ProductModule
           ),
+        resolve: {
+          categories: CategoryResolve,
+          brands: BrandResolve,
+          allProduct: ProductResolve,
+          recommendAges: RecommendAgeResolve,
+        },
       },
       {
         path: 'account-management',
@@ -66,5 +76,11 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [
+    CategoryResolve,
+    BrandResolve,
+    ProductResolve,
+    RecommendAgeResolve,
+  ],
 })
 export class BuyerRoutingModule {}

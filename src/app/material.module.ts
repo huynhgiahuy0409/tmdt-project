@@ -14,11 +14,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
 } from '@angular/material/paginator';
-import { MatPaginatorIntlCro } from './shared/custom/mat-paginator-initl-custom.service';
+import { MatPaginatorIntlCro } from './shared/services/mat-paginator-initl-custom.service';
 const materialModules = [
   MatButtonModule,
   MatSliderModule,
@@ -36,6 +37,7 @@ const materialModules = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatPaginatorModule,
+  MatRadioModule,
 ];
 
 @NgModule({

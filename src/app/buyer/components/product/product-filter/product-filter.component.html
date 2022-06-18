@@ -8,9 +8,29 @@
             <div class="filter__item-name">Theo danh mục</div>
             <ul class="filter-select__list">
                 <li class="filter-select__item">
-                    <section>
-                        <mat-checkbox formControlName="pepperoni"><span>Extra Cheese</span></mat-checkbox>
-                    </section>
+                    <!-- <section [formGroup]="categoryForm">
+                        <ng-container *ngIf="categories">
+                            <mat-checkbox [formControlName]="category.code" *ngFor="let category of categories"><span>{{
+                                    category.name }}</span></mat-checkbox>
+                        </ng-container>
+                    </section> -->
+                    <mat-radio-group>
+                        <mat-radio-button (change)="onChangeCategory($event)" [value]="category.id"
+                            *ngFor="let category of categories">
+                            {{category.name }}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </li>
+            </ul>
+        </div>
+        <div class="filter__item">
+            <div class="filter__item-name">Theo giá</div>
+            <ul class="filter-select__list">
+                <li class="filter-select__item">
+                    <mat-slider (change)="onChangeSlider($event)"  [displayWith]="formatLabel" [max]="configureSlider.max" [min]="configureSlider.min"
+                        [step]="configureSlider.step" [thumbLabel]="configureSlider.thumbLabel"
+                        [(ngModel)]="configureSlider.value" [vertical]="configureSlider.vertical">
+                    </mat-slider>
                 </li>
             </ul>
         </div>
@@ -18,9 +38,25 @@
             <div class="filter__item-name">Theo thương hiệu</div>
             <ul class="filter-select__list">
                 <li class="filter-select__item">
-                    <section>
-                        <mat-checkbox formControlName="pepperoni"><span>Extra Cheese</span></mat-checkbox>
-                    </section>
+                    <mat-radio-group>
+                        <mat-radio-button (change)="onChangeBrand($event)" [value]="brand.id"
+                            *ngFor="let brand of brands">
+                            {{brand.name }}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </li>
+            </ul>
+        </div>
+        <div class="filter__item">
+            <div class="filter__item-name">Theo độ tuổi</div>
+            <ul class="filter-select__list">
+                <li class="filter-select__item">
+                    <mat-radio-group>
+                        <mat-radio-button (change)="onChangeRecommendAge($event)" [value]="recommendAge.id"
+                            *ngFor="let recommendAge of recommendAges">
+                            {{recommendAge.name }}
+                        </mat-radio-button>
+                    </mat-radio-group>
                 </li>
             </ul>
         </div>

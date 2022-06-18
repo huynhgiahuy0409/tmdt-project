@@ -1,6 +1,6 @@
-.container {
+.container{
   width: 100vw;
-  height: 20px;
+  height: auto;
   display: flex;
   margin-top: 20px;
   color: #444;
@@ -13,8 +13,7 @@
   width: 80%;
   padding: 0 20px;
 }
-.product-list-container{
-
+.product-list-container {
 }
 
 .search-result-label {
@@ -38,6 +37,7 @@
   justify-content: space-between;
   border-radius: 3px;
   padding: 10px;
+  box-shadow:  0 0 3px #ccc;
 }
 .product-sort-container.product-sort-container--bg-color {
   background-color: #fff;
@@ -55,7 +55,7 @@
 .product-sort-container .product-sort__action .product-sort__action-select {
   margin: 0 5px;
 }
-  
+
 .product-sort-container .product-sort__paging {
   display: flex;
   align-items: center;
@@ -87,8 +87,16 @@
 .product-sort__paging-action button mat-icon {
   color: #444;
 }
-::ng-deep .mat-form-field-underline, ::ng-deep .mat-form-field-ripple {
-    background-color: var(--primary-color--) !important;
-  }
-
-
+::ng-deep .mat-form-field-underline,
+::ng-deep .mat-form-field-ripple {
+  background-color: var(--primary-color--) !important;
+}
+::ng-deep .mat-select-arrow {
+  color: var(--primary-color--);
+}
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: var(--primary-color--);
+}
+::ng-deep .mat-option-text {
+  color: var(--primary-color--);
+}

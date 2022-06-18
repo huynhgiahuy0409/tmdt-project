@@ -26,16 +26,16 @@ import { PostService } from '../../../../buyer/post.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { NgIf } from '@angular/common';
-import { BrandServiceService } from './brand-service.service';
-import { RecommendAgeService } from './recommend-age.service';
+import { RecommendAgeService } from '../../../../shared/services/recommend-age.service';
 import { MaterialServiceService } from './material-service.service';
-import { CategoryService } from 'src/app/seller/services/category.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { Product, ProductRequest, Size } from 'src/app/_models/request';
 import { OriginService } from 'src/app/seller/services/origin.service';
 import { StatusService } from 'src/app/seller/services/status.service';
 import { ProductService } from 'src/app/seller/services/product.service';
 import { switchMap } from 'rxjs/operators';
 import { FileUploadService } from 'src/app/seller/services/file-upload.service';
+import { BrandService } from 'src/app/shared/services/brand.service';
 export interface DynamicField {
   abstractControl: string;
   type: string;
@@ -244,7 +244,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
     public productManagementService: ProductManagementService,
     private fb: UntypedFormBuilder,
     private categoryService: CategoryService,
-    private brandService: BrandServiceService,
+    private brandService: BrandService,
     private recommendAgeService: RecommendAgeService,
     private materialService: MaterialServiceService,
     private originService: OriginService,

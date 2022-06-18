@@ -1,4 +1,5 @@
 interface BaseResponse {
+  id?: number;
   name: string;
   code: string;
 }
@@ -6,7 +7,9 @@ interface Image {
   url: string;
 }
 export interface CategoryResponse extends BaseResponse {}
-export interface BrandResponse extends BaseResponse {}
+export interface BrandResponse extends BaseResponse {
+  logo: Image
+}
 export interface RecommendAgeResponse extends BaseResponse {}
 export interface MaterialResponse extends BaseResponse {}
 export interface OriginResponse extends BaseResponse {}
@@ -18,6 +21,7 @@ export interface ProductResponse {
   description: string;
   sourcePrice: number;
   discountPercent: number;
+  buyPrice: number;
   repository: number;
   origin: OriginResponse;
   status: StatusResponse;

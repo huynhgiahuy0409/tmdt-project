@@ -1,23 +1,36 @@
 <div class="container">
   <div class="filter-container">
-    <app-product-filter></app-product-filter>
+    <app-product-filter [products$]="products$"></app-product-filter>
   </div>
   <div class="product-container">
-    <div class="search-result-label">
-      <mat-icon>spa</mat-icon>
-      Kết quả tìm kiếm cho từ khóa: <span>Máy in nhiệt</span>
-    </div>
+    <ng-container *ngIf="productFilterChainService.filter$ | async as filter">
+      <div
+        class="search-result-label"
+        *ngIf="filter.name"
+      >
+        <mat-icon>spa</mat-icon>
+        Kết quả tìm kiếm cho từ khóa: <span>{{ filter.name }}</span>
+      </div>
+    </ng-container>
     <div class="product-sort-container product-sort-container--bg-color">
       <span class="product-sort__label">Sắp xếp theo</span>
       <div class="product-sort__action">
-        <button class="btn--primary-color">Mới nhất</button>
+        <button class="btn--primary-color" (click)="onClickLastedProducts()">
+          Mới nhất
+        </button>
         <button class="btn--primary-color">Bán chạy</button>
         <div class="product-sort__action-select">
-          <mat-form-field >
-            <mat-select>
-              <mat-option> 1 </mat-option>
-              <mat-option> 1 </mat-option>
-              <mat-option> 1 </mat-option>
+          <mat-form-field>
+            <mat-label style="color: var(--primary-color--)"
+              >Sắp xếp theo...</mat-label
+            >
+            <mat-select
+              [(ngModel)]="selectedSort"
+              (selectionChange)="onChangeSorter($event)"
+            >
+              <mat-option *ngFor="let o of sortSelections" [value]="o.sort">
+                {{ o.label }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -31,7 +44,12 @@
       </div>
     </div>
     <div class="product-list-container">
-      <app-product-list></app-product-list>
+      <app-product-list
+        [products$]="products$"
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+      ></app-product-list>
     </div>
   </div>
 </div>

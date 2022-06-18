@@ -8,13 +8,18 @@
     background-color: #fff;
 }
 .filter__title{
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+    font-weight: 600;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 .filter__title mat-icon{
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
 }
 .filter__list{
 
@@ -23,9 +28,20 @@
     border-bottom: 1px solid #ccc;
 }
 .filter__item-name{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 550;
+    padding: 5px 0
 }
 .filter-select__item span{
     font-size: 1.4rem;
+}
+.filter-select__item .mat-checkbox{
+    display: block;
+}
+.filter-select__item .mat-radio-button{
+    display: block;
+    padding: 5px 0px;
+}
+.filter-select__item .mat-slider{
+    display: block;
 }

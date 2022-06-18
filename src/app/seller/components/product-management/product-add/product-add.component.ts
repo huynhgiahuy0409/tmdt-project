@@ -9,7 +9,7 @@ import {
 } from '../product-management.service';
 import { CategoryResponse } from 'src/app/_models/response';
 import { tap } from 'rxjs/operators';
-import { CategoryService } from 'src/app/seller/services/category.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 export function notWhitespaceValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     let controlVal = control.value;

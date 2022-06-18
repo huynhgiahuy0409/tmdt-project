@@ -2,6 +2,7 @@ import { PageNotFoundComponent } from './shared/layout/common/page-not-found/pag
 import { BreadcrumbComponent } from './shared/layout/customer/breadcrumb/breadcrumb.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
 
 const routes: Routes = [
   {

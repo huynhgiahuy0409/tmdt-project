@@ -40,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ProductFilterChainService } from './services/product-filter-chain.service';
 @NgModule({
   declarations: [
     BuyerComponent,
@@ -83,6 +84,7 @@ import { CookieService } from 'ngx-cookie-service';
       } as RecaptchaSettings,
     },
     CookieService,
+    ProductFilterChainService
   ],
 })
 export class BuyerModule {}
