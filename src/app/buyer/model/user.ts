@@ -1,3 +1,5 @@
+import { Address, Cart } from "src/app/_models/models";
+
 export interface User{
     id: number,
     name: number,
@@ -6,5 +8,7 @@ export interface User{
     gender: string,
     email: string,
     phoneNumber: string,
-    role: string
+    role: string;
+    cart: Cart;
+    addresses: Address[]
 }

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-management.component.scss']
 })
 export class AccountManagementComponent implements OnInit {
+  sltSidebarItemIdx: number = 0
   sidebarLabels: [string, string][] = [
     ['Tài khoản', 'account'],
     ['Lịch sử mua hàng', 'purchase-history'],

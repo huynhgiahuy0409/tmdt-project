@@ -290,7 +290,6 @@ export class LoginComponent implements OnInit {
       data: data,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
       if (result.event === 'login') {
         this.setPageRedirect('login');
         this.OTPForm.reset();

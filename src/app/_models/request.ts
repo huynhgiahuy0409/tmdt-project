@@ -23,3 +23,7 @@ export interface ProductRequest{
     files: File,
     product: Product
 }
+export interface PendingItemRequest{
+    productId: number,
+    quantity: number
+}

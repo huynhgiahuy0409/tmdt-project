@@ -17,7 +17,9 @@
   --base-lime-color--: #45bd62;
   --base-lemon-color--: #f7b928;
 }
-
+.font-weight-550{
+  font-weight: 550;
+}
 .mat-progress-spinner circle, .mat-spinner circle{
   stroke: var(--primary-color--);
 }

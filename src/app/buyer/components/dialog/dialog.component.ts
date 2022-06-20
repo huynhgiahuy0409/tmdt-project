@@ -22,6 +22,10 @@ export class DialogComponent implements OnInit {
         this.dialogRef.close({event: 'login'})
       }else if(this.data.action[index].type === 'login-success'){
         this.dialogRef.close({event: 'home'})
+      }else if(this.data.action[index].type === 'payment'){
+        this.dialogRef.close({routePath: 'payment'})
+      }else if(this.data.action[index].type === 'cart'){
+        this.dialogRef.close({routePath: 'cart'})
       }
     }
   }

@@ -1,0 +1,26 @@
+<form [formGroup]="contactFormGroup" (ngSubmit)="onClickUpdate()">
+    <h1 mat-dialog-title style="font-size: 1.8rem">Thay đổi thông tin liên hệ</h1>
+    <mat-dialog-content class="mat-typography">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Họ tên</mat-label>
+              <input matInput formControlName="fullName">
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Số điện thoại</mat-label>
+              <input matInput formControlName="phoneNumber">
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-radio-group formControlName="gender" aria-label="Select an option">
+              <mat-radio-button [checked]="true" style="margin: 0 5px" value="Nam">Nam</mat-radio-button>
+              <mat-radio-button style="margin: 0 5px" value="Nữ">Nữ</mat-radio-button>
+              <mat-radio-button style="margin: 0 5px" value="Khác">Khác</mat-radio-button>
+            </mat-radio-group>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close="contactFormGroup" class="crimson-color" type='submit'>Lưu địa chỉ</button>
+        <button mat-raised-button mat-dialog-close class="crimson-color">Huỷ</button>
+      </mat-dialog-actions>
+</form>

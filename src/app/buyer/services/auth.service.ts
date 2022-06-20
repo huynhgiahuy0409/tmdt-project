@@ -12,6 +12,7 @@ import { AuthenticationResponse } from '../model/response';
 import { CookieOptions, CookieService } from 'ngx-cookie-service';
 import { JWT } from '../model/jwt';
 import { ReAccount } from '../model/re-account';
+import { CartService } from './cart.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -27,7 +28,8 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private cartService: CartService
   ) {
     this.accessTokenBehaviorSubject = new BehaviorSubject<JWT | null>(null);
     this.accessToken$ = this.accessTokenBehaviorSubject.asObservable();
@@ -71,10 +73,9 @@ export class AuthService {
       .post<AuthenticationResponse>(url, authenticateRequest, this.httpOptions)
       .pipe(
         tap((authentication) => {
-          console.log(authenticateRequest)
           if (authentication) {
-            console.log(authentication)
             this.userService.userBehaviorSubject.next(authentication.user);
+            this.cartService.cartBehaviorSubject.next(authentication.user.cart)
             this.accessTokenBehaviorSubject.next(authentication.accessToken);
             this.storeRefreshToken(authentication.refreshToken);
             this.startRefreshAccessTokenTimer(authentication.accessToken);
@@ -129,6 +130,7 @@ export class AuthService {
             this.accessTokenBehaviorSubject.next(
               authenticationResponse.accessToken
             );
+            this.cartService.cartBehaviorSubject.next(authenticationResponse.user.cart)
             this.storeRefreshToken(authenticationResponse.refreshToken);
             this.startRefreshAccessTokenTimer(
               authenticationResponse.accessToken

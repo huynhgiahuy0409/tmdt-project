@@ -1,9 +1,11 @@
+import { Size } from "./request";
+
 interface BaseResponse {
   id?: number;
   name: string;
   code: string;
 }
-interface Image {
+export interface Image {
   url: string;
 }
 export interface CategoryResponse extends BaseResponse {}
@@ -14,10 +16,12 @@ export interface RecommendAgeResponse extends BaseResponse {}
 export interface MaterialResponse extends BaseResponse {}
 export interface OriginResponse extends BaseResponse {}
 export interface StatusResponse extends BaseResponse {}
+
+
 export interface ProductResponse {
   id: number;
   name: string;
-  SKU: string;
+  sku: string;
   description: string;
   sourcePrice: number;
   discountPercent: number;
@@ -30,4 +34,5 @@ export interface ProductResponse {
   material: MaterialResponse;
   brand: BrandResponse;
   recommend: RecommendAgeResponse;
+  size: Size;
 }

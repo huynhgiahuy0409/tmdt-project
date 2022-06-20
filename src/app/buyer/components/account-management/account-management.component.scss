@@ -5,18 +5,21 @@
 .row-custom{
   flex-wrap: nowrap;
 }
+.font-weight-550{
+  font-weight: 550;
+}
 /*  */
 .font-14,
 body {
   font-size: 14px;
 }
-
+.bg-color{
+  background-color: #fff;
+}
 .account-nav-title {
   font-size: 1.8rem;
   font-weight: bold;
-  padding: 20px 0;
 }
-
 .account-nav>div {
   font-size: 14px;
   line-height: 1.75;
@@ -24,6 +27,7 @@ body {
   font-weight: 400;
   cursor: pointer;
   width: 100%;
+  
 }
 
 .account-nav>div:hover {
@@ -38,34 +42,32 @@ body {
 }
 
 .sidebar-item-selected {
-  background-color: var(--hover-color--);
-  color: var(--text-color--)
+  background-color: var(--sub-color--);
+  color: #fff
 }
 
 /* Sidebar */
-.sidebar-container {
-  position: relative;
-  flex-wrap: nowrap;
+.sidebar-container,.content-container {
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ccc;
+  overflow: hidden;
+}
+.content-container{
+  
 }
 
-.sidebar-container::before {
-  position: absolute;
-  border: 1px solid #000;
-  width: 66%;
-  background-color: #000;
-  bottom: 0;
-  left: 17px;
-}
 
-.sidebar-label {}
+.sidebar-label {
+  margin: 0
+}
 
 .sidebar-icon {
   padding-right: 0;
 }
 
-.sidebar-head {
-  margin-top: 4px;
-  padding-left: 0;
+.header-container {
+  padding: 10px;
+  border-radius: 5px
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

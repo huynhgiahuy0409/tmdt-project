@@ -1,0 +1,45 @@
+<form [formGroup]="addressFormGroup">
+    <h1 mat-dialog-title style="font-size: 1.8rem">Thay đổi thông tin liên hệ</h1>
+    <mat-dialog-content class="mat-typography">
+      <div class="d-flex">
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Họ tên</mat-label>
+          <input matInput formControlName="fullName">
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Số điện thoại</mat-label>
+          <input matInput formControlName="phoneNumber">
+        </mat-form-field>
+      </div>
+      <div class="d-flex">
+        <mat-form-field [disabled]="disableSelect == true" formControlName="province" appearance="fill">
+          <mat-label>Tỉnh/Thành phố</mat-label>
+          <mat-select>
+            <mat-option>
+              1
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field formControlName="district" appearance="fill">
+          <mat-label>Quận/Huyện</mat-label>
+          <mat-select>
+            <mat-option>
+              1
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field formControlName="ward" appearance="fill">
+          <mat-label>Phường/Xã</mat-label>
+          <mat-select>
+            <mat-option>
+              1
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close="contactFormGroup" class="crimson-color" type='submit'>Lưu địa chỉ</button>
+        <button mat-raised-button mat-dialog-close class="crimson-color">Huỷ</button>
+      </mat-dialog-actions>
+</form>

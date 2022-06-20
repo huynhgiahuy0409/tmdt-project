@@ -20,6 +20,7 @@ import { CategoryResolve } from '../shared/services/resolve.ts/category.resolve'
 import { BrandResolve } from '../shared/services/resolve.ts/brand.resolve';
 import { ProductResolve } from '../shared/services/resolve.ts/product.resolve';
 import { RecommendAgeResolve } from '../shared/services/resolve.ts/recommend-age.resolve';
+import { AuthGuard } from '../_helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -42,7 +43,8 @@ const routes: Routes = [
         component: CheckoutComponent,
         canActivate: [AuthGuardService],
       },
-      { path: 'cart', component: CartComponent },
+      { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+      { path: 'payment', component: ShopComponent },
       { path: 'shop', component: ShopComponent },
       {
         path: 'shop',

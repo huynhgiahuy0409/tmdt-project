@@ -6,16 +6,10 @@
 </div>
 <div mat-dialog-actions style="justify-content: flex-end">
   <button
-    [class.btn--primary-color]="
-      i.type === 'register-success' ||
-      i.type === 'login-success' ||
-      i.type === 'reset-password-success'
-    "
-    mat-button
+    [class.btn--primary-color]="idx == 0"mat-button
     mat-dialog-close
-    *ngFor="let i of data.action"
-    (click)="onClickAction()"
-  >
+    *ngFor="let i of data.action; index as idx"
+    (click)="onClickAction()">
     {{ i["title"] }}
   </button>
 </div>

@@ -4,59 +4,110 @@
             <li class="product-detail__item product-info-container">
                 <div class="product-info-container__left">
                     <div class="product-image">
-                        <img src="assets/img/product/3.png" alt="">
+                        <ng-container *ngFor="let image of product.images; index
+                            as idx">
+                            <img [src]="image.url" alt="" [class.show]="idx ==
+                                sltImageIdx">
+                        </ng-container>
                     </div>
                     <ul class="liveshow-image__list">
-                        <li class="liveshow-image__item select-image">
-                            <img src="assets/img/product/3.png" alt="">
-                        </li>
-                        <li class="liveshow-image__item">
-                            <img src="assets/img/product/3.png" alt="">
-                        </li>
-                        <li class="liveshow-image__item">
-                            <img src="assets/img/product/3.png" alt="">
-                        </li>
+                        <ng-container *ngFor="let image of product.images; index
+                            as idx">
+                            <ng-container *ngIf="idx <5">
+                                <li class="liveshow-image__item"
+                                    [class.slt]="idx == sltImageIdx">
+                                    <img [src]="image.url" alt=""
+                                        (click)="onClickImage(idx)">
+                                </li>
+                            </ng-container>
+                        </ng-container>
 
                     </ul>
                 </div>
                 <div class="product-info-container__right">
                     <div class="product-info-name">{{product.name}}</div>
                     <div class="product-info-review__list">
-                        <li class="product-info-review__item"><span>887</span> đánh giá</li>
-                        <li class="product-info-review__item"><span>1.5K</span> đã bán</li>
+                        <li class="product-info-review__item"><span>887</span>
+                            đánh giá</li>
+                        <li class="product-info-review__item"><span>1.5K</span>
+                            đã bán</li>
                     </div>
                     <div class="product-info-review__list">
-                        <li class="product-info-review__item">Thương hiệu: <span style="color: var(--primary-color--); margin-left: 5px;">Among Us</span></li>
-                        <li class="product-info-review__item">SKU : <span style="color: var(--primary-color--); margin-left: 5px;">99</span>
+                        <li class="product-info-review__item">Thương hiệu: <span
+                                style="color: var(--primary-color--);
+                                margin-left: 5px;">{{product.brand.name}}</span></li>
+                        <li class="product-info-review__item">SKU : <span
+                                style="color: var(--primary-color--);
+                                margin-left: 5px;">{{product.sku}}</span>
                         </li>
                     </div>
                     <div class="product-info-price__list">
-                        <li class="product-info-price__item source-price">999000</li>
-                        <li class="product-info-price__item buy-price">500000</li>
-                        <li class="product-info-price__item discount">Giảm 40%</li>
+                        <li class="product-info-price__item source-price">{{product.sourcePrice
+                            | currency:'VND'}}</li>
+                        <li class="product-info-price__item buy-price">{{product.buyPrice
+                            | currency:'VND'}}</li>
+                        <li class="product-info-price__item discount">Giảm
+                            {{product.discountPercent}}%</li>
                     </div>
                     <div class="more-product-info">
                         <div class="more-product-info__left">Vận chuyển</div>
                         <div class="more-product-info__right">
                             <div class="d-flex align-item-center">
-                                <svg _ngcontent-qtd-c214="" style="margin-right: 5px" height="12" viewBox="0 0 20 12" width="20" class="shopee-svg-icon icon-free-shipping">
-          <g _ngcontent-qtd-c214="" fill="none" fill-rule="evenodd" transform="">
-            <rect _ngcontent-qtd-c214="" fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect>
-            <rect _ngcontent-qtd-c214="" height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect>
-            <rect _ngcontent-qtd-c214="" fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2">
-            </rect>
-            <rect _ngcontent-qtd-c214="" height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect>
-            <circle _ngcontent-qtd-c214="" cx="8" cy="10" fill="#00bfa5" r="2"></circle>
-            <circle _ngcontent-qtd-c214="" cx="15" cy="10" fill="#00bfa5" r="2"></circle>
-            <path _ngcontent-qtd-c214=""
-              d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z"
-              fill="#fff"></path>
-            <path _ngcontent-qtd-c214="" d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path>
-            <path _ngcontent-qtd-c214="" d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path>
-            <circle _ngcontent-qtd-c214="" cx="8" cy="10" fill="#047565" r="1"></circle>
-            <circle _ngcontent-qtd-c214="" cx="15" cy="10" fill="#047565" r="1"></circle>
-          </g>
-        </svg>
+                                <svg style="margin-right: 5px" height="12"
+                                    viewBox="0 0 20 12" width="20"
+                                    class="shopee-svg-icon icon-free-shipping">
+                                    <g fill="none" fill-rule="evenodd"
+                                        transform="">
+                                        <rect fill="#00bfa5" fill-rule="evenodd"
+                                            height="9" rx="1" width="12" x="4"></rect>
+                                        <rect height="8" rx="1" stroke="#00bfa5"
+                                            width="11" x="4.5" y=".5"></rect>
+                                        <rect fill="#00bfa5" fill-rule="evenodd"
+                                            height="7" rx="1" width="7" x="13"
+                                            y="2">
+                                        </rect>
+                                        <rect height="6" rx="1" stroke="#00bfa5"
+                                            width="6" x="13.5" y="2.5"></rect>
+                                        <circle cx="8" cy="10" fill="#00bfa5"
+                                            r="2"></circle>
+                                        <circle cx="15" cy="10" fill="#00bfa5"
+                                            r="2"></circle>
+                                        <path
+                                            d="m6.7082481
+                                            6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505
+                                            0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165
+                                            0
+                                            .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152
+                                            0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297
+                                            0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065
+                                            1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885
+                                            0-1.5903965-.6269531-1.5903965-1.6464843
+                                            0-1.0195313.6165553-1.6669922
+                                            1.5872347-1.6669922.9580321 0
+                                            1.5366455.6064453 1.5366455
+                                            1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369
+                                            0
+                                            .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297
+                                            0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064
+                                            1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885
+                                            0-1.5903965-.6269531-1.5903965-1.6464843
+                                            0-1.0195313.6165553-1.6669922
+                                            1.5872347-1.6669922.9580321 0
+                                            1.5366455.6064453 1.5366455
+                                            1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369
+                                            0
+                                            .6924391-.1376953.8189119-.3867187z"
+                                            fill="#fff"></path>
+                                        <path d="m .5 8.5h3.5v1h-3.5z"
+                                            fill="#00bfa5"></path>
+                                        <path d="m0 10.15674h3.5v1h-3.5z"
+                                            fill="#00bfa5"></path>
+                                        <circle cx="8" cy="10" fill="#047565"
+                                            r="1"></circle>
+                                        <circle cx="15" cy="10" fill="#047565"
+                                            r="1"></circle>
+                                    </g>
+                                </svg>
                                 <div class="">
                                     <p>
                                         Vận Chuyển Tới Phường Linh Trung
@@ -67,13 +118,15 @@
                                 </div>
                             </div>
                             <div class="d-flex align-item-center">
-                                <mat-icon style="margin-right: 5px"> local_shipping</mat-icon>
+                                <mat-icon style="margin-right: 5px">
+                                    local_shipping</mat-icon>
                                 <div class="">
                                     <p>
                                         Miễn phí vận chuyển
                                     </p>
                                     <p>
-                                        Miễn phí vận chuyển cho đơn hàng trên ₫50.000
+                                        Miễn phí vận chuyển cho đơn hàng trên
+                                        ₫50.000
                                     </p>
                                 </div>
                             </div>
@@ -82,16 +135,24 @@
                     <div class="more-product-info">
                         <div class="more-product-info__left">Số lượng</div>
                         <div class="more-product-info__right">
-                            <input style="border: 1px solid #ccc;
-                      text-align: center;" type="number" value="1">
+                            <input #quantityTemplateVar
+                                class="product-count-input" type="number"
+                                value="1" min="1">
                         </div>
                     </div>
                     <div class="more-product-info">
                         <div class="more-product-info__left">
-                            <div class="d-flex align-item-center justify-content-between" style="width: 100%; ">
-                                <button style="background-color: var(--primary-color--); color: #fff " mat-raised-button>Mua ngay</button>
-                                <button style="background-color: var(--primary-color--); color: #fff " mat-raised-button>Thêm vào giỏ
-          hàng</button>
+                            <div class="d-flex align-item-center
+                                justify-content-between" style="width: 100%;">
+                                <button style="background-color:
+                                    var(--primary-color--); color: #fff"mat-raised-button
+                                    (click)="onClickBuyNow()">Mua
+                                    ngay</button>
+                                <button style="background-color:
+                                    var(--primary-color--); color: #fff"mat-raised-button
+                                    (click)="onClickAddToCart(quantityTemplateVar)">Thêm
+                                    vào giỏ
+                                    hàng</button>
                             </div>
                         </div>
                     </div>
@@ -99,8 +160,118 @@
             </li>
         </ng-container>
         <li class="product-detail__item shop-info-container">
-            <div class="shop-info-container__left"></div>
-            <div class="shop-info-container__right"></div>
+            <div class="shop-info-container__left">
+                <div class="shop-inf">
+                    <div class="stop-avatar">
+                        <img src="assets/img/product/3.png" alt="">
+                    </div>
+                    <div class="shop-more">
+                        <div class="shop-name">toystore</div>
+                        <div class="shop-active">
+                            <button mat-raised-button style="margin-right:
+                                20px">Chat ngay</button>
+                            <button style="background-color:
+                                var(--primary-color--); color: #fff"mat-raised-button>Xem
+                                shop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-info-container__right">
+                <div class="d-flex justify-content-around align-item-center">
+                    <div class="shop-tag">
+                        Đánh giá <span>3.3k</span>
+                    </div>
+                    <div class="shop-tag">
+                        Người theo dõi<span>2.5k</span>
+                    </div>
+                    <div class="shop-tag">
+                        Số sản phẩm <span>11</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-item-center">
+                    <div class="shop-tag">
+                        Tỉ lệ phản hồi <span>100%</span>
+                    </div>
+                    <div class="shop-tag">
+                        Tham gia <span>13 tháng trước</span>
+                    </div>
+                    <div class="shop-tag">
+                        Thời gian phản hồi <span>Trong vài phút</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="product-detail__item product-detail-inf-container">
+            <h1>Chi tiết sản phẩm</h1>
+            <ng-container *ngIf="(product$ | async) as product">
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Danh mục</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.category.name}}</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Chất liệu</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.material.name}}</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Xuất xứ</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.origin.name}}</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Kho hàng</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.repository}}</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Trạng thái</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.status.name}}</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Độ tuổi khuyến nghị</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.recommend.name}}</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Cân nặng</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.size.weight}}gr</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Chiều dài</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.size.length}}cm</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Chiều rộng</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.size.width}}cm</span>
+                    </div>
+                </div>
+                <div class="more-product-info">
+                    <div class="more-product-info__left">Chiều cao</div>
+                    <div class="more-product-info__right">
+                        <span>{{product.size.height}}cm</span>
+                    </div>
+                </div>
+            </ng-container>
+        </li>
+        <li class="product-detail__item product-detail-inf-container">
+            <h1>Mô tả sản phẩm</h1>
+            <ng-container *ngIf="(product$ | async) as product">
+                <p>{{product.description}}</p>
+            </ng-container>
         </li>
     </ul>
 </div>

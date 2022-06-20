@@ -25,22 +25,16 @@
 
           <div class="middel_right_info">
             <div class="header_wishlist">
-              <a href="wishlist.html"
-                ><img src="assets/img/user.png" alt=""
-              /></a>
+              <a href="wishlist.html"><img src="assets/img/user.png" alt="" /></a>
             </div>
             <div class="mini_cart_wrapper">
-              <a href="javascript:void(0)"
-                ><img src="assets/img/shopping-bag.png" alt=""
-              /></a>
+              <img src="assets/img/shopping-bag.png" alt="" />
               <span class="cart_quantity">2</span>
               <!--mini cart-->
               <div class="mini_cart">
                 <div class="cart_item">
                   <div class="cart_img">
-                    <a href="#"
-                      ><img src="assets/img/s-product/product.jpg" alt=""
-                    /></a>
+                    <a href="#"><img src="assets/img/s-product/product.jpg" alt="" /></a>
                   </div>
                   <div class="cart_info">
                     <a href="#">Sit voluptatem rhoncus sem lectus</a>
@@ -52,9 +46,7 @@
                 </div>
                 <div class="cart_item">
                   <div class="cart_img">
-                    <a href="#"
-                      ><img src="assets/img/s-product/product2.jpg" alt=""
-                    /></a>
+                    <a href="#"><img src="assets/img/s-product/product2.jpg" alt="" /></a>
                   </div>
                   <div class="cart_info">
                     <a href="#">Natus erro at congue massa commodo</a>
@@ -128,11 +120,7 @@
           </div>
 
           <div class="Offcanvas_footer">
-            <span
-              ><a href="#"
-                ><i class="fa fa-envelope-o"></i> info@drophunt.com</a
-              ></span
-            >
+            <span><a href="#"><i class="fa fa-envelope-o"></i> info@drophunt.com</a></span>
             <ul>
               <li class="facebook">
                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -162,18 +150,12 @@
   <div class="main_menu_area">
     <div class="container">
       <div class="row justify-content-center">
-        <div
-          class="col-lg-12 col-md-12 d-flex align-item-center justify-content-between"
-        >
+        <div class="col-lg-12 col-md-12 d-flex align-item-center justify-content-between">
           <div class="main_menu menu_position d-flex align-item-center">
             <nav class="d-flex align-item-center">
               <ul>
                 <li>
-                  <a
-                    [routerLink]="['/shop']"
-                    routerLinkActive="router-link-active"
-                    >Kênh người bán</a
-                  >
+                  <a [routerLink]="['/shop']" routerLinkActive="router-link-active">Kênh người bán</a>
                 </li>
                 <li>
                   <a [routerLink]="['/seller/barchart']">Trở thành người bán</a>
@@ -185,11 +167,7 @@
             <nav class="d-flex align-item-center">
               <ul>
                 <li>
-                  <a
-                    [routerLink]="['/shop']"
-                    routerLinkActive="router-link-active"
-                    >Đăng kí</a
-                  >
+                  <a [routerLink]="['/shop']" routerLinkActive="router-link-active">Đăng kí</a>
                 </li>
                 <li *ngIf="!(user$ | async)">
                   <a [routerLink]="['/login']">Đăng nhập</a>
@@ -210,14 +188,13 @@
                           <i class="fa-solid fa-pen"></i>Đơn mua
                         </li>
                         <li (click)="logout()" class="notification__item">
-                          <i class="fa-solid fa-arrow-right-from-bracket"></i
-                          >Đăng xuất
+                          <i class="fa-solid fa-arrow-right-from-bracket"></i>Đăng xuất
                         </li>
                         <!--  </ng-container> -->
                       </ul>
                     </div>
-                  </li></ng-container
-                >
+                  </li>
+                </ng-container>
               </ul>
             </nav>
           </div>
@@ -240,70 +217,41 @@
             <div class="middel_right">
               <div class="search-container search-container--color">
                 <input placeholder="Tìm kiếm sản phẩm..." type="text" [(ngModel)]="searchValue" />
-                <button class="search-btn" (click)="searchProductByName(searchValue)"><mat-icon>search</mat-icon></button>
+                <button class="search-btn" (click)="searchProductByName(searchValue)">
+                  <mat-icon>search</mat-icon>
+                </button>
               </div>
-              <div class="middel_right_info">
-                <div class="mini_cart_wrapper">
-                  <a [routerLink]="['/cart']"
-                    ><img src="assets/img/shopping-bag.png" alt=""
-                  /></a>
-                  <span class="cart_quantity">2</span>
-                  <!--mini cart-->
-                  <div class="mini_cart">
-                    <div class="cart_item">
-                      <div class="cart_img">
-                        <a href="#"
-                          ><img src="assets/img/s-product/product.jpg" alt=""
-                        /></a>
-                      </div>
-                      <div class="cart_info">
-                        <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                        <p>Qty: 1 X <span> $60.00 </span></p>
-                      </div>
-                      <div class="cart_remove">
-                        <a href="#"><i class="ion-android-close"></i></a>
-                      </div>
+              <div class="cart-container">
+                <ng-container *ngIf="(cart$ | async) as cart">
+                  <span class="cart-icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                      class="bi bi-cart" viewBox="0 0 16 16">
+                      <path
+                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+                    <div class="cart-badge">{{(cart.pendingOrders.length)}}</div>
+                    <div class="notification">
+                      <ul class="notification__list notification__list--color">
+                        <h4 style="margin: 0;
+                      padding: 10px;
+                      color: #999;border-bottom: 1px solid #ccc">Sản phẩm mới thêm</h4>
+                        <ng-container *ngFor="let pendingItem of cart.pendingOrders">
+                          <li class="notification__item">
+                            <div class="product-thumbnail">
+                              <!-- <ng-container *ngFor="let image of pendingItem.product.images"> -->
+                              <img [src]="directLinkImage + pendingItem.product.images[0].url" alt="">
+                              <!-- </ng-container> -->
+                            </div>
+                            <div class="product-name">{{pendingItem.product.name}}</div>
+                            <div class="product-price"><span
+                                style="color: var(--primary-color--);"> {{pendingItem.quantity}}x{{pendingItem.product.buyPrice |
+                                currency:'VND'}}</span></div>
+                          </li>
+                        </ng-container>
+                      </ul>
                     </div>
-                    <div class="cart_item">
-                      <div class="cart_img">
-                        <a href="#"
-                          ><img src="assets/img/s-product/product2.jpg" alt=""
-                        /></a>
-                      </div>
-                      <div class="cart_info">
-                        <a href="#">Natus erro at congue massa commodo</a>
-                        <p>Qty: 1 X <span> $60.00 </span></p>
-                      </div>
-                      <div class="cart_remove">
-                        <a href="#"><i class="ion-android-close"></i></a>
-                      </div>
-                    </div>
-                    <div class="mini_cart_table">
-                      <div class="cart_total">
-                        <span>Sub total:</span>
-                        <span class="price">$138.00</span>
-                      </div>
-                      <div class="cart_total mt-10">
-                        <span>total:</span>
-                        <span class="price">$138.00</span>
-                      </div>
-                    </div>
-
-                    <div class="mini_cart_footer">
-                      <div class="cart_button">
-                        <a href="cart.html">View cart</a>
-                      </div>
-                      <div class="cart_button">
-                        <a
-                          [routerLink]="['/checkout']"
-                          routerLinkActive="router-link-active"
-                          >Checkout</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <!--mini cart end-->
-                </div>
+                  </span>
+                </ng-container>
               </div>
             </div>
             <div class="middel_right">

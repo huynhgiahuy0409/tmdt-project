@@ -5,20 +5,24 @@
   <div class="row">
     <!-- Sidebar -->
     <div class="col-2">
-      <div class="row sidebar-container">
-        <div class="col-4 sidebar-icon" >
-          <mat-icon>account_circle</mat-icon>
+      <div class="sidebar-container">
+        <div class="header-container d-flex  bg-color">
+          <div class="d-flex justify-content-center align-item-center" >
+            <mat-icon class="">account_circle</mat-icon>
+          </div>
+          <div class="d-flex justify-content-center align-item-center">
+            <h4 class="sidebar-label font-weight-550">Tài khoản của bạn</h4>
+          </div>
         </div>
-        <div class="col-8 col-12 sidebar-head">
-          <h4 class="sidebar-label">Tài khoản của bạn</h4>
+        <div class="account-nav bg-color" *ngFor="let item of sidebarLabels;index as idx">
+            <div [routerLink]="[item[1] ]" routerLinkActive="sidebar-item-selected">{{item[0]}}</div>
         </div>
-      </div>
-      <div class="row account-nav" *ngFor="let item of sidebarLabels; first as fst">
-          <div [routerLink]="['/customer/' + item[1] ]" routerLinkActive="sidebar-item-selected">{{item[0]}}</div>
       </div>
     </div>
     <!-- Content page -->
     <div class="col-10">
-      <router-outlet></router-outlet>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
 </div>
