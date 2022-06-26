@@ -1,150 +1,3 @@
-<!--header area start-->
-<!--Offcanvas menu area start-->
-<div class="off_canvars_overlay"></div>
-<div class="Offcanvas_menu">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="canvas_open">
-          <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
-        </div>
-        <div class="Offcanvas_menu_wrapper">
-          <div class="canvas_close">
-            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
-          </div>
-          <div class="support_info">
-            <p>Any Enquiry: <a href="tel:">+56985475235</a></p>
-          </div>
-          <div class="top_right text-right">
-            <ul>
-              <li><a href="my-account.html"> My Account </a></li>
-              <li><a routerLink="/bread"> Checkout </a></li>
-            </ul>
-            <a routerLink="/bread" routerLinkActive="router-link-active"></a>
-          </div>
-
-          <div class="middel_right_info">
-            <div class="header_wishlist">
-              <a href="wishlist.html"><img src="assets/img/user.png" alt="" /></a>
-            </div>
-            <div class="mini_cart_wrapper">
-              <img src="assets/img/shopping-bag.png" alt="" />
-              <span class="cart_quantity">2</span>
-              <!--mini cart-->
-              <div class="mini_cart">
-                <div class="cart_item">
-                  <div class="cart_img">
-                    <a href="#"><img src="assets/img/s-product/product.jpg" alt="" /></a>
-                  </div>
-                  <div class="cart_info">
-                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                    <p>Qty: 1 X <span> $60.00 </span></p>
-                  </div>
-                  <div class="cart_remove">
-                    <a href="#"><i class="ion-android-close"></i></a>
-                  </div>
-                </div>
-                <div class="cart_item">
-                  <div class="cart_img">
-                    <a href="#"><img src="assets/img/s-product/product2.jpg" alt="" /></a>
-                  </div>
-                  <div class="cart_info">
-                    <a href="#">Natus erro at congue massa commodo</a>
-                    <p>Qty: 1 X <span> $60.00 </span></p>
-                  </div>
-                  <div class="cart_remove">
-                    <a href="#"><i class="ion-android-close"></i></a>
-                  </div>
-                </div>
-                <div class="mini_cart_table">
-                  <div class="cart_total">
-                    <span>Sub total:</span>
-                    <span class="price">$138.00</span>
-                  </div>
-                  <div class="cart_total mt-10">
-                    <span>total:</span>
-                    <span class="price">$138.00</span>
-                  </div>
-                </div>
-
-                <div class="mini_cart_footer">
-                  <div class="cart_button">
-                    <a href="cart.html">View cart</a>
-                  </div>
-                  <div class="cart_button">
-                    <a href="checkout.html"></a>
-                  </div>
-                </div>
-              </div>
-              <!--mini cart end-->
-            </div>
-          </div>
-          <div id="menu" class="text-left">
-            <ul class="offcanvas_main_menu">
-              <li class="menu-item-has-children active">
-                <a href="#">Kênh người bán</a>
-              </li>
-              <li class="menu-item-has-children">
-                <a [routerLink]="['/product']">Trở thành người bán</a>
-              </li>
-              <li class="menu-item-has-children">
-                <a href="#">pages </a>
-                <ul class="sub-menu">
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a [routerLink]="['/contact']">contact</a></li>
-                  <li><a href="privacy-policy.html">privacy policy</a></li>
-                  <li><a href="faq.html">Frequently Questions</a></li>
-                  <li><a href="login.html">login</a></li>
-                  <li><a href="register.html">register</a></li>
-                  <li><a href="forget-password.html">Forget Password</a></li>
-                  <li><a href="404.html">Error 404</a></li>
-                  <li><a href="cart.html">cart</a></li>
-                  <li><a href="tracking.html">tracking</a></li>
-                  <li><a href="checkout.html">checkout</a></li>
-                </ul>
-              </li>
-              <li class="menu-item-has-children">
-                <a href="#">blog</a>
-                <ul class="sub-menu">
-                  <li><a href="blog.html">blog</a></li>
-                  <li><a href="blog-details.html">blog details</a></li>
-                </ul>
-              </li>
-              <li class="menu-item-has-children">
-                <a href="login.html">my account</a>
-              </li>
-              <li class="menu-item-has-children">
-                <a href="contact.html"> Contact Us</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="Offcanvas_footer">
-            <span><a href="#"><i class="fa fa-envelope-o"></i> info@drophunt.com</a></span>
-            <ul>
-              <li class="facebook">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-              </li>
-              <li class="twitter">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-              </li>
-              <li class="pinterest">
-                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-              </li>
-              <li class="google-plus">
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-              </li>
-              <li class="linkedin">
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Offcanvas menu area end-->
 <header>
   <!--header bottom satrt-->
   <div class="main_menu_area">
@@ -155,7 +8,8 @@
             <nav class="d-flex align-item-center">
               <ul>
                 <li>
-                  <a [routerLink]="['/shop']" routerLinkActive="router-link-active">Kênh người bán</a>
+                  <a [routerLink]="['/seller']" fragment="seller" routerLinkActive="router-link-active">Kênh người
+                    bán</a>
                 </li>
                 <li>
                   <a [routerLink]="['/seller/barchart']">Trở thành người bán</a>
@@ -166,11 +20,11 @@
           <div class="main_menu menu_position d-flex align-item-center">
             <nav class="d-flex align-item-center">
               <ul>
-                <li>
-                  <a [routerLink]="['/shop']" routerLinkActive="router-link-active">Đăng kí</a>
+                <li *ngIf="!(user$ | async)">
+                  <a [routerLink]="['/buyer/login']">Đăng ký</a>
                 </li>
                 <li *ngIf="!(user$ | async)">
-                  <a [routerLink]="['/login']">Đăng nhập</a>
+                  <a [routerLink]="['/buyer/login']">Đăng nhập</a>
                 </li>
                 <ng-container *ngIf="user$ | async as user">
                   <li>
@@ -221,43 +75,64 @@
                   <mat-icon>search</mat-icon>
                 </button>
               </div>
-              <div class="cart-container">
-                <ng-container *ngIf="(cart$ | async) as cart">
-                  <span class="cart-icon-wrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                      class="bi bi-cart" viewBox="0 0 16 16">
-                      <path
-                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                    </svg>
-                    <div class="cart-badge">{{(cart.pendingOrders.length)}}</div>
-                    <div class="notification">
-                      <ul class="notification__list notification__list--color">
-                        <h4 style="margin: 0;
-                      padding: 10px;
-                      color: #999;border-bottom: 1px solid #ccc">Sản phẩm mới thêm</h4>
-                        <ng-container *ngFor="let pendingItem of cart.pendingOrders">
-                          <li class="notification__item">
-                            <div class="product-thumbnail">
-                              <!-- <ng-container *ngFor="let image of pendingItem.product.images"> -->
-                              <img [src]="directLinkImage + pendingItem.product.images[0].url" alt="">
-                              <!-- </ng-container> -->
-                            </div>
-                            <div class="product-name">{{pendingItem.product.name}}</div>
-                            <div class="product-price"><span
-                                style="color: var(--primary-color--);"> {{pendingItem.quantity}}x{{pendingItem.product.buyPrice |
-                                currency:'VND'}}</span></div>
-                          </li>
+              <div [routerLink]="['/buyer/cart']" class="cart-container">
+                <span class="cart-icon-wrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                  </svg>
+                  <div class="cart-badge">{{ totalPendingItem }}</div>
+                  <div class="notification">
+                    <ul class="notification__list notification__list--color cart">
+                      <h4 style="
+                          margin: 0;
+                          padding: 10px;
+                          color: #999;
+                          border-bottom: 1px solid #ccc;
+                        ">
+                        Sản phẩm mới thêm
+                      </h4>
+                      <ng-container *ngIf="cart$ | async as cart">
+                        <ng-container *ngIf="cart.cartItems.length > 0; else notPendingItem">
+                          <ng-container *ngFor="let cartItem of cart.cartItems">
+                            <ng-container *ngFor="let pendingItem of cartItem.pendingItems">
+                              <li class="notification__item">
+                                <div class="product-thumbnail">
+                                  <img [src]="
+                                      directLinkImage +
+                                      pendingItem.product.images[0].url
+                                    " alt="" />
+                                </div>
+                                <div class="product-name">
+                                  {{ pendingItem.product.name }}
+                                </div>
+                                <div class="product-price">
+                                  <span style="color: var(--primary-color--)">
+                                    {{ pendingItem.quantity }}x{{
+                                    pendingItem.product.buyPrice
+                                    | currency: "VND"
+                                    }}</span>
+                                </div>
+                              </li>
+                            </ng-container>
+                          </ng-container>
                         </ng-container>
-                      </ul>
-                    </div>
-                  </span>
-                </ng-container>
+                        <ng-template #notPendingItem>
+                          <img src="assets\img\no-items.jpg" alt="">
+                        </ng-template>
+                      </ng-container>
+                    </ul>
+                  </div>
+                </span>
               </div>
             </div>
             <div class="middel_right">
               <ul class="page-redirect__list">
                 <li class="page-redirect__item">Hàng mới</li>
-                <li class="page-redirect__item">Sản phẩm</li>
+                <li class="page-redirect__item" [routerLink]="['/buyer/product']">
+                  Sản phẩm
+                </li>
                 <li class="page-redirect__item">Giới tính</li>
                 <li class="page-redirect__item">Độ tuổi</li>
                 <li class="page-redirect__item">Thương hiệu</li>

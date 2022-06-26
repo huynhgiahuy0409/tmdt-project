@@ -19,7 +19,7 @@
       <ng-container matColumnDef="thumbnail">ks
         <th mat-header-cell *matHeaderCellDef> Ảnh </th>
         <td mat-cell *matCellDef="let element" class="product-thumbnail-wrap">
-          <img class="product-thumbnail" src="../../../../../assets/img/product/1.png" alt="">
+          <img class="product-thumbnail" [src]="directLinkImage + element.thumbnail" alt="">
         </td>
       </ng-container>
       <!-- productName Column -->
@@ -43,7 +43,7 @@
       <!-- price Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Giá </th>
-        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.price | currency: "VND"}} </td>
       </ng-container>
       <!-- warehouse Column -->
       <ng-container matColumnDef="warehouse">
@@ -51,16 +51,11 @@
         <td mat-cell *matCellDef="let element"> {{element.warehouse}} </td>
       </ng-container>
       <!-- warehouse Column -->
-      <ng-container matColumnDef="sales">
-        <th mat-header-cell *matHeaderCellDef> Danh số </th>
-        <td mat-cell *matCellDef="let element"> {{element.sales}} </td>
-      </ng-container>
-      <!-- warehouse Column -->
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> Sửa thông tin </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="warn">{{element.edit[0]}}</button>
-          <button mat-raised-button color="primary">{{element.edit[1]}}</button>
+          <button mat-raised-button style="background: var(--primary-color--); color: #fff">{{element.edit[0]}}</button>
+          <button mat-raised-button >{{element.edit[1]}}</button>
         </td>
       </ng-container>
 

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/buyer/model/user';
 import { UserService } from 'src/app/buyer/services/user.service';
+import { UserResponse } from 'src/app/_models/response';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -24,7 +24,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AccountComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
-  user$!: Observable<User | null>
+  user$!: Observable<UserResponse | null>
   contactFormGroup!: FormGroup;
   dataSource = ELEMENT_DATA;
   contactFormSetup = [
@@ -62,7 +62,7 @@ export class AccountComponent implements OnInit {
 })
 export class UpdateContactDiagLog {
   isDisable = true
-  user!: User;
+  user!: UserResponse;
   contactFormGroup!: FormGroup;
   constructor(private router: Router, private userService: UserService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
   }
@@ -81,8 +81,8 @@ export class UpdateContactDiagLog {
     })
   }
   onClickUpdate(){
-    let user: User = this.contactFormGroup.value
+    let user: UserResponse = this.contactFormGroup.value
     console.log(user)
-    this.userService.updateUser(user).subscribe()
+    this.userService.fetchUser(user).subscribe()
   }
 }

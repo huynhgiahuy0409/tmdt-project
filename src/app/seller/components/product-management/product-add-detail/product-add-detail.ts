@@ -36,6 +36,7 @@ import { ProductService } from 'src/app/seller/services/product.service';
 import { switchMap } from 'rxjs/operators';
 import { FileUploadService } from 'src/app/seller/services/file-upload.service';
 import { BrandService } from 'src/app/shared/services/brand.service';
+import { UserService } from 'src/app/buyer/services/user.service';
 export interface DynamicField {
   abstractControl: string;
   type: string;
@@ -241,6 +242,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
+    private userService: UserService,
     public productManagementService: ProductManagementService,
     private fb: UntypedFormBuilder,
     private categoryService: CategoryService,
@@ -394,7 +396,7 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
       recommendAgeCode: productDetailInfo.recommendAge,
     };
     this.productService
-      .addProduct(product)
+      .addProduct(product, this.userService.userBehaviorSubject.value!.id)
       .pipe(
         switchMap((productId) => {
           return this.fileUploadService.addProductImages(productId);

@@ -1,8 +1,8 @@
 import { JWT } from "./jwt";
-import { User } from "./user";
+import { UserResponse } from "./user";
 
 export class AuthenticationResponse{
-    user!: User;
+    user!: UserResponse;
     accessToken!: JWT;
     refreshToken!: JWT
 }

@@ -41,6 +41,7 @@ import { environment } from 'src/environments/environment';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ProductFilterChainService } from './services/product-filter-chain.service';
+import { RouterStateSnapshot } from '@angular/router';
 @NgModule({
   declarations: [
     BuyerComponent,
@@ -84,7 +85,7 @@ import { ProductFilterChainService } from './services/product-filter-chain.servi
       } as RecaptchaSettings,
     },
     CookieService,
-    ProductFilterChainService
+    ProductFilterChainService,
   ],
 })
 export class BuyerModule {}

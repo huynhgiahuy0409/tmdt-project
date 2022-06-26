@@ -14,6 +14,8 @@ import { PiechartComponent } from './components/piechart/piechart.component';
 import { RatingManagementComponent } from './components/rating-management/rating-management.component';
 import { MaterialModules } from '../material.module';
 import { PortalModule } from './components/portal/portal.module';
+import { ShopService } from './services/shop.service';
+import { ShopResolve } from './services/resolve/shop.resolve';
 
 @NgModule({
   declarations: [
@@ -32,5 +34,6 @@ import { PortalModule } from './components/portal/portal.module';
     PortalModule,
     MaterialModules,
   ],
+  providers: [ShopService]
 })
 export class SellerModule {}

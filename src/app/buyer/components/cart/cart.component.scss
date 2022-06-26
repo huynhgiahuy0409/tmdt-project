@@ -1,0 +1,45 @@
+::ng-deep .mat-checkbox .mat-checkbox-layout{
+    margin: 0
+}
+p{
+    margin-bottom: 0;
+}
+.cart-container{
+    width: 90%;
+    margin: 0 auto
+}
+.cart-row-wrap{
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    margin: 20px 0
+}
+.cart-row{
+    display: flex;
+    align-items: center;
+}
+.cart-row.header{
+    height: 55px;
+    padding: 0 10px
+}
+.cart-row.product{
+    padding: 10px
+}
+.cart-col{
+    flex: 1;
+    text-align: center;
+}
+.cart-col img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px
+}
+.cart-col:first-child{
+    flex: 2;
+    display: flex;
+    align-items: center;
+}
+.cart-col:first-child mat-checkbox{
+    margin-right: 10px
+}

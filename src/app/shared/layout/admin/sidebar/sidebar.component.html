@@ -8,9 +8,11 @@
           <img src="assets/img/s-product/product.jpg" alt="image" />
         </div>
         <div class="profile-name">
-          <p class="name">
-            Welcome Jane
-          </p>
+          <ng-container *ngIf="shop">
+            <p class="name">
+              Xin chào, {{shop.name}}
+            </p>
+          </ng-container>
         </div>
       </div>
     </li>
@@ -22,7 +24,6 @@
             Quản lý sản phẩm
           </mat-panel-title>
         </mat-expansion-panel-header>
-
         <p [routerLink]="['/seller/product-management/all']">Tất cả sản phẩm</p>
         <p [routerLink]="['/seller/product-management/category']">Thêm sản phẩm</p>
         <p>Sản phẩm vi phạm</p>

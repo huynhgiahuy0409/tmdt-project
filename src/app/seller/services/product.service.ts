@@ -13,10 +13,13 @@ export class ProductService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
-    param: {},
+    params: {},
   };
-  addProduct(product: Product): Observable<number> {
+  addProduct(product: Product, userId: number): Observable<number> {
     const url = `${DOMAIN}/api/product/add`;
+    this.httpOptions.params = {
+      userId: userId
+    }
     return this.httpClient.post<number>(url, product, this.httpOptions);
   }
   constructor(private httpClient: HttpClient) {}

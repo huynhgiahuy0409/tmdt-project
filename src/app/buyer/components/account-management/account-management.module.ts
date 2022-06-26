@@ -8,8 +8,9 @@ import { PurchaseHistoryComponent } from './purchase-history/purchase-history.co
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { DeliveryAddressComponent, UpdateAddressDiagLog } from './delivery-address/delivery-address.component';
 import { MaterialModules } from 'src/app/material.module';
-import { UserResolve } from './services/resolve/user.resovle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserResolve } from '../../services/resolve/user.resovle';
+import { ProvinceResolve } from '../../services/resolve/province.resolve';
 
 
 @NgModule({
@@ -29,6 +30,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [UserResolve]
+  providers: [UserResolve, ProvinceResolve]
 })
 export class AccountManagementModule { }

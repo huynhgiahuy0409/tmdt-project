@@ -6,12 +6,13 @@ import { BarchartComponent } from './components/barchart/barchart.component';
 import { PiechartComponent } from './components/piechart/piechart.component';
 import { RatingManagementComponent } from './components/rating-management/rating-management.component';
 import { LoginComponent } from '../buyer/components/login/login.component';
+import { AuthGuard } from '../_helpers/auth.guard';
+import { AuthGuardService } from '../shared/layout/common/auth/auth-guard.component';
 const routes: Routes = [
   {
     path: '',
     component: SellerComponent,
     children: [
-      { path: '', redirectTo: 'product-management', pathMatch: 'full' },
       { path: 'page', component: SellerPageComponent },
       { path: 'barchart', component: BarchartComponent },
       { path: 'piechart', component: PiechartComponent },
@@ -22,15 +23,20 @@ const routes: Routes = [
             (m) => m.PortalModule
           ),
       },
+      { path: 'rating', component: RatingManagementComponent },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      { path: '', redirectTo: 'product-management', pathMatch: 'full' },
       {
         path: 'product-management',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import(
             './components/product-management/product-management.module'
           ).then((m) => m.ProductManagementModule),
       },
-      { path: 'rating', component: RatingManagementComponent },
-      { path: 'sign-in', component: LoginComponent}
     ],
   },
 ];

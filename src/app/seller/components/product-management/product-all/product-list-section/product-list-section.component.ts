@@ -1,6 +1,11 @@
+import { DIRECT_LINK_IMAGE } from './../../../../../_models/constance';
+import { Observable } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProductResponse, ShopResponse } from 'src/app/_models/response';
+import { ShopService } from 'src/app/seller/services/shop.service';
+import { ActivatedRoute, Router } from '@angular/router';
 export interface PeriodicElement {
   productName: string;
   thumbnail: string;
@@ -8,108 +13,16 @@ export interface PeriodicElement {
   category: string;
   price: number;
   warehouse: number;
-  sales: number;
   edit: [string, string];
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    productName: 'Máy bay',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-  {
-    productName: 'Máy bay 1',
-    thumbnail: 'IMG.img',
-    SKU: 'MB199',
-    category: 'Đồ chơi trẻ em',
-    price: 200000,
-    warehouse: 10,
-    sales: 100,
-    edit: ['Sửa', 'Xem thêm'],
-  },
-];
 @Component({
   selector: 'app-product-list-section',
   templateUrl: './product-list-section.component.html',
   styleUrls: ['./product-list-section.component.scss'],
 })
 export class ProductListSectionComponent implements OnInit {
+  directLinkImage = `${DIRECT_LINK_IMAGE}/`
   displayedColumns: string[] = [
     'select',
     'thumbnail',
@@ -118,10 +31,11 @@ export class ProductListSectionComponent implements OnInit {
     'category',
     'price',
     'warehouse',
-    'sales',
     'edit',
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  shop$!: Observable<ShopResponse>;
+  dataSource!: MatTableDataSource<PeriodicElement>;
+  elementDataProducts: PeriodicElement[] = [];
   /* Prepare constructor for SelectionModel Object */
   allowMultiSelect = true;
   initialSelection: PeriodicElement[] = [];
@@ -130,11 +44,30 @@ export class ProductListSectionComponent implements OnInit {
     this.initialSelection
   );
   products!: any[];
-  constructor() {
+  constructor(private shopService: ShopService, private route: ActivatedRoute) {
+    let shop: ShopResponse | null = route.snapshot.data.shop;
+    let products: ProductResponse[] = shop!.products;
+    products.forEach((product) => {
+      console.log(product.images);
+      const { images, name, sku, category, buyPrice, repository } = product;
+      let thumbnail = images[0]?.url ? images[0].url : '';
+      let elementDataProduct: PeriodicElement = {
+        thumbnail: thumbnail,
+        SKU: sku,
+        category: category.name,
+        productName: name,
+        price: buyPrice,
+        warehouse: repository,
+        edit: ['Sửa', 'Xem'],
+      };
+      this.elementDataProducts.push(elementDataProduct);
+    });
+    this.dataSource = new MatTableDataSource(this.elementDataProducts);
     this.selection.changed.subscribe((v) => {
       console.log(v), console.log(this.selection.selected.length);
     });
   }
+  ngOnInit(): void {}
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -161,6 +94,4 @@ export class ProductListSectionComponent implements OnInit {
   }
   edit() {}
   seeMore() {}
-
-  ngOnInit(): void {}
 }

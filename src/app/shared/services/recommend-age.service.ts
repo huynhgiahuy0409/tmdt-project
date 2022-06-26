@@ -17,7 +17,7 @@ export class RecommendAgeService {
   };
   constructor(private httpClient: HttpClient) {}
   findAll() {
-    const url = `${DOMAIN}/api/recommend-age`;
+    const url = `${DOMAIN}/api/recommend-age/all`;
     return this.httpClient.get<RecommendAgeResponse[]>(url, this.httpOptions);
   }
   findPagination(pagination: Pagination): Observable<RecommendAgeResponse[]> {

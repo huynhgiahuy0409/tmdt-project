@@ -1,16 +1,15 @@
-import { PendingItem } from './../../../../_models/models';
-import { UserService } from './../../../services/user.service';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/buyer/services/product.service';
-import { ProductResponse } from 'src/app/_models/response';
+import { CartResponse, ProductResponse } from 'src/app/_models/response';
 import { map } from 'rxjs/operators';
 import { DIRECT_LINK_IMAGE } from 'src/app/_models/constance';
 import { CartService } from 'src/app/buyer/services/cart.service';
 import { PendingItemRequest } from 'src/app/_models/request';
 import { DialogService } from 'src/app/buyer/services/dialog.service';
+import { UserService } from 'src/app/buyer/services/user.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -48,16 +47,22 @@ export class ProductDetailComponent implements OnInit {
     }
   }
   onClickAddToCart(quantityTemplateVar: any) {
-    const pendingItem: PendingItemRequest = {
-      productId: this.productId,
-      quantity: Number.parseInt(quantityTemplateVar.value)
-    }
-    this.cartService.flushCart(pendingItem).subscribe(cart => {
-      this.dialogService.openDialog('500ms', '50ms', {
-        title: 'Thêm thành công',
-        content: 'Đã thêm sản phẩm vào giỏ hàng',
-        action: [{ type: 'payment', title: "Thanh toán ngay" },{ type: 'cart', title: "Xem giỏ hàng" }]
+    if (!this.userService.userBehaviorSubject.value) {
+      this.router.navigate(['/buyer/login'])
+    } else {
+      const cartId: number = this.cartService.cartBehaviorSubject.value!.id
+      const pendingItem: PendingItemRequest = {
+        productId: this.productId,
+        quantity: Number.parseInt(quantityTemplateVar.value)
+      }
+      this.cartService.flushCart(cartId,pendingItem).subscribe((cartResponse: CartResponse) => {
+        this.cartService.cartBehaviorSubject.next(cartResponse)
+        this.dialogService.openDialog('500ms', '50ms', {
+          title: 'Thêm thành công',
+          content: 'Đã thêm sản phẩm vào giỏ hàng',
+          action: [{ path: '/buyer/payment', title: "Thanh toán ngay" },{ path: '/buyer/cart', title: "Xem giỏ hàng" }]
+        })
       })
-    })
+    }
   }
 }

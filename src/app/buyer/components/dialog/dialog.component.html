@@ -1,15 +1,17 @@
-<h1 mat-dialog-title style="text-align: center; font-size: 2rem">
+<h1 mat-dialog-title>
   {{ this.data.title }}
 </h1>
 <div mat-dialog-content>
   {{ this.data.content }}
 </div>
-<div mat-dialog-actions style="justify-content: flex-end">
-  <button
-    [class.btn--primary-color]="idx == 0"mat-button
-    mat-dialog-close
-    *ngFor="let i of data.action; index as idx"
-    (click)="onClickAction()">
-    {{ i["title"] }}
-  </button>
-</div>
+<ng-container *ngIf="this.data.action">
+  <div mat-dialog-actions style="justify-content: flex-end">
+    <button
+      [class.btn--primary-color]="idx == 1"mat-button
+      mat-dialog-close
+      *ngFor="let i of data.action; index as idx"
+      (click)="onClickAction(idx)">
+      {{ i["title"] }}
+    </button>
+  </div>
+</ng-container>

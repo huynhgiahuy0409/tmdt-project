@@ -1,18 +1,24 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpParamsOptions,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DOMAIN } from 'src/app/_models/constance';
 import {
   AuthenticationRequest,
   RegisterAccountRequest,
 } from '../model/request';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { UserService } from './user.service';
-import { AuthenticationResponse } from '../model/response';
 import { CookieOptions, CookieService } from 'ngx-cookie-service';
 import { JWT } from '../model/jwt';
 import { ReAccount } from '../model/re-account';
 import { CartService } from './cart.service';
+import { AuthenticationResponse } from 'src/app/_models/response';
+import { FromObject } from './product.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -47,63 +53,76 @@ export class AuthService {
       this.httpOptions
     );
   }
-  generateMailOTP(registerAccountRequest: RegisterAccountRequest): Observable<RegisterAccountRequest> {
-    const url = `${DOMAIN}/api/otp/generateOtp`;
-    return this.httpClient.post<RegisterAccountRequest>(url, registerAccountRequest, this.httpOptions);
-  }
-  validOTP(
-    OTPNumbers: number[],
+  generateMailOTP(
     registerAccountRequest: RegisterAccountRequest
-  ) {
+  ): Observable<RegisterAccountRequest> {
+    const url = `${DOMAIN}/api/otp/generateOtp`;
+    return this.httpClient.post<RegisterAccountRequest>(
+      url,
+      registerAccountRequest,
+      this.httpOptions
+    );
+  }
+  validOTP(OTPNumbers: number[], username: string): Observable<boolean>{
     let OTP: string = '';
     OTPNumbers.forEach((number) => {
       OTP += number;
     });
-    this.httpOptions.params = { otpnum: Number.parseInt(OTP) };
+    // let fromObject: FromObject = {
+    //   OTPNumber: Number.parseInt(OTP),
+    //   username: username,
+    // };
+    // let paramsOptions: HttpParamsOptions = { fromObject };
+    // let params = new HttpParams(paramsOptions);
+    // this.httpOptions.params = params;
+    this.httpOptions.params = {
+      OTPNumber: Number.parseInt(OTP),
+      username: username
+    }
     const url = `${DOMAIN}/api/otp/validateOtp`;
-    return this.httpClient
-      .post(url, registerAccountRequest, this.httpOptions)
-      .pipe();
+    return this.httpClient.get<boolean>(url, this.httpOptions);
+  }
+  updateUser(
+    registerAccountRequest: RegisterAccountRequest
+  ): Observable<boolean> {
+    const url = `${DOMAIN}/api/user`;
+    return this.httpClient.post<boolean>(
+      url,
+      registerAccountRequest,
+      this.httpOptions
+    );
   }
   login(
     authenticateRequest: AuthenticationRequest
   ): Observable<AuthenticationResponse> {
     const url = `${DOMAIN}/api/login`;
-    return this.httpClient
-      .post<AuthenticationResponse>(url, authenticateRequest, this.httpOptions)
-      .pipe(
-        tap((authentication) => {
-          if (authentication) {
-            this.userService.userBehaviorSubject.next(authentication.user);
-            this.cartService.cartBehaviorSubject.next(authentication.user.cart)
-            this.accessTokenBehaviorSubject.next(authentication.accessToken);
-            this.storeRefreshToken(authentication.refreshToken);
-            this.startRefreshAccessTokenTimer(authentication.accessToken);
-          } else {
-            console.log('not found refresh token');
-          }
-        })
-      );
+    return this.httpClient.post<AuthenticationResponse>(
+      url,
+      authenticateRequest,
+      this.httpOptions
+    );
   }
-  refreshTokenTimeout: any
+  refreshTokenTimeout: any;
   private stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);
   }
   logout() {
-    return this.httpClient.get(`${DOMAIN}/api/revoke-token`, this.httpOptions).pipe(
-      map((value) => {
-        console.log(value)
-        return value != -1 ? true : false;
-      }),
-      tap(isLogout => {
-        if(isLogout){
-          console.log(isLogout)
-          this.userService.userBehaviorSubject.next(null)
-          this.accessTokenBehaviorSubject.next(null);
-          this.stopRefreshTokenTimer()
-        }
-      })
-    );
+    return this.httpClient
+      .get(`${DOMAIN}/api/revoke-token`, this.httpOptions)
+      .pipe(
+        map((value) => {
+          console.log(value);
+          return value != -1 ? true : false;
+        }),
+        tap((isLogout) => {
+          if (isLogout) {
+            this.userService.userBehaviorSubject.next(null);
+            this.accessTokenBehaviorSubject.next(null);
+            this.cookieService.delete('refresh-token');
+            this.stopRefreshTokenTimer();
+          }
+        })
+      );
   }
   storeRefreshToken(refreshToken: JWT) {
     const { token, tokenExpirationDate } = refreshToken;
@@ -130,7 +149,9 @@ export class AuthService {
             this.accessTokenBehaviorSubject.next(
               authenticationResponse.accessToken
             );
-            this.cartService.cartBehaviorSubject.next(authenticationResponse.user.cart)
+            this.cartService.cartBehaviorSubject.next(
+              authenticationResponse.user.cart
+            );
             this.storeRefreshToken(authenticationResponse.refreshToken);
             this.startRefreshAccessTokenTimer(
               authenticationResponse.accessToken
@@ -144,7 +165,7 @@ export class AuthService {
   private startRefreshAccessTokenTimer(accessJWT: JWT): void {
     const refreshToken = this.cookieService.get('refresh-token');
     const timeOut = accessJWT.tokenExpirationDate - Date.now() - 5000;
-    console.log(timeOut)
+    console.log(timeOut);
     this.refreshTokenTimeout = setTimeout(() => {
       if (refreshToken) {
         this.refreshAccessToken().subscribe();
@@ -153,15 +174,13 @@ export class AuthService {
       }
     }, timeOut);
   }
-  checkExistUser(username: string): Observable<boolean>{
+  checkExistUser(username: string): Observable<boolean> {
     const url = `${DOMAIN}/api/check-user`;
     this.httpOptions.params = { username: username };
-    return this.httpClient
-      .get<boolean>(url, this.httpOptions)
+    return this.httpClient.get<boolean>(url, this.httpOptions).pipe();
   }
-  resetPassword(reAccount: ReAccount): Observable<boolean>{
+  resetPassword(reAccount: ReAccount): Observable<boolean> {
     const url = `${DOMAIN}/api/reset-password`;
-    return this.httpClient
-      .post<boolean>(url, reAccount, this.httpOptions)
+    return this.httpClient.post<boolean>(url, reAccount, this.httpOptions);
   }
 }

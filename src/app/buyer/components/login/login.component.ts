@@ -1,10 +1,15 @@
 import { interval, of } from 'rxjs';
 import {
   AuthenticationRequest,
-  RegisterAccountRequest,
+  RegisterAccountRequest as UserAccountRequest,
 } from './../../model/request';
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import {
   FormGroup,
   FormBuilder,
@@ -22,8 +27,11 @@ import {
 import { PostService } from '../../post.service';
 import { AuthService } from '../../services/auth.service';
 import {
+  catchError,
+  concatMap,
   debounce,
   debounceTime,
+  filter,
   map,
   switchMap,
   take,
@@ -34,6 +42,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ReAccount } from '../../model/re-account';
+import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 export function matchedPassword(c: AbstractControl) {
   const passwordValue = c.get('password')?.value;
   const confirmPasswordValue = c.get('confirmPassword')?.value;
@@ -62,6 +72,14 @@ export class LoginComponent implements OnInit {
   isForgetPassword: boolean = false;
   pageRedirect: 'login' | 'register' | 'forget-password' | 'valid-otp' =
     'login';
+  isExistUsername: boolean = false;
+  isLoading: boolean = false;
+  isValidOTPPage: boolean = false;
+  userAccount!: UserAccountRequest;
+  nextPath!: string;
+  isExistUser: boolean = false;
+  isNotifyNotExistUser = false;
+  isSuccessResetPassword = false;
   constructor(
     private fb: FormBuilder,
     private socialAuthService: SocialAuthService,
@@ -80,9 +98,6 @@ export class LoginComponent implements OnInit {
         Validators.minLength(10),
       ]),
       /*  recaptchaReactive: new FormControl('recaptcha', Validators.required), */
-    });
-    this.loginForm.valueChanges.subscribe((e) => {
-      console.log(e);
     });
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -119,10 +134,9 @@ export class LoginComponent implements OnInit {
       console.log(value)
     );
   }
-  get OTPNumbers(): FormArray {
-    return this.OTPForm.get('OTPNumbers') as FormArray;
-  }
   ngOnInit(): void {
+    this.nextPath = this.activatedRoute.snapshot.queryParams.next;
+
     this.runSlideShow(5000);
     this.registerForm.get('passwordGr')?.valueChanges.subscribe((e) => {
       let passwordValue = this.registerForm
@@ -138,6 +152,9 @@ export class LoginComponent implements OnInit {
       this.setLevelPassword('level-password__progress-bar-reset-password', e);
     });
     this.page = this.activatedRoute.snapshot.url[0].path;
+  }
+  get OTPNumbers(): FormArray {
+    return this.OTPForm.get('OTPNumbers') as FormArray;
   }
   loginWithFacebook() {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
@@ -205,101 +222,240 @@ export class LoginComponent implements OnInit {
       username: email,
       password: password,
     };
-    this.authService
-      .login(authenticationRequest)
-      .pipe(
-        tap((result) => {
-          this.isLoading = false;
-          if (result) {
-            this.openRegisterDialog('500ms', '500ms', {
-              title: 'Thành công',
-              content: 'Bạn đã đăng nhập thành công. Mua sắm ngay!',
-              action: [{ type: 'login-success', title: 'Trở lại trang chủ' }],
-            });
-          } else {
-            this.isFailLogin = true;
-          }
-        })
-      )
-      .subscribe();
+    this.authService.login(authenticationRequest).subscribe(
+      (authResponse) => {
+        this.isLoading = false;
+        if (authResponse) {
+          let nextPath = this.nextPath ? this.nextPath : '/buyer/home';
+          let data = {
+            title: 'Thành công',
+            content: 'Bạn đã đăng nhập thành công',
+            action: [{ path: nextPath, title: 'Trở lại trang chủ' }],
+          };
+        } else {
+          this.isFailLogin = true;
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.isLoading = false;
+        const matDialog = this.openDialog('500ms', '500ms', {
+          title: 'Lỗi',
+          content: `Đăng nhập không thành công: ${error.status}`,
+        });
+        matDialog.afterClosed().subscribe((response) => {
+          this.pageRedirect = 'login';
+          this.page = 'login';
+        });
+      }
+    );
   }
-  isExistUsername: boolean = false;
-  isLoading: boolean = false;
-  isValidOTPPage: boolean = false;
-  registerAccount!: RegisterAccountRequest;
   onRegisterSubmit(formValue: any) {
     this.isLoading = true;
-    const registerAccountRequest: RegisterAccountRequest = {
+    const registerAccountRequest: UserAccountRequest = {
       username: formValue['email'],
       password: formValue.passwordGr['password'],
       fullName: formValue['fullName'],
     };
     this.authService
-      .register(registerAccountRequest)
+      .checkExistUser(registerAccountRequest.username)
       .pipe(
-        switchMap((response) => {
-          console.log(response);
-          if (response) {
-            this.isLoading = true;
-            this.registerAccount = response;
-            return this.authService.generateMailOTP(response);
-          } else {
+        switchMap((isExistUser) => {
+          if (isExistUser) {
             this.isLoading = false;
             this.isExistUsername = true;
             return of(null);
-          }
-        }),
-        tap((value) => {
-          if (value) {
-            this.setPageRedirect('valid-otp');
-            this.isLoading = false;
+          } else {
+            return this.authService.generateMailOTP(registerAccountRequest);
           }
         })
       )
-      .subscribe();
+      .subscribe(
+        (response) => {
+          if (response != null) {
+            this.isLoading = false;
+            this.userAccount = registerAccountRequest;
+            const matDialog = this.openDialog('500ms', '500ms', {
+              title: 'Tài khoản hợp lệ',
+              content: `Đã tạo mã OTP. Vui lòng kiểm tra mail để tiến hành đổi mậu khẩu`,
+            });
+            matDialog.afterClosed().subscribe((response) => {
+              this.setPageRedirect('valid-otp');
+              this.validOTPFor = 'register';
+            });
+          }
+        },
+        (error: HttpErrorResponse) => {
+          this.isLoading = false;
+          const matDialog = this.openDialog('500ms', '500ms', {
+            title: 'Lỗi',
+            content: `Lỗi tạo mail OTP: ${error.status}`,
+          });
+          matDialog.afterClosed().subscribe((response) => {
+            this.pageRedirect = 'login';
+            this.page = 'login';
+          });
+        }
+      );
   }
+  validOTPFor!: string;
   onValidOTPSubmit() {
+    this.isLoading = true;
     let OTPNumberValue = this.OTPForm.get('OTPNumbers')!.value;
     this.authService
-      .validOTP(OTPNumberValue, this.registerAccount)
-      .pipe(
-        tap((value) => {
-          if (value) {
-            this.openRegisterDialog('1000ms', '500ms', {
-              title: 'Thành công',
-              content: 'Đăng kí thành công. Đăng nhập ngay!',
-              action: [
-                { type: 'register-success', title: 'Trở lại trang đăng nhập' },
-              ],
+      .validOTP(OTPNumberValue, this.userAccount.username)
+      .subscribe(
+        (isValid) => {
+          this.isLoading = false;
+          if (isValid) {
+            let data;
+            if (this.validOTPFor == 'register') {
+              data = {
+                title: 'Xác thực công công',
+                content:
+                  'Xác thực mã thành công. Tài khoản đã được tạo. Đăng nhập ngay!',
+                action: [
+                  { path: '/buyer/login', title: 'Trở lại trang đăng nhập' },
+                ],
+              };
+            } else if (this.validOTPFor == 'forget-password') {
+              data = {
+                title: 'Xác thực thành công',
+                content: 'Xác thực mã thành công. Vui lòng nhập mật khẩu mới',
+              };
+            }
+            const matDialog = this.openDialog('1000ms', '500ms', data);
+            matDialog.afterClosed().subscribe((response) => {
+              if (this.validOTPFor == 'register') {
+                this.setPageRedirect('login');
+                this.page = 'login';
+                this.userService.updateUser(this.userAccount).subscribe();
+              } else if (this.validOTPFor == 'forget-password') {
+                this.setPageRedirect('forget-password');
+              }
+              this.OTPForm.reset();
             });
           } else {
+            this.openDialog('1000ms', '500ms', {
+              title: 'Xác thực thất bại',
+              content: 'Xác thực mã thất bại. Vui lòng kiểm tra mail',
+              action: [
+                { path: '/buyer/login', title: 'Trở lại trang đăng nhập' },
+              ],
+            });
+            this.OTPForm.reset();
           }
-        })
-      )
-      .subscribe();
+        },
+        (error) => {
+          this.isLoading = false;
+          const matDialog = this.openDialog('500ms', '500ms', {
+            title: 'Lỗi',
+            content: `Lỗi xác thực OTP: ${error.status}`,
+          });
+          matDialog.afterClosed().subscribe((response) => {
+            this.pageRedirect = 'login';
+            this.page = 'login';
+          });
+        }
+      );
   }
-  private openRegisterDialog(
+
+  resetPassword() {
+    this.isLoading = true;
+    const { email, password } = this.forgetPasswordForm.value;
+    const userAccountRequest: UserAccountRequest = {
+      username: email,
+      password: password,
+      fullName: '',
+    };
+    if (!this.isExistUser) {
+      this.authService
+        .checkExistUser(email)
+        .pipe(
+          switchMap((isExistUser) => {
+            if (isExistUser) {
+              this.isNotifyNotExistUser = false;
+              this.userAccount = userAccountRequest;
+              return this.authService.generateMailOTP(userAccountRequest);
+            } else {
+              this.isNotifyNotExistUser = true;
+              this.isExistUser = false;
+              return of(null);
+            }
+          })
+        )
+        .subscribe(
+          (response) => {
+            this.isLoading = false;
+            if (response != null) {
+              const matDialog = this.openDialog('500ms', '500ms', {
+                title: 'Tài khoản hợp lệ',
+                content: `Đã tạo mã OTP. Vui lòng kiểm tra mail để tiến hành đổi mật khẩu`,
+              });
+              setTimeout(() => {
+                matDialog.close();
+                this.setPageRedirect('valid-otp');
+                this.isExistUser = true;
+                this.validOTPFor = 'forget-password';
+              }, 3000);
+            }
+          },
+          (error: HttpErrorResponse) => {
+            this.isLoading = false;
+            const matDialog = this.openDialog('500ms', '500ms', {
+              title: 'Server lỗi',
+              content: `Lỗi tạo mail OTP: ${error.status}`,
+            });
+            matDialog.afterClosed().subscribe((response) => {
+              this.pageRedirect = 'login';
+              this.page = 'login';
+            });
+          }
+        );
+    } else {
+      this.userService.updateUser(userAccountRequest).subscribe(
+        (response) => {
+          this.isLoading = false;
+          const matDialog = this.openDialog('1000ms', '500ms', {
+            title: 'Cập nhật thành công',
+            content: 'Mật khẩu đã được đổi lại. Đăng nhập ngay!',
+          });
+          matDialog.afterClosed().subscribe((response) => {
+            this.setPageRedirect('login');
+            this.page = 'login';
+            this.isExistUser = false;
+            this.forgetPasswordForm.reset();
+          });
+        },
+        (error) => {
+          this.isLoading = false;
+          const matDialog = this.openDialog('500ms', '500ms', {
+            title: 'Server lỗi',
+            content: `Lỗi cập nhật lại mật khẩu: ${error}`,
+          });
+          matDialog.afterClosed().subscribe((response) => {
+            this.pageRedirect = 'login';
+            this.page = 'login';
+            this.isExistUser = false;
+          });
+          this.forgetPasswordForm.reset();
+        }
+      );
+    }
+  }
+  /* Helper function */
+  private openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string,
     data: any
-  ): void {
+  ): MatDialogRef<DialogComponent, any> {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: 'auto',
       enterAnimationDuration,
       exitAnimationDuration,
       data: data,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.event === 'login') {
-        this.setPageRedirect('login');
-        this.OTPForm.reset();
-      } else if (result.event === 'home') {
-        this.router.navigate(['/home']);
-        this.loginForm.reset();
-      }
-    });
+    return dialogRef;
   }
-
   checkStrength(p: string) {
     let force = 0;
     const regex = /[$-/:-?{-~!"^_@`\[\]]/g;
@@ -387,51 +543,12 @@ export class LoginComponent implements OnInit {
       this.registerForm.reset();
     }
   }
-  isExistUser: boolean = false;
-  isNotifyNotExistUser = false;
-  isSuccessResetPassword = false;
-  checkUser() {
-    const { email, password } = this.forgetPasswordForm.value;
-    this.authService.checkExistUser(email).subscribe((isExistUser) => {
-      this.isExistUser = isExistUser === true ? true : false;
-      this.isNotifyNotExistUser = isExistUser === false ? true : false;
-      return isExistUser == true ? true : false;
-    });
-  }
-  resetPassword() {
-    const { email, password } = this.forgetPasswordForm.value;
-    if (this.isExistUser === false) {
-      this.authService.checkExistUser(email).subscribe((isExistUser) => {
-        this.isExistUser = isExistUser === true ? true : false;
-        this.isNotifyNotExistUser = isExistUser === false ? true : false;
-        return isExistUser == true ? true : false;
-      });
-    } else {
-      const reAccount: ReAccount = {
-        username: email,
-        newPassword: password,
-      };
-      this.authService
-        .resetPassword(reAccount)
-        .pipe(
-          tap((update) => {
-            if (update == true) {
-              this.isSuccessResetPassword = true;
-              this.openRegisterDialog('500ms', '500ms', {
-                title: 'Mật khẩu đặt lại thành công',
-                content: `Bạn đã thành công đặt lại mật khẩu cho tài khoản ${reAccount.username}`,
-                action: [
-                  {
-                    type: 'reset-password-success',
-                    title: 'Trở lại trang đăng nhập',
-                  },
-                ],
-              });
-              this.forgetPasswordForm.reset();
-            }
-          })
-        )
-        .subscribe();
+  onClickBackOTP() {
+    if (this.validOTPFor == 'register') {
+      this.setPageRedirect('register');
+    } else if (this.validOTPFor == 'forget-password') {
+      this.setPageRedirect('forget-password');
+      this.isExistUser = false;
     }
   }
 }

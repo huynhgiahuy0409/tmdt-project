@@ -27,3 +27,12 @@ export interface PendingItemRequest{
     productId: number,
     quantity: number
 }
+export interface AddressRequest{
+    fullName: string,
+    phoneNumber: string,
+    detailAddress: string,
+    wardId: number,
+    districtId: number,
+    provinceId: number,
+    status: number
+}

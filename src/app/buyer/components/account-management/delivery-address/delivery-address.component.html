@@ -7,23 +7,32 @@
         <h4 class="header-label">Địa chỉ của tôi</h4>
       </div>
       <div class="">
-        <button mat-raised-button class="crimson-color" (click)="onClickUpdateOrAddAddress()"><mat-icon>add</mat-icon>Thêm địa chỉ mới</button>
+        <button mat-raised-button class="crimson-color" (click)="onClickAddAddress()"><mat-icon>add</mat-icon>Thêm địa chỉ mới</button>
       </div>
     </div>
     <ng-container *ngIf="(user$ | async) as user">
       <ng-container *ngFor="let address of user.addresses">
-        <div class="main-container">
-          <div class="d-flex">
-            <p class="title-label">Họ tên</p>
-            <p>{{address.fullName}}</p>
+        <div class="main-container d-flex" style="margin: 0 10px; border-bottom: .5px solid #ccc; border-top: .5px solid #ccc">
+          <div style="flex: 1">
+            <div class="d-flex">
+              <p class="title-label">Họ tên</p>
+              <p>{{address.fullName}}</p>
+              <div class="default-tag d-flex align-items-md-center justify-content-md-center" *ngIf="address.status == 1">
+                Mặc định
+              </div>
+            </div>
+            <div class="d-flex">
+              <p class="title-label">Số điện thoại</p>
+              <p>{{address.phoneNumber}}</p>
+            </div>
+            <div class="d-flex">
+              <p class="title-label">Địa chỉ</p>
+              <p>{{address.detailAddress}}-{{address.ward.prefix}} {{address.ward.name}}, {{address.district.prefix}} {{address.district.name}}, {{address.province.name}}</p>
+            </div>
           </div>
-          <div class="d-flex">
-            <p class="title-label">Số điện thoại</p>
-            <p>{{address.phoneNumber}}</p>
-          </div>
-          <div class="d-flex">
-            <p class="title-label">Địa chỉ</p>
-            <p>{{address.detailAddress}} - {{address.detailAddress}},{{address.ward}},{{address.district}},{{address.province}}</p>
+          <div class="">
+              <button style="margin: 0 5px" mat-raised-button class="crimson-color" (click)="onClickEditAddress(address)"><mat-icon>edit</mat-icon>Sửa</button>
+              <button [disabled]="address.status == 1" style="margin: 0 5px; background-color: unset; color: unset " mat-raised-button class="crimson-color">Thiết lập mặc định</button>
           </div>
         </div>
       </ng-container>

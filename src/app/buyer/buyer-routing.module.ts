@@ -21,6 +21,8 @@ import { BrandResolve } from '../shared/services/resolve.ts/brand.resolve';
 import { ProductResolve } from '../shared/services/resolve.ts/product.resolve';
 import { RecommendAgeResolve } from '../shared/services/resolve.ts/recommend-age.resolve';
 import { AuthGuard } from '../_helpers/auth.guard';
+import { SellerModule } from '../seller/seller.module';
+import { SellerRoutingModule } from '../seller/seller-routing.module';
 
 const routes: Routes = [
   {
@@ -31,7 +33,6 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'contact-us', component: ContactComponent },
       { path: 'about-us', component: AboutUsComponent },
-      { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignUpComponent },
       { path: 'reset', component: ResetComponent },
       { path: 'register', component: RegisterComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
         component: CheckoutComponent,
         canActivate: [AuthGuardService],
       },
+      { path: 'login', component: LoginComponent },
       { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
       { path: 'payment', component: ShopComponent },
       { path: 'shop', component: ShopComponent },
@@ -73,6 +75,7 @@ const routes: Routes = [
       },
     ],
   },
+  
 ];
 
 @NgModule({

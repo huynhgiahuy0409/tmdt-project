@@ -17,7 +17,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Chọn thể loại</mat-label>
             <mat-select name="food" formControlName="category">
-              <mat-option *ngFor="let category of categories" [value]="category">
+              <mat-option *ngFor="let category of categories" [value]="category.code">
                 {{category.name}}
               </mat-option>
             </mat-select>

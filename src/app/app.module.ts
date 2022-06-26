@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '.';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { PageNotFoundComponent } from './shared/layout/common/page-not-found/page-not-found.component';
 import { RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from './core/core.module';
 import { SpinnerService } from './shared/services/spinner.service';
 import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -57,6 +58,7 @@ import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
       } as RecaptchaSettings,
     },
     SpinnerService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

@@ -1,45 +1,63 @@
-<form [formGroup]="addressFormGroup">
-    <h1 mat-dialog-title style="font-size: 1.8rem">Thay đổi thông tin liên hệ</h1>
-    <mat-dialog-content class="mat-typography">
-      <div class="d-flex">
-        <mat-form-field appearance="fill" style="width: 100%">
-          <mat-label>Họ tên</mat-label>
-          <input matInput formControlName="fullName">
-        </mat-form-field>
-        <mat-form-field appearance="fill" style="width: 100%">
-          <mat-label>Số điện thoại</mat-label>
-          <input matInput formControlName="phoneNumber">
-        </mat-form-field>
-      </div>
-      <div class="d-flex">
-        <mat-form-field [disabled]="disableSelect == true" formControlName="province" appearance="fill">
+<form [formGroup]="addressFormGroup" (ngSubmit)="onClickSave()">
+  <h1 mat-dialog-title style="font-size: 1.8rem">Thay đổi thông tin liên hệ</h1>
+  <mat-dialog-content class="mat-typography">
+    <div class="d-flex justify-content-lg-between">
+      <mat-form-field appearance="fill" style="flex: 1">
+        <mat-label>Họ tên</mat-label>
+        <input matInput formControlName="fullName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="flex: 1; margin-left: 10px">
+        <mat-label>Số điện thoại</mat-label>
+        <input matInput formControlName="phoneNumber">
+      </mat-form-field>
+    </div>
+    <div class="d-flex justify-content-lg-between">
+    <ng-container formGroupName="proDisGroup">
+        <mat-form-field appearance="fill">
           <mat-label>Tỉnh/Thành phố</mat-label>
-          <mat-select>
-            <mat-option>
-              1
+          <mat-select formControlName="province">
+            <mat-option [value]="province.id" *ngFor="let province of provinceAll">
+              {{province.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field formControlName="district" appearance="fill">
+        <mat-form-field style="margin: 0 10px" appearance="fill">
           <mat-label>Quận/Huyện</mat-label>
-          <mat-select>
-            <mat-option>
-              1
-            </mat-option>
+          <mat-select [disabled]="addressFormGroup.get('proDisGroup')!.get('province')!.invalid" formControlName="district">
+            <ng-container *ngIf="(districts$ | async) as districts">
+              <ng-container *ngFor="let district of districts">
+                <mat-option [value]="district.id">
+                  {{district.name}}
+                </mat-option>
+              </ng-container>
+            </ng-container>
           </mat-select>
         </mat-form-field>
-        <mat-form-field formControlName="ward" appearance="fill">
-          <mat-label>Phường/Xã</mat-label>
-          <mat-select>
-            <mat-option>
-              1
-            </mat-option>
+      </ng-container>
+      <mat-form-field appearance="fill">
+        <mat-label>Phường/Xã</mat-label>
+        <mat-select [disabled]="addressFormGroup.get('proDisGroup')!.get('district')!.invalid" formControlName="ward">
+            <ng-container *ngIf="(wards$ | async) as wards">
+              <ng-container *ngFor="let ward of wards">
+                <mat-option [value]="ward.id">
+                  {{ward.name}}
+                </mat-option>
+              </ng-container>
+            </ng-container>
           </mat-select>
         </mat-form-field>
       </div>
-      </mat-dialog-content>
-      <mat-dialog-actions align="end">
-        <button mat-raised-button mat-dialog-close="contactFormGroup" class="crimson-color" type='submit'>Lưu địa chỉ</button>
-        <button mat-raised-button mat-dialog-close class="crimson-color">Huỷ</button>
-      </mat-dialog-actions>
+      <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+        <mat-label>Địa chỉ cụ thể</mat-label>
+        <input formControlName="detailAddress" matInput>
+      </mat-form-field>
+      <section disabled>
+        <mat-checkbox [disabled]="addressFormGroup.value.status == 1" formControlName="status">Đặt làm địa chỉ mặc định</mat-checkbox>
+      </section>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close="contactFormGroup" [disabled]="addressFormGroup.invalid" class="crimson-color" type='submit'>Lưu địa
+      chỉ</button>
+    <button mat-raised-button mat-dialog-close class="crimson-color">Huỷ</button>
+  </mat-dialog-actions>
 </form>

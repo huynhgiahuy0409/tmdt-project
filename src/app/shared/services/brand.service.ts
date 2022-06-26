@@ -17,7 +17,7 @@ export class BrandService {
   };
   constructor(private httpClient: HttpClient) {}
   findAll(): Observable<BrandResponse[]> {
-    const url = `${DOMAIN}/api/brand`;
+    const url = `${DOMAIN}/api/brand/all`;
     return this.httpClient.get<BrandResponse[]>(url, this.httpOptions);
   }
   findPagination(pagination: Pagination): Observable<BrandResponse[]> {

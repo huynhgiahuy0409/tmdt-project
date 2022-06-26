@@ -1,7 +1,6 @@
 <div class="login-page">
   <div class="container">
     <!-- Change version -->
-
     <div class="left">
       <img
         id="hinh1"
@@ -77,12 +76,24 @@
         <div class="right-form__content">
           <div class="content">
             <div class="content__title">
-              <p *ngIf="pageRedirect == 'login' && this.page == 'login'">Đăng nhập</p>
-              <p *ngIf="pageRedirect == 'register' && this.page == 'login'">Đăng kí</p>
-              <p *ngIf="pageRedirect == 'login' && this.page == 'sign-in'">Đăng nhập vào Kênh người bán</p>
-              <p *ngIf="pageRedirect == 'register' && this.page == 'sign-in'">Đăng kí với tư cách người bán</p>
-              <p *ngIf="pageRedirect == 'forget-password'&& !isExistUser ">Đặt lại mật khẩu</p>
-              <p *ngIf="pageRedirect == 'forget-password' && isExistUser">Thiết lập mật khẩu</p>
+              <p *ngIf="pageRedirect == 'login' && this.page == 'login'">
+                Đăng nhập
+              </p>
+              <p *ngIf="pageRedirect == 'register' && this.page == 'login'">
+                Đăng kí
+              </p>
+              <p *ngIf="pageRedirect == 'login' && this.page == 'sign-in'">
+                Đăng nhập vào Kênh người bán
+              </p>
+              <p *ngIf="pageRedirect == 'register' && this.page == 'sign-in'">
+                Đăng kí với tư cách người bán
+              </p>
+              <p *ngIf="pageRedirect == 'forget-password' && !isExistUser">
+                Đặt lại mật khẩu
+              </p>
+              <p *ngIf="pageRedirect == 'forget-password' && isExistUser">
+                Thiết lập mật khẩu
+              </p>
             </div>
             <ng-container *ngIf="pageRedirect == 'login'">
               <form
@@ -235,7 +246,9 @@
                 <div class="separate-line"></div>
                 <div class="content__form__more-wrap">
                   <p (click)="setPageRedirect('register')">Đăng ký tài khoản</p>
-                  <p (click)="setPageRedirect('forget-password')">Quên mật khẩu?</p>
+                  <p (click)="setPageRedirect('forget-password')">
+                    Quên mật khẩu?
+                  </p>
                 </div>
               </form>
             </ng-container>
@@ -444,7 +457,10 @@
                 class="content__form"
               >
                 <!-- email -->
-                <div class="content__form__input-wrap" *ngIf="isExistUser === false">
+                <div
+                  class="content__form__input-wrap"
+                  *ngIf="isExistUser === false"
+                >
                   <div class="content__form__input">
                     <i class="far fa-paper-plane"></i>
                     <input
@@ -458,28 +474,34 @@
                   <div
                     class="content__form__input-notify"
                     *ngIf="
-                    forgetPasswordForm.hasError('email', ['email']) &&
-                    forgetPasswordForm.get('email')?.touched
+                      forgetPasswordForm.hasError('email', ['email']) &&
+                      forgetPasswordForm.get('email')?.touched
                     "
                   >
                     <p>Tài khoản không hợp lệ</p>
                     <p>Ví dụ: nguyenvana@gmail.com</p>
                   </div>
-                  <div class="content__form__input-notify" *ngIf="isNotifyNotExistUser && forgetPasswordForm.get('email')!.valid">
+                  <div
+                    class="content__form__input-notify"
+                    *ngIf="
+                      isNotifyNotExistUser &&
+                      forgetPasswordForm.get('email')!.valid
+                    "
+                  >
                     <p>Tài khoản không tồn tại</p>
                   </div>
                   <div
                     class="content__form__input-notify"
                     *ngIf="
-                    forgetPasswordForm.hasError('required', ['email']) &&
-                    forgetPasswordForm.get('email')?.touched
+                      forgetPasswordForm.hasError('required', ['email']) &&
+                      forgetPasswordForm.get('email')?.touched
                     "
                   >
                     <p>Tài khoản không được để trống</p>
                   </div>
                   <ng-container
                     *ngIf="
-                    forgetPasswordForm.get('email')!.errors &&
+                      forgetPasswordForm.get('email')!.errors &&
                         loginForm.get('email')?.touched;
                       else validUsernameInput
                     "
@@ -534,7 +556,12 @@
                 <button
                   type="submit"
                   class="content__form__btn"
-                  [disabled]="(forgetPasswordForm.get('email')!.invalid && isExistUser === false ) || (forgetPasswordForm.get('password')!.invalid && isExistUser === true ) "
+                  [disabled]="
+                    (forgetPasswordForm.get('email')!.invalid &&
+                      isExistUser === false) ||
+                    (forgetPasswordForm.get('password')!.invalid &&
+                      isExistUser === true)
+                  "
                 >
                   Tiếp theo
                 </button>
@@ -543,7 +570,10 @@
             </ng-container>
           </div>
         </div>
-        <div class="right-form__footer" *ngIf="pageRedirect != 'forget-password'">
+        <div
+          class="right-form__footer"
+          *ngIf="pageRedirect != 'forget-password'"
+        >
           <ng-container *ngIf="pageRedirect == 'login'">
             <p>Chính sách bảo mật</p>
             <p>Điều khoản sử dụng</p>
@@ -586,20 +616,15 @@
             </ng-container>
           </div>
           <div class="right-otp__action-list">
-            <button class="back-btn back-btn--color">
-              <i _ngcontent-qsc-c128="" class="fas fa-angle-left"></i>Trở lại
+            <button (click)="onClickBackOTP()" type="button" class="back-btn back-btn--color">
+              <i class="fas fa-angle-left"></i>Trở lại
             </button>
             <button
               type="submit"
               class="valid-otp-btn valid-otp-btn--color"
               [disabled]="OTPForm.invalid"
             >
-              <i
-                _ngcontent-qsc-c128=""
-                class="fab fa-cloudversify"
-                (click)="onValidOTPSubmit()"
-              ></i
-              >Xác thực
+              <i class="fab fa-cloudversify"></i>Xác thực
             </button>
           </div>
           <div class="right-otp__resend-otp">

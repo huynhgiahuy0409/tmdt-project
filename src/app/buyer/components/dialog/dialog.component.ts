@@ -16,18 +16,10 @@ export class DialogComponent implements OnInit {
     console.log(this.data)
   }
 
-  onClickAction(){
-    for (let index = 0; index < this.data.action.length; index++) {
-      if(this.data.action[index].type === 'register-success'){
-        this.dialogRef.close({event: 'login'})
-      }else if(this.data.action[index].type === 'login-success'){
-        this.dialogRef.close({event: 'home'})
-      }else if(this.data.action[index].type === 'payment'){
-        this.dialogRef.close({routePath: 'payment'})
-      }else if(this.data.action[index].type === 'cart'){
-        this.dialogRef.close({routePath: 'cart'})
-      }
-    }
+  onClickAction(idx: number){
+    let action = this.data.action
+    let path = action[idx].path
+    this.router.navigate([`/${path}`])
   }
 
   

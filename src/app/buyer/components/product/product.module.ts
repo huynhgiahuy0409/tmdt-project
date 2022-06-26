@@ -8,6 +8,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ProductComponent } from './product.component';
+import { ProvinceResolve } from '../../services/resolve/province.resolve';
 
 @NgModule({
   declarations: [ProductComponent, ProductListComponent, ProductDetailComponent, ProductFilterComponent],

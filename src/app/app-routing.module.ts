@@ -3,6 +3,8 @@ import { BreadcrumbComponent } from './shared/layout/customer/breadcrumb/breadcr
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
+import { AuthGuardService } from './shared/layout/common/auth/auth-guard.component';
+import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,8 +19,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () =>
-      import('./buyer/buyer.module').then((m) => m.BuyerModule),
+    redirectTo: 'buyer',
+    pathMatch: 'full'
   },
   {
     path: 'seller',
@@ -39,4 +41,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

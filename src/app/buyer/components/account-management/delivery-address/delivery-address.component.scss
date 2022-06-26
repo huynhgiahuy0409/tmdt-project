@@ -27,3 +27,18 @@ button{
   min-width: 200px;
   color: #777
 }
+
+mat-select:disabled{
+  cursor: not-allowed;
+}
+button:disabled{
+  cursor: not-allowed;
+  background-color: rgb(227, 225, 225) !important;
+}
+.default-tag{
+  border-radius: 5px;
+  background-color: var(--primary-color--);
+  color: #fff;
+  padding: 5px;
+  margin: 0 10px
+}
