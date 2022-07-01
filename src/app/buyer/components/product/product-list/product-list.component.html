@@ -21,7 +21,9 @@
           </div>
           <div class="product-price">
             <div class="product-price__wrap">
-              <div class="product-price__source">{{p.sourcePrice  | currency:'VND'}}</div>
+              <ng-container *ngIf="p.discountPercent">
+                <div class="product-price__source">{{p.sourcePrice  | currency:'VND'}}</div>
+              </ng-container>
               <div class="product-price__cur">{{p.buyPrice  | currency:'VND'}}</div>
             </div>
             <div class="product-price__icon">

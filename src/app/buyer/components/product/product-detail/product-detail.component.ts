@@ -57,6 +57,8 @@ export class ProductDetailComponent implements OnInit {
       }
       this.cartService.flushCart(cartId,pendingItem).subscribe((cartResponse: CartResponse) => {
         this.cartService.cartBehaviorSubject.next(cartResponse)
+        console.log("OKKKKKKKKK");
+        
         this.dialogService.openDialog('500ms', '50ms', {
           title: 'Thêm thành công',
           content: 'Đã thêm sản phẩm vào giỏ hàng',

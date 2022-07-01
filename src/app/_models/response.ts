@@ -27,6 +27,7 @@ export interface WardResponse extends BaseResponse {
 export interface ShopResponse{
   name: string,
   avatar: Image,
+  user: UserResponse
   products: ProductResponse[]
 }
 export interface UserResponse{
@@ -93,10 +94,12 @@ export interface CartResponse{
   cartItems: CartItemResponse[];
 }
 export interface CartItemResponse{
+  id: number;
   pendingItems: PendingItemResponse[];
   shop: ShopResponse;
 }
 export interface PendingItemResponse{
+  id: number,
   product: ProductResponse,
   quantity: number
 } 

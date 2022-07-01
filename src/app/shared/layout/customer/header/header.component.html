@@ -21,10 +21,10 @@
             <nav class="d-flex align-item-center">
               <ul>
                 <li *ngIf="!(user$ | async)">
-                  <a [routerLink]="['/buyer/login']">Đăng ký</a>
+                  <a [routerLink]="['/buyer/login']" [queryParams]="{pageRedirect: 'register'}">Đăng ký</a>
                 </li>
                 <li *ngIf="!(user$ | async)">
-                  <a [routerLink]="['/buyer/login']">Đăng nhập</a>
+                  <a [routerLink]="['/buyer/login']"  [queryParams]="{pageRedirect: 'login'}">Đăng nhập</a>
                 </li>
                 <ng-container *ngIf="user$ | async as user">
                   <li>
@@ -35,10 +35,10 @@
                     <div class="notification">
                       <ul class="notification__list notification__list--color">
                         <!--    <ng-container *ngIf="(user$ | async) as user"> -->
-                        <li class="notification__item">
-                          <i class="fa-solid fa-user"></i>Tài khoản của tôi
+                        <li class="notification__item"  [routerLink]="['/buyer/account-management']">
+                          <i class="fa-solid fa-user" ></i>Tài khoản của tôi
                         </li>
-                        <li class="notification__item">
+                        <li class="notification__item" [routerLink]="['/buyer/account-management']">
                           <i class="fa-solid fa-pen"></i>Đơn mua
                         </li>
                         <li (click)="logout()" class="notification__item">
@@ -93,8 +93,8 @@
                         ">
                         Sản phẩm mới thêm
                       </h4>
-                      <ng-container *ngIf="cart$ | async as cart">
-                        <ng-container *ngIf="cart.cartItems.length > 0; else notPendingItem">
+                      <ng-container *ngIf="cart$ | async as cart; else notPendingItem">
+                        <ng-container *ngIf="cart.cartItems.length > 0">
                           <ng-container *ngFor="let cartItem of cart.cartItems">
                             <ng-container *ngFor="let pendingItem of cartItem.pendingItems">
                               <li class="notification__item">
@@ -118,10 +118,10 @@
                             </ng-container>
                           </ng-container>
                         </ng-container>
-                        <ng-template #notPendingItem>
-                          <img src="assets\img\no-items.jpg" alt="">
-                        </ng-template>
                       </ng-container>
+                      <ng-template #notPendingItem>
+                        <img src="assets\img\no-items.jpg" alt="">
+                      </ng-template>
                     </ul>
                   </div>
                 </span>

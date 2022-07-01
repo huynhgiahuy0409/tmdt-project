@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,9 @@ import { CoreModule } from './core/core.module';
 import { SpinnerService } from './shared/services/spinner.service';
 import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { AuthService } from './buyer/services/auth.service';
+import { appInitializer } from './core/app.initializer';
+import { DialogService } from './buyer/services/dialog.service';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -50,6 +53,12 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
           
         ],
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [AuthService,CookieService, DialogService],
     },
     {
       provide: RECAPTCHA_SETTINGS,

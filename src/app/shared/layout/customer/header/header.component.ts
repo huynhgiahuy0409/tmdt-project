@@ -9,6 +9,7 @@ import { UserService } from 'src/app/buyer/services/user.service';
 import { CartService } from 'src/app/buyer/services/cart.service';
 import { Router } from '@angular/router';
 import { CartItemResponse, CartResponse, UserResponse } from 'src/app/_models/response';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'customer-header',
   templateUrl: './header.component.html',
@@ -24,6 +25,7 @@ export class CustomerHeaderComponent implements OnInit {
     private userService: UserService,
     private cartService: CartService,
     private authService: AuthService,
+    private cookieService: CookieService,
     private productFilterChainService: ProductFilterChainService,
     private router: Router
   ) {
@@ -43,7 +45,21 @@ export class CustomerHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   logout() {
-    this.authService.logout().subscribe();
+    this.authService.logout().pipe(
+      map((value) => {
+        return value != -1 ? true : false;
+      }),
+    ).subscribe(
+      isLogout => {
+        if (isLogout) {
+          this.userService.userBehaviorSubject.next(null);
+          this.authService.accessTokenBehaviorSubject.next(null);
+          this.cartService.cartBehaviorSubject.next(null)
+          this.cookieService.delete('refresh-token');
+          this.authService.stopRefreshTokenTimer();
+        }
+      }
+    );
   }
   searchProductByName(searchValue: string) {
     let currFilter = this.productFilterChainService.filterBSub.value;

@@ -1,0 +1,119 @@
+::ng-deep .mat-checkbox .mat-checkbox-layout{
+    margin: 0
+}
+p{
+    margin-bottom: 0;
+}
+.cart-container{
+    width: 90%;
+    margin: 0 auto
+}
+.cart-row-wrap{
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    margin: 20px 0;
+   
+}
+.cart-row{
+    display: flex;
+    align-items: center;
+}
+.cart-row.header{
+    height: 55px;
+    padding: 0 10px
+}
+.cart-row.product{
+    padding: 10px
+}
+.cart-col{
+    flex: 1;
+    text-align: center;
+}
+.cart-col img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px
+}
+.cart-col:first-child{
+    flex: 2;
+    display: flex;
+    align-items: center;
+}
+.cart-col:first-child mat-checkbox{
+    margin-right: 10px
+}
+.summary-cart{
+    padding: 10px;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.buy-now-btn{
+    width: 200px;
+    background-color: var(--primary-color--);
+    color: #fff
+}
+.payment-method{
+    padding: 10px
+}
+.payment-method__title{
+    margin-bottom: 0;
+    margin-right: 20px
+}
+.payment-method__list{
+    display: flex;
+}
+.payment-method__item{
+    margin: 0 20px;
+    padding: 5px 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc
+}
+.payment-method__item:hover{
+    color: var(--primary-color--);
+    border-color: var(--primary-color--)
+}
+.payment-method__slt{
+    color: var(--primary-color--);
+    border: 1px solid var(--primary-color--)
+}
+.summary-cart-item{
+    padding: 20px 10px;
+    border-top: 1px dashed #ccc;
+}
+.address-line {
+    height: 3px;
+    width: 100%;
+    background-position-x: -30px;
+    background-size: 116px 3px;
+    background-image: repeating-linear-gradient(-45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+    animation: gradient 50s linear infinite forwards;
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+.address{
+    padding: 20px 10px
+}
+.address__tittle{
+    font-size: 1.8rem;
+    color: var(--primary-color--)
+}
+.change-address{
+    padding: 10px
+}
+.primary-btn{
+    background-color: var(--primary-color--);
+    color: #fff;
+    padding: 0 40px
+}

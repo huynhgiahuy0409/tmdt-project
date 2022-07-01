@@ -9,7 +9,7 @@ export interface ActionDialog {
 export interface DialogData {
     title: string,
     content: string,
-    action: ActionDialog[]
+    action?: ActionDialog[]
 }
 @Injectable({
     providedIn: 'root'
@@ -21,8 +21,8 @@ export class DialogService {
         enterAnimationDuration: string,
         exitAnimationDuration: string,
         data: DialogData
-    ): void {
-        this.dialog.open(DialogComponent, {
+    ) {
+        return this.dialog.open(DialogComponent, {
             width: 'auto',
             enterAnimationDuration,
             exitAnimationDuration,

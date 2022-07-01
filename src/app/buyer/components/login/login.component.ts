@@ -44,6 +44,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ReAccount } from '../../model/re-account';
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CartService } from '../../services/cart.service';
 export function matchedPassword(c: AbstractControl) {
   const passwordValue = c.get('password')?.value;
   const confirmPasswordValue = c.get('confirmPassword')?.value;
@@ -89,7 +90,8 @@ export class LoginComponent implements OnInit {
     public renderer: Renderer2,
     private authService: AuthService,
     public dialog: MatDialog,
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -136,7 +138,13 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     this.nextPath = this.activatedRoute.snapshot.queryParams.next;
-
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params.pageRedirect == 'register') {
+        this.setPageRedirect('register');
+      } else if (params.pageRedirect == 'login') {
+        this.setPageRedirect('login');
+      }
+    });
     this.runSlideShow(5000);
     this.registerForm.get('passwordGr')?.valueChanges.subscribe((e) => {
       let passwordValue = this.registerForm
@@ -226,12 +234,22 @@ export class LoginComponent implements OnInit {
       (authResponse) => {
         this.isLoading = false;
         if (authResponse) {
+          this.userService.userBehaviorSubject.next(authResponse.user);
+          this.cartService.cartBehaviorSubject.next(authResponse.user.cart);
+          this.authService.accessTokenBehaviorSubject.next(
+            authResponse.accessToken
+          );
+          this.authService.storeRefreshToken(authResponse.refreshToken);
+          this.authService.startRefreshAccessTokenTimer(
+            authResponse.accessToken
+          );
           let nextPath = this.nextPath ? this.nextPath : '/buyer/home';
           let data = {
             title: 'Thành công',
             content: 'Bạn đã đăng nhập thành công',
             action: [{ path: nextPath, title: 'Trở lại trang chủ' }],
           };
+          const matDialog = this.openDialog('500ms', '500ms', data);
         } else {
           this.isFailLogin = true;
         }

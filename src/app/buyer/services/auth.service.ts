@@ -1,6 +1,8 @@
+import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   HttpClient,
+  HttpErrorResponse,
   HttpHeaders,
   HttpParams,
   HttpParamsOptions,
@@ -19,6 +21,8 @@ import { ReAccount } from '../model/re-account';
 import { CartService } from './cart.service';
 import { AuthenticationResponse } from 'src/app/_models/response';
 import { FromObject } from './product.service';
+import { DialogService } from './dialog.service';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -32,10 +36,12 @@ export class AuthService {
     params: {},
   };
   constructor(
+    private router: Router,
     private httpClient: HttpClient,
     private userService: UserService,
     private cookieService: CookieService,
-    private cartService: CartService
+    private cartService: CartService,
+    private dialogService: DialogService
   ) {
     this.accessTokenBehaviorSubject = new BehaviorSubject<JWT | null>(null);
     this.accessToken$ = this.accessTokenBehaviorSubject.asObservable();
@@ -63,7 +69,7 @@ export class AuthService {
       this.httpOptions
     );
   }
-  validOTP(OTPNumbers: number[], username: string): Observable<boolean>{
+  validOTP(OTPNumbers: number[], username: string): Observable<boolean> {
     let OTP: string = '';
     OTPNumbers.forEach((number) => {
       OTP += number;
@@ -77,8 +83,8 @@ export class AuthService {
     // this.httpOptions.params = params;
     this.httpOptions.params = {
       OTPNumber: Number.parseInt(OTP),
-      username: username
-    }
+      username: username,
+    };
     const url = `${DOMAIN}/api/otp/validateOtp`;
     return this.httpClient.get<boolean>(url, this.httpOptions);
   }
@@ -103,33 +109,21 @@ export class AuthService {
     );
   }
   refreshTokenTimeout: any;
-  private stopRefreshTokenTimer() {
+  stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);
   }
-  logout() {
-    return this.httpClient
-      .get(`${DOMAIN}/api/revoke-token`, this.httpOptions)
-      .pipe(
-        map((value) => {
-          console.log(value);
-          return value != -1 ? true : false;
-        }),
-        tap((isLogout) => {
-          if (isLogout) {
-            this.userService.userBehaviorSubject.next(null);
-            this.accessTokenBehaviorSubject.next(null);
-            this.cookieService.delete('refresh-token');
-            this.stopRefreshTokenTimer();
-          }
-        })
-      );
+  logout(): Observable<number> {
+    return this.httpClient.get<number>(
+      `${DOMAIN}/api/revoke-token`,
+      this.httpOptions
+    );
   }
   storeRefreshToken(refreshToken: JWT) {
     const { token, tokenExpirationDate } = refreshToken;
     this.cookieService.set(
       'refresh-token',
       token,
-      tokenExpirationDate,
+      undefined,
       undefined,
       undefined,
       true,
@@ -156,16 +150,13 @@ export class AuthService {
             this.startRefreshAccessTokenTimer(
               authenticationResponse.accessToken
             );
-          } else {
-            console.log('not found refresh token');
           }
         })
       );
   }
-  private startRefreshAccessTokenTimer(accessJWT: JWT): void {
+  startRefreshAccessTokenTimer(accessJWT: JWT): void {
     const refreshToken = this.cookieService.get('refresh-token');
     const timeOut = accessJWT.tokenExpirationDate - Date.now() - 5000;
-    console.log(timeOut);
     this.refreshTokenTimeout = setTimeout(() => {
       if (refreshToken) {
         this.refreshAccessToken().subscribe();
