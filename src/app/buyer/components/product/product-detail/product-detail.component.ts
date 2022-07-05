@@ -34,6 +34,7 @@ export class ProductDetailComponent implements OnInit {
     this.product$ = this.productService.findOne(this.productId).pipe(
       tap(product => product.images.map(image => image.url = DIRECT_LINK_IMAGE + "/" + image.url))
     );
+    this.productService.updateProductView(this.productId)
     this.product$.subscribe(v => { console.log(v) })
   }
   onClickImage(idx: number) {

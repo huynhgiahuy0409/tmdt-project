@@ -6,13 +6,16 @@ import {
   CartResponse,
   CartItemResponse,
   PendingItemResponse,
+  AddressResponse,
 } from 'src/app/_models/response';
 import { CartService } from '../../services/cart.service';
 import { CheckBoxs } from './CheckBoxs';
 import { Product } from './Product';
-import { SummaryCart } from 'src/app/_models/models';
+import { SummaryCart, SummaryCartItem } from 'src/app/_models/models';
 import { DialogService } from '../../services/dialog.service';
 import { Router } from '@angular/router';
+import { ShippingCost, ShippingService } from '../../services/shipping.service';
+import { UserService } from '../../services/user.service';
 export interface CartTask {
   cartId: number;
   completed: boolean;
@@ -38,7 +41,13 @@ export class CartComponent implements OnInit {
   sumCart$!: Observable<SummaryCart | null>;
   cartTask!: CartTask;
   totalPendingItem: number = 0;
-  constructor(private cartService: CartService, private dialogService: DialogService, private router: Router) {
+  constructor(
+    private cartService: CartService,
+    private dialogService: DialogService,
+    private router: Router,
+    private userService: UserService,
+    private shippingService: ShippingService
+  ) {
     this.cart$ = this.cartService.cart$;
     this.sumCart$ = this.cartService.sumCart$;
   }
@@ -56,8 +65,8 @@ export class CartComponent implements OnInit {
           (pendingItem: PendingItemResponse, pendingItemIndex: number) => {
             let pendingItemCompleted = this.cartTask
               ? this.cartTask.cartItemTasks[cartItemIndex].pendingItemTasks[
-                  pendingItemIndex
-                ].completed
+                pendingItemIndex
+              ].completed
               : false;
             let pendingItemTask: PendingItemTask = {
               pendingItemResponse: pendingItem,
@@ -82,13 +91,59 @@ export class CartComponent implements OnInit {
         completed: cartCompleted,
         cartItemTasks: cartItemTasks,
       };
-      let sltCartResponse: CartResponse = this.getSltPendingItems();
-      let totalPayment: number = this.getTotalPayment(sltCartResponse);
-      this.cartService.sumCartBehaviorSubject.next({
-        summaryCart: sltCartResponse,
-        totalPayment: totalPayment,
-      });
+      // let sltPendingItems: CartItemResponse[] = this.getSltPendingItems();
+      // let summaryCartItems: SummaryCartItem[] = sltPendingItems.map(cartItemResponse => {
+      //   let initShipCost: ShippingCost = this.computeShippingCost(cartItemResponse, 'standard')
+      //     let summaryCartItem: SummaryCartItem = {
+      //       cartItem: cartItemResponse,
+      //       shipping: {
+      //         type: 'standard',
+      //         cost: initShipCost
+      //       },
+      //       total: this.computeTotalSummaryCartItem(cartItemResponse, initShipCost.cost)
+      //     }
+      //     return summaryCartItem
+      // })
+      // let summaryCart: SummaryCart = {
+      //   cartId: this.cartTask.cartId,
+      //   summaryCartItems: summaryCartItems,
+      //   totalPayment: 
+      // };
+      this.updateSummaryCart()
     });
+  }
+  private computeTotalSummaryCartItem(cartItemResponse: CartItemResponse, shippingCost: number): number {
+    let result = 0
+    cartItemResponse.pendingItems.forEach(pendingItem => {
+      result += pendingItem.product.buyPrice * pendingItem.quantity
+    })
+    return result
+  }
+  private updateSummaryCart(){
+    let sltPendingItems: CartItemResponse[] = this.getSltPendingItems();
+      let summaryCartItems: SummaryCartItem[] = sltPendingItems.map(cartItemResponse => {
+        let summaryCartItem: SummaryCartItem = {
+          cartItem: cartItemResponse,
+          shipping: {
+            type: 'standard',
+            cost: {
+              cost: 0,
+              time: ''
+            }
+          },
+          totalPayment: 0
+        }
+        return summaryCartItem
+      })
+      let totalPayment: number = this.getTotalPayment(sltPendingItems);
+      let summaryCart: SummaryCart = {
+        cartId: this.cartTask.cartId,
+        summaryCartItems: summaryCartItems,
+        totalCartItem: 0,
+        totalShipCost: 0,
+        totalPayment: totalPayment
+      };
+      this.cartService.sumCartBehaviorSubject.next(summaryCart);
   }
   setCartCheckedAll(completed: boolean) {
     this.cartTask.cartItemTasks.forEach((cartItemTask) => {
@@ -98,12 +153,7 @@ export class CartComponent implements OnInit {
       );
     });
     if (completed == true) {
-      let sltCartResponse: CartResponse = this.getSltPendingItems();
-      let totalPayment: number = this.getTotalPayment(sltCartResponse);
-      this.cartService.sumCartBehaviorSubject.next({
-        summaryCart: sltCartResponse,
-        totalPayment: totalPayment,
-      });
+      this.updateSummaryCart()
     } else {
       this.cartService.sumCartBehaviorSubject.next(null);
     }
@@ -119,20 +169,10 @@ export class CartComponent implements OnInit {
     this.cartTask.completed = this.cartTask.cartItemTasks.every(
       (cartItemTask) => cartItemTask.completed
     );
-    let sltCartResponse: CartResponse = this.getSltPendingItems();
-    let totalPayment: number = this.getTotalPayment(sltCartResponse);
-    this.cartService.sumCartBehaviorSubject.next({
-      summaryCart: sltCartResponse,
-      totalPayment: totalPayment,
-    });
+    this.updateSummaryCart()
   }
   pendingItemChange() {
-    let sltCartResponse: CartResponse = this.getSltPendingItems();
-    let totalPayment: number = this.getTotalPayment(sltCartResponse);
-    this.cartService.sumCartBehaviorSubject.next({
-      summaryCart: sltCartResponse,
-      totalPayment: totalPayment,
-    });
+    this.updateSummaryCart()
   }
   changeQuantity(quantity: string, cartItemId: number, pendingItemId: number) {
     this.cartService
@@ -159,12 +199,7 @@ export class CartComponent implements OnInit {
     );
     cartItem!.pendingItems = filterPendingItems;
     this.cartService.cartBehaviorSubject.next(cart);
-    let sltCartResponse: CartResponse = this.getSltPendingItems();
-    let totalPayment: number = this.getTotalPayment(sltCartResponse);
-    this.cartService.sumCartBehaviorSubject.next({
-      summaryCart: sltCartResponse,
-      totalPayment: totalPayment,
-    });
+    this.updateSummaryCart()
   }
   getTotalSltPendingItem(): number {
     let result: number = 0;
@@ -175,7 +210,7 @@ export class CartComponent implements OnInit {
     });
     return result;
   }
-  private getSltPendingItems(): CartResponse {
+  private getSltPendingItems(): CartItemResponse[] {
     let cartItemResponses: CartItemResponse[] = [];
     this.cartTask.cartItemTasks.forEach((cartItemTask) => {
       const { id, shop } = cartItemTask.cartItemResponse;
@@ -189,34 +224,32 @@ export class CartComponent implements OnInit {
       };
       cartItemResponses.push(cartItemResponse);
     });
-    let cartResponse: CartResponse = {
-      id: this.cartTask.cartId,
-      cartItems: cartItemResponses,
-    };
-    return cartResponse;
+    return cartItemResponses;
   }
-  getTotalPayment(cartResponse: CartResponse): number {
+  getTotalPayment(cartItems: CartItemResponse[]): number {
     let result = 0;
-    cartResponse.cartItems.forEach((cartItem) => {
+    cartItems.forEach(cartItem => {
       cartItem.pendingItems.forEach((pendingItem) => {
         result += pendingItem.product.buyPrice * pendingItem.quantity;
       });
-    });
+    })
     return result;
   }
-  onClickBuyNow(){
-    let sltPendingItemCount: number = 0
-    this.cartTask.cartItemTasks.forEach(cartItemTask => {
-      let sltPendingItemLength = cartItemTask.pendingItemTasks.filter(pendingItemTask => pendingItemTask.completed != false).length
-      sltPendingItemCount += sltPendingItemLength
-    })
-    if(sltPendingItemCount > 1){
-      this.router.navigate(['/buyer/checkout'])
-    }else{
-      this.dialogService.openDialog("500ms", "500ms",{
-        title: "Không có sản phẩm",
-        content: "Bạn vẫn chưa chọn sản phẩm nào để mua."
-      })
+  onClickBuyNow() {
+    let sltPendingItemCount: number = 0;
+    this.cartTask.cartItemTasks.forEach((cartItemTask) => {
+      let sltPendingItemLength = cartItemTask.pendingItemTasks.filter(
+        (pendingItemTask) => pendingItemTask.completed != false
+      ).length;
+      sltPendingItemCount += sltPendingItemLength;
+    });
+    if (sltPendingItemCount > 1) {
+      this.router.navigate(['/buyer/checkout']);
+    } else {
+      this.dialogService.openDialog('500ms', '500ms', {
+        title: 'Không có sản phẩm',
+        content: 'Bạn vẫn chưa chọn sản phẩm nào để mua.',
+      });
     }
   }
 }

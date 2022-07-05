@@ -29,5 +29,9 @@ export class CategoryService {
     const url = `${DOMAIN}/api/category/all`;
     return this.httpClient.get<CategoryResponse[]>(url, this.httpOptions);
   }
+  findAllByShop(shopId: number): Observable<CategoryResponse[]> {
+    const url = `${DOMAIN}/api/shop/${shopId}/category`;
+    return this.httpClient.get<CategoryResponse[]>(url, this.httpOptions);
+  }
   constructor(private httpClient: HttpClient) {}
 }

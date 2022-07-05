@@ -3,7 +3,6 @@ import { BreadcrumbComponent } from './shared/layout/customer/breadcrumb/breadcr
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
-import { AuthGuardService } from './shared/layout/common/auth/auth-guard.component';
 import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [

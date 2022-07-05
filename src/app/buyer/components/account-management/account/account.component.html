@@ -5,82 +5,36 @@
       <mat-icon>person</mat-icon>
       <h4 class="header-label">Thông tin liên hệ</h4>
     </div>
-    <ng-container *ngIf="(user$ | async) as user">
+    <ng-container *ngIf="user$ | async as user">
       <div class="main-container">
         <div class="d-flex">
           <p class="title-label">Tên đăng nhập</p>
-          <p>{{user.username}}</p>
+          <p>{{ user.username }}</p>
         </div>
         <div class="d-flex">
           <p class="title-label">Họ tên</p>
-          <p>{{user.fullName}}</p>
+          <p>{{ user.fullName }}</p>
         </div>
         <div class="d-flex">
           <p class="title-label">Số điện thoại</p>
-          <p>{{user.phoneNumber}}</p>
+          <p>{{ user.phoneNumber }}</p>
         </div>
         <div class="d-flex">
           <p class="title-label">Email</p>
-          <p>{{user.email}}</p>
+          <p>{{ user.email }}</p>
         </div>
         <div class="d-flex">
           <p class="title-label">Giới tính</p>
-          <p>{{user.gender}}</p>
+          <p>{{ user.gender }}</p>
         </div>
-        <button mat-raised-button class="crimson-color" (click)="onClickUpdateContact()">Thay đổi
-          thông tin</button>
+        <button
+          mat-raised-button
+          class="crimson-color"
+          (click)="onClickUpdateContact()"
+        >
+          Thay đổi thông tin
+        </button>
       </div>
     </ng-container>
   </div>
-  <!-- Đơn hàng gần đây -->
-  <div class="order-list-container">
-    <div class="d-flex ">
-      <mat-icon> list_alt</mat-icon>
-      <h4 class="font-weight-550">Đơn hàng gần đây</h4>
-    </div>
-    <div class="row row-custom pt-20px">
-      <div class="col-12">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          <!-- Position Column -->
-          <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-          </ng-container>
-
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
-
-          <!-- Weight Column -->
-          <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Weight </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-          </ng-container>
-
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-          </ng-container>
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Thao tác </th>
-            <td mat-cell *matCellDef="let element">
-              <div class="flex-container">
-                <button mat-raised-button>{{element.action[0]}}</button>
-                <button mat-raised-button color="primary">{{element.action[1]}}</button>
-              </div>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-      </div>
-    </div>
-  </div>
+</div>

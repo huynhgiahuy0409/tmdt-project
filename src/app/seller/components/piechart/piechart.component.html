@@ -1,27 +1,11 @@
-<admin-header></admin-header>
-<div id="container">
-  <div class="right" id="sidebar-main">
+<div class="container d-flex justify-content-between">
+  <div class="container-left">
     <admin-sidebar></admin-sidebar>
   </div>
-  <div class="left" id="main-panel-order">
-    <div class="title">
-      <p class="chartTitle"><strong>PIE CHAR</strong></p>
-    </div>
-    <div class="selection">
-      <p style="display: inline; margin-right: 10px">Choose the time:</p>
-      <select id="selectY" class="time">
-        <option  *ngFor="let y of year" [value]="y">{{y}}</option>
-      </select>
-      <select id="selectM" class="time">
-        <option  *ngFor="let m of month" [value]="m">{{m}}</option>
-      </select>
-    </div>
-    <div id="divChart">
-      <canvas id="myPieChart" width="400" height="400"></canvas>
-    </div>
-    <div class="overview" style="text-align: center; margin-top: 15px">
-      <strong><p>Total revenue in this month: {{computeTotal()}}</p></strong>
+  <div class="container-right d-flex justify-content-center">
+    <div class="bar-chart-wrap">
+      <canvas id="myPieChart"></canvas>
     </div>
   </div>
 </div>
-
+                                      

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Xác nhận đặt hàng</h1>
+<mat-dialog-content>
+    <p style="color: #999">
+        Đơn hàng sẽ được tạo đồng nghĩ với việc bạn sẽ thanh toán khi nhận hàng
+    </p>
+    <mat-checkbox [(ngModel)]="isCreateElectBill">
+        Tạo hóa đơn điện tử (Hóa đơn điện tử sẽ được tạo và xác nhận khi bạn đã thanh toán đơn hàng)
+    </mat-checkbox>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Hủy</button>
+    <button (click)="onClickConfirm()" mat-button cdkFocusInitial class="primary-btn">Xác nhận</button>
+</mat-dialog-actions>

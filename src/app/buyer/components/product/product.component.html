@@ -3,11 +3,56 @@
     <app-product-filter [products$]="products$"></app-product-filter>
   </div>
   <div class="product-container">
+    <ng-container *ngIf="shops$ | async as shops">
+      <div class="search-result-label">
+        Shop liên quan đến: <span>{{ searchShopValue }}</span>
+      </div>
+      <li class="product-detail__item shop-info-container" *ngFor="let shop of shops" (click)="navigateToShop(shop.id)">
+        <div class="shop-info-container__left">
+            <div class="shop-inf">
+                <div class="stop-avatar">
+                    <img src="assets/img/product/3.png" alt="">
+                </div>
+                <div class="shop-more">
+                    <div class="shop-name">{{shop.name}}</div>
+                    <div class="shop-active">
+                        <button mat-raised-button style="margin-right:
+                            20px">Chat ngay</button>
+                        <button style="background-color:
+                            var(--primary-color--); color: #fff"mat-raised-button>Xem
+                            shop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shop-info-container__right">
+            <div class="d-flex justify-content-around align-item-center">
+                <div class="shop-tag">
+                    Đánh giá <span>3.3k</span>
+                </div>
+                <div class="shop-tag">
+                    Người theo dõi<span>2.5k</span>
+                </div>
+                <div class="shop-tag">
+                    Số sản phẩm <span>11</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-item-center">
+                <div class="shop-tag">
+                    Tỉ lệ phản hồi <span>100%</span>
+                </div>
+                <div class="shop-tag">
+                    Tham gia <span>13 tháng trước</span>
+                </div>
+                <div class="shop-tag">
+                    Thời gian phản hồi <span>Trong vài phút</span>
+                </div>
+            </div>
+        </div>
+    </li>
+    </ng-container>
     <ng-container *ngIf="productFilterChainService.filter$ | async as filter">
-      <div
-        class="search-result-label"
-        *ngIf="filter.name"
-      >
+      <div class="search-result-label" *ngIf="filter.name">
         <mat-icon>spa</mat-icon>
         Kết quả tìm kiếm cho từ khóa: <span>{{ filter.name }}</span>
       </div>

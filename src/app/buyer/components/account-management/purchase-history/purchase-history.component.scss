@@ -1,3 +1,30 @@
 table {
   width: 100%;
 }
+
+.primary-color{
+  background-color: var(--primary-color--);
+  color: #ffffff
+}
+.flex-container{
+  display: flex;
+  width: 100%;
+}
+.flex-container button{
+  width: 30%;
+  margin-right: 20px;
+}
+.font-weight-550{
+  font-weight: 550;
+}
+.header-label{
+  font-weight: 550;
+  margin: 0
+}
+.header-container,.main-container{
+  padding: 10px
+}
+.title-label{
+  min-width: 200px;
+  color: #777
+}

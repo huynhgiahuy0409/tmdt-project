@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Chọn đơn vị vận chuyển</h1>
+<div mat-dialog-content>
+    <p style="color: #999">
+        KÊNH VẬN CHUYỂN LIÊN KẾT VỚI Toy Fair.
+    </p>
+    <p style="color: #999">
+        Bạn có thể theo dõi đơn hàng trên ứng
+        dụng Shopee khi chọn một trong các đơn vị vận chuyển:
+    </p>
+    <ul class="shipping-unit__list">
+        <div class="shipping-unit__item">
+            <div>Tiêu chuẩn <span style="color: var(--primary-color--);margin-left: 20px">{{data.standard.cost |
+                    currency : "VND"}}</span></div>
+            <p>Nhận hàng vào {{data.standard.time}} sau</p>
+        </div>
+        <div class="shipping-unit__item">
+            <div>Nhanh <span style="color: var(--primary-color--);margin-left: 20px">{{data.standard.cost | currency :
+                    "VND"}}</span></div>
+            <p>Nhận hàng vào {{data.standard.time}} sau</p>
+        </div>
+    </ul>
+</div>

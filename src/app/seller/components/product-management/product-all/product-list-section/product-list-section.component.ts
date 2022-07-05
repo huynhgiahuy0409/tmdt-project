@@ -1,4 +1,3 @@
-import { DIRECT_LINK_IMAGE } from './../../../../../_models/constance';
 import { Observable } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProductResponse, ShopResponse } from 'src/app/_models/response';
 import { ShopService } from 'src/app/seller/services/shop.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DIRECT_LINK_IMAGE } from 'src/app/_models/constance';
 export interface PeriodicElement {
   productName: string;
   thumbnail: string;

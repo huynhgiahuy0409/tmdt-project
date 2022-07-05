@@ -1,0 +1,80 @@
+<div class="product-list-section">
+  <div class="product-list-container">
+    <table mat-table [dataSource]="orderDataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="orderId">
+        <th mat-header-cell *matHeaderCellDef>Mã đơn hàng</th>
+        <td mat-cell *matCellDef="let element">{{ element.orderId }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Trang thái</th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cartItemCost">
+        <th mat-header-cell *matHeaderCellDef>Tổng tiền hàng</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cartItemCost | currency: "VND" }}
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="shippingCost">
+        <th mat-header-cell *matHeaderCellDef>Phí vận chuyển</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.shippingCost | currency: "VND" }}
+        </td>
+      </ng-container>
+
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="paymentCost">
+        <th mat-header-cell *matHeaderCellDef>Tổng thanh toán</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.paymentCost | currency: "VND" }}
+        </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="digitalBill">
+        <th mat-header-cell *matHeaderCellDef>Hóa đơn điện tử</th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="downloadFile(element.digitalBill)"
+            >Lấy hóa đơn điện tử</a
+          >
+        </td>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Thao tác</th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngFor="let act of element.action">
+              <ng-container *ngIf="act[0] === 'accept'; else actionTempRef">
+                <button
+                  (click)="onClickAcceptOrder(element.orderId)"
+                  style="margin: 0 5px"
+                  mat-raised-button
+                >
+                  {{ act[1] }}
+                </button>
+              </ng-container>
+              <ng-template #actionTempRef>
+                <button style="margin: 0 5px" mat-raised-button>
+                  {{ act[1] }}
+                </button>
+              </ng-template>
+            </ng-container>
+          </td>
+        </ng-container>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

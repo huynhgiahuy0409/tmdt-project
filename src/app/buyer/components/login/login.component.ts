@@ -1,4 +1,4 @@
-import { interval, of } from 'rxjs';
+import { of } from 'rxjs';
 import {
   AuthenticationRequest,
   RegisterAccountRequest as UserAccountRequest,
@@ -6,9 +6,7 @@ import {
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import {
   ActivatedRoute,
-  NavigationEnd,
   Router,
-  RouterStateSnapshot,
 } from '@angular/router';
 import {
   FormGroup,
@@ -19,32 +17,18 @@ import {
   NgForm,
   FormArray,
 } from '@angular/forms';
-import {
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  SocialAuthService,
-} from 'src/app';
 import { PostService } from '../../post.service';
 import { AuthService } from '../../services/auth.service';
 import {
-  catchError,
-  concatMap,
-  debounce,
-  debounceTime,
-  filter,
-  map,
   switchMap,
-  take,
-  tap,
 } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { UserService } from '../../services/user.service';
-import { CookieService } from 'ngx-cookie-service';
-import { ReAccount } from '../../model/re-account';
-import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CartService } from '../../services/cart.service';
+import { AuthenticationResponse } from '../../model/response';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 export function matchedPassword(c: AbstractControl) {
   const passwordValue = c.get('password')?.value;
   const confirmPasswordValue = c.get('confirmPassword')?.value;
@@ -91,7 +75,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -137,6 +121,10 @@ export class LoginComponent implements OnInit {
     );
   }
   ngOnInit(): void {
+    this.socialAuthService.initState.subscribe(value => {
+      console.log(value);
+      
+    })
     this.nextPath = this.activatedRoute.snapshot.queryParams.next;
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params.pageRedirect == 'register') {
@@ -164,11 +152,78 @@ export class LoginComponent implements OnInit {
   get OTPNumbers(): FormArray {
     return this.OTPForm.get('OTPNumbers') as FormArray;
   }
-  loginWithFacebook() {
-    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  loginWithFacebook(): void {
+    console.log("fb log");
+    this.isLoading = true;
+    this.socialAuthService
+      .signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then((data: SocialUser) => {
+        console.log(data);
+        let userAccountRequest: UserAccountRequest = {
+          username: data.id,
+          password: data.id,
+          fullName: data.name,
+        };
+        this.userService
+          .updateUser(userAccountRequest)
+          .pipe(
+            switchMap((isUpdate) => {
+              if (isUpdate) {
+                let authRequest: AuthenticationRequest = {
+                  ...userAccountRequest,
+                };
+                return this.authService.login(authRequest);
+              }
+              return of(null);
+            })
+          )
+          .subscribe(
+            (authResponse: AuthenticationResponse | null) => {
+              this.isLoading = false;
+              if (authResponse) {
+                this.userService.userBehaviorSubject.next(authResponse.user);
+                this.cartService.cartBehaviorSubject.next(
+                  authResponse.user.cart
+                );
+                this.authService.accessTokenBehaviorSubject.next(
+                  authResponse.accessToken
+                );
+                this.authService.storeRefreshToken(authResponse.refreshToken);
+                this.authService.startRefreshAccessTokenTimer(
+                  authResponse.accessToken
+                );
+                let nextPath = this.nextPath ? this.nextPath : '/buyer/home';
+                let data = {
+                  title: 'Thành công',
+                  content: 'Bạn đã đăng nhập thành công',
+                  action: [{ path: nextPath, title: 'Trở lại trang chủ' }],
+                };
+                const matDialog = this.openDialog('500ms', '500ms', data);
+              }
+            },
+            (error: HttpErrorResponse) => {
+              this.isLoading = false;
+              const matDialog = this.openDialog('500ms', '500ms', {
+                title: 'Lỗi',
+                content: `Đăng nhập không thành công: ${error.status}`,
+              });
+              matDialog.afterClosed().subscribe((response) => {
+                this.pageRedirect = 'login';
+                this.page = 'login';
+              });
+            }
+          );
+      })
+      .catch((data: any) => {
+        console.log(data);
+        this.isLoading = false;
+      });
   }
   loginWithGoogle() {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(data => {
+      console.log(data)
+    }).catch(data => { console.log(data);
+    })
   }
   runSlideShow(ms: number) {
     setInterval(() => {

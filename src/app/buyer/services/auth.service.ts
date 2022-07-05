@@ -174,4 +174,5 @@ export class AuthService {
     const url = `${DOMAIN}/api/reset-password`;
     return this.httpClient.post<boolean>(url, reAccount, this.httpOptions);
   }
+ 
 }

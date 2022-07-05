@@ -13,7 +13,8 @@ export class FileUploadService {
     headers: new HttpHeaders({
       'Content-Type': 'multipart/form-data',
     }),
-    param: {},
+    params: {},
+    responseType: 'blob',
   };
   files: Map<number, File> = new Map([]);
   fileBSub: BehaviorSubject<File[] | null> = new BehaviorSubject<File[] | null>(
@@ -26,11 +27,11 @@ export class FileUploadService {
     let fileList: Blob[] = [];
     let fileLength = this.files.size;
     for (let index = 0; index < fileLength; index++) {
-        const file = this.files.get(index) as Blob;
-        if (file != undefined) {
-            fileList.push(file);
-        }
-        formData.append('files',file)
+      const file = this.files.get(index) as Blob;
+      if (file != undefined) {
+        fileList.push(file);
+      }
+      formData.append('files', file);
     }
     const url = `${DOMAIN}/api/product/upload-image/${productId}`;
     return this.httpClient.post(url, formData).pipe(
@@ -38,5 +39,11 @@ export class FileUploadService {
         /* this.files.clear(); */
       })
     );
+  }
+  downloadFile(filename: string) {
+    const url = `${DOMAIN}/api/downloadFile/${filename}`;
+    return this.httpClient.get(url, {
+      responseType: 'blob',
+    });
   }
 }

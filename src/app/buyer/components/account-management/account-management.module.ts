@@ -11,6 +11,8 @@ import { MaterialModules } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserResolve } from '../../services/resolve/user.resovle';
 import { ProvinceResolve } from '../../services/resolve/province.resolve';
+import { OrderResolve } from '../../services/resolve/order.resolve';
+import { DigitalBillVerificationComponent } from './digital-bill-verification/digital-bill-verification.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { ProvinceResolve } from '../../services/resolve/province.resolve';
     WishlistComponent,
     DeliveryAddressComponent,
     UpdateContactDiagLog,
-    UpdateAddressDiagLog
+    UpdateAddressDiagLog,
+    DigitalBillVerificationComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +33,6 @@ import { ProvinceResolve } from '../../services/resolve/province.resolve';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [UserResolve, ProvinceResolve]
+  providers: [UserResolve, ProvinceResolve, OrderResolve]
 })
 export class AccountManagementModule { }

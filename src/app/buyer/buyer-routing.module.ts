@@ -14,7 +14,6 @@ import { ShopComponent } from './components/shop/shop.componet';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetComponent } from './components/reset/reset.component';
 
-import { AuthGuardService } from '../shared/layout/common/auth/auth-guard.component';
 import { FindingShopComponent } from './components/finding-shop/finding-shop.component';
 import { CategoryResolve } from '../shared/services/resolve.ts/category.resolve';
 import { BrandResolve } from '../shared/services/resolve.ts/brand.resolve';
@@ -47,11 +46,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
       { path: 'payment', component: ShopComponent },
-      { path: 'shop', component: ShopComponent },
-      {
-        path: 'shop',
-        component: ShopComponent,
-      },
+      { path: 'shop/:id', component: ShopComponent },
       { path: 'finding-shop', component: FindingShopComponent },
       {
         path: 'product',

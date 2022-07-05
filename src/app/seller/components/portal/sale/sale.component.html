@@ -1,0 +1,25 @@
+<div class="product-management">
+    <div class="product-menu-head">
+        <div class="main-order">
+            <mat-tab-group mat-align-tabs="start">
+                <mat-tab label="Tất cả">
+                    <div class="list-all">
+                        <app-order-all-section [orders]="allOrders"></app-order-all-section>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Chờ xác nhận">
+                    <app-order-all-section [orders]="waitProcessOrders"></app-order-all-section>
+                </mat-tab>
+                <mat-tab label="Đang giao">
+                    <app-order-all-section [orders]="deliveringOrders"></app-order-all-section>
+                </mat-tab>
+                <mat-tab label="Đã giao">
+                    <app-order-all-section [orders]="deliveredOrders"></app-order-all-section>
+                </mat-tab>
+                <mat-tab label="Đã hủy">
+                    <app-order-all-section [orders]="cancelledOrders"></app-order-all-section>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

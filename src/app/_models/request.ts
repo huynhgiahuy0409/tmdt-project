@@ -36,3 +36,21 @@ export interface AddressRequest{
     provinceId: number,
     status: number
 }
+export interface OrderItemRequest{
+    productId: number,
+    quantity: number
+}
+export interface OrderRequest{
+    orderItems: OrderItemRequest[],
+    shopId: number,
+    sendBy: string,
+    orderBy: string,
+    sendPhoneNumber: string,
+    orderPhoneNumber: string,
+    orderAddress: string,
+    sendAddress: string,
+    cartItemCost: number,
+    shippingCost: number,
+    paymentCost: number,
+    paymentMethod: string,
+}

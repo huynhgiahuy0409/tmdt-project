@@ -554,6 +554,17 @@ p {
                 color: var(--primary-color--);
                 cursor: pointer;
               }
+              .google-btn, .fb-btn{
+                padding: 5px 20px;
+                border-radius: 5px;
+                color: #fff
+              }
+              .google-btn{
+                background-color: rgb(212,72,55);
+              }
+              .fb-btn{
+                background-color: rgb(59,89,153)
+              }
             }
           }
         }

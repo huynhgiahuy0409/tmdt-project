@@ -243,6 +243,15 @@
                 >
                   Đăng nhập
                 </button>
+                <div class="content__form__more-wrap">
+                  <p class="google-btn" (click)="loginWithGoogle()">
+                    <i class="fa fa-google-plus"></i>
+                    Đăng nhập với Google</p>
+                  <p class="fb-btn" (click)="loginWithFacebook()">
+                    <i class=" fa fa-facebook"></i>
+                    Đăng nhập với Facebook
+                  </p>
+                </div>
                 <div class="separate-line"></div>
                 <div class="content__form__more-wrap">
                   <p (click)="setPageRedirect('register')">Đăng ký tài khoản</p>
@@ -437,7 +446,7 @@
                   <p>
                     Bằng cách đăng ký, bạn xác nhận rằng đã đọc và chấp thuật
                     <span>Thông Báo Người Dùng</span> và
-                    <span> Chính Sách Bảo Mật</span> của chúng tôi
+                    <span > Chính Sách Bảo Mật</span> của chúng tôi
                   </p>
                 </div>
                 <button
@@ -576,7 +585,7 @@
         >
           <ng-container *ngIf="pageRedirect == 'login'">
             <p>Chính sách bảo mật</p>
-            <p>Điều khoản sử dụng</p>
+            <p (click)="loginWithFacebook()">Điều khoản sử dụng</p>
           </ng-container>
           <ng-container *ngIf="pageRedirect == 'register'">
             <p>

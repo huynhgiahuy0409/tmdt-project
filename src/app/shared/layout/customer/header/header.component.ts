@@ -10,6 +10,7 @@ import { CartService } from 'src/app/buyer/services/cart.service';
 import { Router } from '@angular/router';
 import { CartItemResponse, CartResponse, UserResponse } from 'src/app/_models/response';
 import { CookieService } from 'ngx-cookie-service';
+import { ShopService } from 'src/app/seller/services/shop.service';
 @Component({
   selector: 'customer-header',
   templateUrl: './header.component.html',
@@ -27,6 +28,7 @@ export class CustomerHeaderComponent implements OnInit {
     private authService: AuthService,
     private cookieService: CookieService,
     private productFilterChainService: ProductFilterChainService,
+    private shopService: ShopService,
     private router: Router
   ) {
     this.user$ = userService.user$;
@@ -62,9 +64,12 @@ export class CustomerHeaderComponent implements OnInit {
     );
   }
   searchProductByName(searchValue: string) {
+    console.log(searchValue);
+    
     let currFilter = this.productFilterChainService.filterBSub.value;
     currFilter.pagination.pageIndex = 0;
     currFilter.name = searchValue;
     this.productFilterChainService.filterBSub.next(currFilter);
+    this.shopService.searchShopBehaviorSubject.next(searchValue)
   }
 }

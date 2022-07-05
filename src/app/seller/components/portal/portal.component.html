@@ -1,27 +1,9 @@
-<div class="header-container">
-  <div class="header">
-    <div class="header-left">
-      <img src="../../../../assets/img/logo/new-logo.png" class="header-logo"/>
-      <div class="header-title">
-        Đăng kí trở thành Người bán trên Toy Fair
-      </div>
-    </div>
-    <div class="header-right">
-      <img src="https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg" class="header-avatar"/>
-      <div class="header-name--wrapper">
-        <div class="header-name">huynhgiahuy
-        </div>
-        <mat-icon class="header-icon">keyboard_arrow_down</mat-icon>
-        <ul class="header-name--list">
-          <li class="header-name--item">
-            <mat-icon class="header-name--item-icon">exit_to_app</mat-icon>
-            <p>Đăng xuất</p>
-          </li>
-        </ul>
-      </div>
-    </div>
+<div class="container d-flex justify-content-between">
+  <div class="container-left">
+    <admin-sidebar></admin-sidebar>
+  </div>
+  <div class="container-right">
+    <router-outlet></router-outlet>
   </div>
 </div>
-<div class="body-container">
-  <router-outlet></router-outlet>
-</div>
+                                      

@@ -7,7 +7,6 @@ import { PiechartComponent } from './components/piechart/piechart.component';
 import { RatingManagementComponent } from './components/rating-management/rating-management.component';
 import { LoginComponent } from '../buyer/components/login/login.component';
 import { AuthGuard } from '../_helpers/auth.guard';
-import { AuthGuardService } from '../shared/layout/common/auth/auth-guard.component';
 const routes: Routes = [
   {
     path: '',
@@ -28,7 +27,7 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
       },
-      { path: '', redirectTo: 'product-management', pathMatch: 'full' },
+      { path: '', redirectTo: 'portal', pathMatch: 'full' },
       {
         path: 'product-management',
         canActivate: [AuthGuard],

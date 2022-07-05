@@ -24,9 +24,45 @@
             Quản lý sản phẩm
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p [routerLink]="['/seller/product-management/all']">Tất cả sản phẩm</p>
+        <p [routerLink]="['/seller/portal/product']">Tất cả sản phẩm</p>
         <p [routerLink]="['/seller/product-management/category']">Thêm sản phẩm</p>
         <p>Sản phẩm vi phạm</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon> list_alt</mat-icon>
+            Quản lí đơn hàng
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p [routerLink]="['/seller/portal/sale/order']">Tất cả</p>
+        <p [routerLink]="['/seller/portal/sale/order']">Đơn hủy</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon> list_alt</mat-icon>
+            Quản lí khóa bảo mật
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p [routerLink]="['/seller/portal/key']">Khóa bảo mật</p>
+        <p [routerLink]="['/seller/portal/digital-bill']">Gửi hóa đơn điện tử</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon> list_alt</mat-icon>
+            Biểu đồ doanh thu
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p [routerLink]="['/seller/barchart']">Theo biểu đồ cột</p>
+        <p [routerLink]="['/seller/piechart']">Theo biểu đồ tròn</p>
       </mat-expansion-panel>
     </mat-accordion>
   </ul>

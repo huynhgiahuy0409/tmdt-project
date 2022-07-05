@@ -9,39 +9,29 @@ interface BaseResponse {
 export interface Image {
   url: string;
 }
-export interface CategoryResponse extends BaseResponse {}
+export interface CategoryResponse extends BaseResponse { }
 export interface BrandResponse extends BaseResponse {
   logo: Image
 }
-export interface RecommendAgeResponse extends BaseResponse {}
-export interface MaterialResponse extends BaseResponse {}
-export interface OriginResponse extends BaseResponse {}
-export interface StatusResponse extends BaseResponse {}
-export interface ProvinceResponse extends BaseResponse {}
+export interface RecommendAgeResponse extends BaseResponse { }
+export interface MaterialResponse extends BaseResponse { }
+export interface OriginResponse extends BaseResponse { }
+export interface StatusResponse extends BaseResponse { }
+export interface ProvinceResponse extends BaseResponse {
+  domain: "Bắc" | "Trung" | "Nam"
+}
 export interface DistrictResponse extends BaseResponse {
   prefix: string
 }
 export interface WardResponse extends BaseResponse {
   prefix: string
 }
-export interface ShopResponse{
+export interface ShopResponse {
+  id: number
   name: string,
   avatar: Image,
-  user: UserResponse
+  shopUser: UserResponse
   products: ProductResponse[]
-}
-export interface UserResponse{
-  id: number,
-  name: number,
-  username: string,
-  fullName: string,
-  gender: string,
-  email: string,
-  phoneNumber: string,
-  addresses: AddressResponse[]
-  role: string;
-  cart: CartResponse;
-  shop: ShopResponse
 }
 export interface ProductResponse {
   id: number;
@@ -61,7 +51,7 @@ export interface ProductResponse {
   recommend: RecommendAgeResponse;
   size: Size;
 }
-export interface AddressResponse{
+export interface AddressResponse {
   id: number,
   fullName: string,
   phoneNumber: string,
@@ -71,7 +61,7 @@ export interface AddressResponse{
   province: ProvinceResponse,
   status: number
 }
-export interface UserResponse{
+export interface UserResponse {
   id: number,
   name: number,
   username: string,
@@ -82,25 +72,49 @@ export interface UserResponse{
   addresses: AddressResponse[]
   role: string;
   cart: CartResponse;
-  shop: ShopResponse
+  shop: ShopResponse;
+  publicKeyFilename: string,
 }
-export interface AuthenticationResponse{
+export interface AuthenticationResponse {
   user: UserResponse;
   accessToken: JWT;
   refreshToken: JWT
 }
-export interface CartResponse{
+export interface CartResponse {
   id: number;
   cartItems: CartItemResponse[];
 }
-export interface CartItemResponse{
+export interface CartItemResponse {
   id: number;
   pendingItems: PendingItemResponse[];
   shop: ShopResponse;
 }
-export interface PendingItemResponse{
+export interface PendingItemResponse {
   id: number,
   product: ProductResponse,
   quantity: number
-} 
+}
+export interface OrderItemResponse {
+  product: ProductResponse,
+  quantity: number
+}
+export interface OrderResponse {
+  id: number;  
+  createdDate: Date
+  orderItems: OrderItemResponse[],
+  status: string,
+  shopId: number,
+  sendBy: string,
+  orderBy: string,
+  sendPhoneNumber: string,
+  orderPhoneNumber: string,
+  orderAddress: string,
+  sendAddress: string,
+  cartItemCost: number,
+  shippingCost: number,
+  paymentCost: number,
+  paymentMethod: string,
+  digitBillFilename: string
+  digitalBillHash: string
+}
 

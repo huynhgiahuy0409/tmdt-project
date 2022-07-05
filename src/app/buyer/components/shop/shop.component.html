@@ -1,82 +1,236 @@
-<div class="header-shop container-fluid" >
-  <div class="logo-shop">
-    <div class="logo-shop-border">
-    <img class="logo-shop-image" src="assets/img/product/1.png">
-    <div class="head-title-shop">
-      <h3>Mini Shop</h3>
-      <p>Online 5 giờ trước</p>
-    </div>
-    <div class="head-button-shop">
-      <button type="button" class="btn btn-warning">+ Theo dõi</button>
-    </div>
-    </div>
-  </div>
-  <div class="list-profile-shop">
-    <div class="list-profile-detail">
-      <ul>
-      <li><i></i><label class="title-profile"> Sản phẩm : <p>222</p></label></li>
-      <li><i></i><label class="title-profile">Được theo dõi : <p>222</p></label></li>
-      <li><i></i><label class="title-profile">Tỉ lệ phản hồi : <p>15%</p></label></li>
-      </ul>
-    </div>
-    <div  class="list-profile-detail">
-      <ul>
-      <li><i></i><label class="title-profile">Tỉ lệ shop hủy đơn : <p>10%</p></label></li>
-      <li><i></i><label class="title-profile">Người theo dõi : <p>222</p></label></li>
-      <li><i></i><label class="title-profile">Đánh giá : <p>21k đánh giá</p></label></li>
-      </ul>
-    </div>
-    <div  class="list-profile-detail">
-      <ul>
-      <li><i></i><label class="title-profile">Ngày tham gia : <p>21/11/2020</p></label></li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="content-shop container-fluid" >
-  <h3 class="content-shop-profile">Thông tin Shop</h3>
-  <div class="content-shop-center ">
-<div id="carousel-shop" class="carousel slide content-shop-left " data-ride="carousel">
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
+<div class="container" *ngIf="(shop$ | async) as shop">
+  <ul class="product-detail__list">
+      <li class="product-detail__item shop-info-container">
+          <div class="shop-info-container__left">
+              <div class="shop-inf">
+                  <div class="stop-avatar">
+                      <img src="assets/img/product/3.png" alt="">
+                  </div>
+                  <div class="shop-more">
+                      <div class="shop-name">{{shop.name}}</div>
+                      <div class="shop-active">
+                          <button mat-raised-button style="margin-right:
+                              20px">Chat ngay</button>
+                          <button style="background-color:
+                              var(--primary-color--); color: #fff"mat-raised-button>Xem
+                              shop</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="shop-info-container__right">
+              <div class="d-flex justify-content-around align-item-center">
+                  <div class="shop-tag">
+                      Đánh giá <span>3.3k</span>
+                  </div>
+                  <div class="shop-tag">
+                      Người theo dõi<span>2.5k</span>
+                  </div>
+                  <div class="shop-tag">
+                      Số sản phẩm <span>11</span>
+                  </div>
+              </div>
+              <div class="d-flex justify-content-between align-item-center">
+                  <div class="shop-tag">
+                      Tỉ lệ phản hồi <span>100%</span>
+                  </div>
+                  <div class="shop-tag">
+                      Tham gia <span>13 tháng trước</span>
+                  </div>
+                  <div class="shop-tag">
+                      Thời gian phản hồi <span>Trong vài phút</span>
+                  </div>
+              </div>
+          </div>
+      </li>
+      <li class="product-detail__item product-detail-inf-container">
+          <h1>Sản phẩm thuộc gian hàng</h1>
+          <ul class="product__list">
+            <ng-container *ngIf="shop.products">
+              <ng-container *ngFor="let p of shop.products">
+                <li class="product__item product__item--bg-color" [routerLink]="['/buyer/product',p.id]">
+                  <div class="product__item-thumbnail">
+                    <img [src]="directLinkImage +p.images[p.images.length - 2 ].url" alt="" />
+                  </div>
+                  <div class="product__item-info">
+                    <h4 class="product-name">
+                      {{p.name}}
+                    </h4>
+                    <div class="d-flex align-item-center">
+                      <div class="category-product">Danh mục: <span>{{p.category['name']}}</span></div>
+                    </div>
+                    <div class="d-flex align-item-center">
+                      <div class="category-product">Độ tuổi: <span>{{p.recommend['name']}}</span></div>
+                    </div>
+                    <div class="d-flex align-item-center">
+                      <div class="category-product">Thương hiệu: <span>{{p.brand.name}}</span></div>
+                    </div>
+                    <div class="product-price">
+                      <div class="product-price__wrap">
+                        <ng-container *ngIf="p.discountPercent">
+                          <div class="product-price__source">{{p.sourcePrice  | currency:'VND'}}</div>
+                        </ng-container>
+                        <div class="product-price__cur">{{p.buyPrice  | currency:'VND'}}</div>
+                      </div>
+                      <div class="product-price__icon">
+                        <svg
+                          height="12"
+                          viewBox="0 0 20 12"
+                          width="20"
+                          class="shopee-svg-icon icon-free-shipping"
+                        >
+                          <g fill="none" fill-rule="evenodd" transform="">
+                            <rect
+                              fill="#00bfa5"
+                              fill-rule="evenodd"
+                              height="9"
+                              rx="1"
+                              width="12"
+                              x="4"
+                            ></rect>
+                            <rect
+                              height="8"
+                              rx="1"
+                              stroke="#00bfa5"
+                              width="11"
+                              x="4.5"
+                              y=".5"
+                            ></rect>
+                            <rect
+                              fill="#00bfa5"
+                              fill-rule="evenodd"
+                              height="7"
+                              rx="1"
+                              width="7"
+                              x="13"
+                              y="2"
+                            ></rect>
+                            <rect
+                              height="6"
+                              rx="1"
+                              stroke="#00bfa5"
+                              width="6"
+                              x="13.5"
+                              y="2.5"
+                            ></rect>
+                            <circle cx="8" cy="10" fill="#00bfa5" r="2"></circle>
+                            <circle cx="15" cy="10" fill="#00bfa5" r="2"></circle>
+                            <path
+                              d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z"
+                              fill="#fff"
+                            ></path>
+                            <path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path>
+                            <path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path>
+                            <circle cx="8" cy="10" fill="#047565" r="1"></circle>
+                            <circle cx="15" cy="10" fill="#047565" r="1"></circle>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="discount-flag" *ngIf="p.discountPercent > 0">
+                    Giảm {{p.discountPercent}}%
+                  </div>
+                </li>
+              </ng-container>
+            </ng-container>
+          </ul>
+      </li>
+      <li class="product-detail__item product-detail-inf-container">
+          <h1>Sản phẩm gợi ý</h1>
+          <ul class="product__list">
+            <ng-container *ngIf="(recommendProduct$ | async) as products">
+              <ng-container *ngFor="let p of products">
+                <li class="product__item product__item--bg-color" [routerLink]="['/buyer/product',p.id]">
+                  <div class="product__item-thumbnail">
+                    <img [src]="p.images[p.images.length - 2 ].url" alt="" />
+                  </div>
+                  <div class="product__item-info">
+                    <h4 class="product-name">
+                      {{p.name}}
+                    </h4>
+                    <div class="d-flex align-item-center">
+                      <div class="category-product">Danh mục: <span>{{p.category['name']}}</span></div>
+                    </div>
+                    <div class="d-flex align-item-center">
+                      <div class="category-product">Độ tuổi: <span>{{p.recommend['name']}}</span></div>
+                    </div>
+                    <div class="d-flex align-item-center">
+                      <div class="category-product">Thương hiệu: <span>{{p.brand.name}}</span></div>
+                    </div>
+                    <div class="product-price">
+                      <div class="product-price__wrap">
+                        <ng-container *ngIf="p.discountPercent">
+                          <div class="product-price__source">{{p.sourcePrice  | currency:'VND'}}</div>
+                        </ng-container>
+                        <div class="product-price__cur">{{p.buyPrice  | currency:'VND'}}</div>
+                      </div>
+                      <div class="product-price__icon">
+                        <svg
+                          height="12"
+                          viewBox="0 0 20 12"
+                          width="20"
+                          class="shopee-svg-icon icon-free-shipping"
+                        >
+                          <g fill="none" fill-rule="evenodd" transform="">
+                            <rect
+                              fill="#00bfa5"
+                              fill-rule="evenodd"
+                              height="9"
+                              rx="1"
+                              width="12"
+                              x="4"
+                            ></rect>
+                            <rect
+                              height="8"
+                              rx="1"
+                              stroke="#00bfa5"
+                              width="11"
+                              x="4.5"
+                              y=".5"
+                            ></rect>
+                            <rect
+                              fill="#00bfa5"
+                              fill-rule="evenodd"
+                              height="7"
+                              rx="1"
+                              width="7"
+                              x="13"
+                              y="2"
+                            ></rect>
+                            <rect
+                              height="6"
+                              rx="1"
+                              stroke="#00bfa5"
+                              width="6"
+                              x="13.5"
+                              y="2.5"
+                            ></rect>
+                            <circle cx="8" cy="10" fill="#00bfa5" r="2"></circle>
+                            <circle cx="15" cy="10" fill="#00bfa5" r="2"></circle>
+                            <path
+                              d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z"
+                              fill="#fff"
+                            ></path>
+                            <path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path>
+                            <path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path>
+                            <circle cx="8" cy="10" fill="#047565" r="1"></circle>
+                            <circle cx="15" cy="10" fill="#047565" r="1"></circle>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="discount-flag" *ngIf="p.discountPercent > 0">
+                    Giảm {{p.discountPercent}}%
+                  </div>
+                </li>
+              </ng-container>
+            </ng-container>
+          </ul>
+      </li>
+     
   </ul>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="assets/img/product/1.png" alt="Los Angeles" width="1100" height="500">
-      <div class="carousel-caption">
-        <h3>Los Angeles</h3>
-        <p>We had such a great time in LA!</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/img/product/2.png" alt="Chicago" width="1100" height="500">
-      <div class="carousel-caption">
-        <h3>Chicago</h3>
-        <p>Thank you, Chicago!</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/img/product/3.png" alt="New York" width="1100" height="500">
-      <div class="carousel-caption">
-        <h3>New York</h3>
-        <p>We love the Big Apple!</p>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
 </div>
-  <div class="content-shop-right">
-    <h3>Mini Shop</h3>
-    <p>Chuyên Sỉ Lẻ Giá Rẻ Toàn Quốc </p>
-    <p>Các bạn có điều gì thắc mắc hãy chat ngay với shop để được giải đáp nhé .</p>
-  </div>
-  </div>
-</div>
-<app-product-list></app-product-list>

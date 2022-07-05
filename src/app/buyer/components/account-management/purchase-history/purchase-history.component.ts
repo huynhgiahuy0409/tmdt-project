@@ -1,34 +1,70 @@
-import { Component, OnInit } from '@angular/core';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+import { DIRECT_LINK_DIG_BILL } from 'src/app/_models/constance';
+import { OrderResponse } from './../../../../_models/response';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { OrderService } from 'src/app/buyer/services/order.service';
+export interface OrderElement {
+  orderId: number;
+  status: string;
+  cartItemCost: number;
+  shippingCost: number;
+  paymentCost: number;
+  action: [string, string][];
+  digitalBill?: string;
+  digitalBillHash?: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 @Component({
   selector: 'app-purchase-history',
   templateUrl: './purchase-history.component.html',
   styleUrls: ['./purchase-history.component.scss']
 })
 export class PurchaseHistoryComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  directLinkDigitalBill = `${DIRECT_LINK_DIG_BILL}/`
+  displayedColumns: string[] = ['orderId', 'status', 'cartItemCost', 'shippingCost', 'paymentCost', 'action', 'digitalBillHash'];
+  orderDataSource!: MatTableDataSource<OrderElement>;
+  orderElementDataList: OrderElement[] = [];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.orderDataSource.paginator = this.paginator;
+  }
+  constructor(private activatedRoute: ActivatedRoute, private orderService: OrderService) { }
 
   ngOnInit(): void {
+    let orders: OrderResponse[] = this.activatedRoute.snapshot.data.orderAll
+    this.orderElementDataList = orders.map((order: OrderResponse) => {
+      const {id, status, cartItemCost, shippingCost, paymentCost, digitalBillHash} = order
+      let action: [string, string][] =  [["see","Xem"], ["contact","Liên hệ người bán"]]
+      let tempStatus: string = ''
+      if(status === "1"){
+        tempStatus = "Chờ xác nhận"
+        action.push(["cancel","Hủy đơn"])
+      }else if(status === "2"){
+        tempStatus = "Đang giao"
+      }else if(status === "3"){
+        tempStatus = "Đã giao"
+      }else if(status === "0"){
+        tempStatus = "Đã hủy"
+      }
+      let orderElementData: OrderElement = {
+        orderId: id,
+        status: tempStatus,
+        cartItemCost: cartItemCost,
+        shippingCost: shippingCost, 
+        paymentCost: paymentCost, 
+        action: action,
+        digitalBillHash: digitalBillHash
+      }
+      return orderElementData
+    })
+    this.orderDataSource = new MatTableDataSource(this.orderElementDataList)
   }
-
+  onClickCancelOrder(orderId: number){
+    this.orderService.updateStatus(orderId, "0").subscribe()
+    this.orderDataSource.data.find(orderElement => orderElement.orderId === orderId)!.status = "Đã hủy"
+    this.orderDataSource._updateChangeSubscription()
+  }
 }

@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Pagination } from 'src/app/buyer/model/request';
 import { DOMAIN } from 'src/app/_models/constance';
+import { Pagination } from 'src/app/_models/pagination';
 import { RecommendAgeResponse } from 'src/app/_models/response';
 
 @Injectable({

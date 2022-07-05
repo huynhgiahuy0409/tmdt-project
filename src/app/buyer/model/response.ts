@@ -1,5 +1,5 @@
+import { UserResponse } from "src/app/_models/response";
 import { JWT } from "./jwt";
-import { UserResponse } from "./user";
 
 export class AuthenticationResponse{
     user!: UserResponse;

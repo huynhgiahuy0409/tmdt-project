@@ -1,410 +1,202 @@
-<ng-template #aProduct>
-  <div class="single-tranding">
-    <mat-card class="card-custom">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu">
-      <div class="card-custom--detail-product-title">Product name</div>
-      <div class="justity-space">
-        <mat-card-subtitle><b>SKU:</b> 1112302312 </mat-card-subtitle>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent">favorite_border</mat-icon>
-      </div>
-      <div class="justity-space">
-        <div id="full-stars-example-two">
-          <div class="rating-group">
-            <input checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0"
-              type="radio">
-            <label aria-label="1 star" class="rating__label" for="rating3-1"><i
-                class="rating__icon rating__icon--star fa fa-star"></i></label>
-            <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
-            <label aria-label="2 stars" class="rating__label" for="rating3-2"><i
-                class="rating__icon rating__icon--star fa fa-star"></i></label>
-            <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
-            <label aria-label="3 stars" class="rating__label" for="rating3-3"><i
-                class="rating__icon rating__icon--star fa fa-star"></i></label>
-            <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
-            <label aria-label="4 stars" class="rating__label" for="rating3-4"><i
-                class="rating__icon rating__icon--star fa fa-star"></i></label>
-            <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
-            <label aria-label="5 stars" class="rating__label" for="rating3-5"><i
-                class="rating__icon rating__icon--star fa fa-star"></i></label>
-            <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+<div class="container">
+  <h2 style="text-align: center; margin: 10px">Danh sách sản phẩm mới nhất</h2>
+  <ul class="product__list">
+    <ng-container *ngIf="(products$ | async) as products">
+      <ng-container *ngFor="let p of products">
+        <li class="product__item product__item--bg-color" [routerLink]="['/buyer/product',p.id]">
+          <div class="product__item-thumbnail">
+            <img [src]="p.images[p.images.length - 2 ].url" alt="" />
+            <!-- <img class="brand-logo" [src]="p.brand.logo.url" alt=""> -->
           </div>
-        </div>
-      </div>
-      <div class="price-label justity-space">
-        <div class="price-label--price"><span>{{200000 | currency: "VND"}}</span></div>
-        <div class="price-label--unit">{{400000 | currency: "VND"}}</div>
-      </div>
-      <mat-card-actions class="mat-card-actions-custom">
-        <div class="mat-card-actions-custom--buy-now">
-          <button mat-raised-button color="warn">Mua ngay</button>
-        </div>
-        <div class="mat-card-actions-custom--buy-now">
-          <button mat-raised-button class="mat-card-actions-custom--icon">
-            <mat-icon>add_shopping_cart</mat-icon>
-          </button>
-        </div>
-        <div class="mat-card-actions-custom--buy-now">
-          <button mat-raised-button class="mat-card-actions-custom--icon">
-            <mat-icon>remove_red_eye</mat-icon>
-          </button>
-        </div>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</ng-template>
-<ng-template #bProduct>
-  <div class="single-tranding">
-    <mat-card class="card-custom">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <div [routerLink]="['/product/:id']" class="card-custom--detail-product-title">Product name</div>
-      <div class="justity-space">
-        <mat-card-subtitle><b>SKU:</b> 1112302312 </mat-card-subtitle>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" color="accent">favorite_border</mat-icon>
-      </div>
-      <div class="price-label justity-space">
-        <div class="price-label--price"><span>{{200000 | currency: "VND"}}</span></div>
-        <div class="price-label--unit">{{400000 | currency: "VND"}}</div>
-      </div>
-      <mat-card-actions class="mat-card-actions-custom">
-        <div class="mat-card-actions-custom--buy-now">
-          <button mat-raised-button color="warn" [routerLink]="['/checkout']">Mua ngay</button>
-        </div>
-        <div class="mat-card-actions-custom--buy-now">
-          <button mat-raised-button class="mat-card-actions-custom--icon">
-            <mat-icon>add_shopping_cart</mat-icon>
-          </button>
-        </div>
-        <div class="mat-card-actions-custom--buy-now">
-          <button mat-raised-button class="mat-card-actions-custom--icon">
-            <mat-icon>remove_red_eye</mat-icon>
-          </button>
-        </div>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</ng-template>
-
-<ng-template #hightLightCategoryTmpl>
-  <mat-card class="card-custom">
-    <img mat-card-image src="https://u6wdnj9wggobj.vcdn.cloud/media/wysiwyg/homepage/danh-muc-1.jpg"
-      alt="Photo of a Shiba Inu">
-    <span class="card-custom--category-title">Tên danh mục</span>
-  </mat-card>
-</ng-template>
-<!--------------------------------------->
-<!--Tranding product-->
-<section class="pt-30 pb-30">
-  <div class="container carousel" id="discountCarousel" data-ride="carousel">
-    <div class="row">
-      <div class="col text-center">
-        <div class="section-title">
-          <h2>GIẢM GIÁ ĐẶC BIỆT</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="carousel-inner carousel-inner-custom">
-        <ng-container *ngFor="let product of products; index as idx, first as fst">
-          <ng-container *ngIf="fst; else noneActive">
-            <div class="item active">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
+          <div class="product__item-info">
+            <h4 class="product-name">
+              {{p.name}}
+            </h4>
+            <div class="d-flex align-item-center">
+              <div class="category-product">Danh mục: <span>{{p.category['name']}}</span></div>
+            </div>
+            <div class="d-flex align-item-center">
+              <div class="category-product">Độ tuổi: <span>{{p.recommend['name']}}</span></div>
+            </div>
+            <div class="d-flex align-item-center">
+              <div class="category-product">Thương hiệu: <span>{{p.brand.name}}</span></div>
+            </div>
+            <div class="product-price">
+              <div class="product-price__wrap">
+                <ng-container *ngIf="p.discountPercent">
+                  <div class="product-price__source">{{p.sourcePrice  | currency:'VND'}}</div>
+                </ng-container>
+                <div class="product-price__cur">{{p.buyPrice  | currency:'VND'}}</div>
+              </div>
+              <div class="product-price__icon">
+                <svg
+                  height="12"
+                  viewBox="0 0 20 12"
+                  width="20"
+                  class="shopee-svg-icon icon-free-shipping"
+                >
+                  <g fill="none" fill-rule="evenodd" transform="">
+                    <rect
+                      fill="#00bfa5"
+                      fill-rule="evenodd"
+                      height="9"
+                      rx="1"
+                      width="12"
+                      x="4"
+                    ></rect>
+                    <rect
+                      height="8"
+                      rx="1"
+                      stroke="#00bfa5"
+                      width="11"
+                      x="4.5"
+                      y=".5"
+                    ></rect>
+                    <rect
+                      fill="#00bfa5"
+                      fill-rule="evenodd"
+                      height="7"
+                      rx="1"
+                      width="7"
+                      x="13"
+                      y="2"
+                    ></rect>
+                    <rect
+                      height="6"
+                      rx="1"
+                      stroke="#00bfa5"
+                      width="6"
+                      x="13.5"
+                      y="2.5"
+                    ></rect>
+                    <circle cx="8" cy="10" fill="#00bfa5" r="2"></circle>
+                    <circle cx="15" cy="10" fill="#00bfa5" r="2"></circle>
+                    <path
+                      d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z"
+                      fill="#fff"
+                    ></path>
+                    <path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path>
+                    <path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path>
+                    <circle cx="8" cy="10" fill="#047565" r="1"></circle>
+                    <circle cx="15" cy="10" fill="#047565" r="1"></circle>
+                  </g>
+                </svg>
               </div>
             </div>
-          </ng-container>
-          <ng-template #noneActive>
-            <div class="item">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="bProduct"></ng-container>
+            <!-- <div class="d-flex align-item-center">
+              <div class="buyed-product">Đã bán 416</div>
+            </div> -->
+            <!-- <div class="d-flex align-item-center">
+              <div class="place">TP.HCM</div>
+            </div> -->
+          </div>
+          
+          <div class="discount-flag" *ngIf="p.discountPercent > 0">
+            Giảm {{p.discountPercent}}%
+          </div>
+        </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+  <!--  -->
+  <h2 style="text-align: center; margin: 10px">Top 10 xem nhiều nhất</h2>
+  <ul class="product__list">
+    <ng-container *ngIf="(mostViewProducts$ | async) as products">
+      <ng-container *ngFor="let p of products">
+        <li class="product__item product__item--bg-color" [routerLink]="['/buyer/product',p.id]">
+          <div class="product__item-thumbnail">
+            <img [src]="p.images[p.images.length - 2 ].url" alt="" />
+            <!-- <img class="brand-logo" [src]="p.brand.logo.url" alt=""> -->
+          </div>
+          <div class="product__item-info">
+            <h4 class="product-name">
+              {{p.name}}
+            </h4>
+            <div class="d-flex align-item-center">
+              <div class="category-product">Danh mục: <span>{{p.category['name']}}</span></div>
+            </div>
+            <div class="d-flex align-item-center">
+              <div class="category-product">Độ tuổi: <span>{{p.recommend['name']}}</span></div>
+            </div>
+            <div class="d-flex align-item-center">
+              <div class="category-product">Thương hiệu: <span>{{p.brand.name}}</span></div>
+            </div>
+            <div class="product-price">
+              <div class="product-price__wrap">
+                <ng-container *ngIf="p.discountPercent">
+                  <div class="product-price__source">{{p.sourcePrice  | currency:'VND'}}</div>
+                </ng-container>
+                <div class="product-price__cur">{{p.buyPrice  | currency:'VND'}}</div>
+              </div>
+              <div class="product-price__icon">
+                <svg
+                  height="12"
+                  viewBox="0 0 20 12"
+                  width="20"
+                  class="shopee-svg-icon icon-free-shipping"
+                >
+                  <g fill="none" fill-rule="evenodd" transform="">
+                    <rect
+                      fill="#00bfa5"
+                      fill-rule="evenodd"
+                      height="9"
+                      rx="1"
+                      width="12"
+                      x="4"
+                    ></rect>
+                    <rect
+                      height="8"
+                      rx="1"
+                      stroke="#00bfa5"
+                      width="11"
+                      x="4.5"
+                      y=".5"
+                    ></rect>
+                    <rect
+                      fill="#00bfa5"
+                      fill-rule="evenodd"
+                      height="7"
+                      rx="1"
+                      width="7"
+                      x="13"
+                      y="2"
+                    ></rect>
+                    <rect
+                      height="6"
+                      rx="1"
+                      stroke="#00bfa5"
+                      width="6"
+                      x="13.5"
+                      y="2.5"
+                    ></rect>
+                    <circle cx="8" cy="10" fill="#00bfa5" r="2"></circle>
+                    <circle cx="15" cy="10" fill="#00bfa5" r="2"></circle>
+                    <path
+                      d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z"
+                      fill="#fff"
+                    ></path>
+                    <path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path>
+                    <path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path>
+                    <circle cx="8" cy="10" fill="#047565" r="1"></circle>
+                    <circle cx="15" cy="10" fill="#047565" r="1"></circle>
+                  </g>
+                </svg>
               </div>
             </div>
-          </ng-template>
-        </ng-container>
-      </div>
-    </div>
-    <!-- Left and right controls -->
-    <a class="left carousel-control carousel-control-custom" href="#discountCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control carousel-control-custom" href="#discountCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</section>
-<section class="pt-30 pb-30 gray-bg">
-  <div class="container carousel" id="discountCarousel" data-ride="carousel">
-    <div class="row">
-      <div class="col text-center">
-        <div class="section-title">
-          <h2>ĐÁNH GIÁ CAO</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="carousel-inner carousel-inner-custom">
-        <ng-container *ngFor="let product of products; index as idx, first as fst">
-          <ng-container *ngIf="fst; else noneActive">
-            <div class="item active">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
-              </div>
-            </div>
-          </ng-container>
-          <ng-template #noneActive>
-            <div class="item">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="bProduct"></ng-container>
-              </div>
-            </div>
-          </ng-template>
-        </ng-container>
-      </div>
-    </div>
-    <!-- Left and right controls -->
-    <a class="left carousel-control carousel-control-custom" href="#discountCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control carousel-control-custom" href="#discountCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</section>
-<section class="pt-30 pb-30">
-  <div class="container carousel" id="discountCarousel" data-ride="carousel">
-    <div class="row">
-      <div class="col text-center">
-        <div class="section-title">
-          <h2>MUA NHIỀU</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="carousel-inner carousel-inner-custom">
-        <ng-container *ngFor="let product of products; index as idx, first as fst">
-          <ng-container *ngIf="fst; else noneActive">
-            <div class="item active">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
-              </div>
-            </div>
-          </ng-container>
-          <ng-template #noneActive>
-            <div class="item">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="bProduct"></ng-container>
-              </div>
-            </div>
-          </ng-template>
-        </ng-container>
-      </div>
-    </div>
-    <!-- Left and right controls -->
-    <a class="left carousel-control carousel-control-custom" href="#discountCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control carousel-control-custom" href="#discountCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</section>
-<!-- new product -->
-<section class="pt-30 pb-30 gray-bg">
-  <div class="container carousel" id="discountCarousel" data-ride="carousel">
-    <div class="row">
-      <div class="col text-center">
-        <div class="section-title">
-          <h2>MỚI NHẤT</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="carousel-inner carousel-inner-custom">
-        <ng-container *ngFor="let product of products; index as idx, first as fst">
-          <ng-container *ngIf="fst; else noneActive">
-            <div class="item active">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
-              </div>
-            </div>
-          </ng-container>
-          <ng-template #noneActive>
-            <div class="item">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="bProduct"></ng-container>
-              </div>
-            </div>
-          </ng-template>
-        </ng-container>
-      </div>
-    </div>
-    <!-- Left and right controls -->
-    <a class="left carousel-control carousel-control-custom" href="#discountCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control carousel-control-custom" href="#discountCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <div class="viewingmore" style="display: flex; justify-content: center">
-
-      <a href="#viewmore" style="font-size: large; text-decoration: underline"><strong>View more</strong></a>
-
-  </div>
-</section>
-<!--Features area-->
-<section class="features-area pt-60 pb-60 gray-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <div class="section-title">
-          <h2>DANH MỤC ĐỒ CHƠI NỔI BẬT</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12 p-0px">
-        <div class="single-tranding">
-          <ng-container [ngTemplateOutlet]="hightLightCategoryTmpl"></ng-container>
-        </div>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12 p-0px">
-        <div class="single-tranding">
-          <ng-container [ngTemplateOutlet]="hightLightCategoryTmpl"></ng-container>
-        </div>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12 p-0px">
-        <div class="single-tranding">
-          <ng-container [ngTemplateOutlet]="hightLightCategoryTmpl"></ng-container>
-        </div>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12 p-0px">
-        <div class="single-tranding">
-          <ng-container [ngTemplateOutlet]="hightLightCategoryTmpl"></ng-container>
-        </div>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12 p-0px">
-        <div class="single-tranding">
-          <ng-container [ngTemplateOutlet]="hightLightCategoryTmpl"></ng-container>
-        </div>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12 p-0px">
-        <div class="single-tranding">
-          <ng-container [ngTemplateOutlet]="hightLightCategoryTmpl"></ng-container>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container carousel" id="categoryCarouseFirst" data-ride="carousel">
-    <div class="row">
-      <div class="col text-left">
-        <div class="section-title">
-          <div class="detail-category-label">
-            <h2>Đồ chơi lắp ráp</h2>
+            <!-- <div class="d-flex align-item-center">
+              <div class="buyed-product">Đã bán 416</div>
+            </div> -->
+            <!-- <div class="d-flex align-item-center">
+              <div class="place">TP.HCM</div>
+            </div> -->
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="carousel-inner carousel-inner-custom">
-        <ng-container *ngFor="let product of products; index as idx, first as fst">
-          <ng-container *ngIf="fst; else noneActive">
-            <div class="item active">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="aProduct"></ng-container>
-              </div>
-            </div>
-          </ng-container>
-          <ng-template #noneActive>
-            <div class="item">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let p of product">
-                <ng-container [ngTemplateOutlet]="bProduct"></ng-container>
-              </div>
-            </div>
-          </ng-template>
-        </ng-container>
-      </div>
-    </div>
-    <!-- Left and right controls -->
-    <a class="left carousel-control carousel-control-custom" href="#categoryCarouseFirst" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control carousel-control-custom" href="#categoryCarouseFirst" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-
-</section>
-<!--Features area-->
-
-<!--Other product-->
-
-
-<!--shipping area start-->
-<section class="shipping_area">
-  <div class="container">
-    <div class=" row">
-      <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-        <div class="single_shipping">
-          <div class="shipping_icone">
-            <img src="assets/template/customer/img/about/shipping1.png" alt="">
+          
+          <div class="discount-flag" *ngIf="p.discountPercent > 0">
+            Giảm {{p.discountPercent}}%
           </div>
-          <div class="shipping_content">
-            <h2>Free Shipping</h2>
-            <p>Free shipping on all US order</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-        <div class="single_shipping">
-          <div class="shipping_icone">
-            <img src="assets/template/customer/img/about/shipping2.png" alt="">
-          </div>
-          <div class="shipping_content">
-            <h2>Support 24/7</h2>
-            <p>Contact us 24 hours a day</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-        <div class="single_shipping">
-          <div class="shipping_icone">
-            <img src="assets/template/customer/img/about/shipping3.png" alt="">
-          </div>
-          <div class="shipping_content">
-            <h2>100% Money Back</h2>
-            <p>You have 30 days to Return</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-        <div class="single_shipping">
-          <div class="shipping_icone">
-            <img src="assets/template/customer/img/about/shipping4.png" alt="">
-          </div>
-          <div class="shipping_content">
-            <h2>Payment Secure</h2>
-            <p>We ensure secure payment</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--shipping area end-->
-
-<!-- JS ============================================ -->
-<!-- Plugins JS -->
-<script src="assets/template/customer/js/plugins.js"></script>
-<!-- Main JS -->
-<script src="assets/template/customer/js/main.js"></script>
+        </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+  <!--  -->
+</div>

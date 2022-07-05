@@ -1,5 +1,10 @@
+import { Pagination, Sorter } from './../../../_models/pagination';
+import { FilterChain } from './../../model/filter';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../post.service';
+import { ProductService } from '../../services/product.service';
+import { ProductResponse } from 'src/app/_models/response';
 
 @Component({
   selector: 'app-home',
@@ -7,19 +12,34 @@ import { PostService } from '../../post.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  products: number[][] = []
-  constructor(private postService: PostService) { }
+  products$!: Observable<ProductResponse[]>
+  mostViewProducts$!: Observable<ProductResponse[]>
+  constructor(private productService: ProductService,) { }
 
   ngOnInit(): void {
-    console.log(this.postService.random)
-    let arrayElement: number[] = []
-    for (let index = 1; index <= 20; index++) {
-      let length = arrayElement.push(index)
-      if((index % 4) === 0 && index >= 4){
-        length = this.products.push(arrayElement)
-        arrayElement = []
-      }
+    let sort: Sorter =  {
+      dir: "desc",
+      order: "createdDate",
     }
+    let pagination: Pagination = {
+      pageIndex: 0,
+      pageSize: 10,
+      sorter: sort
+    }
+    let filterChain: FilterChain = {
+      pagination: pagination
+    }
+    this.products$ = this.productService.findProducts(filterChain)
+    this.mostViewProducts$ = this.productService.findProducts({
+      pagination: {
+        pageIndex: 0,
+        pageSize: 10,
+        sorter: {
+          dir: "desc",
+          order: "view",
+        }
+      }
+    })
   }
 
 }

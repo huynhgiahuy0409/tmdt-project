@@ -100,4 +100,8 @@ export class ProductService {
     const url = `${DOMAIN}/api/product/${productId}`;
     return this.httpClient.get<ProductResponse>(url, this.httpOptions)
   }
+  updateProductView(productId: number): void{
+    const url = `${DOMAIN}/api/product/${productId}/view`;
+    this.httpClient.post(url, null, this.httpOptions).subscribe()
+  }
 }

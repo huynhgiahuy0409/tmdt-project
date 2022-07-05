@@ -16,6 +16,8 @@ import { tap } from 'rxjs/operators';
 export class ShopService {
     shopBehaviorSubject!: BehaviorSubject<ShopResponse | null>;
     shop$!: Observable<ShopResponse | null>;
+    searchShopBehaviorSubject!: BehaviorSubject<string>;
+    searchShop$!: Observable<string>;
     private httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -25,6 +27,9 @@ export class ShopService {
     constructor(private httpClient: HttpClient) {
         this.shopBehaviorSubject = new BehaviorSubject<ShopResponse | null>(null);
         this.shop$ = this.shopBehaviorSubject.asObservable();
+        this.searchShopBehaviorSubject = new BehaviorSubject<string>("");
+        this.searchShop$ = this.searchShopBehaviorSubject.asObservable();
+        this.searchShop$.subscribe(v => console.log(v));
     }
     findShopByUserId(userId: number): Observable<ShopResponse> {
         const url = `${DOMAIN}/api/shop/user/${userId}`;
@@ -33,5 +38,17 @@ export class ShopService {
                 this.shopBehaviorSubject.next(shopResponse);
             })
         );
+    }
+    findShopById(shopId: number): Observable<ShopResponse> {
+        const url = `${DOMAIN}/api/shop/${shopId}`;
+        return this.httpClient.get<ShopResponse>(url, this.httpOptions).pipe(
+            tap((shopResponse) => {
+                this.shopBehaviorSubject.next(shopResponse);
+            })
+        );
+    }
+    searchShopByName(shopName: string): Observable<ShopResponse[]> {
+        const url = `${DOMAIN}/api/search/${shopName}/shop`;
+        return this.httpClient.get<ShopResponse[]>(url, this.httpOptions)
     }
 }

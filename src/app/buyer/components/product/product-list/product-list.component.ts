@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductResponse } from 'src/app/_models/response';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/buyer/services/product.service';
-import { Pagination } from 'src/app/buyer/model/request';
 import { PageEvent } from '@angular/material/paginator';
 import { DIRECT_LINK_IMAGE } from 'src/app/_models/constance';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BuyerRoutingModule } from './buyer-routing.module';
 import { BuyerComponent } from './buyer.component';
 import { HomeComponent } from './components/home/home.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CheckoutComponent, ConfirmOrderDialog, ShippingDialog } from './components/checkout/checkout.component';
 import { BreadcrumbModule } from '../shared/layout/customer/breadcrumb';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/aboutUs/aboutUs.component';
@@ -30,11 +30,7 @@ import {
   RecaptchaModule,
   RecaptchaSettings,
 } from 'ng-recaptcha';
-import {
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  SocialAuthServiceConfig,
-} from '..';
+
 import { PostService } from './post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -42,6 +38,9 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ProductFilterChainService } from './services/product-filter-chain.service';
 import { RouterStateSnapshot } from '@angular/router';
+import { ShopService } from '../seller/services/shop.service';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig} from 'angularx-social-login';
+
 @NgModule({
   declarations: [
     BuyerComponent,
@@ -60,6 +59,8 @@ import { RouterStateSnapshot } from '@angular/router';
     ResetComponent,
     FindingShopComponent,
     DialogComponent,
+    ShippingDialog,
+    ConfirmOrderDialog
   ],
   imports: [
     CommonModule,
@@ -86,6 +87,8 @@ import { RouterStateSnapshot } from '@angular/router';
     },
     CookieService,
     ProductFilterChainService,
+    ShopService,
   ],
+
 })
 export class BuyerModule {}
