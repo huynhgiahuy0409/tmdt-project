@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CategoryResolve } from './shared/services/resolve.ts/category.resolve';
 import { AuthGuard } from './_helpers/auth.guard';
+import { ShopResolve } from './seller/services/resolve/shop.resolve';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'buyer',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'seller',
@@ -40,4 +41,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

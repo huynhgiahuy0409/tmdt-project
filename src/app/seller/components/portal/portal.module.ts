@@ -11,7 +11,7 @@ import { SaleComponent } from './sale/sale.component';
 import { OrderAllSectionComponent } from './sale/order-all-section/order-all-section.component';
 import { KeyComponent } from './product/key/key.component';
 import { DigitalBillProcessComponent } from './digital-bill-process/digital-bill-process.component';
-import { ProductListSectionComponent } from '../product-management/product-all/product-list-section/product-list-section.component';
+import { ProductListSectionComponent } from './product/product-list-section/product-list-section.component';
 
 
 

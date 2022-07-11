@@ -1,0 +1,55 @@
+<ng-container *ngIf="(order$ | async) as order">
+    <div class="delivery">
+        <div class="d-flex align-items-center justify-content-between">
+            <img src="assets/img/logo/new-logo.png" alt="" class="logo">
+            <img src="assets/img/about/ma-vach.png" class="logo">
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="" style="margin-right: 10px">
+                <h4>Mã vận đơn</h4>
+                <h4>Đơn vị vận chuyển</h4>
+                <h4>Mã đơn hàng</h4>
+                <h4>Phí vận chuyển</h4>
+            </div>
+            <div class="">
+                <h4 class="font-weight-550">TF{{order.id}}VN</h4>
+                <h4 class="font-weight-550">Toy Fair Post</h4>
+                <h4 class="font-weight-550">{{order.id}}</h4>
+                <h4 class="font-weight-550">{{order.shippingCost | currency: "VND"}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="address d-flex">
+        <div class="address__seller">
+            <h4>Từ: {{order.sendAddress}}</h4>
+            <h4>Số điện thoại: {{order.sendPhoneNumber}}</h4>
+        </div>
+        <div class="address__buyer">
+            <h4>Đến: {{order.orderAddress}}</h4>
+            <h4>Số điện thoại: {{order.orderPhoneNumber}}</h4>
+        </div>
+    </div>
+    <div class="status d-flex align-items-center">
+        <div class="">
+            <h4>Trạng thái thanh toán: {{order.paymentStatus}}</h4>
+            <h4>Phương thức thanh toán: {{order.paymentMethod}}</h4>
+        </div>
+    </div>
+    <div class="content d-flex align-items-center justify-content-between">
+        <div class="content__left">
+            <h4>Nội dung hàng (Tổng số lượng sản phẩm: {{this.countProducts(order)}} )</h4>
+            <h4 *ngFor="let orderItem of order.orderItems; index as idx">{{idx + 1}}. {{orderItem.product.name}} x {{orderItem.quantity}}</h4>
+            <h4 style="font-style: italic;">Lưu ý: Kiểm tra tên sản phẩm và đối chiếu Mã vận đơn/Mã đơn hàng trên Toy Fair website trước khi nhận hàng</h4>
+        </div>
+        <div class="content__right d-flex justify-content-center align-items-center">
+            <qrcode [qrdata]="myAngularxQrCode" [width]="100">
+            </qrcode>
+        </div>
+    </div>
+    <div class="receipt-cost d-flex align-items-center justify-content-end">
+        <div class="">
+            <h4>Tổng thanh toán</h4>
+            <h2>{{getTotalPayment(order) | currency :"VND"}}</h2>
+        </div>
+    </div>
+</ng-container>

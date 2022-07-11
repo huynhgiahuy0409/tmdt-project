@@ -8,19 +8,23 @@ import { SaleComponent } from './sale/sale.component';
 import { OrderResolve } from 'src/app/buyer/services/resolve/order.resolve';
 import { KeyComponent } from './product/key/key.component';
 import { DigitalBillProcessComponent } from './digital-bill-process/digital-bill-process.component';
+import { PiechartComponent } from '../piechart/piechart.component';
 const routes: Routes = [
   {
     path: '',
     component: PortalComponent,
     children: [
       { path: '', redirectTo: 'product', pathMatch: 'full' },
-      { path: 'onBoarding', component: BoardingComponent },
-      { path: 'product', component: ProductComponent, resolve: { shop: ShopResolve } },
-      { path: 'key', component: KeyComponent},
-      { path: 'digital-bill', component: DigitalBillProcessComponent},
-      { path: 'sale/order', component: SaleComponent, resolve: {
-        orders: OrderResolve
-      } },
+      { path: 'product', component: ProductComponent },
+      { path: 'key', component: KeyComponent },
+      { path: 'digital-bill', component: DigitalBillProcessComponent },
+      {
+        path: 'sale/order',
+        component: SaleComponent,
+        resolve: {
+          orders: OrderResolve,
+        },
+      },
     ],
   },
 ];
@@ -28,4 +32,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PortalRoutingModule { }
+export class PortalRoutingModule {}

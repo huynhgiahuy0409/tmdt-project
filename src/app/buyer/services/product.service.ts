@@ -35,7 +35,7 @@ export class ProductService {
   ) {}
   findProducts(filterChain: FilterChain): Observable<ProductResponse[]> {
     const url = `${DOMAIN}/api/product`;
-    const { pagination, name, price, category, brand, age } = filterChain;
+    const { pagination, name, price, category, brand, age, shopId } = filterChain;
     const { pageIndex, pageSize, sorter } = pagination;
     let fromObject: FromObject = { pageIndex: pageIndex, pageSize: pageSize };
     if (sorter) {
@@ -57,6 +57,11 @@ export class ProductService {
     if (age) {
       fromObject['ageIdFilter'] = age;
     }
+    if (shopId) {
+      fromObject['shopIdFilter'] = shopId;
+    }
+    console.log(fromObject);
+    
     let paramsOptions: HttpParamsOptions = { fromObject };
     let params = new HttpParams(paramsOptions);
     this.httpOptions.params = params;
@@ -98,6 +103,10 @@ export class ProductService {
   }
   findOne(productId: number): Observable<ProductResponse>{
     const url = `${DOMAIN}/api/product/${productId}`;
+    return this.httpClient.get<ProductResponse>(url, this.httpOptions)
+  }
+  findByShop(shopId: number): Observable<ProductResponse>{
+    const url = `${DOMAIN}/api/shop/${shopId}/product`;
     return this.httpClient.get<ProductResponse>(url, this.httpOptions)
   }
   updateProductView(productId: number): void{

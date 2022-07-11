@@ -45,6 +45,7 @@ export interface OrderRequest{
     shopId: number,
     sendBy: string,
     orderBy: string,
+    status: string,
     sendPhoneNumber: string,
     orderPhoneNumber: string,
     orderAddress: string,
@@ -52,5 +53,6 @@ export interface OrderRequest{
     cartItemCost: number,
     shippingCost: number,
     paymentCost: number,
+    paymentStatus: string,
     paymentMethod: string,
 }

@@ -22,6 +22,7 @@ import { RecommendAgeResolve } from '../shared/services/resolve.ts/recommend-age
 import { AuthGuard } from '../_helpers/auth.guard';
 import { SellerModule } from '../seller/seller.module';
 import { SellerRoutingModule } from '../seller/seller-routing.module';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
       },
       { path: 'login', component: LoginComponent },
       { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-      { path: 'payment', component: ShopComponent },
+      { path: 'payment', component: PaymentComponent },
       { path: 'shop/:id', component: ShopComponent },
       { path: 'finding-shop', component: FindingShopComponent },
       {

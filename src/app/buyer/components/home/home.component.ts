@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../post.service';
 import { ProductService } from '../../services/product.service';
 import { ProductResponse } from 'src/app/_models/response';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ import { ProductResponse } from 'src/app/_models/response';
 export class HomeComponent implements OnInit {
   products$!: Observable<ProductResponse[]>
   mostViewProducts$!: Observable<ProductResponse[]>
-  constructor(private productService: ProductService,) { }
+  constructor(private productService: ProductService, private userService: UserService) { }
 
   ngOnInit(): void {
     let sort: Sorter =  {

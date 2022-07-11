@@ -24,6 +24,7 @@ export class DialogService {
     ) {
         return this.dialog.open(DialogComponent, {
             width: 'auto',
+            minWidth: "400px",
             enterAnimationDuration,
             exitAnimationDuration,
             data: data,

@@ -2,11 +2,18 @@ import { map } from 'rxjs/operators';
 import { ShippingCost } from './../../services/shipping.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DIRECT_LINK_IMAGE } from 'src/app/_models/constance';
+import {
+  COD_PAYMENT_METHOD,
+  DIRECT_LINK_IMAGE,
+  MOMO_PAYMENT_METHOD,
+  PENDING_ORDER_STATUS,
+  UNPAID_PAYMENT_STATUS,
+} from 'src/app/_models/constance';
 import { SummaryCart, SummaryCartItem } from 'src/app/_models/models';
 import {
   AddressResponse,
   CartItemResponse,
+  OrderResponse,
   UserResponse,
 } from 'src/app/_models/response';
 import { AddressService } from '../../services/address.service';
@@ -35,8 +42,11 @@ export class CheckoutComponent implements OnInit {
   sltAddressId!: number;
   isChangeAddress: boolean = false;
   shipType: 'standard' | 'fast' = 'standard';
-  methodPayment = ['Ví momo', 'Thanh toán khi nhận hàng'];
-  sltMethodIdx: number = 1;
+  paymentMethods = [
+    [COD_PAYMENT_METHOD, 'Thanh toán khi nhận hàng'],
+    [MOMO_PAYMENT_METHOD, 'Ví Momo'],
+  ];
+  sltMethodIdx: number = 0;
   constructor(
     private cartService: CartService,
     private shippingService: ShippingService,
@@ -153,8 +163,7 @@ export class CheckoutComponent implements OnInit {
   computeTotalPaymentSumCart(summaryCart: SummaryCart) {
     let result = 0;
     summaryCart.summaryCartItems.forEach((summaryCartItem) => {
-      result +=
-        summaryCartItem.shipping.cost.cost + summaryCartItem.totalPayment;
+      result += summaryCartItem.totalPayment
     });
     return result;
   }
@@ -169,68 +178,84 @@ export class CheckoutComponent implements OnInit {
     this.sltMethodIdx = idx;
   }
   onClickOrder() {
-    if (this.sltMethodIdx === 1) {
-      const confirmDialogRef = this.matDialog.open(ConfirmOrderDialog, {
-        width: 'auto',
-        height: 'auto',
-      });
-      confirmDialogRef.afterClosed().subscribe(response => {
-        let isCreateElectBill: boolean = response.isCreateElectBill
-        let user: UserResponse | null =
-          this.userService.userBehaviorSubject.value;
-        let userAddressResponse: AddressResponse | undefined = user!.addresses.find(
-          (addressResponse) => addressResponse.status === 1
-        );
-        let orderAddress: string = `${userAddressResponse?.detailAddress}-${userAddressResponse?.ward.prefix} ${userAddressResponse?.ward.name}, ${userAddressResponse?.district.prefix} ${userAddressResponse?.district.name}, ${userAddressResponse?.province.name}`;
-        let orderPhoneNumber: string = userAddressResponse!.phoneNumber
-        let orderBy: string = userAddressResponse!.fullName
-        let sumCart: SummaryCart | null =
-          this.cartService.sumCartBehaviorSubject.value;
-        sumCart?.summaryCartItems.forEach((summaryCartItem: SummaryCartItem) => {
-          console.log(summaryCartItem);
-          
-          const { cartItem, shipping, totalPayment } = summaryCartItem;
-          const { shop } = cartItem
-          const shopAddressResponse: AddressResponse | undefined = shop.shopUser.addresses.find(
+    const paymentMethod = this.paymentMethods[this.sltMethodIdx];
+    const paymentMethodCode = paymentMethod[0];
+    const confirmDialogRef = this.matDialog.open(ConfirmOrderDialog, {
+      width: 'auto',
+      height: 'auto',
+    });
+    
+    confirmDialogRef.afterClosed().subscribe((response) => {
+      let isCreateElectBill: boolean = response.isCreateElectBill;
+      let user: UserResponse | null =
+        this.userService.userBehaviorSubject.value;
+      let userAddressResponse: AddressResponse | undefined =
+        user!.addresses.find((addressResponse) => addressResponse.status === 1);
+      let orderAddress: string = `${userAddressResponse?.detailAddress}-${userAddressResponse?.ward.prefix} ${userAddressResponse?.ward.name}, ${userAddressResponse?.district.prefix} ${userAddressResponse?.district.name}, ${userAddressResponse?.province.name}`;
+      let orderPhoneNumber: string = userAddressResponse!.phoneNumber;
+      let orderBy: string = userAddressResponse!.fullName;
+      let sumCart: SummaryCart | null =
+        this.cartService.sumCartBehaviorSubject.value;
+      const orderResponses: OrderResponse[] = []
+      sumCart?.summaryCartItems.forEach((summaryCartItem: SummaryCartItem) => {
+        const { cartItem, shipping, totalPayment } = summaryCartItem;
+        const { shop } = cartItem;
+        const shopAddressResponse: AddressResponse | undefined =
+          shop.shopUser.addresses.find(
             (addressResponse) => addressResponse.status === 1
           );
-          const shopAddress: string = `${shopAddressResponse!.detailAddress}-${shopAddressResponse?.ward.prefix} ${shopAddressResponse?.ward.name}, ${shopAddressResponse?.district.prefix} ${shopAddressResponse?.district.name}, ${shopAddressResponse?.province.name}`;
-          const shopNumberPhone: string = shopAddressResponse!.phoneNumber
-          const shopName: string = shopAddressResponse!.fullName
-          const orderItemRequests: OrderItemRequest[] = cartItem.pendingItems.map(
-            (pendingItem) => {
-              const { product, quantity } = pendingItem;
-              let orderItemRequest: OrderItemRequest = {
-                productId: product.id,
-                quantity: quantity,
-              };
-              return orderItemRequest;
-            }
-          );
-          const shopId: number = cartItem.shop.id;
-          const orderRequest: OrderRequest = {
-            orderItems: orderItemRequests,
-            shopId: shopId,
-            orderBy: orderBy,
-            orderAddress: orderAddress,
-            orderPhoneNumber: orderPhoneNumber,
-            sendBy: shopName,
-            sendPhoneNumber: shopNumberPhone,
-            sendAddress: shopAddress,
-            cartItemCost: this.computeCartItem(cartItem),
-            shippingCost: shipping.cost.cost,
-            paymentCost: totalPayment,
-            paymentMethod: "Thanh toán trực tiếp"
-          };
-          if(cartItem.pendingItems.length > 0){
-            this.orderService.createOrder(user!.id, orderRequest).subscribe()
+        const shopAddress: string = `${shopAddressResponse!.detailAddress}-${
+          shopAddressResponse?.ward.prefix
+        } ${shopAddressResponse?.ward.name}, ${
+          shopAddressResponse?.district.prefix
+        } ${shopAddressResponse?.district.name}, ${
+          shopAddressResponse?.province.name
+        }`;
+        const shopNumberPhone: string = shopAddressResponse!.phoneNumber;
+        const shopName: string = shopAddressResponse!.fullName;
+        const orderItemRequests: OrderItemRequest[] = cartItem.pendingItems.map(
+          (pendingItem) => {
+            const { product, quantity } = pendingItem;
+            let orderItemRequest: OrderItemRequest = {
+              productId: product.id,
+              quantity: quantity,
+            };
+            return orderItemRequest;
           }
-          this.router.navigate(['/buyer/account-management/purchase-history'])
-        });
-
-      })
-     
-    }
+        );
+        const shopId: number = cartItem.shop.id;
+        const orderRequest: OrderRequest = {
+          status: PENDING_ORDER_STATUS,
+          paymentStatus: UNPAID_PAYMENT_STATUS,
+          paymentMethod: paymentMethodCode,
+          orderItems: orderItemRequests,
+          shopId: shopId,
+          orderBy: orderBy,
+          orderAddress: orderAddress,
+          orderPhoneNumber: orderPhoneNumber,
+          sendBy: shopName,
+          sendPhoneNumber: shopNumberPhone,
+          sendAddress: shopAddress,
+          cartItemCost: this.computeCartItem(cartItem),
+          shippingCost: shipping.cost.cost,
+          paymentCost: totalPayment,
+        };
+        this.orderService
+          .createOrder(user!.id, orderRequest)
+          .subscribe((createdOrder) => {
+            orderResponses.push(createdOrder)
+            this.orderService.receiptBehaviorSubject.next(orderResponses)
+            if (paymentMethodCode === COD_PAYMENT_METHOD) {
+              this.router.navigate([
+                '/buyer/account-management/purchase-history',
+              ]);
+            } else {
+              this.orderService.orderBehaviorSubject.next(createdOrder)
+              this.router.navigate(['/buyer/payment']);
+            }
+          });
+      });
+    });
   }
 }
 
@@ -243,27 +268,26 @@ export class ShippingDialog implements OnInit {
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
 @Component({
   templateUrl: './confirm-order.dialog.html',
   styleUrls: ['./checkout.component.scss'],
 })
 export class ConfirmOrderDialog implements OnInit {
-  isCreateElectBill: boolean = false
+  isCreateElectBill: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
-  onClickConfirm(){
+  ngOnInit(): void {}
+  onClickConfirm() {
     this.dialogRef.close({
-      isCreateElectBill: this.isCreateElectBill
-    })
+      isCreateElectBill: this.isCreateElectBill,
+    });
   }
 }

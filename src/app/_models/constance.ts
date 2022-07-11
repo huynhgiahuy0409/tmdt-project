@@ -1,3 +1,14 @@
 export const DOMAIN = 'http://localhost:8080';
 export const DIRECT_LINK_IMAGE = 'http://localhost:8080/images';
 export const DIRECT_LINK_DIG_BILL = 'http://localhost:8080/digital-bill';
+export const API_KEY_MOMO = '5VJPQ0RXAL2YM9KS83H9'
+export const MOMO_PHONE = '0776425942'
+export const COD_PAYMENT_METHOD = "COD"
+export const MOMO_PAYMENT_METHOD = "MOMO"
+export const CANCEL_ORDER_STATUS = "CANCEL" 
+export const PENDING_ORDER_STATUS = "PENDING" 
+export const WAITING_PICK_ORDER_STATUS = "WAITING-PICK" 
+export const SHIPPING_ORDER_STATUS = "SHIPPING" 
+export const DELIVERED_ORDER_STATUS = "DELIVERED" 
+export const PAID_PAYMENT_STATUS = "PAID" 
+export const UNPAID_PAYMENT_STATUS = "UNPAID" 

@@ -1,3 +1,4 @@
+import { DialogService } from 'src/app/buyer/services/dialog.service';
 import { AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import {
   ProductInfo,
@@ -252,7 +253,8 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
     private originService: OriginService,
     private statusService: StatusService,
     private productService: ProductService,
-    private fileUploadService: FileUploadService
+    private fileUploadService: FileUploadService,
+    private dialogService: DialogService
   ) {}
   ngAfterViewInit(): void {
     this.el.nativeElement.focus();
@@ -402,6 +404,14 @@ export class SellerProductAddDetailComponent implements OnInit, AfterViewInit {
           return this.fileUploadService.addProductImages(productId);
         })
       )
-      .subscribe();
+      .subscribe(response => {
+        let dialogRef = this.dialogService.openDialog("500ms", "500ms", {
+          title: "Thành công",
+          content: "Sản phẩm đã được thêm"
+        })
+        dialogRef.afterClosed().subscribe(rs => {
+          this.router.navigate(['/seller/portal/product'])
+        })
+      });
   }
 }

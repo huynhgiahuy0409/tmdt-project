@@ -25,8 +25,9 @@ export class ShopComponent implements OnInit {
         sorter: {
           dir: "desc",
           order: "view",
-        }
-      }
+        },
+      },
+      shopId: shopId
     })
     this.recommendProduct$.subscribe(v => console.log(v));
   }

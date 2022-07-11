@@ -12,7 +12,9 @@ import {
 } from 'src/app/_models/response';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ShopService {
     shopBehaviorSubject!: BehaviorSubject<ShopResponse | null>;
     shop$!: Observable<ShopResponse | null>;
@@ -29,7 +31,6 @@ export class ShopService {
         this.shop$ = this.shopBehaviorSubject.asObservable();
         this.searchShopBehaviorSubject = new BehaviorSubject<string>("");
         this.searchShop$ = this.searchShopBehaviorSubject.asObservable();
-        this.searchShop$.subscribe(v => console.log(v));
     }
     findShopByUserId(userId: number): Observable<ShopResponse> {
         const url = `${DOMAIN}/api/shop/user/${userId}`;
@@ -41,6 +42,14 @@ export class ShopService {
     }
     findShopById(shopId: number): Observable<ShopResponse> {
         const url = `${DOMAIN}/api/shop/${shopId}`;
+        return this.httpClient.get<ShopResponse>(url, this.httpOptions).pipe(
+            tap((shopResponse) => {
+                this.shopBehaviorSubject.next(shopResponse);
+            })
+        );
+    }
+    findShopByProductId(productId: number): Observable<ShopResponse> {
+        const url = `${DOMAIN}/api/product/${productId}/shop`;
         return this.httpClient.get<ShopResponse>(url, this.httpOptions).pipe(
             tap((shopResponse) => {
                 this.shopBehaviorSubject.next(shopResponse);

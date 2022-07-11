@@ -91,24 +91,7 @@ export class CartComponent implements OnInit {
         completed: cartCompleted,
         cartItemTasks: cartItemTasks,
       };
-      // let sltPendingItems: CartItemResponse[] = this.getSltPendingItems();
-      // let summaryCartItems: SummaryCartItem[] = sltPendingItems.map(cartItemResponse => {
-      //   let initShipCost: ShippingCost = this.computeShippingCost(cartItemResponse, 'standard')
-      //     let summaryCartItem: SummaryCartItem = {
-      //       cartItem: cartItemResponse,
-      //       shipping: {
-      //         type: 'standard',
-      //         cost: initShipCost
-      //       },
-      //       total: this.computeTotalSummaryCartItem(cartItemResponse, initShipCost.cost)
-      //     }
-      //     return summaryCartItem
-      // })
-      // let summaryCart: SummaryCart = {
-      //   cartId: this.cartTask.cartId,
-      //   summaryCartItems: summaryCartItems,
-      //   totalPayment: 
-      // };
+     
       this.updateSummaryCart()
     });
   }
@@ -189,7 +172,7 @@ export class CartComponent implements OnInit {
     this.cartService.cartBehaviorSubject.next(cart);
   }
   removePendingItem(cartItemId: number, pendingItemId: number) {
-    // this.cartService.removePendingItem(pendingItemId)
+    this.cartService.removePendingItem(pendingItemId)
     let cart: CartResponse | null = this.cartService.cartBehaviorSubject.value;
     let cartItem = cart?.cartItems.find(
       (cartItem) => cartItem.id === cartItemId
@@ -243,7 +226,7 @@ export class CartComponent implements OnInit {
       ).length;
       sltPendingItemCount += sltPendingItemLength;
     });
-    if (sltPendingItemCount > 1) {
+    if (sltPendingItemCount > 0) {
       this.router.navigate(['/buyer/checkout']);
     } else {
       this.dialogService.openDialog('500ms', '500ms', {

@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductResponse, ShopResponse } from 'src/app/_models/response';
 import { ShopService } from 'src/app/seller/services/shop.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DIRECT_LINK_IMAGE } from 'src/app/_models/constance';
+import { UserService } from 'src/app/buyer/services/user.service';
 export interface PeriodicElement {
   productName: string;
   thumbnail: string;
@@ -22,7 +23,7 @@ export interface PeriodicElement {
   styleUrls: ['./product-list-section.component.scss'],
 })
 export class ProductListSectionComponent implements OnInit {
-  directLinkImage = `${DIRECT_LINK_IMAGE}/`
+  directLinkImage = `${DIRECT_LINK_IMAGE}/`;
   displayedColumns: string[] = [
     'select',
     'thumbnail',
@@ -43,29 +44,35 @@ export class ProductListSectionComponent implements OnInit {
     this.allowMultiSelect,
     this.initialSelection
   );
-  products!: any[];
-  constructor(private shopService: ShopService, private route: ActivatedRoute) {
-    let shop: ShopResponse | null = route.snapshot.data.shop;
-    let products: ProductResponse[] = shop!.products;
-    products.forEach((product) => {
-      console.log(product.images);
-      const { images, name, sku, category, buyPrice, repository } = product;
-      let thumbnail = images[0]?.url ? images[0].url : '';
-      let elementDataProduct: PeriodicElement = {
-        thumbnail: thumbnail,
-        SKU: sku,
-        category: category.name,
-        productName: name,
-        price: buyPrice,
-        warehouse: repository,
-        edit: ['Sửa', 'Xem'],
-      };
-      this.elementDataProducts.push(elementDataProduct);
-    });
-    this.dataSource = new MatTableDataSource(this.elementDataProducts);
-    this.selection.changed.subscribe((v) => {
-      console.log(v), console.log(this.selection.selected.length);
-    });
+  @Output()
+  productsSizeEvent = new EventEmitter<number>()
+  constructor(
+    private shopService: ShopService,
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {
+    let user = userService.userBehaviorSubject.value;
+    this.shopService
+      .findShopByUserId(user!.id)
+      .subscribe((shop) => {
+        let products: ProductResponse[] = shop!.products;
+        this.addProductsSize(products.length)
+        products.forEach((product) => {
+          const { images, name, sku, category, buyPrice, repository } = product;
+          let thumbnail = images[0]?.url ? images[0].url : '';
+          let elementDataProduct: PeriodicElement = {
+            thumbnail: thumbnail,
+            SKU: sku,
+            category: category.name,
+            productName: name,
+            price: buyPrice,
+            warehouse: repository,
+            edit: ['Sửa', 'Xem'],
+          };
+          this.elementDataProducts.push(elementDataProduct);
+        });
+        this.dataSource = new MatTableDataSource(this.elementDataProducts);
+      });
   }
   ngOnInit(): void {}
   /** Whether the number of selected elements matches the total number of rows. */
@@ -92,6 +99,7 @@ export class ProductListSectionComponent implements OnInit {
       this.selection.isSelected(row) ? 'deselect' : 'select'
     } row ${+1}`;
   }
-  edit() {}
-  seeMore() {}
+  addProductsSize(value: number){
+    this.productsSizeEvent.emit(value)
+  }
 }

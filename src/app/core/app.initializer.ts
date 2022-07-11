@@ -11,23 +11,23 @@ export function appInitializer(
     return () => {
         const haveToken: boolean = cookieService.check('refresh-token');
         if (haveToken) {
-            const token = cookieService.get('refresh-token');
             return authenticationService.refreshAccessToken()
             .subscribe(
-                (success) => { },
+                (success) => {
+                    console.log(success);
+                    
+                },
                 (error) => {
-                    cookieService.delete('refresh-token');
                     const dialogRef = dialogService.openDialog('500ms', '500ms', {
                         title: 'Phiên đăng nhập hết hạn',
                         content: 'Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại',
                         action: [
-                            { path: '/buyer/login', title: 'Trở lại trang đăng nhập' },
+                            { path: '/buyer/home', title: 'Trở lại trang đăng nhập' },
                         ],
                     });
                 }
             );
         } else {
-            console.log(haveToken);
             return of(null);
         }
     };

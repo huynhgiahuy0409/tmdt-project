@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ShopResolve } from 'src/app/seller/services/resolve/shop.resolve';
 import { ShopService } from 'src/app/seller/services/shop.service';
 import { of } from 'rxjs';
+import { FilterChain } from '../../model/filter';
 
 @Component({
   selector: 'app-product',
@@ -26,8 +27,8 @@ export class ProductComponent implements OnInit {
     { label: 'Tên sản phẩm (Z-A)', sort: { order: 'name', dir: 'asc' } },
   ];
   length = 200;
-  pageSize = 10;
-  pageSizeOptions: number[] = [2, 4, 6];
+  pageSize = 8;
+  pageSizeOptions: number[] = [ 8, 12, 16, 20];
   products$!: Observable<ProductResponse[]>;
   shops$!: Observable<ShopResponse[] | null>
   searchShopValue!: string
@@ -37,9 +38,17 @@ export class ProductComponent implements OnInit {
     private spinnerService: SpinnerService,
     private shopService: ShopService,
     public  productFilterChainService: ProductFilterChainService,
-    private router: Router
+    private router: Router,
   ) {}
   ngOnInit(): void {
+    this.spinnerService.isLoadingBSub.next(true)
+    let initFilter: FilterChain = {
+      pagination: {
+        pageIndex: 0,
+        pageSize: this.productFilterChainService.filterBSub.value.pagination.pageSize,
+      },
+    };
+    this.productFilterChainService.filterBSub.next(initFilter)
     let initProductFilter = this.productFilterChainService.filterBSub.value;
     initProductFilter.pagination.pageSize = this.pageSize;
     this.productFilterChainService.filterBSub.next(initProductFilter);
@@ -52,8 +61,9 @@ export class ProductComponent implements OnInit {
       return of(null)
     }))
     this.products$ = this.productFilterChainService.filter$.pipe(
-      debounceTime(1000),
+      debounceTime(300),
       switchMap((productFilter) => {
+        this.spinnerService.isLoadingBSub.next(false)
         return this.productService.findProducts(productFilter);
       })
     );

@@ -6,5 +6,6 @@ export interface FilterChain {
   price?: [number, number];
   category?: number;
   brand?: number;
-  age?: number
+  age?: number;
+  shopId?: number
 }

@@ -11,6 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: SellerComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'page', component: SellerPageComponent },
       { path: 'barchart', component: BarchartComponent },
@@ -23,21 +24,21 @@ const routes: Routes = [
           ),
       },
       { path: 'rating', component: RatingManagementComponent },
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
       { path: '', redirectTo: 'portal', pathMatch: 'full' },
       {
         path: 'product-management',
         canActivate: [AuthGuard],
         loadChildren: () =>
-          import(
-            './components/product-management/product-management.module'
+        import(
+          './components/product-management/product-management.module'
           ).then((m) => m.ProductManagementModule),
-      },
-    ],
-  },
+        },
+      ],
+    },
+    {
+      path: 'login',
+      component: LoginComponent,
+    },
 ];
 
 @NgModule({

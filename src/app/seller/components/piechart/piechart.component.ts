@@ -1,3 +1,4 @@
+import { DELIVERED_ORDER_STATUS } from './../../../_models/constance';
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { forkJoin, Observable } from 'rxjs';
@@ -21,14 +22,13 @@ export class PiechartComponent implements OnInit {
     private userService: UserService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    
     let user = this.userService.userBehaviorSubject.value;
     let shopId = user!.shop.id;
     let categories$: Observable<CategoryResponse[]> = this.categoryService.findAllByShop(shopId)
     let deliveredOrders$: Observable<OrderResponse[]> =
-      this.orderService.findAllByStatusAndShop(shopId, '3');
+      this.orderService.findAllByStatusAndShop(shopId, DELIVERED_ORDER_STATUS);
     forkJoin([categories$,deliveredOrders$]).subscribe(([categories,deliveredOrders])=>{
-      let categoryNames = categories.map(category => {
+      categories.map(category => {
         let categoryName = category.name
         this.map.set(categoryName, 0)
       })
@@ -58,9 +58,17 @@ export class PiechartComponent implements OnInit {
                     label: 'My First Dataset',
                     data: this.numData,
                     backgroundColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(54, 162, 235)',
-                      'rgb(255, 205, 86)'
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(255, 159, 64, 1)',
+                      "rgba(247,37,133, 1)",
+                      "rgba(233,255,112, 1)",
+                      "rgba(173,193,120, 1)",
+                      "rgba(34,124,157, 1)",
+                      "rgb(221,184,146, 1)",
                     ],
                     hoverOffset: 4
                   }]

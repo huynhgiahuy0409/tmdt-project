@@ -411,3 +411,54 @@
   margin-right: .5rem;
   vertical-align: middle;
 }
+.account-info:hover .notification{
+  display: block;
+}
+.account-info::before{
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0
+}
+.notification {
+  position: absolute;
+  top: 150%;
+  right: 0;
+  z-index: 9999;
+  overflow: hidden;
+  display: none;
+  min-width: 250px;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.notification__list {
+  box-shadow: 0 0 2px #ccc;
+  border-radius: 3px;
+  padding: 5px 0;
+}
+.notification__list.cart {
+  min-width: 500px;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.notification__list--color {
+  background-color: #fff;
+}
+
+.notification__item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.notification__item:hover {
+  background-color: var(--hover-color--);
+}
+
+.notification__item i {
+  padding: 0 10px;
+}

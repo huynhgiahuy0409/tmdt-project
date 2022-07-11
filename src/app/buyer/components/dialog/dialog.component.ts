@@ -13,7 +13,6 @@ export class DialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data)
   }
 
   onClickAction(idx: number){

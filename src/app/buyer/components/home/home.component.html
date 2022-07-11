@@ -5,7 +5,7 @@
       <ng-container *ngFor="let p of products">
         <li class="product__item product__item--bg-color" [routerLink]="['/buyer/product',p.id]">
           <div class="product__item-thumbnail">
-            <img [src]="p.images[p.images.length - 2 ].url" alt="" />
+            <img [src]="p.images[p.images.length - 1 ].url" alt="" />
             <!-- <img class="brand-logo" [src]="p.brand.logo.url" alt=""> -->
           </div>
           <div class="product__item-info">
@@ -105,7 +105,7 @@
       <ng-container *ngFor="let p of products">
         <li class="product__item product__item--bg-color" [routerLink]="['/buyer/product',p.id]">
           <div class="product__item-thumbnail">
-            <img [src]="p.images[p.images.length - 2 ].url" alt="" />
+            <img [src]="p.images[p.images.length - 1 ].url" alt="" />
             <!-- <img class="brand-logo" [src]="p.brand.logo.url" alt=""> -->
           </div>
           <div class="product__item-info">

@@ -1,6 +1,6 @@
+<ng-container *ngIf="(product$ | async) as product">
 <div class="container">
     <ul class="product-detail__list">
-        <ng-container *ngIf="(product$ | async) as product">
             <li class="product-detail__item product-info-container">
                 <div class="product-info-container__left">
                     <div class="product-image">
@@ -158,15 +158,15 @@
                     </div>
                 </div>
             </li>
-        </ng-container>
-        <li class="product-detail__item shop-info-container">
-            <div class="shop-info-container__left">
+    
+        <li class="product-detail__item shop-info-container" *ngIf="(shop$ | async) as shop">
+            <div class="shop-info-container__left" [routerLink]="['/buyer/shop',shop.id]">
                 <div class="shop-inf">
                     <div class="stop-avatar">
                         <img src="assets/img/product/3.png" alt="">
                     </div>
                     <div class="shop-more">
-                        <div class="shop-name">toystore</div>
+                        <div class="shop-name">{{shop.name}}</div>
                         <div class="shop-active">
                             <button mat-raised-button style="margin-right:
                                 20px">Chat ngay</button>
@@ -275,3 +275,4 @@
         </li>
     </ul>
 </div>
+</ng-container>

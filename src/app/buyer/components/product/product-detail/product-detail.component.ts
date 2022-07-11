@@ -3,13 +3,14 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/buyer/services/product.service';
-import { CartResponse, ProductResponse } from 'src/app/_models/response';
+import { CartResponse, ProductResponse, ShopResponse } from 'src/app/_models/response';
 import { map } from 'rxjs/operators';
 import { DIRECT_LINK_IMAGE } from 'src/app/_models/constance';
 import { CartService } from 'src/app/buyer/services/cart.service';
 import { PendingItemRequest } from 'src/app/_models/request';
 import { DialogService } from 'src/app/buyer/services/dialog.service';
 import { UserService } from 'src/app/buyer/services/user.service';
+import { ShopService } from 'src/app/seller/services/shop.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,6 +20,7 @@ import { UserService } from 'src/app/buyer/services/user.service';
 export class ProductDetailComponent implements OnInit {
   sltImageIdx: number = 0
   product$!: Observable<ProductResponse>;
+  shop$!: Observable<ShopResponse>
   productId!: number
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
     private userService: UserService,
     private cartService: CartService,
     private dialogService: DialogService,
+    private shopService: ShopService,
     private router: Router
   ) { }
 
@@ -35,7 +38,7 @@ export class ProductDetailComponent implements OnInit {
       tap(product => product.images.map(image => image.url = DIRECT_LINK_IMAGE + "/" + image.url))
     );
     this.productService.updateProductView(this.productId)
-    this.product$.subscribe(v => { console.log(v) })
+    this.shop$ = this.shopService.findShopByProductId(this.productId)
   }
   onClickImage(idx: number) {
     this.sltImageIdx = idx
@@ -58,8 +61,6 @@ export class ProductDetailComponent implements OnInit {
       }
       this.cartService.flushCart(cartId,pendingItem).subscribe((cartResponse: CartResponse) => {
         this.cartService.cartBehaviorSubject.next(cartResponse)
-        console.log("OKKKKKKKKK");
-        
         this.dialogService.openDialog('500ms', '50ms', {
           title: 'Thêm thành công',
           content: 'Đã thêm sản phẩm vào giỏ hàng',

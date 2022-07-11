@@ -149,7 +149,9 @@
             <div class="cart-row payment-method">
                 <h2 class="payment-method__title">Phương thức thanh toán</h2>
                 <ul class="payment-method__list">
-                    <li class="payment-method__item" [class.payment-method__slt]="sltMethodIdx === idx" (click)="onClickSltMethod(idx)" *ngFor="let method of methodPayment; index as idx">{{method}}</li>
+                    <li class="payment-method__item" [class.payment-method__slt]="sltMethodIdx === idx" (click)="onClickSltMethod(idx)" *ngFor="let method of paymentMethods; index as idx">
+                        {{method[1]}}
+                    </li>
                 </ul>
             </div>
             <div class="d-flex justify-content-lg-end cart-row summary-cart">

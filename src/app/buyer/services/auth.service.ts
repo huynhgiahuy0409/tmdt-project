@@ -48,6 +48,7 @@ export class AuthService {
     this.accessToken$.subscribe((v) => {
       console.log(v);
     });
+    
   }
   register(
     registerAccountRequest: RegisterAccountRequest
@@ -74,13 +75,6 @@ export class AuthService {
     OTPNumbers.forEach((number) => {
       OTP += number;
     });
-    // let fromObject: FromObject = {
-    //   OTPNumber: Number.parseInt(OTP),
-    //   username: username,
-    // };
-    // let paramsOptions: HttpParamsOptions = { fromObject };
-    // let params = new HttpParams(paramsOptions);
-    // this.httpOptions.params = params;
     this.httpOptions.params = {
       OTPNumber: Number.parseInt(OTP),
       username: username,
@@ -102,11 +96,8 @@ export class AuthService {
     authenticateRequest: AuthenticationRequest
   ): Observable<AuthenticationResponse> {
     const url = `${DOMAIN}/api/login`;
-    return this.httpClient.post<AuthenticationResponse>(
-      url,
-      authenticateRequest,
-      this.httpOptions
-    );
+    return this.httpClient
+      .post<AuthenticationResponse>(url, authenticateRequest, this.httpOptions)
   }
   refreshTokenTimeout: any;
   stopRefreshTokenTimer() {
@@ -123,14 +114,19 @@ export class AuthService {
     this.cookieService.set(
       'refresh-token',
       token,
-      undefined,
-      undefined,
+      tokenExpirationDate,
+      "/",
       undefined,
       true,
       'Strict'
     );
   }
   refreshAccessToken(): Observable<AuthenticationResponse> {
+    const refreshToken = this.cookieService.get('refresh-token')
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append("Authorization", 'Bearer ' + refreshToken)
+    headers = headers.append('Content-Type', 'application/json');
+    this.httpOptions.headers = headers
     const url = `${DOMAIN}/api/refresh-access-token`;
     return this.httpClient
       .get<AuthenticationResponse>(url, this.httpOptions)
@@ -151,14 +147,16 @@ export class AuthService {
               authenticationResponse.accessToken
             );
           }
-        })
+        }),
       );
   }
   startRefreshAccessTokenTimer(accessJWT: JWT): void {
     const refreshToken = this.cookieService.get('refresh-token');
-    const timeOut = accessJWT.tokenExpirationDate - Date.now() - 5000;
+    const timeOut = accessJWT.tokenExpirationDate - Date.now() - 10000;
     this.refreshTokenTimeout = setTimeout(() => {
       if (refreshToken) {
+        console.log(refreshToken);
+        
         this.refreshAccessToken().subscribe();
       } else {
         /* notified end of session */
@@ -174,5 +172,4 @@ export class AuthService {
     const url = `${DOMAIN}/api/reset-password`;
     return this.httpClient.post<boolean>(url, reAccount, this.httpOptions);
   }
- 
 }

@@ -57,8 +57,9 @@ export class CustomerHeaderComponent implements OnInit {
           this.userService.userBehaviorSubject.next(null);
           this.authService.accessTokenBehaviorSubject.next(null);
           this.cartService.cartBehaviorSubject.next(null)
-          this.cookieService.delete('refresh-token');
+          this.cookieService.delete('refresh-token',"/");
           this.authService.stopRefreshTokenTimer();
+          this.router.navigate(['/buyer/home'])
         }
       }
     );
@@ -71,5 +72,6 @@ export class CustomerHeaderComponent implements OnInit {
     currFilter.name = searchValue;
     this.productFilterChainService.filterBSub.next(currFilter);
     this.shopService.searchShopBehaviorSubject.next(searchValue)
+    this.router.navigate(['/buyer/product'])
   }
 }

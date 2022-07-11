@@ -1,13 +1,19 @@
-import { DIRECT_LINK_DIG_BILL } from './../../../../../_models/constance';
+import {
+  DIRECT_LINK_DIG_BILL,
+  PENDING_ORDER_STATUS,
+  SHIPPING_ORDER_STATUS,
+  WAITING_PICK_ORDER_STATUS,
+} from './../../../../../_models/constance';
 import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderElement } from 'src/app/buyer/components/account-management/purchase-history/purchase-history.component';
 import { OrderService } from 'src/app/buyer/services/order.service';
 import { OrderResponse } from 'src/app/_models/response';
 import { FileUploadService } from 'src/app/seller/services/file-upload.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-all-section',
@@ -21,6 +27,7 @@ export class OrderAllSectionComponent implements OnInit {
   displayedColumns: string[] = [
     'orderId',
     'status',
+    'paymentStatus',
     'cartItemCost',
     'shippingCost',
     'paymentCost',
@@ -34,7 +41,8 @@ export class OrderAllSectionComponent implements OnInit {
     private orderService: OrderService,
     private fileUploadService: FileUploadService,
     private renderer2: Renderer2,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router,
   ) {}
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -46,52 +54,60 @@ export class OrderAllSectionComponent implements OnInit {
       const {
         id,
         status,
+        paymentStatus,
         cartItemCost,
         shippingCost,
         paymentCost,
-        digitBillFilename,
+        digitalBillHash,
       } = order;
       let action: [string, string][] = [['see', 'Xem']];
-      let tempStatus: string = '';
-      if (status === '1') {
-        tempStatus = 'Chờ xác nhận';
-        action.push(['accept', 'Xác nhận']);
-      } else if (status === '2') {
-        tempStatus = 'Đang giao';
-      } else if (status === '3') {
-        tempStatus = 'Đã giao';
-      } else if (status === '0') {
-        tempStatus = 'Đã hủy';
+      let orderStatusLabel = this.orderService.setupOrderStatus(status);
+      let orderPaymentStatusLabel =
+        this.orderService.setupOrderPaymentStatus(paymentStatus);
+      if (status === PENDING_ORDER_STATUS) {
+        action.push(['accept', 'Xác nhận đơn']);
+      }else if(status === WAITING_PICK_ORDER_STATUS) {
+        action.push(['shipping', 'Xác nhận hàng đang giao']);
       }
       let orderElementData: OrderElement = {
         orderId: id,
-        status: tempStatus,
+        status: orderStatusLabel,
+        paymentStatus: orderPaymentStatusLabel,
         cartItemCost: cartItemCost,
         shippingCost: shippingCost,
         paymentCost: paymentCost,
         action: action,
-        digitalBill: digitBillFilename,
+        digitalBillHash: digitalBillHash,
       };
       return orderElementData;
     });
     this.orderDataSource = new MatTableDataSource(this.orderElementDataList);
   }
   onClickAcceptOrder(orderId: number) {
-    this.orderService.updateStatus(orderId, '2').subscribe();
-    let findOrderElement: OrderElement | undefined =
-      this.orderDataSource.data.find(
-        (orderElement) => orderElement.orderId === orderId
-      );
-    findOrderElement!.status = 'Đang giao';
-    findOrderElement!.action = [['see', 'Xem']];
-    this.orderDataSource._updateChangeSubscription();
+    this.orderService
+      .updateStatus(orderId, WAITING_PICK_ORDER_STATUS)
+      .subscribe();
+    this.router.navigate(['/seller'])
   }
+  onClickShippingOrder(orderId: number) {
+    this.orderService
+      .updateStatus(orderId, SHIPPING_ORDER_STATUS)
+      .subscribe();
+    this.router.navigate(['/seller'])
+  }
+  
   downloadFile(digitalBillFileName: string) {
-    this.fileUploadService.downloadFile(digitalBillFileName).subscribe(blob => {
-      let a = this.renderer2.createElement('a')
-      this.renderer2.setAttribute(a,'href',  window.URL.createObjectURL(blob))
-      this.renderer2.setAttribute(a,'download',digitalBillFileName)
-      a.click()
-    })
+    this.fileUploadService
+      .downloadFile(digitalBillFileName)
+      .subscribe((blob) => {
+        let a = this.renderer2.createElement('a');
+        this.renderer2.setAttribute(
+          a,
+          'href',
+          window.URL.createObjectURL(blob)
+        );
+        this.renderer2.setAttribute(a, 'download', digitalBillFileName);
+        a.click();
+      });
   }
 }

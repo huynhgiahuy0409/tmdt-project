@@ -29,6 +29,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CartService } from '../../services/cart.service';
 import { AuthenticationResponse } from '../../model/response';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { CookieService } from 'ngx-cookie-service';
 export function matchedPassword(c: AbstractControl) {
   const passwordValue = c.get('password')?.value;
   const confirmPasswordValue = c.get('confirmPassword')?.value;
@@ -76,6 +77,7 @@ export class LoginComponent implements OnInit {
     public dialog: MatDialog,
     private userService: UserService,
     private cartService: CartService,
+    private cookieService: CookieService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -153,12 +155,10 @@ export class LoginComponent implements OnInit {
     return this.OTPForm.get('OTPNumbers') as FormArray;
   }
   loginWithFacebook(): void {
-    console.log("fb log");
     this.isLoading = true;
     this.socialAuthService
       .signIn(FacebookLoginProvider.PROVIDER_ID)
       .then((data: SocialUser) => {
-        console.log(data);
         let userAccountRequest: UserAccountRequest = {
           username: data.id,
           password: data.id,
@@ -215,7 +215,6 @@ export class LoginComponent implements OnInit {
           );
       })
       .catch((data: any) => {
-        console.log(data);
         this.isLoading = false;
       });
   }
@@ -311,6 +310,7 @@ export class LoginComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         this.isLoading = false;
+        this.cookieService.delete("refresh-token")
         const matDialog = this.openDialog('500ms', '500ms', {
           title: 'Lỗi',
           content: `Đăng nhập không thành công: ${error.status}`,

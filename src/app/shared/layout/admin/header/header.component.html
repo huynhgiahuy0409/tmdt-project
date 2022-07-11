@@ -1,8 +1,6 @@
 <nav class="navbar">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo" href="index-2.html"><img src="assets/img/logo/admin-logo.png" alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="assets/img/logo/logo-mini.svg"
-        alt="logo" /></a>
+    <a class="navbar-brand brand-logo" [routerLink]="'/buyer/home'"><img src="assets/img/logo/admin-logo.png" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-stretch">
     <!-- account-info-wrap -->
@@ -10,6 +8,21 @@
       <div class="account-info">
         <img src="assets/img/member-1.png" alt="">
         <span>huynhgiahuy492</span>
+        <div class="notification">
+          <ul class="notification__list notification__list--color">
+            <!--    <ng-container *ngIf="(user$ | async) as user"> -->
+            <li class="notification__item"  [routerLink]="['/buyer/account-management']">
+              <i class="fa-solid fa-user" ></i>Tài khoản của tôi
+            </li>
+            <li class="notification__item" [routerLink]="['/buyer/account-management/purchase-history']">
+              <i class="fa-solid fa-pen"></i>Đơn mua
+            </li>
+            <li (click)="logout()" class="notification__item">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>Đăng xuất
+            </li>
+            <!--  </ng-container> -->
+          </ul>
+        </div>
       </div>
     </div>
     <!-- category -->

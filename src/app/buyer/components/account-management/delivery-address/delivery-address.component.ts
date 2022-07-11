@@ -10,6 +10,7 @@ import { UserService } from 'src/app/buyer/services/user.service';
 import { of } from 'rxjs';
 import { AddressRequest } from 'src/app/_models/request';
 import { DialogComponent } from '../../dialog/dialog.component';
+import { DialogService } from 'src/app/buyer/services/dialog.service';
 
 @Component({
   selector: 'app-delivery-address',
@@ -72,7 +73,7 @@ export class UpdateAddressDiagLog {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private addressService: AddressService,
-    private dialog: MatDialog
+    private dialogService: DialogService
   ) { }
   ngOnInit(): void {
     if (this.data.existAddress) {
@@ -120,13 +121,9 @@ export class UpdateAddressDiagLog {
     }
     if (this.data.action == 'add') {
       this.addressService.addAddress(addressRequest, this.data.userId).subscribe((address: AddressResponse) => {
-        this.dialog.open(DialogComponent, {
-          minWidth: "400px",
-          data: {
-            title: 'Thành công',
-            content: 'Thêm địa chỉ thành công',
-            action: [{ type: 'close', title: 'Đóng' }]
-          }
+        this.dialogService.openDialog("500ms", "500ms", {
+          "title": "Thành công",
+          "content": "Thêm địa chỉ thành công",
         })
         let user: UserResponse | null = this.userService.userBehaviorSubject.value
         let addresses: AddressResponse[] = user!.addresses
@@ -148,13 +145,9 @@ export class UpdateAddressDiagLog {
       }
       console.log(existAddress);
       this.addressService.editAddress(existAddress, this.data.userId).subscribe((addressResponse: AddressResponse) => {
-        this.dialog.open(DialogComponent, {
-          minWidth: "400px",
-          data: {
-            title: 'Thành công',
-            content: 'Thêm địa chỉ thành công',
-            action: [{ type: 'close', title: 'Đóng' }]
-          }
+        this.dialogService.openDialog("500ms", "500ms", {
+          "title": "Thành công",
+          "content": "Địa chỉ đã được cập nhật!",
         })
         let user: UserResponse | null = this.userService.userBehaviorSubject.value
         let addresses: AddressResponse[] = user!.addresses

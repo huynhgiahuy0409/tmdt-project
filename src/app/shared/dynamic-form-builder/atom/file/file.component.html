@@ -17,7 +17,7 @@
                   <label [id]="fileInputLabelSuffix + i">to upload.</label>
                 </p>
               </div>
-              <img class="review-image" [src]="imageURLs.get(i)" alt="">
+              <img class="review-image" *ngIf="imageURLs.get(i)" [src]="imageURLs.get(i)" alt="">
             </label>
             <div style="text-align: center;">
               <label *ngIf="i == 0 && field.required; else notTitle">{{field.title}} <strong

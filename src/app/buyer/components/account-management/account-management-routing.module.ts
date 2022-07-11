@@ -29,7 +29,8 @@ const routes: Routes = [
         path: 'purchase-history',
         component: PurchaseHistoryComponent,
         resolve: {
-          orderAll: OrderResolve,
+          shopOrders: OrderResolve,
+          ordersByUser: OrderResolve
         },
       },
       { path: 'wishlist', component: WishlistComponent },

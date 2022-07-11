@@ -1,3 +1,4 @@
+import { DELIVERED_ORDER_STATUS } from './../../../_models/constance';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'node_modules/chart.js';
@@ -43,19 +44,21 @@ export class BarchartComponent implements OnInit {
     let user = this.userService.userBehaviorSubject.value;
     let shopId = user!.shop.id;
     let deliveredOrders$: Observable<OrderResponse[]> =
-      this.orderService.findAllByStatusAndShop(shopId, '3');
+      this.orderService.findAllByStatusAndShop(shopId, DELIVERED_ORDER_STATUS);
+    console.log(shopId);
+    
     deliveredOrders$.subscribe((deliveredOrders) => {
       for (let index = 0; index < 12; index++) {
         let costByMonth: number = 0;
         let costsByMonth = deliveredOrders
           .filter((deliveredOrder) => {
             let month = new Date(deliveredOrder.createdDate).getMonth();
+            console.log(month);
+            
             return month === index;
           })
           .map((deliveredOrder) => deliveredOrder.cartItemCost);
         costsByMonth.forEach((cost) => {
-          console.log(cost);
-          
           costByMonth += cost;
         });
         this.numData.push(costByMonth)
@@ -75,6 +78,12 @@ export class BarchartComponent implements OnInit {
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
+                "rgba(247,37,133, 0.2)",
+                "rgba(52,58,64, 0.2)",
+                "rgba(173,193,120, 0.2)",
+                "rgba(221,184,146, 0.2)",
+                "rgba(34,124,157, 0.2)",
+                "rgba(233,255,112, 0.2)"
               ],
               borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -83,6 +92,12 @@ export class BarchartComponent implements OnInit {
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)',
+                "rgba(247,37,133, 1)",
+                "rgb(52,58,64, 1)",
+                "rgba(173,193,120, 1)",
+                "rgb(221,184,146, 1)",
+                "rgba(34,124,157, 1)",
+                "rgba(233,255,112, 1)"
               ],
               borderWidth: 1,
             },

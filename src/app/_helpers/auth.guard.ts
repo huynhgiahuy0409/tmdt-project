@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
         } else {
             if (state.url == '/cart'){
                 this.router.navigate(['/login'])
-            }else if(route.routeConfig?.path === 'product-management'){
+            }else{
                 this.router.navigate(['/seller/login'], {
                     queryParams: {
                         next: 'seller'

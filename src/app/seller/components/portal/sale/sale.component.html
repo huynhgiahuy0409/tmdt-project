@@ -10,6 +10,9 @@
                 <mat-tab label="Chờ xác nhận">
                     <app-order-all-section [orders]="waitProcessOrders"></app-order-all-section>
                 </mat-tab>
+                <mat-tab label="Chờ lấy hàng">
+                    <app-order-all-section [orders]="waitingPickOrders"></app-order-all-section>
+                </mat-tab>
                 <mat-tab label="Đang giao">
                     <app-order-all-section [orders]="deliveringOrders"></app-order-all-section>
                 </mat-tab>

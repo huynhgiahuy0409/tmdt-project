@@ -40,6 +40,9 @@ import { ProductFilterChainService } from './services/product-filter-chain.servi
 import { RouterStateSnapshot } from '@angular/router';
 import { ShopService } from '../seller/services/shop.service';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig} from 'angularx-social-login';
+import { QRCodeModule } from 'angularx-qrcode';
+import { PaymentComponent } from './payment/payment.component';
+import { OrderDetailDialog } from './components/account-management/purchase-history/purchase-history.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,9 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig} fr
     FindingShopComponent,
     DialogComponent,
     ShippingDialog,
-    ConfirmOrderDialog
+    ConfirmOrderDialog,
+    OrderDetailDialog,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -76,6 +81,7 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig} fr
     HttpClientModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    QRCodeModule
   ],
   providers: [
     PostService,

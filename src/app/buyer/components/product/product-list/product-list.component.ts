@@ -1,3 +1,4 @@
+import { ProductFilterChainService } from './../../../services/product-filter-chain.service';
 import { map } from 'rxjs/operators';
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -10,6 +11,7 @@ import { ProductService } from 'src/app/buyer/services/product.service';
 import { PageEvent } from '@angular/material/paginator';
 import { DIRECT_LINK_IMAGE } from 'src/app/_models/constance';
 import { SpinnerService } from 'src/app/shared/services/spinner.service';
+import { FilterChain } from 'src/app/buyer/model/filter';
 
 @Component({
   selector: 'app-product-list',
@@ -29,15 +31,20 @@ export class ProductListComponent implements OnInit {
   // MatPaginator Output
   constructor(
     private productService: ProductService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private productFilterChainService: ProductFilterChainService
   ) {}
   ngOnInit(): void {}
   pageEvent($event: PageEvent) {
-    // this.spinnerService.isLoadingBSub.next(true);
-    // this.pageSize = $event.pageSize;
-    // this.products$ = this.productService.findProducts(
-    //   $event.pageIndex,
-    //   this.pageSize
-    // );
+    this.spinnerService.isLoadingBSub.next(true);
+    let pagination: FilterChain = this.productFilterChainService.filterBSub.value
+    pagination.pagination = {
+      pageIndex: $event.pageIndex,
+      pageSize: $event.pageSize
+    }
+    console.log($event);
+    
+    this.productFilterChainService.filterBSub.next(pagination)
+    
   }
 }

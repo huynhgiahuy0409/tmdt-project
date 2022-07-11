@@ -27,25 +27,8 @@ export class AccountComponent implements OnInit {
   user$!: Observable<UserResponse | null>
   contactFormGroup!: FormGroup;
   dataSource = ELEMENT_DATA;
-  contactFormSetup = [
-    ['Tài khoản', 'username'],
-    ['Họ tên', 'fullName'],
-    ['Số điện thoại', 'phoneNumber'],
-    ['Email', 'email'],
-    ['Tên shop', 'shopName'],
-    ['Giới tính', 'gender'],
-  ];
   constructor(private router: Router, private userService: UserService, private fb: FormBuilder, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
     this.user$ = this.userService.user$
-    let userResolve = this.activatedRoute.snapshot.data.user
-    this.contactFormGroup = fb.group({
-      username: userResolve.username,
-      fullName: userResolve.fullName,
-      phoneNumber: userResolve.phoneNumber,
-      email: userResolve.username,
-      gender: userResolve.gender,
-      shopName: userResolve.gender
-    });
   }
 
   ngOnInit(): void {
@@ -79,10 +62,15 @@ export class UpdateContactDiagLog {
         });
       }
     })
+    this.contactFormGroup.valueChanges.subscribe(f => {
+      console.log(f);
+      
+    })
   }
   onClickUpdate(){
     let user: UserResponse = this.contactFormGroup.value
-    console.log(user)
+    console.log(user);
+    
     this.userService.fetchUser(user).subscribe()
   }
 }
