@@ -143,20 +143,20 @@ export class UpdateAddressDiagLog {
         district: { ...existAddress.district, id: addressRequest.districtId },
         province: { ...existAddress.province, id: addressRequest.provinceId }
       }
-      console.log(existAddress);
       this.addressService.editAddress(existAddress, this.data.userId).subscribe((addressResponse: AddressResponse) => {
+        console.log(addressResponse);
+
         this.dialogService.openDialog("500ms", "500ms", {
           "title": "Thành công",
           "content": "Địa chỉ đã được cập nhật!",
         })
         let user: UserResponse | null = this.userService.userBehaviorSubject.value
         let addresses: AddressResponse[] = user!.addresses
-        if (addressResponse.status == 1) {
-          let defaultAddress = addresses.find(address => address.status == 1)
-          defaultAddress!.status = 0
-          let updateAddress = addresses.find(address => address.id == addressResponse.id)
-          updateAddress!.status = 1
-        }
+        let updatedAddressIdx = addresses.findIndex(address => address.id === addressResponse.id)
+        addresses.splice(updatedAddressIdx,1,addressResponse)
+        console.log(addresses);
+        
+
         this.userService.userBehaviorSubject.next(user)
       })
     }

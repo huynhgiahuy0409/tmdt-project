@@ -198,6 +198,8 @@ export class CheckoutComponent implements OnInit {
         this.cartService.sumCartBehaviorSubject.value;
       const orderResponses: OrderResponse[] = []
       sumCart?.summaryCartItems.forEach((summaryCartItem: SummaryCartItem) => {
+        console.log(summaryCartItem);
+        
         const { cartItem, shipping, totalPayment } = summaryCartItem;
         const { shop } = cartItem;
         const shopAddressResponse: AddressResponse | undefined =
@@ -243,6 +245,8 @@ export class CheckoutComponent implements OnInit {
         this.orderService
           .createOrder(user!.id, orderRequest)
           .subscribe((createdOrder) => {
+            console.log(createdOrder);
+            
             orderResponses.push(createdOrder)
             this.orderService.receiptBehaviorSubject.next(orderResponses)
             if (paymentMethodCode === COD_PAYMENT_METHOD) {

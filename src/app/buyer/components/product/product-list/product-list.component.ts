@@ -38,12 +38,9 @@ export class ProductListComponent implements OnInit {
   pageEvent($event: PageEvent) {
     this.spinnerService.isLoadingBSub.next(true);
     let pagination: FilterChain = this.productFilterChainService.filterBSub.value
-    pagination.pagination = {
-      pageIndex: $event.pageIndex,
-      pageSize: $event.pageSize
-    }
-    console.log($event);
-    
+    pagination.pagination.pageIndex = $event.pageIndex
+    pagination.pagination.pageSize = $event.pageSize
+    console.log(pagination)
     this.productFilterChainService.filterBSub.next(pagination)
     
   }

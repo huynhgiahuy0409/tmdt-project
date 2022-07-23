@@ -1,7 +1,10 @@
 import {
+  DELIVERED_ORDER_STATUS,
   DIRECT_LINK_DIG_BILL,
+  PAID_PAYMENT_STATUS,
   PENDING_ORDER_STATUS,
   SHIPPING_ORDER_STATUS,
+  UNPAID_PAYMENT_STATUS,
   WAITING_PICK_ORDER_STATUS,
 } from './../../../../../_models/constance';
 import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
@@ -68,6 +71,8 @@ export class OrderAllSectionComponent implements OnInit {
         action.push(['accept', 'Xác nhận đơn']);
       }else if(status === WAITING_PICK_ORDER_STATUS) {
         action.push(['shipping', 'Xác nhận hàng đang giao']);
+      }else if(status === DELIVERED_ORDER_STATUS && paymentStatus === UNPAID_PAYMENT_STATUS) {
+        action.push(['completed-order', 'Xác nhận hoàn thành đơn']);
       }
       let orderElementData: OrderElement = {
         orderId: id,
@@ -93,6 +98,13 @@ export class OrderAllSectionComponent implements OnInit {
     this.orderService
       .updateStatus(orderId, SHIPPING_ORDER_STATUS)
       .subscribe();
+    this.router.navigate(['/seller'])
+  }
+  onClickCompletedOrder(orderId: number) {
+    this.orderService
+      .updateStatus(orderId, DELIVERED_ORDER_STATUS)
+      .subscribe();
+    this.orderService.updatePaymentStatus(orderId, PAID_PAYMENT_STATUS).subscribe()
     this.router.navigate(['/seller'])
   }
   

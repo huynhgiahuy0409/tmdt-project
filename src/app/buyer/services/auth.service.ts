@@ -148,6 +148,16 @@ export class AuthService {
             );
           }
         }),
+        catchError(error => {
+          const dialogRef = this.dialogService.openDialog("500ms","500ms", {
+            title: "Hết phiên",
+            content: "Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại"
+          })
+          dialogRef.afterClosed().subscribe(rs => {
+            this.router.navigate(['/buyer/login'])
+          })
+          throw new Error("");
+        })
       );
   }
   startRefreshAccessTokenTimer(accessJWT: JWT): void {

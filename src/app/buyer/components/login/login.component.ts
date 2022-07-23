@@ -181,6 +181,8 @@ export class LoginComponent implements OnInit {
             (authResponse: AuthenticationResponse | null) => {
               this.isLoading = false;
               if (authResponse) {
+                console.log(authResponse);
+                
                 this.userService.userBehaviorSubject.next(authResponse.user);
                 this.cartService.cartBehaviorSubject.next(
                   authResponse.user.cart
@@ -288,6 +290,7 @@ export class LoginComponent implements OnInit {
       (authResponse) => {
         this.isLoading = false;
         if (authResponse) {
+          console.log(authResponse);
           this.userService.userBehaviorSubject.next(authResponse.user);
           this.cartService.cartBehaviorSubject.next(authResponse.user.cart);
           this.authService.accessTokenBehaviorSubject.next(
@@ -383,7 +386,7 @@ export class LoginComponent implements OnInit {
             let data;
             if (this.validOTPFor == 'register') {
               data = {
-                title: 'Xác thực công công',
+                title: 'Xác thực thành công',
                 content:
                   'Xác thực mã thành công. Tài khoản đã được tạo. Đăng nhập ngay!',
                 action: [

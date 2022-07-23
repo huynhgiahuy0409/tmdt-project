@@ -20,12 +20,13 @@ export class AuthGuard implements CanActivate {
         | Promise<boolean | UrlTree> {
         console.log(route);
         console.log(state);
-
+        console.log(this.userService.userBehaviorSubject.value);
+        
         if (this.userService.userBehaviorSubject.value) {
             return true;
         } else {
-            if (state.url == '/cart'){
-                this.router.navigate(['/login'])
+            if (state.url == '/buyer/cart'){
+                this.router.navigate(['/buyer/login'])
             }else{
                 this.router.navigate(['/seller/login'], {
                     queryParams: {

@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   MomoTransactionResponse,
   OrderResponse,
@@ -19,7 +19,7 @@ import {
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss'],
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, OnDestroy {
   myAngularxQrCode!: string;
   receipt$!: Observable<OrderResponse[] | null>;
   paymentCost: number = 0;
@@ -43,56 +43,59 @@ export class PaymentComponent implements OnInit {
         }
         this.paymentCost += orderResponse.paymentCost;
       });
-      // this.myAngularxQrCode = `2|99|0776425942|HUYNH GIA HUU|huynhgiahuy492@gmail.com|0|0|${this.paymentCost}|${this.contentReceipt}`;
-      this.myAngularxQrCode = `2|99|0776425942|HUYNH GIA HUU|huynhgiahuy492@gmail.com|0|0|1000|${this.contentReceipt}`;
+      this.myAngularxQrCode = `2|99|0776425942|HUYNH GIA HUU|huynhgiahuy492@gmail.com|0|0|${this.paymentCost}|${this.contentReceipt}`;
+      // this.myAngularxQrCode = `2|99|0776425942|HUYNH GIA HUU|huynhgiahuy492@gmail.com|0|0|1000|${this.contentReceipt}`;
     });
+  }
+  ngOnDestroy(): void {
+    this.orderService.receiptBehaviorSubject.next(null)
   }
 
   ngOnInit(): void {
-    let orderResponses: OrderResponse[] = []
-    let orderResponse1: OrderResponse = {
-      id: 148,
-      createdDate: new Date(),
-      orderItems: [],
-      status: "string",
-      shopId: 1,
-      sendBy: "string",
-      orderBy: "string",
-      sendPhoneNumber: "string",
-      orderPhoneNumber: "string",
-      orderAddress: "string",
-      sendAddress: "string",
-      cartItemCost: 1,
-      shippingCost: 1,
-      paymentCost: 1,
-      paymentMethod: "string",
-      digitBillFilename: "string",
-      digitalBillHash: "string",
-      paymentStatus: "string",
-    }
-    let orderResponse2: OrderResponse = {
-      id: 149,
-      createdDate: new Date(),
-      orderItems: [],
-      status: "string",
-      shopId: 1,
-      sendBy: "string",
-      orderBy: "string",
-      sendPhoneNumber: "string",
-      orderPhoneNumber: "string",
-      orderAddress: "string",
-      sendAddress: "string",
-      cartItemCost: 1,
-      shippingCost: 1,
-      paymentCost: 1,
-      paymentMethod: "string",
-      digitBillFilename: "string",
-      digitalBillHash: "string",
-      paymentStatus: "string",
-    }
-    orderResponses.push(orderResponse1)
-    orderResponses.push(orderResponse2)
-    this.orderService.receiptBehaviorSubject.next(orderResponses)
+    // let orderResponses: OrderResponse[] = []
+    // let orderResponse1: OrderResponse = {
+    //   id: 148,
+    //   createdDate: new Date(),
+    //   orderItems: [],
+    //   status: "string",
+    //   shopId: 1,
+    //   sendBy: "string",
+    //   orderBy: "string",
+    //   sendPhoneNumber: "string",
+    //   orderPhoneNumber: "string",
+    //   orderAddress: "string",
+    //   sendAddress: "string",
+    //   cartItemCost: 1,
+    //   shippingCost: 1,
+    //   paymentCost: 1,
+    //   paymentMethod: "string",
+    //   digitBillFilename: "string",
+    //   digitalBillHash: "string",
+    //   paymentStatus: "string",
+    // }
+    // let orderResponse2: OrderResponse = {
+    //   id: 149,
+    //   createdDate: new Date(),
+    //   orderItems: [],
+    //   status: "string",
+    //   shopId: 1,
+    //   sendBy: "string",
+    //   orderBy: "string",
+    //   sendPhoneNumber: "string",
+    //   orderPhoneNumber: "string",
+    //   orderAddress: "string",
+    //   sendAddress: "string",
+    //   cartItemCost: 1,
+    //   shippingCost: 1,
+    //   paymentCost: 1,
+    //   paymentMethod: "string",
+    //   digitBillFilename: "string",
+    //   digitalBillHash: "string",
+    //   paymentStatus: "string",
+    // }
+    // orderResponses.push(orderResponse1)
+    // orderResponses.push(orderResponse2)
+    // this.orderService.receiptBehaviorSubject.next(orderResponses)
   }
   autoClickPayment() {
     this.checkPaymentReceipt();

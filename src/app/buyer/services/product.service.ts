@@ -60,7 +60,6 @@ export class ProductService {
     if (shopId) {
       fromObject['shopIdFilter'] = shopId;
     }
-    console.log(fromObject);
     
     let paramsOptions: HttpParamsOptions = { fromObject };
     let params = new HttpParams(paramsOptions);

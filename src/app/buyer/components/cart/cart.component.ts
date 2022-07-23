@@ -60,30 +60,32 @@ export class CartComponent implements OnInit {
       cartItems.forEach((cartItem: CartItemResponse, cartItemIndex: number) => {
         let pendingItemTasks: PendingItemTask[] = [];
         let pendingItems: PendingItemResponse[] = cartItem.pendingItems;
-        this.totalPendingItem += pendingItems.length;
-        pendingItems.forEach(
-          (pendingItem: PendingItemResponse, pendingItemIndex: number) => {
-            let pendingItemCompleted = this.cartTask
-              ? this.cartTask.cartItemTasks[cartItemIndex].pendingItemTasks[
-                pendingItemIndex
-              ].completed
-              : false;
-            let pendingItemTask: PendingItemTask = {
-              pendingItemResponse: pendingItem,
-              completed: pendingItemCompleted,
-            };
-            pendingItemTasks.push(pendingItemTask);
-          }
-        );
-        let cartItemCompleted = this.cartTask
-          ? this.cartTask.cartItemTasks[cartItemIndex].completed
-          : false;
-        let cartItemTask: CartItemTask = {
-          cartItemResponse: cartItem,
-          completed: cartItemCompleted,
-          pendingItemTasks: pendingItemTasks,
-        };
-        cartItemTasks.push(cartItemTask);
+        if(cartItem.pendingItems.length > 0){
+          this.totalPendingItem += pendingItems.length;
+          pendingItems.forEach(
+            (pendingItem: PendingItemResponse, pendingItemIndex: number) => {
+              let pendingItemCompleted = this.cartTask
+                ? this.cartTask.cartItemTasks[cartItemIndex].pendingItemTasks[
+                  pendingItemIndex
+                ].completed
+                : false;
+              let pendingItemTask: PendingItemTask = {
+                pendingItemResponse: pendingItem,
+                completed: pendingItemCompleted,
+              };
+              pendingItemTasks.push(pendingItemTask);
+            }
+          );
+          let cartItemCompleted = this.cartTask
+            ? this.cartTask.cartItemTasks[cartItemIndex].completed
+            : false;
+          let cartItemTask: CartItemTask = {
+            cartItemResponse: cartItem,
+            completed: cartItemCompleted,
+            pendingItemTasks: pendingItemTasks,
+          };
+          cartItemTasks.push(cartItemTask);
+        }
       });
       let cartCompleted = this.cartTask ? this.cartTask.completed : false;
       this.cartTask = {
@@ -105,6 +107,8 @@ export class CartComponent implements OnInit {
   private updateSummaryCart(){
     let sltPendingItems: CartItemResponse[] = this.getSltPendingItems();
       let summaryCartItems: SummaryCartItem[] = sltPendingItems.map(cartItemResponse => {
+        console.log(cartItemResponse);
+        
         let summaryCartItem: SummaryCartItem = {
           cartItem: cartItemResponse,
           shipping: {
@@ -195,7 +199,11 @@ export class CartComponent implements OnInit {
   }
   private getSltPendingItems(): CartItemResponse[] {
     let cartItemResponses: CartItemResponse[] = [];
+    console.log(this.cartTask);
+    
     this.cartTask.cartItemTasks.forEach((cartItemTask) => {
+      console.log(cartItemTask);
+      
       const { id, shop } = cartItemTask.cartItemResponse;
       let sltPendingItems: PendingItemResponse[] = cartItemTask.pendingItemTasks
         .filter((cit) => cit.completed == true)
@@ -207,6 +215,8 @@ export class CartComponent implements OnInit {
       };
       cartItemResponses.push(cartItemResponse);
     });
+    console.log(cartItemResponses);
+    
     return cartItemResponses;
   }
   getTotalPayment(cartItems: CartItemResponse[]): number {

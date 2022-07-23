@@ -42,13 +42,13 @@ export class ProductComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.spinnerService.isLoadingBSub.next(true)
-    let initFilter: FilterChain = {
-      pagination: {
-        pageIndex: 0,
-        pageSize: this.productFilterChainService.filterBSub.value.pagination.pageSize,
-      },
-    };
-    this.productFilterChainService.filterBSub.next(initFilter)
+    // let initFilter: FilterChain = {
+    //   pagination: {
+    //     pageIndex: 0,
+    //     pageSize: this.productFilterChainService.filterBSub.value.pagination.pageSize,
+    //   },
+    // };
+    // this.productFilterChainService.filterBSub.next(initFilter)
     let initProductFilter = this.productFilterChainService.filterBSub.value;
     initProductFilter.pagination.pageSize = this.pageSize;
     this.productFilterChainService.filterBSub.next(initProductFilter);
@@ -85,6 +85,8 @@ export class ProductComponent implements OnInit {
       dir: dir,
       order: order,
     };
+    console.log(currFilter);
+    
     this.spinnerService.isLoadingBSub.next(true)
     this.productFilterChainService.filterBSub.next(currFilter);
   }
