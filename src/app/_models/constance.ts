@@ -1,7 +1,7 @@
 export const DOMAIN = 'http://localhost:8080';
 export const DIRECT_LINK_IMAGE = 'http://localhost:8080/images';
 export const DIRECT_LINK_DIG_BILL = 'http://localhost:8080/digital-bill';
-export const API_KEY_MOMO = 'abc'
+export const API_KEY_MOMO = '5VJPQ0RXAL2YM9KS83H9'
 export const MOMO_PHONE = '0776425942'
 export const COD_PAYMENT_METHOD = "COD"
 export const MOMO_PAYMENT_METHOD = "MOMO"

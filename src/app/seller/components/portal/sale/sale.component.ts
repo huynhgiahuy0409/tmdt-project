@@ -23,6 +23,7 @@ export class SaleComponent implements OnInit {
 
   ngOnInit(): void {
     let orders: OrderResponse[] = this.activatedRoute.snapshot.data.orders
+    console.log(orders)
     this.allOrders = orders
     this.waitProcessOrders = orders.filter(order => order.status === PENDING_ORDER_STATUS)
     this.waitingPickOrders = orders.filter(order => order.status === WAITING_PICK_ORDER_STATUS)

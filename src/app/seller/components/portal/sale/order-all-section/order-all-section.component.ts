@@ -62,6 +62,7 @@ export class OrderAllSectionComponent implements OnInit {
         shippingCost,
         paymentCost,
         digitalBillHash,
+        digitBillFilename
       } = order;
       let action: [string, string][] = [['see', 'Xem']];
       let orderStatusLabel = this.orderService.setupOrderStatus(status);
@@ -82,7 +83,7 @@ export class OrderAllSectionComponent implements OnInit {
         shippingCost: shippingCost,
         paymentCost: paymentCost,
         action: action,
-        digitalBillHash: digitalBillHash,
+        digitalBill: digitBillFilename,
       };
       return orderElementData;
     });
