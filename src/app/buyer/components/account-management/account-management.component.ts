@@ -12,7 +12,7 @@ export class AccountManagementComponent implements OnInit {
     ['Lịch sử mua hàng', 'purchase-history'],
     ['Danh sách yêu thích', 'wishlist'],
     ['Địa chỉ giao hàng', 'delivery-address'],
-    ['Xác thực hóa đơn điện tử', 'digital-bill-verification'],
+    // ['Xác thực hóa đơn điện tử', 'digital-bill-verification'],
   ];
   constructor() { }
 

@@ -3,9 +3,12 @@
         <div class="product-menu-head">
             <div class="main-order" style="margin: auto">
                 <h4>Hóa đơn điện tử đã ký: </h4>
-                <input type="text" class="bill-input" formControlName="encryptedHash">
+                <div>
+                    <input type="text" class="bill-input" formControlName="encryptedHash" style="width: 100%">
+                </div>
                 <h4>Nhập mã đơn hàng</h4>
                 <input type="text" class="bill-input" formControlName="orderId">
+                <p style="color: red; margin-top: 10px;">*Lưu ý: Vui lòng nhập đúng hóa đơn và mã đơn hàng đã ký!</p>
                 <div style="margin: 10px 0">
                     <button type="submit" mat-raised-button class="primary-btn">Gửi</button>
                 </div>
