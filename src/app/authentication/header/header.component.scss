@@ -1,0 +1,50 @@
+.header-container{
+    height: 84px;
+}
+.header-container--bg-clr{
+    background-color: var(--white-color--);
+}
+.logo {
+    font-family: "Chalkduster";
+    font-size: 2.5em;
+    background-image: linear-gradient(100deg,
+            var(--button-color--),
+            var(--primary-color--),
+            var(--sub-primary-color--));
+    background-clip: text;
+    color: transparent;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.type {
+    font-size: 1.5em;
+    margin-left: 20px
+}
+
+.help {
+    cursor: pointer;
+    color: var(--primary-color--)
+}
+// @media only screen and (min-width: 740px) {
+   
+// }
+// /* layout full screen - none .wide */
+// @media only screen and (min-width: 1113px) {
+   
+// }
+
+// @media only screen and (min-width: 1024px) and (max-width: 1239px) {
+   
+// }
+@media only screen and (min-width: 740px) {
+   
+}
+/* layout full screen - none .wide */
+@media only screen and (min-width: 1113px) {
+   
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1239px) {
+   
+}

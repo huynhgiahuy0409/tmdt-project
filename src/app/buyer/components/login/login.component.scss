@@ -1,4 +1,5 @@
 * {
+
   margin: 0;
   padding: 0;
 }
@@ -14,8 +15,8 @@ p {
   justify-content: center;
   align-items: center;
   background: var(--background-color--);
-  padding: 50px;
   position: relative;
+  padding: 20px;
   .quen-mat-khau {
     display: none;
     width: 100vw;
@@ -240,16 +241,14 @@ p {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    background-color: white;
-    box-shadow: 0 0 73px 10px #d7e2edd6;
     border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 0 73px 10px #d7e2edd6;
+    z-index: 1;
   }
 
   .left {
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-    width: 60%;
+    width: 45%;
     position: relative;
     height: 100%;
     overflow: hidden;
@@ -309,7 +308,6 @@ p {
         font-weight: 500;
         font-size: 3.6rem;
         letter-spacing: 1px;
-        
       }
 
       &__action-btn {
@@ -367,9 +365,8 @@ p {
 
   .right {
     flex: 1;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
     overflow: hidden;
+    background-color: var(--white-color--);
     &-form {
       display: flex;
       flex-direction: column;
@@ -379,8 +376,18 @@ p {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 40px 0;
-
+        font-size: 7.1rem;
+        padding: 30px;
+        background-image: linear-gradient(
+          100deg,
+          var(--button-color--),
+          var(--primary-color--),
+          var(--sub-primary-color--),
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        font-weight: 600;
         img {
           width: 30px;
         }
@@ -554,16 +561,17 @@ p {
                 color: var(--primary-color--);
                 cursor: pointer;
               }
-              .google-btn, .fb-btn{
+              .google-btn,
+              .fb-btn {
                 padding: 5px 20px;
                 border-radius: 5px;
-                color: #fff
+                color: #fff;
               }
-              .google-btn{
-                background-color: rgb(212,72,55);
+              .google-btn {
+                background-color: rgb(212, 72, 55);
               }
-              .fb-btn{
-                background-color: rgb(59,89,153)
+              .fb-btn {
+                background-color: rgb(59, 89, 153);
               }
             }
           }
@@ -588,7 +596,8 @@ p {
       padding: 10%;
       display: flex;
       flex-direction: column;
-      > div, >form {
+      > div,
+      > form {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -608,8 +617,8 @@ p {
       &__main {
         flex: 1;
         justify-content: center;
-        >div{
-          margin: 20px 0
+        > div {
+          margin: 20px 0;
         }
         .right-otp__title {
           text-align: center;
@@ -631,10 +640,10 @@ p {
             font-weight: 600;
             font-size: 2.4rem;
           }
-          input[type=number]::-webkit-inner-spin-button, 
-          input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
+          input[type="number"]::-webkit-inner-spin-button,
+          input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
           }
         }
         .right-otp__action-list {
@@ -642,7 +651,7 @@ p {
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          >button{
+          > button {
             padding: 0px 20px;
             height: 40px;
             border-radius: 5px;
@@ -651,33 +660,33 @@ p {
             justify-content: space-between;
             border: unset;
             box-shadow: 0 0 5px #ccc;
-            i{
-              margin-right: 5px
+            i {
+              margin-right: 5px;
             }
           }
-          .back-btn{
+          .back-btn {
           }
-          .back-btn--color{
+          .back-btn--color {
             color: black;
           }
-          .valid-otp-btn{
+          .valid-otp-btn {
             background-color: var(--primary-color--);
             color: white;
           }
-          .valid-otp-btn:disabled{
+          .valid-otp-btn:disabled {
             background-color: #f5f5f5;
             border: unset;
             color: #000;
             cursor: not-allowed;
           }
         }
-        .right-otp__resend-otp{
+        .right-otp__resend-otp {
           display: flex;
           align-items: center;
           justify-content: center;
           color: #878787;
           font-size: 1.2rem;
-          .resend-btn{
+          .resend-btn {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -685,7 +694,7 @@ p {
             font-size: 1.2rem;
             color: var(--primary-color--);
             margin-left: 10px;
-            i{
+            i {
               margin-right: 5px;
               font-size: 1.2rem;
             }
@@ -709,4 +718,10 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+// Mobile: width < 740px
+@media only screen and (max-width: 48.1875em) {
+}
+// Tablet: width >= 740px and < 1024px
+@media only screen and (min-width: 48.25em) and (max-width: 63.9375em) {
 }

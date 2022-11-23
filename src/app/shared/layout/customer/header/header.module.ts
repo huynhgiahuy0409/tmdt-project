@@ -14,5 +14,5 @@ import { HomeComponent } from 'src/app/buyer/components/home/home.component';
   exports: [CustomerHeaderComponent],
 })
 export class CustomerHeaderModule {
- 
+
 }

@@ -56,12 +56,12 @@ ul.nav-pills {
 }
 
 .nav-item-custom:first-child {
-  /* background-color: var(--sub-color--);
+  /* background-color: var(--sub-primary-color--);
   border-radius: 4px; */
 }
 
 .nav-item-custom:focus {
-  background-color: var(--sub-color--);
+  background-color: var(--sub-primary-color--);
   border-radius: 4px;
   color: var(--text-color--)
 }

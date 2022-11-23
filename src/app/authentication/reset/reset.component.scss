@@ -1,0 +1,33 @@
+.reset-body{
+    display: flex;
+    height: 600px;
+    margin: auto;
+    align-items: center;
+}
+.reset-body--bg-clr{
+    background-color: var(--white-color--);
+}
+.reset-box{
+    border-radius: 5px;
+    width: 500px;
+}
+.reset-box .reset-box__header{
+    height: 80px;
+}
+.reset-box__header .arrow-left-icon{
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arrow-left-icon i{
+    font-size: 30px;
+}
+
+.reset-box__header .title{
+    font-weight: 400;
+    padding-right: 80px;
+}
+.reset-box .reset-box__body{
+    padding: 0 80px 65px
+}

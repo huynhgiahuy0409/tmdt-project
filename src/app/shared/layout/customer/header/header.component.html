@@ -1,15 +1,21 @@
-<header>
+<header class="hide-on-mobile" style="display: none;">
   <!--header bottom satrt-->
   <div class="main_menu_area">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-12 col-md-12 d-flex align-item-center justify-content-between">
+        <div
+          class="col-lg-12 col-md-12 d-flex align-item-center justify-content-between"
+        >
           <div class="main_menu menu_position d-flex align-item-center">
             <nav class="d-flex align-item-center">
               <ul>
                 <li>
-                  <a [routerLink]="['/seller']" fragment="seller" routerLinkActive="router-link-active">Kênh người
-                    bán</a>
+                  <a
+                    [routerLink]="['/seller']"
+                    fragment="seller"
+                    routerLinkActive="router-link-active"
+                    >Kênh người bán</a
+                  >
                 </li>
                 <li>
                   <a [routerLink]="['/seller/barchart']">Trở thành người bán</a>
@@ -21,10 +27,18 @@
             <nav class="d-flex align-item-center">
               <ul>
                 <li *ngIf="!(user$ | async)">
-                  <a [routerLink]="['/buyer/login']" [queryParams]="{pageRedirect: 'register'}">Đăng ký</a>
+                  <a
+                    [routerLink]="['/buyer/login']"
+                    [queryParams]="{ pageRedirect: 'register' }"
+                    >Đăng ký</a
+                  >
                 </li>
                 <li *ngIf="!(user$ | async)">
-                  <a [routerLink]="['/buyer/login']"  [queryParams]="{pageRedirect: 'login'}">Đăng nhập</a>
+                  <a
+                    [routerLink]="['/buyer/login']"
+                    [queryParams]="{ pageRedirect: 'login' }"
+                    >Đăng nhập</a
+                  >
                 </li>
                 <ng-container *ngIf="user$ | async as user">
                   <li>
@@ -35,14 +49,23 @@
                     <div class="notification">
                       <ul class="notification__list notification__list--color">
                         <!--    <ng-container *ngIf="(user$ | async) as user"> -->
-                        <li class="notification__item"  [routerLink]="['/buyer/account-management']">
-                          <i class="fa-solid fa-user" ></i>Tài khoản của tôi
+                        <li
+                          class="notification__item"
+                          [routerLink]="['/buyer/account-management']"
+                        >
+                          <i class="fa-solid fa-user"></i>Tài khoản của tôi
                         </li>
-                        <li class="notification__item" [routerLink]="['/buyer/account-management/purchase-history']">
+                        <li
+                          class="notification__item"
+                          [routerLink]="[
+                            '/buyer/account-management/purchase-history'
+                          ]"
+                        >
                           <i class="fa-solid fa-pen"></i>Đơn mua
                         </li>
                         <li (click)="logout()" class="notification__item">
-                          <i class="fa-solid fa-arrow-right-from-bracket"></i>Đăng xuất
+                          <i class="fa-solid fa-arrow-right-from-bracket"></i
+                          >Đăng xuất
                         </li>
                         <!--  </ng-container> -->
                       </ul>
@@ -56,6 +79,7 @@
       </div>
     </div>
   </div>
+
   <!--header bottom end-->
   <div class="main_header">
     <!--header middel start-->
@@ -70,39 +94,64 @@
           <div class="col-lg-9 col-md-6">
             <div class="middel_right">
               <div class="search-container search-container--color">
-                <input placeholder="Tìm kiếm sản phẩm..." type="text" [(ngModel)]="searchValue" />
-                <button class="search-btn" (click)="searchProductByName(searchValue)">
+                <input
+                  placeholder="Tìm kiếm sản phẩm..."
+                  type="text"
+                  [(ngModel)]="searchValue"
+                />
+                <button
+                  class="search-btn"
+                  (click)="searchProductByName(searchValue)"
+                >
                   <mat-icon>search</mat-icon>
                 </button>
               </div>
               <div [routerLink]="['/buyer/cart']" class="cart-container">
                 <span class="cart-icon-wrap">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart"
-                    viewBox="0 0 16 16">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    class="bi bi-cart"
+                    viewBox="0 0 16 16"
+                  >
                     <path
-                      d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                      d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                    />
                   </svg>
                   <div class="cart-badge">{{ totalPendingItem }}</div>
                   <div class="notification">
-                    <ul class="notification__list notification__list--color cart">
-                      <h4 style="
+                    <ul
+                      class="notification__list notification__list--color cart"
+                    >
+                      <h4
+                        style="
                           margin: 0;
                           padding: 10px;
                           color: #999;
                           border-bottom: 1px solid #ccc;
-                        ">
+                        "
+                      >
                         Sản phẩm mới thêm
                       </h4>
-                      <ng-container *ngIf="cart$ | async as cart; else notPendingItem">
+                      <ng-container
+                        *ngIf="cart$ | async as cart; else notPendingItem"
+                      >
                         <ng-container *ngIf="cart.cartItems.length > 0">
                           <ng-container *ngFor="let cartItem of cart.cartItems">
-                            <ng-container *ngFor="let pendingItem of cartItem.pendingItems">
+                            <ng-container
+                              *ngFor="let pendingItem of cartItem.pendingItems"
+                            >
                               <li class="notification__item">
                                 <div class="product-thumbnail">
-                                  <img [src]="
+                                  <img
+                                    [src]="
                                       directLinkImage +
                                       pendingItem.product.images[0].url
-                                    " alt="" />
+                                    "
+                                    alt=""
+                                  />
                                 </div>
                                 <div class="product-name">
                                   {{ pendingItem.product.name }}
@@ -110,9 +159,10 @@
                                 <div class="product-price">
                                   <span style="color: var(--primary-color--)">
                                     {{ pendingItem.quantity }}x{{
-                                    pendingItem.product.buyPrice
-                                    | currency: "VND"
-                                    }}</span>
+                                      pendingItem.product.buyPrice
+                                        | currency: "VND"
+                                    }}</span
+                                  >
                                 </div>
                               </li>
                             </ng-container>
@@ -120,7 +170,7 @@
                         </ng-container>
                       </ng-container>
                       <ng-template #notPendingItem>
-                        <img src="assets\img\no-items.jpg" alt="">
+                        <img src="assets\img\no-items.jpg" alt="" />
                       </ng-template>
                     </ul>
                   </div>
@@ -133,7 +183,10 @@
                   Trang chủ
                 </li>
                 <li class="page-redirect__item">Hàng mới</li>
-                <li class="page-redirect__item" [routerLink]="['/buyer/product']">
+                <li
+                  class="page-redirect__item"
+                  [routerLink]="['/buyer/product']"
+                >
                   Sản phẩm
                 </li>
                 <li class="page-redirect__item">Giới tính</li>
@@ -149,3 +202,365 @@
   </div>
 </header>
 <!--header area end-->
+<div class="header header--bg-clr header-sticky box-shadow">
+  <div class="navbar-wrapper hide-on-mobile-tablet">
+    <div class="grid wide">
+      <div class="d-flex-c center--space-between-flex-c">
+        <div class="h-list">
+          <div class="h-item h-item--separation">
+            <a class="h-item__link text-hover"> Kênh người bán </a>
+          </div>
+          <div class="h-item h-item--separation">
+            <a class="h-item__link text-hover"> Trở thành người bán Toy Fair</a>
+          </div>
+          <div class="h-item h-item--separation hovered-notify">
+            <a class="h-item__link text-hover"> Tải ứng dụng </a>
+            <div class="popover-wrapper popover--bg-clr box-shadow">
+              <div class="download-wrapper">
+                <div class="qr__image">
+                  <img src="https://as2.ftcdn.net/v2/jpg/02/96/52/89/1000_F_296528939_sQRRBO2JMjykFBKsQLfLxvAveofcmCWV.jpg" alt="">
+                </div>
+                <div class="download-store">
+                  <img src="https://deo.shopeemobile.com/shopee/shopee-appdlpage-live-vn/static/img/appleStore.0ca159be.png" alt="">
+                  <img src="https://deo.shopeemobile.com/shopee/shopee-appdlpage-live-vn/static/img/googlePlay.df026781.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="h-item h-item--separation">
+            <a class="h-item__link text-hover d-flex-c align-items-center-c"> Kết nối </a>
+          </div>
+          <ul class="h-list no-wrap">
+            <div class="h-item">
+              <div class="h-item__link text-hover">
+                <i class="fa-brands fa-facebook"></i>
+              </div>
+            </div>
+            <div class="h-item">
+              <div class="h-item__link text-hover">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+            </div>
+          </ul>
+        </div>
+        <div class="h-list no-wrap">
+          <div class="h-item">
+            <div class="hovered-notify h-item__link text-hover">
+              <i class="fa-solid fa-bell"></i>
+              Thông báo
+              <div class="popover-wrapper popover--bg-clr box-shadow">
+                <div class="notification-wrapper">
+                  <div class="notification__header">
+                    <span>Thông báo mới nhận</span>
+                  </div>
+                  <div class="notification__body">
+                    <ul class="notification-list">
+                      <li class="notification-item new">
+                        <div class="notification__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="notification__info">
+                          <div class="notification__name">
+                            [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                          </div>
+                          <div class="notification__detail">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                          </div>
+                        </div>
+                      </li>
+                      <li class="notification-item">
+                        <div class="notification__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="notification__info">
+                          <div class="notification__name">
+                            [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                          </div>
+                          <div class="notification__detail">
+                              <span>
+                                Lorem Ipsum is simply dummy text
+                              </span>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="notification-item">
+                        <div class="notification__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="notification__info">
+                          <div class="notification__name">
+                            [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                          </div>
+                          <div class="notification__detail">
+                              <span>
+                                Lorem Ipsum is simply dummy text
+                              </span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="notification__footer">
+                    <div class="see-all-btn">
+                      Xem tất cả
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="h-item">
+            <div class="h-item__link text-hover">
+              <i class="fa-regular fa-circle-question"></i>
+              Hỗ trợ
+            </div>
+          </div>
+          <div class="h-item">
+            <div class="hovered-notify h-item__link text-hover">
+              <i class="fa-solid fa-earth-americas"></i>
+              Tiếng Việt
+              <i class="fa-solid fa-chevron-down"></i>
+              <div class="popover-wrapper popover--bg-clr box-shadow">
+                <div class="language-notify-wrapper language-notify--bg-clr">
+                  <ul class="v-list">
+                    <li class="v-item">
+                      <a href="" class="v-item__link primary-text-hover primary-text">Tiếng Việt</a>
+                    </li>
+                    <li class="v-item r">
+                      <a href="" class="v-item__link primary-text-hover">Tiếng Anh</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="user$; then notSignInTempRef"> </ng-container>
+          <ng-template #notSignInTempRef>
+            <div class="h-item h-item--separation">
+              <div class="h-item__link text-hover">
+                <span style="font-weight: 400">Đăng ký</span>
+              </div>
+            </div>
+            <div class="h-item h-item--separation">
+              <div class="h-item__link text-hover">
+                <span style="font-weight: 400">Đăng nhập</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-with-search-wrapper">
+    <div class="grid wide">
+      <div class="header-with-search d-flex-c center--space-between-flex-c">
+        <div class="h-list header__mobile-left">
+          <div class="h-item">
+            <div class="h-item__link text-hover">
+              <label for="nav-mobile-menu-input" class="header__mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+              </label>
+            </div>
+          </div>
+          <div class="h-item">
+            <div class="h-item__link text-hover">
+              <label for="mobile-search-checkbox" class="header__mobile-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="logo d-flex-c align-items-center-c hide-on-mobile">
+          Toy Fair
+        </div>
+        <input
+          type="checkbox"
+          name=""
+          hidden
+          id="mobile-search-checkbox"
+          class="header__search-checkbox"
+        />
+        <div class="header-search">
+          <div class="search-box search-box--bg-clr">
+            <input type="text" placeholder="Đăng ký và nhận voucher đến 50k" />
+            <button class="search-btn btn btn-sm primary-btn btn-raised">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <div class="header-category hide-on-mobile">
+            <div class="h-list no-wrap">
+              <ng-container *ngFor="let c of categories; index as idx">
+                <div class="h-item">
+                  <div class="h-item__link text-hover fs-10" [class.pd-l-0]="idx === 0">
+                    {{ c }}
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="header-cart">
+          <div class="hovered-notify cart-icon-wrapper">
+            <i class="fa-solid fa-cart-shopping">
+              <div class="cart-badge">99+</div>
+            </i>
+            <div class="popover-wrapper popover--bg-clr box-shadow">
+              <ng-container *ngIf="totalPendingItem === 0; else isNotPendingItem">
+                <div class="cart-notify-wrapper">
+                  <div class="cart-notify__header">
+                    <span>Sản phẩm mới thêm</span>
+                  </div>
+                  <div class="cart-notify__body">
+                    <ul class="pending-item-list">
+                      <li class="pending-item-item">
+                        <div class="pending-item__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="pending-item__info">
+                          <div class="d-flex-c justify-content-center-c">
+                            <div class="pending-item__product-name">
+                              [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                            </div>
+                            <div class="pending-item__product-price">
+                              19.000đ
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="pending-item-item">
+                        <div class="pending-item__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="pending-item__info">
+                          <div class="d-flex-c justify-content-center-c">
+                            <div class="pending-item__product-name">
+                              [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                            </div>
+                            <div class="pending-item__product-price">
+                              19.000đ
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="pending-item-item">
+                        <div class="pending-item__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="pending-item__info">
+                          <div class="d-flex-c justify-content-center-c">
+                            <div class="pending-item__product-name">
+                              [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                            </div>
+                            <div class="pending-item__product-price">
+                              19.000đ
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="pending-item-item">
+                        <div class="pending-item__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="pending-item__info">
+                          <div class="d-flex-c justify-content-center-c">
+                            <div class="pending-item__product-name">
+                              [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                            </div>
+                            <div class="pending-item__product-price">
+                              19.000đ
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="pending-item-item">
+                        <div class="pending-item__image">
+                          <img src="" alt="">
+                        </div>
+                        <div class="pending-item__info">
+                          <div class="d-flex-c justify-content-center-c">
+                            <div class="pending-item__product-name">
+                              [DEAL HOT] Khăn trùm chống nắng chống bụi nam đa năng giá rẻ, khăn bịt mặt dạng ống che nắng cổ mặt đi xe máy phượt
+                            </div>
+                            <div class="pending-item__product-price">
+                              19.000đ
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="d-flex-c center--space-between-flex-c">
+                        <span>26 sản phẩm khác</span>
+                        <button class="btn primary-btn btn-raised btn-sm">
+                          Xem giỏ hàng
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="cart-notify__footer">
+  
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #isNotPendingItem>
+                <div class="empty-cart-wrapper">
+                  <div class="empty-cart__image">
+                    <img src="https://img.freepik.com/premium-photo/white-cartoon-minimal-style-grocery-shopping-basket-3d-rendering_476612-20921.jpg?w=1380" alt="">
+                  </div>
+                  <div class="empty-cart__text">Chưa có sản phẩm {{totalPendingItem}}</div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="checkbox" hidden id="nav-mobile-menu-input" class="" />
+  <div class="nav__mobile box-shadow">
+    <div class="logo-detail">
+      <i class="logo__icon fa-brands fa-pagelines"></i>
+      <span class="logo__name"> Toy Fair </span>
+    </div>
+    <ul class="nav__links">
+      <ng-container *ngFor="let i of mobileSidebar">
+        <li
+          class="nav__item"
+          [class.show-submenu]="i.expanded"
+          (click)="i.expanded = !i.expanded"
+        >
+          <div class="icon-link">
+            <a>
+              <i [class]="i.icon"></i>
+              <span class="link__name">{{ i.label }}</span>
+            </a>
+            <i
+              *ngIf="i.children"
+              class="fa-solid fa-angle-down"
+              [class.arrow]="i.expanded"
+            ></i>
+          </div>
+          <ul class="sub-menu" *ngIf="i.expanded">
+            <li *ngFor="let i of i.children">
+              <a>{{ i.label }}</a>
+            </li>
+          </ul>
+        </li>
+      </ng-container>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <img
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80"
+              class="profile__image"
+            />
+          </div>
+          <div class="name-role">
+            <div class="profile__name">Huy Huynh</div>
+            <div class="profile__role">Người dùng</div>
+          </div>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <label for="nav-mobile-menu-input" class="nav__overlay"> </label>
+</div>

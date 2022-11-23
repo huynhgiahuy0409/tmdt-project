@@ -72,29 +72,9 @@
 
     <div class="right">
       <div class="right-form" *ngIf="pageRedirect != 'valid-otp'">
-        <div class="right-form__header"></div>
+        <h1 class="right-form__header">Đăng nhập</h1>
         <div class="right-form__content">
           <div class="content">
-            <div class="content__title">
-              <p *ngIf="pageRedirect == 'login' && this.page == 'login'">
-                Đăng nhập
-              </p>
-              <p *ngIf="pageRedirect == 'register' && this.page == 'login'">
-                Đăng kí
-              </p>
-              <p *ngIf="pageRedirect == 'login' && this.page == 'sign-in'">
-                Đăng nhập vào Kênh người bán
-              </p>
-              <p *ngIf="pageRedirect == 'register' && this.page == 'sign-in'">
-                Đăng kí với tư cách người bán
-              </p>
-              <p *ngIf="pageRedirect == 'forget-password' && !isExistUser">
-                Đặt lại mật khẩu
-              </p>
-              <p *ngIf="pageRedirect == 'forget-password' && isExistUser">
-                Thiết lập mật khẩu
-              </p>
-            </div>
             <ng-container *ngIf="pageRedirect == 'login'">
               <form
                 [formGroup]="loginForm"

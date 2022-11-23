@@ -1,0 +1,36 @@
+.footer-container{
+    background-color: #f5f5f5
+}
+.about-us-title{
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+.payment-logo-item, .delivery-logo-item{
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 2px;
+}
+.qr-code-container{
+    border-radius: 3px;
+}
+.download-store-tag{
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 1023px) {
+}
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+   
+}
+@media screen and (max-width: 739px) {
+   
+}

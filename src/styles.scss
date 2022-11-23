@@ -1,21 +1,37 @@
+@import "./assets/my-template/custom.scss";
+@import "./assets/my-template/responsive.css";
+@import "./assets/my-template/flex-custom.scss";
+@import "./assets/my-template/grid.css";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
   font-size: 1.4rem;
+  box-sizing: border-box;
+}
+h1,h2,h3,h4,h5,h6{
+  margin: 0 !important
+}
+a{
+  text-decoration: none;
+  color: unset;
 }
 .container{
   min-width: 90%
 }
 :root {
+  --white-color--: white;
   --primary-color--: rgb(255, 163, 127);
+  --primary-color-cart-badge-border--: rgba(247,142, 101,1);
   --grey-color--: #ccc;
-  --sub-color--: rgb(255 163 127 / 59%);
-  --button-color----: rgb(255 112 56);
+  --sub-primary-color--: rgb(255 170 137);
+  --button-color--: rgb(255 112 56);
   --text-color--: #444;
-  --hover-color--: #f1f1f1;
+  --hover-color--: #ebebeb;
+  --hover-primary-color--: rgba(255, 163, 127, 0.31);
   --base-cherry-color--: #f3425f;
   --base-lime-color--: #45bd62;
   --base-lemon-color--: #f7b928;
+  --buyer-head-with-search-height--: 
 }
 .font-weight-550{
   font-weight: 550;
@@ -24,43 +40,18 @@
   stroke: var(--primary-color--);
 }
 
-button {
-  background-color: var(--button-color--);
-  color: #fff;
-  border: unset;
-  outline: unset;
-  box-shadow: 0 0 3px #ccc;
-  border-radius: 5px;
-  padding: 5px 10px
-}
-.btn--primary-color{
-  background-color: var(--primary-color--);
-  color: #fff
-}
-label {
-  color: var(--text-color--);
-  font-weight: unset;
-}
 
 ul,
 li {
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
 body {
   background-color: rgb(251 251 251);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  padding: 0;
-  margin: 0
-}
 
 h4 {
   font-size: 1.6rem;
@@ -71,9 +62,6 @@ html {
 }
 
 /* Common */
-.grid {
-  padding-top: 10px
-}
 
 .row-custom {
   flex-wrap: nowrap;
@@ -131,10 +119,6 @@ input {
   }
 }
 
-button {
-  background-color: var(--button-color--);
-  color: #fff
-}
 
 /* mat */
 mat-select:disabled{
