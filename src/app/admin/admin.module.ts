@@ -12,7 +12,7 @@ import {AdminSidebarModule} from "../shared/layout/admin/sidebar/sidebar.module"
 @NgModule({
   declarations: [
     AdminComponent,
-    OrderComponent
+    OrderComponent,
   ],
   imports: [
     CommonModule,

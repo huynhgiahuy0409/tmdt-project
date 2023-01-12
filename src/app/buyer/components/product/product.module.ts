@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ProductComponent } from './product.component';
 import { ProvinceResolve } from '../../services/resolve/province.resolve';
+import { SvgModule } from 'src/app/shared/svg/star/svg.module';
 
 @NgModule({
   declarations: [ProductComponent, ProductListComponent, ProductDetailComponent, ProductFilterComponent],
@@ -19,6 +20,7 @@ import { ProvinceResolve } from '../../services/resolve/province.resolve';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
+    SvgModule
   ],
   exports: [ProductListComponent],
 })

@@ -1,0 +1,15 @@
+.image-carousel{
+    position: relative;
+}
+.image-carousel:hover .carousel-arrow{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 600;
+}
+.image-carousel:hover .carousel-arrow i{
+    font-size: 2.8rem;
+}
+.image-carousel__item-list-wrapper{
+    overflow: hidden;
+}

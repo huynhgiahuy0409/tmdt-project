@@ -1,0 +1,74 @@
+.register-container>.main {
+    background-color: var(--primary-color--);
+}
+
+.background-layout {
+    background-image: url("https://cf.shopee.vn/file/0b9a0fd62e7de74a93f48c7c234b0009");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+// Login form
+.background-layout .sign-up-form {
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+}
+
+.background-layout .sign-up-form.sign-up--bg-clr {
+    background-color: var(--white-color--);
+}
+
+.sign-up-form .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.sign-up-form .header .title {
+    font-size: 1.8rem;
+}
+
+.field {
+    border: 1px solid #ccc;
+}
+
+.field .password-view-mode {
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: none;
+    padding: unset;
+}
+
+.field .password-view-mode svg {
+    width: 1.5rem;
+    height: 0.75rem;
+}
+
+@media screen and (max-width: 1023px) {
+    .background-layout {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .background-layout .sign-up-form {
+        left: unset;
+        transform: unset;
+    }
+}
+
+@media screen and (min-width: 740px) and (max-width: 1023px) {}
+
+@media screen and (max-width: 739px) {
+    .background-layout {
+        background-image: unset;
+        background-color: var(--primary-color--);
+    }
+}

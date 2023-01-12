@@ -1,0 +1,40 @@
+.carousel-arrow{
+    box-shadow: 0 1px 12px 0 rgb(0 0 0 / 12%);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all .1s cubic-bezier(.4,0,.6,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    transition: all .1s linear;
+    z-index: 2
+}
+.carousel-arrow i{
+    color: rgba(0,0,0,.54);
+}
+.carousel-arrow--hint {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background-color: #fff;
+}
+.carousel-arrow--prev{
+    transform: translate(-50%, -50%);
+    left: 0;
+}
+.carousel-arrow--next{
+    transform: translate(50%, -50%);
+    right: 0;
+}
+.carousel-arrow--hidden{
+    display: none;
+}

@@ -1,0 +1,25 @@
+<div class="image-carousel">
+    <div class="image-carousel__item-list-wrapper grid">
+        <ul #imageCarouselList class="image-carousel__item-list row no-gutters no-wrap">
+            <li  #imageCarouselItem class="image-carousel__item col l-2 c-2-4" *ngFor="let item of itemList; index as idx">
+                <div class="home-category-list row no-gutters">
+                    <a href="" class="home-category-item col l-12" *ngFor="let i of item; index as idx">
+                        <div class="home-category-item__image">
+                            <img src="https://cf.shopee.vn/file/687f3967b7c2fe6a134a2c11894eea4b_tn" alt="">
+                        </div>
+                        <div class="home-category-item__name">
+                            đồ chơi trẻ em
+                        </div>
+                        
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div #carouselArrowPrev class="carousel-arrow carousel-arrow--hint  carousel-arrow--prev carousel-arrow--hidden" (click)="carouselService.processCarousel('-')">
+        <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div #carouselArrowNext class="carousel-arrow carousel-arrow--hint  carousel-arrow--next" (click)="carouselService.processCarousel('+')">
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+</div>

@@ -1,0 +1,189 @@
+<div class="header-with-search-wrapper">
+    <div class="grid wide">
+        <div class="header-with-search d-flex-c center--space-between-flex-c">
+            <div class="h-list header__mobile-left">
+                <div class="h-item">
+                    <div class="h-item__link text--hover">
+                        <label for="nav-mobile-menu-input" class="header__mobile-menu">
+                            <i class="fa-solid fa-bars"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="h-item">
+                    <div class="h-item__link text--hover">
+                        <label for="mobile-search-checkbox" class="header__mobile-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="header__logo-wrapper d-flex-c align-items-center-c hide-on-mobile">
+                Toy Fair
+            </div>
+            <input type="checkbox" name="" hidden id="mobile-search-checkbox" class="header__search-checkbox" />
+            <div class="header-search">
+                <div class="search-box search-box--bg-clr">
+                    <input type="text" placeholder="Đăng ký và nhận voucher đến 50k" />
+                    <button class="search-btn btn btn-sm primary-btn
+                        btn-raised">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="header-category hide-on-mobile">
+                    <div class="h-list no-wrap">
+                        <ng-container *ngFor="let c of categories; index as
+                            idx">
+                            <div class="h-item">
+                                <div class="h-item__link text--hover fs-10" [class.pd-l-0]="idx === 0">
+                                    {{ c }}
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="header-cart">
+                <div class="hovered-notify cart-icon-wrapper">
+                    <i class="fa-solid fa-cart-shopping">
+                        <div class="cart-badge">99+</div>
+                    </i>
+                    <div class="popover-wrapper popover--bg-clr box-shadow">
+                        <ng-container *ngIf="totalPendingItem === 0; else
+                            isNotPendingItem">
+                            <div class="cart-info-wrapper">
+                                <div class="cart-info__header">
+                                    <span>Sản phẩm mới thêm</span>
+                                </div>
+                                <div class="cart-info__body">
+                                    <ul class="pending-item-list">
+                                        <li class="pending-item">
+                                            <div class="pending-item__image">
+                                                <img src="" alt="">
+                                            </div>
+                                            <div class="pending-item__info">
+                                                <div class="d-flex-c
+                                                    justify-content-center-c">
+                                                    <div class="pending-item__product-name">
+                                                        [DEAL HOT] Khăn trùm
+                                                        chống nắng chống bụi nam
+                                                        đa năng giá rẻ, khăn bịt
+                                                        mặt dạng ống che nắng cổ
+                                                        mặt đi xe máy phượt
+                                                    </div>
+                                                    <div class="pending-item__product-price">
+                                                        19.000đ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="pending-item">
+                                            <div class="pending-item__image">
+                                                <img src="" alt="">
+                                            </div>
+                                            <div class="pending-item__info">
+                                                <div class="d-flex-c
+                                                    justify-content-center-c">
+                                                    <div class="pending-item__product-name">
+                                                        [DEAL HOT] Khăn trùm
+                                                        chống nắng chống bụi nam
+                                                        đa năng giá rẻ, khăn bịt
+                                                        mặt dạng ống che nắng cổ
+                                                        mặt đi xe máy phượt
+                                                    </div>
+                                                    <div class="pending-item__product-price">
+                                                        19.000đ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="pending-item">
+                                            <div class="pending-item__image">
+                                                <img src="" alt="">
+                                            </div>
+                                            <div class="pending-item__info">
+                                                <div class="d-flex-c
+                                                    justify-content-center-c">
+                                                    <div class="pending-item__product-name">
+                                                        [DEAL HOT] Khăn trùm
+                                                        chống nắng chống bụi nam
+                                                        đa năng giá rẻ, khăn bịt
+                                                        mặt dạng ống che nắng cổ
+                                                        mặt đi xe máy phượt
+                                                    </div>
+                                                    <div class="pending-item__product-price">
+                                                        19.000đ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="pending-item">
+                                            <div class="pending-item__image">
+                                                <img src="" alt="">
+                                            </div>
+                                            <div class="pending-item__info">
+                                                <div class="d-flex-c
+                                                    justify-content-center-c">
+                                                    <div class="pending-item__product-name">
+                                                        [DEAL HOT] Khăn trùm
+                                                        chống nắng chống bụi nam
+                                                        đa năng giá rẻ, khăn bịt
+                                                        mặt dạng ống che nắng cổ
+                                                        mặt đi xe máy phượt
+                                                    </div>
+                                                    <div class="pending-item__product-price">
+                                                        19.000đ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="pending-item">
+                                            <div class="pending-item__image">
+                                                <img src="" alt="">
+                                            </div>
+                                            <div class="pending-item__info">
+                                                <div class="d-flex-c
+                                                    justify-content-center-c">
+                                                    <div class="pending-item__product-name">
+                                                        [DEAL HOT] Khăn trùm
+                                                        chống nắng chống bụi nam
+                                                        đa năng giá rẻ, khăn bịt
+                                                        mặt dạng ống che nắng cổ
+                                                        mặt đi xe máy phượt
+                                                    </div>
+                                                    <div class="pending-item__product-price">
+                                                        19.000đ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex-c
+                                            center--space-between-flex-c">
+                                            <span>26 sản phẩm khác</span>
+                                            <button class="btn primary-btn
+                                                btn-raised btn-sm">
+                                                Xem giỏ hàng
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cart-info__footer">
+
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #isNotPendingItem>
+                            <div class="empty-cart-wrapper">
+                                <div class="empty-cart__image">
+                                    <img src="https://img.freepik.com/premium-photo/white-cartoon-minimal-style-grocery-shopping-basket-3d-rendering_476612-20921.jpg?w=1380"
+                                        alt="">
+                                </div>
+                                <div class="empty-cart__text">Chưa có sản phẩm
+                                    {{totalPendingItem}}</div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

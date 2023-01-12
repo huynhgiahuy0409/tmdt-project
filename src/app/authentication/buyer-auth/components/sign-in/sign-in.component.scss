@@ -1,0 +1,135 @@
+.login-container>.main {
+    background-color: var(--primary-color--)
+}
+
+.background-layout {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    height: 600px;
+    margin: auto;
+    align-items: center;
+    position: relative
+}
+
+// Login form
+.background-layout .login-form {
+    width: 400px;
+    background-color: var(--white-color--);
+    border-radius: 10px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(50%);
+}
+
+.login-form .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px
+}
+
+.login-form .header .title {
+    font-size: 1.8rem
+}
+
+.login-form .header .qr-code {}
+
+.qr-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code .qr-code__note {
+    background-color: var(--sub-primary-color--);
+    color: var(--primary-color--);
+    border: 2px solid var(--primary-color--);
+    font-weight: 700;
+    padding: .6875rem .875rem;
+    position: relative;
+    margin-right: 15px
+}
+
+.qr-code .qr-code__note::after {
+    content: "";
+    position: absolute;
+    width: 7.5px;
+    height: 7.5px;
+    border-top: 2px solid var(--primary-color--);
+    border-right: 2px solid var(--primary-color--);
+    transform: rotate(45deg) translateX(50%) translateY(-50%);
+    right: 0;
+    background-color: var(--sub-primary-color--);
+}
+
+.qr-code .login-qr-code {
+    cursor: pointer;
+}
+
+// Login input
+
+.field .password-view-mode {
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: none;
+    padding: unset
+}
+
+.field .password-view-mode svg {
+    width: 1.5rem;
+    height: .75rem;
+}
+
+
+// login button
+
+#login-button {
+    padding: 10px
+}
+
+#login-button:disabled {
+    background: #dddddd;
+    cursor: not-allowed;
+}
+
+#login-button:disabled:hover {
+    background: #dddddd;
+}
+
+#login-button:hover {
+    background-color: var(--hover-primary-color--)
+}
+
+//key frame
+
+// @media screen and (max-width: 1023px) {
+// }
+// @media screen and (min-width: 740px) and (max-width: 1023px) {
+
+// }
+// @media screen and (max-width: 739px) {
+
+// }
+@media screen and (max-width: 1023px) {
+    .background-layout {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .background-layout .login-form {
+        left: unset;
+        transform: unset;
+    }
+}
+
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+   
+}
+
+@media screen and (max-width: 739px) {
+   
+}

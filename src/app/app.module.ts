@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModules } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BreadcrumbModule } from './shared/layout/customer/breadcrumb';
+import { BreadcrumbModule } from './shared/layout/buyer/breadcrumb';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PageNotFoundComponent } from './shared/layout/common/page-not-found/page-not-found.component';
 import { RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';

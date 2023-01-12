@@ -1,0 +1,10 @@
+<div class="image-carousel__item-list-wrapper grid">
+    <ul #imageCarouselList class="image-carousel__item-list row no-gutters no-wrap">
+        <div class="col l-2"  *ngFor="let i of categoriesView">
+            <app-carousel-item [carouselItem]="i">
+                <!-- <ng-content select="app-content"></ng-content>
+                <ng-content select="app-content-1"></ng-content> -->
+            </app-carousel-item>
+        </div>
+    </ul>
+</div>

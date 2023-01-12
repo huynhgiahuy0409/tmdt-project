@@ -1,0 +1,21 @@
+.full-home-banners-wrapper{
+    height: 235px;
+}
+@media screen and (max-width: 739px) {
+    .banners .row.sm-gutters .col.c-12{
+        margin: 4px 0
+    }
+    .banners .row.sm-gutters .col.c-12:first-child{
+        margin-top: 0
+    }
+    .banners .row.sm-gutters .col.c-12:last-child{
+        margin-bottom: 0
+    }
+    .full-home-banners-wrapper{
+        height: unset
+    }
+    
+    .dir-row-on-mobile{
+        flex-direction: row;
+    }
+}

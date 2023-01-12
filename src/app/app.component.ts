@@ -14,6 +14,7 @@ import {
   from,
   fromEvent,
   interval,
+  Observable,
   of,
   pipe,
   Subject,
@@ -21,6 +22,7 @@ import {
   timer,
 } from 'rxjs';
 import {
+  buffer,
   catchError,
   debounce,
   debounceTime,
@@ -54,8 +56,21 @@ export interface validator1 {
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'Toy Store';
-  constructor(private activeRoute: ActivatedRoute, private fb: UntypedFormBuilder, private ps: PostService) {}
+  constructor(private activeRoute: ActivatedRoute, private fb: UntypedFormBuilder, private ps: PostService) {
+    const os1$ = fromEvent<MouseEvent>(document, 'mousemove')
+    os1$.pipe(
+      map(
+        (v: MouseEvent) => v.clientX
+      ),
+      throttleTime(5000)
+    ).subscribe(
+      v => {
+        console.log(v);
+      }
+    )
+  }
   ngAfterViewInit(): void {}
   ngOnInit(): void {
   }
 }
+  

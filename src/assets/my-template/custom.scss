@@ -6,8 +6,34 @@
     height: 100%;
 }
 
+.image-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mr-0 {
+    margin: 0;
+}
+
+.mr-r-5 {
+    margin-right: 5px
+}
+
 .mr-r-10 {
     margin-right: 10px;
+}
+
+.mr-t-10 {
+    margin-top: 10px
+}
+
+.mr-l-5 {
+    margin-left: 5px;
+}
+
+.mr-b-10 {
+    margin-bottom: 10px
 }
 
 .mr-l-10 {
@@ -26,8 +52,24 @@
     padding-left: 0;
 }
 
+.pd-r-0 {
+    padding-right: 0
+}
+
+.pd-r-10 {
+    padding-right: 10px
+}
+
+.pd-r-5 {
+    padding-right: 5px
+}
+
 .pd-10 {
     padding: 10px;
+}
+
+.f-w-500 {
+    font-weight: 500;
 }
 
 .box-shadow {
@@ -41,18 +83,20 @@
     cursor: pointer;
     background-color: transparent;
     margin: 0;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-        0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.14);
     transition: box-shadow 0.3s ease-in-out;
+    margin: 5px;
 }
 
-.btn.btn-raised {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
+.btn.btn-raised:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)
 }
 
-.btn:hover {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    background-color: var(--sub-primary-color--);
+.btn.btn-m {
+    height: 40px;
+    padding: 0 15px;
+    min-width: 70px;
+    max-width: 190px;
 }
 
 .btn.btn-sm {
@@ -62,13 +106,31 @@
     max-width: 190px;
 }
 
+.btn.btn-l {
+    height: 50px;
+    padding: 0 20px;
+    min-width: 60px;
+    max-width: 190px;
+}
+
 .primary-btn {
     background-color: var(--primary-color--);
     color: var(--white-color--);
 }
-.primary-text{
+
+.primary-text {
     color: var(--primary-color--);
 }
+
+.primary-text--hover:hover {
+    color: var(--primary-color--);
+}
+
+.sec-primary-text--hover:hover {
+    color: var(--sec-primary-color--);
+}
+
+
 .separate-line {
     height: 1px;
     background-color: var(--grey-color--);
@@ -77,24 +139,19 @@
 // Text
 
 .sank-text {
-    white-space: pre;
     padding-right: 4px;
-    color: rgba(0, 0, 0, 0.26);
+    color: rgba(0, 0, 0, 0.5);
 }
 
-.primary-text {
-    white-space: pre;
-    padding-right: 4px;
-    color: var(--primary-color--);
+.text-16-underline {
+    font-size: 1.6rem;
+    text-decoration: underline;
 }
 
 .text-clr {
     color: rgba(0, 0, 0, 0.26);
 }
 
-.primary-clr {
-    color: var(--primary-color--);
-}
 
 .bold-text {
     font-weight: 600;
@@ -172,7 +229,18 @@
     position: relative;
 }
 
-.h-item.h-item--separation {}
+.h-item:first-child {
+    margin-left: -10px
+}
+
+.h-item:last-child {
+    margin-right: -10px
+}
+
+.h-item .right-icon-wrapper {
+    display: inline;
+}
+
 
 .h-item.h-item--separation::before {
     content: "";
@@ -190,38 +258,50 @@
 
 .h-item__link {
     position: relative;
-    padding: 5px;
+    padding: 5px 10px;
     cursor: pointer;
 }
-.h-item__link.bg-hover:hover{
+
+.h-item__link span {
+    font-weight: 400;
+}
+
+.h-item__link.bg-hover:hover {
     background-color: var(--hover-color--);
 }
-.h-item__link.text-hover:hover{
+
+.h-item__link.text--hover:hover {
     color: var(--hover-color--);
 }
 
-ul.v-list{
-    
-}
-li.v-item{
+ul.v-list {}
+
+li.v-item {
     padding: 10px;
 }
 
-li.v-item a.v-item__link{
+li.v-item a.v-item__link {
     cursor: pointer;
 }
-li.v-item a.v-item__link.primary-text-hover:hover{
-   color: var(--primary-color--);
+
+li.v-item a.v-item__link.primary-text--hover:hover {
+    color: var(--primary-color--);
 }
 
-li.v-item a.v-item__link.is-hover:hover{
+li.v-item.sec-primary-text--hover:hover {
+    color: var(--sec-primary-color--);
+}
+
+li.v-item.bg--hover:hover {
     background-color: var(--hover-color--);
 }
 
 .hovered-notify {
     position: relative;
 }
-.hovered-notify::after{
+
+.hovered-notify::after {
+    content: "";
     position: absolute;
     width: 100%;
     height: 10px;
@@ -229,7 +309,8 @@ li.v-item a.v-item__link.is-hover:hover{
     left: 0;
     z-index: 1;
 }
-.hovered-notify:hover .popover-wrapper{
+
+.hovered-notify:hover .popover-wrapper {
     display: block;
 }
 
@@ -246,7 +327,7 @@ li.v-item a.v-item__link.is-hover:hover{
     font-weight: 400;
 }
 
-.popover-wrapper::after{
+.popover-wrapper::after {
     content: "";
     position: absolute;
     border-bottom: 15px solid var(--white-color--);
@@ -256,7 +337,7 @@ li.v-item a.v-item__link.is-hover:hover{
     height: 0;
     top: 0;
     right: 0;
-    transform: translate(-12px, -10px);
+    transform: translate(-12px, -15px);
     z-index: 9999;
 }
 
@@ -264,21 +345,318 @@ li.v-item a.v-item__link.is-hover:hover{
     background-color: var(--white-color--);
     color: black
 }
+
 // animation
 @keyframes fadeIn {
-    from{
+    from {
         opacity: 0;
     }
-    to{
-       opacity: 1;
+
+    to {
+        opacity: 1;
     }
 }
+
 @keyframes zoomOut {
-    from{
+    from {
         transform: scale(0);
     }
-    to{
+
+    to {
         transform-origin: top right;
         transform: scale(1);
     }
 }
+
+// header-section
+.header-section {
+    padding: 20px 0
+}
+
+.header-section .header-section--simple {}
+
+.header-section__header__title {
+    color: rgba(0, 0, 0, .54);
+    font-weight: 500;
+}
+
+.header-section__header__title.primary-text {
+    color: var(--primary-color--)
+}
+
+.section-container .header-section__header {
+    height: 60px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.header-section__header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.625rem;
+}
+
+.header-section__header__title {
+    text-transform: uppercase;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 1.25rem;
+}
+
+
+
+
+// carousel
+.image-carousel {
+    position: relative;
+}
+
+.image-carousel:hover .carousel-arrow {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 600;
+}
+
+.image-carousel:hover .carousel-arrow i {
+    font-size: 2.8rem;
+}
+
+.carousel-arrow {
+    box-shadow: 0 1px 12px 0 rgb(0 0 0 / 12%);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all .1s cubic-bezier(.4, 0, .6, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    transition: all .1s linear;
+    z-index: 2
+}
+
+.carousel-arrow i {
+    color: rgba(0, 0, 0, .54);
+}
+
+.carousel-arrow--hint {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background-color: #fff;
+}
+
+.carousel-arrow--prev {
+    transform: translate(-50%, -50%);
+    left: 0;
+}
+
+.carousel-arrow--next {
+    transform: translate(50%, -50%);
+    right: 0;
+}
+
+.carousel-arrow--hidden {
+    display: none;
+}
+
+.image-carousel {
+    height: 100%;
+}
+
+.image-carousel__item-list-wrapper {
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-carousel__item-list {
+    height: 100%;
+    transition: all .3s linear;
+}
+
+.image-carousel__item {}
+
+.toyfair-rating-stars {
+    position: relative;
+}
+
+.toyfair-rating-stars__stars {
+    display: flex;
+}
+
+.toyfair-rating-stars__star-wrapper {
+    position: relative;
+    display: block;
+}
+
+.toyfair-rating-stars__star-wrapper:not(:first-child) {
+    margin-left: 1px;
+}
+
+.toyfair-rating-stars__star-wrapper>.toyfair-rating-stars__lit {
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+svg.toyfair-svg-icon {
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    position: relative;
+}
+
+svg.toyfair-rating-stars__primary-star {
+    color: var(--primary-color--);
+    stroke: var(--primary-color--);
+    display: block;
+    left: 0;
+    position: absolute;
+    overflow-x: hidden;
+}
+
+svg.toyfair-rating-stars__hollow-star {
+    color: var(--primary-color--);
+    stroke: currentColor;
+    display: block;
+}
+
+.toyfair-product-comment-list {}
+
+.toyfair-product-rating {
+    display: flex;
+    padding: 15px 0 15px 30px;
+    border-bottom: 1px solid #cccc;
+}
+
+.toyfair-product-rating__avatar {
+    margin-right: 10px
+}
+
+.toyfair-product-rating__avatar>.toyfair-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.toyfair-avatar__placeholder .icon-headshot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+    font-weight: 400;
+    stroke: #c6c6c6;
+}
+
+.toyfair-product-rating__main {
+    flex: 1
+}
+
+.toyfair-product-rating__author-name {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, .87)
+}
+
+.toyfair-product-rating__rating svg.toyfair-rating-stars__primary-star {
+    display: inline-block;
+    position: relative;
+}
+
+.toyfair-product-rating__rating svg.icon-rating-solid {
+    margin-right: 2px;
+    color: var(--primary-color--);
+}
+
+.toyfair-product-rating__time {
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, .54);
+}
+
+.toyfair-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 100rem;
+    display: inline-block;
+    position: relative;
+    border: 0.0625rem solid rgba(0, 0, 0, .09);
+    box-sizing: border-box;
+}
+
+.toyfair-avatar__placeholder {
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    position: relative;
+}
+
+// rating
+.toyfair-rating-media-list__image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.toyfair-rating-media-list__image-wrapper__placeholder {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #fafafa;
+}
+
+.toyfair-rating-media-list__image-wrapper__content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.toyfair-rating-media-list__image-wrapper__content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+//
+.toyfair-product-rating__actions {
+    margin-top: 20px;
+    color: rgba(0, 0, 0, .4);
+}
+
+.toyfair-product-rating__like-button {
+    margin-right: 4px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, .2);
+}
+
+.toyfair-product-rating__like-button svg {
+    fill: currentColor
+}
+
+.toyfair-product-rating__like-count {}
+//

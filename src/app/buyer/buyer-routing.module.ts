@@ -27,48 +27,56 @@ import { PaymentComponent } from './payment/payment.component';
 const routes: Routes = [
   {
     path: '',
-    component: BuyerComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'contact-us', component: ContactComponent },
-      { path: 'about-us', component: AboutUsComponent },
-      { path: 'signup', component: SignUpComponent },
-      { path: 'reset', component: ResetComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'forgot-password', component: RegisterComponent },
-      { path: 'blog', component: BlogComponent },
-      { path: 'blog/:id', component: BlogDetailComponent },
       {
-        path: 'checkout',
-        component: CheckoutComponent,
-        canActivate: [AuthGuard],
+        path: '', 
+        component: BuyerComponent,
+        children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          { path: 'home', component: HomeComponent },
+          { path: 'contact-us', component: ContactComponent },
+          { path: 'about-us', component: AboutUsComponent },
+          { path: 'signup', component: SignUpComponent },
+          { path: 'reset', component: ResetComponent },
+          { path: 'register', component: RegisterComponent },
+          { path: 'forgot-password', component: RegisterComponent },
+          { path: 'blog', component: BlogComponent },
+          { path: 'blog/:id', component: BlogDetailComponent },
+          {
+            path: 'checkout',
+            component: CheckoutComponent,
+            canActivate: [AuthGuard],
+          },
+          { path: 'login', component: LoginComponent },
+          { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+          { path: 'payment', component: PaymentComponent },
+          { path: 'shop/:id', component: ShopComponent },
+          { path: 'finding-shop', component: FindingShopComponent },
+          {
+            path: 'product',
+            loadChildren: () =>
+              import('./components/product/product.module').then(
+                (m) => m.ProductModule
+              ),
+            resolve: {
+              categories: CategoryResolve,
+              brands: BrandResolve,
+              allProduct: ProductResolve,
+              recommendAges: RecommendAgeResolve,
+            },
+          },
+          {
+            path: 'account-management',
+            loadChildren: () =>
+              import(
+                './components/account-management/account-management.module'
+              ).then((m) => m.AccountManagementModule),
+          },
+        ]
       },
-      { path: 'login', component: LoginComponent },
-      { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-      { path: 'payment', component: PaymentComponent },
-      { path: 'shop/:id', component: ShopComponent },
-      { path: 'finding-shop', component: FindingShopComponent },
       {
-        path: 'product',
-        loadChildren: () =>
-          import('./components/product/product.module').then(
-            (m) => m.ProductModule
-          ),
-        resolve: {
-          categories: CategoryResolve,
-          brands: BrandResolve,
-          allProduct: ProductResolve,
-          recommendAges: RecommendAgeResolve,
-        },
-      },
-      {
-        path: 'account-management',
-        loadChildren: () =>
-          import(
-            './components/account-management/account-management.module'
-          ).then((m) => m.AccountManagementModule),
-      },
+        path: 'auth', loadChildren: () => import ('../authentication/authentication.module').then(m => m.AuthenticationModule)
+      }
     ],
   },
   

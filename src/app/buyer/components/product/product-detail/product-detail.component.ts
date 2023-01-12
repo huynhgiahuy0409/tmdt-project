@@ -18,6 +18,8 @@ import { ShopService } from 'src/app/seller/services/shop.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
+  isZoomedRatingImage: boolean = false
+  sltRatingImageIdx!: number
   sltImageIdx: number = 0
   product$!: Observable<ProductResponse>;
   shop$!: Observable<ShopResponse>
@@ -31,7 +33,7 @@ export class ProductDetailComponent implements OnInit {
     private shopService: ShopService,
     private router: Router
   ) { }
-
+  
   ngOnInit(): void {
     this.productId = Number.parseInt(this.activatedRoute.snapshot.url[0].path);
     this.product$ = this.productService.findOne(this.productId).pipe(
@@ -68,5 +70,9 @@ export class ProductDetailComponent implements OnInit {
         })
       })
     }
+  }
+  a(idx: number){
+    this.isZoomedRatingImage = !this.isZoomedRatingImage
+    this.sltRatingImageIdx = idx
   }
 }

@@ -1,0 +1,112 @@
+.navbar {}
+
+// popover wrapper
+.navbar .popover-wrapper {}
+
+.navbar-wrapper .popover-wrapper .download-wrapper .qr__image img {
+    height: 180px;
+    width: 180px;
+    object-fit: cover;
+    padding: 15px;
+}
+
+.navbar-wrapper .popover-wrapper .download-wrapper .download-store {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px 5px;
+}
+
+.navbar-wrapper .popover-wrapper .download-wrapper .download-store img {
+    width: 70px;
+    object-fit: cover;
+}
+
+.h-item__link img.user-avatar {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color-cart-badge-border--);
+}
+
+// notification wrapper
+.popover-wrapper .cart-notify-wrapper,
+.popover-wrapper .notification-wrapper {
+    width: 400px;
+}
+
+.cart-notify-wrapper .cart-notify__header,
+.popover-wrapper .notification-wrapper .notification__header {
+    height: 40px;
+    display: flex;
+    padding-left: 10px;
+    color: rgb(0 0 0 / 26%);
+    align-items: center;
+}
+
+.popover-wrapper .notification-wrapper .notification__body {}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list {}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list .notification-item {
+    padding: 10px;
+    display: flex;
+}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list .notification-item:hover {
+    cursor: pointer;
+    background-color: var(--hover-color--);
+}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list .notification-item.new {
+    background-color: var(--hover-primary-color--);
+}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list .notification-item .notification__image img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border: 0.5px solid rgb(108, 108, 108);
+}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list .notification-item .notification__info {
+    width: 328px;
+    margin-left: 10px;
+}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list .notification-item .notification__info .notification__name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.popover-wrapper .notification-wrapper .notification__body .notification-list .notification-item .notification__info .notification__detail {
+    max-height: 45px;
+    overflow: hidden;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.popover-wrapper .notification-wrapper .notification__footer {}
+
+.popover-wrapper .notification-wrapper .notification__footer .see-all-btn {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fbfbfb;
+}
+
+// language select wrapper
+.popover-wrapper .slt-language-wrapper {
+    width: 200px;
+}
+
+.popover-wrapper .slt-language-wrapper .slt-language--bg-clr {
+    background-color: var(--white-color--);
+}

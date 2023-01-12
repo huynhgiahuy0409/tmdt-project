@@ -15,7 +15,18 @@ export class BrandService {
     }),
     params: {},
   };
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.findAll().subscribe({
+      next: () => {},
+      error: (e) => {},
+      complete: () => {},
+    });
+    this.findAll().subscribe(
+      (n) => {},
+      (error) => {},
+      () => {}
+    );
+  }
   findAll(): Observable<BrandResponse[]> {
     const url = `${DOMAIN}/api/brand/all`;
     return this.httpClient.get<BrandResponse[]>(url, this.httpOptions);

@@ -1,0 +1,26 @@
+.home-fsale-item{
+    background-color: white;
+    border: 0.5px solid #f8f8f8;
+}
+.home-fsale-item:hover{
+    transform: translateZ(5px);
+    z-index: 1;
+    border-color: rgba(0,0,0,.12);
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 10%);
+    // transition: transform 2s cubic-bezier(.4,0,.6,1),box-shadow .1s cubic-bezier(.4,0,.6,1)
+    transition: transform .1s linear, box-shadow 0.1s linear
+}
+.home-fsale-item__image{
+    margin: 0 auto;
+}
+.home-fsale-item__image img{
+    width: 70%;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+}
+.home-fsale-item__name{
+    text-transform: capitalize;
+    text-align: center;
+    height: 40px;
+}

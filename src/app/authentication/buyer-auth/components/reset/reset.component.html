@@ -1,0 +1,24 @@
+<div class="reset-container">
+    <app-header [pageType]="'Đặt lại mật khẩu'"></app-header>
+    <div class="reset-body reset-body--bg-clr d-flex-c center--center-flex-c">
+        <div class="reset-box box-shadow">
+            <div class="reset-box__header d-flex-c center--center-flex-c">
+                <div class="arrow-left-icon" (click)="navigateToPreviousPage()">
+                        <i class="fa-solid fa-arrow-left primary-text "></i>
+                </div>
+                <h2 class="title flex-1 text-center">Đặt lại mật khẩu</h2>
+            </div>
+            <div class="reset-box__body">
+                <div class="field box-shadow">
+                    <input [formControl]="emailCtrl" type="text" placeholder="Email/Số điện thoại">
+                </div>
+                <div class="alert-box">
+                    <div *ngIf="emailCtrl.hasError('email')" class="alert-c alert-c--danger">Email không hợp lệ</div>
+                </div>
+
+                <button class="btn primary-btn pd-10 w-fit" style="margin: 0;">TIẾP THEO</button>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

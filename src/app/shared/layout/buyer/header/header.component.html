@@ -1,0 +1,254 @@
+<header class="hide-on-mobile" style="display: none;">
+  <div class="main_menu_area">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div
+          class="col-lg-12 col-md-12 d-flex align-item-center justify-content-between"
+        >
+          <div class="main_menu menu_position d-flex align-item-center">
+            <nav class="d-flex align-item-center">
+              <ul>
+                <li>
+                  <a
+                    [routerLink]="['/seller']"
+                    fragment="seller"
+                    routerLinkActive="router-link-active"
+                    >Kênh người bán</a
+                  >
+                </li>
+                <li>
+                  <a [routerLink]="['/seller/barchart']">Trở thành người bán</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="main_menu menu_position d-flex align-item-center">
+            <nav class="d-flex align-item-center">
+              <ul>
+                <li *ngIf="!(user$ | async)">
+                  <a
+                    [routerLink]="['/buyer/login']"
+                    [queryParams]="{ pageRedirect: 'register' }"
+                    >Đăng ký</a
+                  >
+                </li>
+                <li *ngIf="!(user$ | async)">
+                  <a
+                    [routerLink]="['/buyer/login']"
+                    [queryParams]="{ pageRedirect: 'login' }"
+                    >Đăng nhập</a
+                  >
+                </li>
+                <ng-container *ngIf="user$ | async as user">
+                  <li>
+                    <div class="user-info">
+                      <img src="assets/img/about/team-1.jpg" alt="" />
+                      <span class="username">{{ user.fullName }}</span>
+                    </div>
+                    <div class="notification">
+                      <ul class="notification__list notification__list--color">
+                        <!--    <ng-container *ngIf="(user$ | async) as user"> -->
+                        <li
+                          class="notification__item"
+                          [routerLink]="['/buyer/account-management']"
+                        >
+                          <i class="fa-solid fa-user"></i>Tài khoản của tôi
+                        </li>
+                        <li
+                          class="notification__item"
+                          [routerLink]="[
+                            '/buyer/account-management/purchase-history'
+                          ]"
+                        >
+                          <i class="fa-solid fa-pen"></i>Đơn mua
+                        </li>
+                        <li (click)="logout($event)" class="notification__item">
+                          <i class="fa-solid fa-arrow-right-from-bracket"></i
+                          >Đăng xuất
+                        </li>
+                        <!--  </ng-container> -->
+                      </ul>
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--header bottom end-->
+  <div class="main_header">
+    <!--header middel start-->
+    <div class="header_middle">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-3 col-md-6">
+            <div class="logo">
+              <img src="assets/img/logo/new-logo.png" alt="" />
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-6">
+            <div class="middel_right">
+              <div class="search-container search-container--color">
+                <input
+                  placeholder="Tìm kiếm sản phẩm..."
+                  type="text"
+                  [(ngModel)]="searchValue"
+                />
+                <button
+                  class="search-btn"
+                  (click)="searchProductByName(searchValue)"
+                >
+                  <mat-icon>search</mat-icon>
+                </button>
+              </div>
+              <div [routerLink]="['/buyer/cart']" class="cart-container">
+                <span class="cart-icon-wrap">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    class="bi bi-cart"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                    />
+                  </svg>
+                  <div class="cart-badge">{{ totalPendingItem }}</div>
+                  <div class="notification">
+                    <ul
+                      class="notification__list notification__list--color cart"
+                    >
+                      <h4
+                        style="
+                          margin: 0;
+                          padding: 10px;
+                          color: #999;
+                          border-bottom: 1px solid #ccc;
+                        "
+                      >
+                        Sản phẩm mới thêm
+                      </h4>
+                      <ng-container
+                        *ngIf="cart$ | async as cart; else notPendingItem"
+                      >
+                        <ng-container *ngIf="cart.cartItems.length > 0">
+                          <ng-container *ngFor="let cartItem of cart.cartItems">
+                            <ng-container
+                              *ngFor="let pendingItem of cartItem.pendingItems"
+                            >
+                              <li class="notification__item">
+                                <div class="product-thumbnail">
+                                  <img
+                                    [src]="
+                                      directLinkImage +
+                                      pendingItem.product.images[0].url
+                                    "
+                                    alt=""
+                                  />
+                                </div>
+                                <div class="product-name">
+                                  {{ pendingItem.product.name }}
+                                </div>
+                                <div class="product-price">
+                                  <span style="color: var(--primary-color--)">
+                                    {{ pendingItem.quantity }}x{{
+                                      pendingItem.product.buyPrice
+                                        | currency: "VND"
+                                    }}</span
+                                  >
+                                </div>
+                              </li>
+                            </ng-container>
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                      <ng-template #notPendingItem>
+                        <img src="assets\img\no-items.jpg" alt="" />
+                      </ng-template>
+                    </ul>
+                  </div>
+                </span>
+              </div>
+            </div>
+            <div class="middel_right">
+              <ul class="page-redirect__list">
+                <li class="page-redirect__item" [routerLink]="['/buyer/home']">
+                  Trang chủ
+                </li>
+                <li class="page-redirect__item">Hàng mới</li>
+                <li
+                  class="page-redirect__item"
+                  [routerLink]="['/buyer/product']"
+                >
+                  Sản phẩm
+                </li>
+                <li class="page-redirect__item">Giới tính</li>
+                <li class="page-redirect__item">Độ tuổi</li>
+                <li class="page-redirect__item">Thương hiệu</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="header header--bg-clr header-sticky box-shadow">
+  <app-nav-bar></app-nav-bar>
+  <app-header-with-search></app-header-with-search>
+  <input type="checkbox" hidden id="nav-mobile-menu-input" class="" />
+  <div class="nav__mobile box-shadow">
+    <div class="logo-detail">
+      <i class="logo__icon fa-brands fa-pagelines"></i>
+      <span class="logo__name"> Toy Fair </span>
+    </div>
+    <ul class="nav__links">
+      <ng-container *ngFor="let i of mobileSidebar">
+        <li
+          class="nav__item"
+          [class.show-submenu]="i.expanded"
+          (click)="i.expanded = !i.expanded"
+        >
+          <div class="icon-link">
+            <a>
+              <i [class]="i.icon"></i>
+              <span class="link__name">{{ i.label }}</span>
+            </a>
+            <i
+              *ngIf="i.children"
+              class="fa-solid fa-angle-down"
+              [class.arrow]="i.expanded"
+            ></i>
+          </div>
+          <ul class="sub-menu" *ngIf="i.expanded">
+            <li *ngFor="let i of i.children">
+              <a>{{ i.label }}</a>
+            </li>
+          </ul>
+        </li>
+      </ng-container>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <img
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80"
+              class="profile__image"
+            />
+          </div>
+          <div class="name-role">
+            <div class="profile__name">Huy Huynh</div>
+            <div class="profile__role">Người dùng</div>
+          </div>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <label for="nav-mobile-menu-input" class="nav__overlay"> </label>
+</div>

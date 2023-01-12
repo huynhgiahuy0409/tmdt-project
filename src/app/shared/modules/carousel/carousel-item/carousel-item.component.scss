@@ -1,0 +1,25 @@
+.home-category-item{
+    background-color: white;
+    border: 0.5px solid #f8f8f8;
+}
+.home-category-item:hover{
+    transform: translateZ(5px);
+    z-index: 1;
+    border-color: rgba(0,0,0,.12);
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 10%);
+    // transition: transform 2s cubic-bezier(.4,0,.6,1),box-shadow .1s cubic-bezier(.4,0,.6,1)
+    transition: transform .1s linear, box-shadow 0.1s linear
+}
+.home-category-item__image{
+    width: 70%;
+    margin: 0 auto;
+}
+.home-category-item__image img{
+    width: 100%;
+    object-fit: cover;
+}
+.home-category-item__name{
+    text-transform: capitalize;
+    text-align: center;
+    height: 40px;
+}

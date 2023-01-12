@@ -15,8 +15,15 @@
     margin-left: -4px;
     margin-right: -4px;
 }
+.row.no-wrap{
+    flex-wrap: nowrap;
+}
+.row.dir-col{
+    flex-direction: column;
+}
 .row.sm-gutters{
-    
+    margin-left: -4px;
+    margin-right: -4px;
 }
 .row.no-gutters{
     margin-left: 0px;
@@ -111,6 +118,9 @@
 .c-12 {
     flex: 0 0 100%;
     min-width: 100%;
+}
+.c-12.col{
+    
 }
 
 .c-o-1 {
@@ -303,12 +313,35 @@
         margin-left: -12px;
         margin-right: -12px;
     }
+    .row.m-gutters{
+        margin-left: -6px;
+        margin-right: -6px;
+    }
 
     .col {
         padding-left: 12px;
         padding-right: 12px
     }
+    .row.sm-gutters .col{
+        padding-left: 4px;
+        padding-right: 4px
+    }
+    .row.m-gutters .col{
+        padding-left: 6px;
+        padding-right: 6px
+    }
+    .row.sm-gutters.dir-col .col{
+        padding-top: 4px;
+        padding-bottom: 4px
+    }
+    .row.sm-gutters.dir-col .col:first-child{
+        padding-top: unset;
+    }
+    .row.sm-gutters.dir-col .col:last-child{
+        padding-bottom: unset;
+    }
 
+    
     .l-1,
     .l-2,
     .l-3,
@@ -359,6 +392,7 @@
     .l-6 {
         flex: 0 0 50%;
         min-width: 50%;
+        min-height: 50%;
     }
 
     .l-7 {
@@ -377,8 +411,8 @@
     }
 
     .l-10 {
-        flex: 0 0 88.33333%;
-        min-width: 88.33333%;
+        flex: 0 0 83.33333%;
+        min-width: 83.33333%;
     }
 
     .l-11 {
@@ -500,6 +534,7 @@
     .wide .l-6 {
         flex: 0 0 50%;
         min-width: 50%;
+         
     }
 
     .wide .l-7 {
@@ -518,8 +553,8 @@
     }
 
     .wide .l-10 {
-        flex: 0 0 88.33333%;
-        min-width: 88.33333%;
+        flex: 0 0 83.33333%;
+        min-width: 83.33333%;
     }
 
     .wide .l-11 {
