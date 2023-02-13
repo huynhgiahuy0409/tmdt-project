@@ -12,4 +12,24 @@
     .hide-on-mobile{
         display: none !important;
     }
+    .carousel-arrow {
+        box-shadow: 0 1px 12px 0 rgb(0 0 0 / 12%);
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 100%;
+        line-height: 50px;
+        font-size: 20px;
+        border-radius: unset;
+        background-color: rgba(0, 0, 0, 0.199);
+        transition: all .1s cubic-bezier(.4, 0, .6, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: 0;
+        transition: all .1s linear;
+        z-index: 2
+    }
 }

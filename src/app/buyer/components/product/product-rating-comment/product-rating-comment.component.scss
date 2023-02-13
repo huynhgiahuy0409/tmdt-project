@@ -1,0 +1,107 @@
+// product-rating-overview
+.product-rating-overview {
+    padding: 30px;
+    border: 1px solid var(--primary-color--);
+    border-radius: 2px;
+    background-color: var(--primary-color-alpha--);
+  }
+  
+  .product-rating-overview__score-wrapper {
+    color: var(--primary-color--);
+  }
+  
+  .product-rating-overview__rating-score {
+    font-size: 3.5rem;
+  }
+  
+  .product-rating-overview__stars {
+    font-size: 1.25rem;
+    margin-top: 0.625rem;
+  }
+  
+  .product-rating-overview__rating-score-out-of {
+    font-size: 2.1rem;
+  }
+  
+  .product-rating-overview_stars {
+    font-size: 2rem;
+  }
+  
+  .product-rating-overview__filters {}
+  
+  .product-rating-overview__filter {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    min-width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: rgba(0, 0, 0, .8);
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .09);
+    color: rgba(0, 0, 0, .87);
+    text-transform: capitalize;
+    border-radius: 2px;
+    margin-bottom: 0.3125rem;
+    margin-top: 0.3125rem;
+    display: inline-block;
+    margin-right: 8px;
+    padding: 0 10px
+  }
+  
+  .product-rating-overview__filter--active {
+    color: var(--primary-color--);
+    border-color: var(--primary-color--);
+  }
+  //rating-media-list
+.rating-media-list {}
+
+.rating-media-list__container {
+  display: flex;
+}
+
+.rating-media-list__zoomed-image {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  background-color: rgba(0, 0, 0, .01);
+}
+
+.rating-media-list__zoomed-image--active {
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  display: block;
+}
+.rating-media-list {}
+
+.rating-media-list__image-wrapper {
+    width: 72px;
+    height: 72px;
+    margin: 0 10px 10px 0;
+    position: relative;
+}
+
+.rating-media-list__image-wrapper {
+    cursor: zoom-in;
+}
+
+.rating-media-list__image-wrapper--inactive {
+    cursor: zoom-in;
+}
+
+.rating-media-list__image-wrapper--active {
+    cursor: zoom-out;
+    border: 2px solid var(--primary-color--);
+    padding: 3px;
+    box-sizing: content-box;
+}
+
+.rating-media-list__zoomed-image-item{
+   max-width: 500px;
+  max-height: 500px;
+}

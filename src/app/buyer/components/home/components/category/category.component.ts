@@ -23,11 +23,12 @@ export class CategoryComponent implements OnInit{
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ];
   categoriesView: number[][] = [];
-  
+  values: number[] = [1,2,3]
+  number = 0
   constructor() {
+    
     this.customizeCategories();
     console.log(this.categoriesView.length);
-    
   }
   ngOnInit(): void {
   }
@@ -44,5 +45,7 @@ export class CategoryComponent implements OnInit{
       this.categoriesView.push(arrTemp);
     }
   }
-  
+  incr(){
+    this.number++
+  }
 }

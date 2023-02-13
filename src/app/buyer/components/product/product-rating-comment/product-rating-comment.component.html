@@ -1,0 +1,153 @@
+<div class="toyfair-product-rating">
+    <div class="toyfair-product-rating__avatar">
+        <div class="toyfair-avatar">
+            <div class="toyfair-avatar__placeholder">
+                <svg enable-background="new 0 0 15
+                    15" viewBox="0 0 15 15" x="0" y="0"
+                    class="toyfair-svg-icon icon-headshot">
+                    <g>
+                        <circle cx="7.5" cy="4.5" fill="none" r="3.8"
+                            stroke-miterlimit="10">
+                        </circle>
+                        <path d="m1.5 14.2c0-3.3
+                            2.7-6
+                            6-6s6 2.7 6 6" fill="none" stroke-linecap="round"
+                            stroke-miterlimit="10"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="toyfair-product-rating__main">
+        <a class="toyfair-product-rating__author-name">gia huy</a>
+        <div class="toyfair-product-rating__rating">
+            <app-star></app-star>
+            <app-star></app-star>
+            <app-star></app-star>
+            <app-star></app-star>
+            <app-star></app-star>
+        </div>
+        <div class="toyfair-product-rating__time">
+            2021-11-05 18:29
+        </div>
+        <p>
+            Giày đẹp shop gửi đúng hàng nhưng đế cứng phải đi nhiều dưới
+            100k rất ok nha
+        </p>
+        <div class="toyfair-product-rating__image-list-wrapper">
+            <div class="rating-media-list" #ratingMediaList>
+                <div class="rating-media-list__container">
+                    <ng-container *ngFor="let i of comment.images; index as
+                        idx">
+                        <div (click)="selectRatingCommentImage(idx)"
+                            class="rating-media-list__image-wrapper"
+                            [class]="{
+                            'rating-media-list__image-wrapper--active':
+                            sltRatingImageIdx === idx,
+                            'rating-media-list__image-wrapper--inactive':
+                            sltRatingImageIdx !== idx
+                            }">
+                            <div
+                                class="toyfair-rating-media-list__image-wrapper">
+                                <div
+                                    class="toyfair-rating-media-list__image-wrapper__placeholder">
+                                </div>
+                                <div
+                                    class="toyfair-rating-media-list__image-wrapper__content">
+                                    <img
+                                        src="https://cf.shopee.vn/file/vn-11134103-22120-tyvvtyn1qjlv96_tn"
+                                        alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div #ratingMediaZommedImage
+                    class="rating-media-list__zoomed-image"
+                    *ngIf="isZoomedRatingImage">
+                    <app-product-rating-media-carousel
+                        (newSltRatingImgIdxEvent)="addNewSltRatingImgIdxEvent($event)"
+                        #productRatingMediaCarousel
+                        [sltRatingImageIdx]="sltRatingImageIdx"
+                        [productRatingMedias]="comment.images">
+                    </app-product-rating-media-carousel>
+                </div>
+            </div>
+        </div>
+        <div class="toyfair-product-rating__actions d-flex-c
+            center--space-between-flex-c">
+            <div class="d-flex-c">
+                <div class="toyfair-product-rating__like-button">
+                    <svg width="14px" height="13px" viewBox="0 0 14 13"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs></defs>
+                        <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                            <g id="Product-Ratings-Working"
+                                transform="translate(-245.000000,
+                                -855.000000)" fill-rule="nonzero">
+                                <g transform="translate(155.000000,
+                                    92.000000)">
+                                    <g transform="translate(40.000000,
+                                        184.000000)">
+                                        <g transform="translate(0.000000,
+                                            326.000000)">
+                                            <g transform="translate(50.000000,
+                                                253.000000)">
+                                                <g>
+                                                    <path d="M0,12.7272727
+                                                        L2.54545455,12.7272727
+                                                        L2.54545455,5.09090909
+                                                        L0,5.09090909
+                                                        L0,12.7272727
+                                                        Z
+                                                        M14,5.72727273
+                                                        C14,5.02727273
+                                                        13.4272727,4.45454545
+                                                        12.7272727,4.45454545
+                                                        L8.71818182,4.45454545
+                                                        L9.35454545,1.52727273
+                                                        L9.35454545,1.33636364
+                                                        C9.35454545,1.08181818
+                                                        9.22727273,0.827272727
+                                                        9.1,0.636363636
+                                                        L8.4,0
+                                                        L4.2,4.2
+                                                        C3.94545455,4.39090909
+                                                        3.81818182,4.70909091
+                                                        3.81818182,5.09090909
+                                                        L3.81818182,11.4545455
+                                                        C3.81818182,12.1545455
+                                                        4.39090909,12.7272727
+                                                        5.09090909,12.7272727
+                                                        L10.8181818,12.7272727
+                                                        C11.3272727,12.7272727
+                                                        11.7727273,12.4090909
+                                                        11.9636364,11.9636364
+                                                        L13.8727273,7.44545455
+                                                        C13.9363636,7.31818182
+                                                        13.9363636,7.12727273
+                                                        13.9363636,7
+                                                        L13.9363636,5.72727273
+                                                        L14,5.72727273
+                                                        C14,5.79090909
+                                                        14,5.72727273
+                                                        14,5.72727273
+                                                        Z"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="toyfair-product-rating__like-count">12</div>
+            </div>
+            <div class="toyfair-product-rating__report-menu-button">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+        </div>
+    </div>
+</div>

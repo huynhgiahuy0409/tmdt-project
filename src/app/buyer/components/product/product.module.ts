@@ -10,9 +10,11 @@ import { ProductFilterComponent } from './product-filter/product-filter.componen
 import { ProductComponent } from './product.component';
 import { ProvinceResolve } from '../../services/resolve/province.resolve';
 import { SvgModule } from 'src/app/shared/svg/star/svg.module';
+import { ProductRatingCommentComponent } from './product-rating-comment/product-rating-comment.component';
+import { ProductRatingMediaCarouselComponent } from './product-rating-comment/product-rating-media-carousel/product-rating-media-carousel.component';
 
 @NgModule({
-  declarations: [ProductComponent, ProductListComponent, ProductDetailComponent, ProductFilterComponent],
+  declarations: [ProductComponent, ProductListComponent, ProductDetailComponent, ProductFilterComponent, ProductRatingCommentComponent, ProductRatingMediaCarouselComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,

@@ -1,0 +1,15 @@
+<div class="image-carousel">
+    <div class="image-carousel__item-list-wrapper grid">
+        <ul #imageCarouselList class="image-carousel__item-list row no-gutters no-wrap">
+            <li  #imageCarouselItem class="image-carousel__item col l-12" *ngFor="let item of productRatingMedias; index as idx">
+                <img class="rating-media-list__zoomed-image-item" src="https://cf.shopee.vn/file/vn-11134103-22120-2cckx831qjlv8d" alt="">
+            </li>
+        </ul>
+    </div>
+    <div #carouselArrowPrev class="carousel-arrow carousel-arrow--hint  carousel-arrow--prev hide-on-mobile" (click)="processCarousel('-')">
+        <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div #carouselArrowNext class="carousel-arrow carousel-arrow--hint  carousel-arrow--next hide-on-mobile" (click)="processCarousel('+')">
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+</div>

@@ -1,11 +1,10 @@
 <ng-container *ngIf="product$ | async as product">
-    <div class=" page-product grid wide">
+    <div class="page-product grid wide">
         <ul class="product-detail__breadcrumb h-list">
             <li class="h-item">
                 <a href="" class="h-item__link primary-text">Toy Fair</a>
                 <span class="right-icon-wrapper">
-                    <svg enable-background="new 0 0 11 11" viewBox="0 0 11 11"
-                        x="0" y="0" width="10px" height="10px">
+                    <svg enable-background="new 0 0 11 11" viewBox="0 0 11 11" x="0" y="0" width="10px" height="10px">
                         <path d="m2.5 11c .1 0 .2 0 .3-.1l6-5c
                             .1-.1.2-.3.2-.4s-.1-.3-.2-.4l-6-5c-.2-.2-.5-.1-.7.1s-.1.5.1.7l5.5
                             4.6-5.5 4.6c-.2.2-.2.5-.1.7.1.1.3.2.4.2z"></path>
@@ -15,8 +14,7 @@
             <li class="h-item">
                 <a href="" class="h-item__link primary-text">Đồ chơi trẻ em</a>
                 <span class="right-icon-wrapper">
-                    <svg enable-background="new 0 0 11 11" viewBox="0 0 11 11"
-                        x="0" y="0" width="10px" height="10px">
+                    <svg enable-background="new 0 0 11 11" viewBox="0 0 11 11" x="0" y="0" width="10px" height="10px">
                         <path d="m2.5 11c .1 0 .2 0 .3-.1l6-5c
                             .1-.1.2-.3.2-.4s-.1-.3-.2-.4l-6-5c-.2-.2-.5-.1-.7.1s-.1.5.1.7l5.5
                             4.6-5.5 4.6c-.2.2-.2.5-.1.7.1.1.3.2.4.2z"></path>
@@ -32,14 +30,13 @@
                 <div class="col l-5">
                     <div class="product-detail__image-wrapper">
                         <div class="product-detail__image">
-                            <ng-container *ngFor="let image of product.images;
-                                index as idx">
+                            <ng-container *ngFor="let image of product.images; index as idx">
                                 <!-- <img [src]="image.url" alt="" [class.show]="idx == sltImageIdx" /> -->
                                 <!-- <img [src]="'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'" alt="" [class.show]="idx == sltImageIdx" /> -->
                             </ng-container>
                             <img [src]="
-                                'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
-                                " alt="" />
+                  'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
+                " alt="" />
                         </div>
                         <ul class="live-show-image-list">
                             <!-- <ng-container *ngFor="let image of product.images; index as idx">
@@ -55,80 +52,68 @@
                             <li class="live-show-image-item">
                                 <div class="product-detail__image">
                                     <img [src]="
-                                        'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
-                                        " alt="" />
+                      'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
+                    " alt="" />
                                 </div>
                             </li>
                             <li class="live-show-image-item">
                                 <div class="product-detail__image">
                                     <img [src]="
-                                        'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
-                                        " alt="" />
+                      'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
+                    " alt="" />
                                 </div>
                             </li>
                             <li class="live-show-image-item">
                                 <div class="product-detail__image">
                                     <img [src]="
-                                        'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
-                                        " alt="" />
+                      'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
+                    " alt="" />
                                 </div>
                             </li>
                             <li class="live-show-image-item">
                                 <div class="product-detail__image">
                                     <img [src]="
-                                        'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
-                                        " alt="" />
+                      'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
+                    " alt="" />
                                 </div>
                             </li>
                             <li class="live-show-image-item">
                                 <div class="product-detail__image">
                                     <img [src]="
-                                        'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
-                                        " alt="" />
+                      'https://u6wdnj9wggobj.vcdn.cloud/media/catalog/product/cache/7c9924b6276ad76a951c1e786fcf2062/0/1/01_14.jpg'
+                    " alt="" />
                                 </div>
                             </li>
                         </ul>
                         <ul class="h-list">
                             <li class="h-item h-item--separation flex-1">
-                                <a href="" class="h-item__link d-flex-c
-                                    center--center-flex-c">
-                                    <span>Chia sẽ: </span>
-                                    <ul class="h-list d-flex-c
-                                        align-items-center-c">
+                                <a href="" class="h-item__link d-flex-c center--center-flex-c">
+                                    <ul class="h-list d-flex-c align-items-center-c">
+                                        <li class="h-item">Chia sẽ: </li>
                                         <li class="h-item">
-                                            <a href="" class="h-item__link
-                                                d-flex-c">
+                                            <a href="" class="h-item__link d-flex-c">
                                                 <i style="font-size: 2.5rem"
-                                                    class="fa-brands
-                                                    fa-facebook-messenger"></i>
+                                                    class="fa-brands fa-facebook-messenger"></i>
                                             </a>
                                         </li>
                                         <li class="h-item">
-                                            <a href="" class="h-item__link
-                                                d-flex-c">
-                                                <i style="font-size: 2.5rem"
-                                                    class="fa-brands
-                                                    fa-facebook"></i>
+                                            <a href="" class="h-item__link d-flex-c">
+                                                <i style="font-size: 2.5rem" class="fa-brands fa-facebook"></i>
                                             </a>
                                         </li>
                                     </ul>
                                 </a>
                             </li>
                             <li class="h-item h-item--separation flex-1">
-                                <a href="" class="h-item__link d-flex-c
-                                    center--center-flex-c">
-                                    <ul class="h-list d-flex-c
-                                        align-items-center-c">
+                                <a href="" class="h-item__link d-flex-c center--center-flex-c">
+                                    <ul class="h-list d-flex-c align-items-center-c">
                                         <li class="h-item">
-                                            <a href="" class="h-item__link
-                                                d-flex-c">
-                                                <i style="font-size: 2.5rem"
-                                                    class="fa-regular fa-heart"></i>
+                                            <a href="" class="h-item__link d-flex-c">
+                                                <i style="font-size: 2.5rem" class="fa-regular fa-heart"></i>
                                             </a>
                                         </li>
                                         <li class="h-item">
-                                            <a href="" class="h-item__link
-                                                d-flex-c">
+                                            <a href="" class="h-item__link d-flex-c">
                                                 <span>Đã thích (4k)</span>
                                             </a>
                                         </li>
@@ -145,14 +130,11 @@
                                 {{ product.name }}
                             </span>
                         </div>
-                        <div class="d-flex-c mr-t-10
-                            center--space-between-flex-c">
+                        <div class="d-flex-c mr-t-10 center--space-between-flex-c">
                             <ul class="h-list">
                                 <li class="h-item h-item--separation">
-                                    <a href="" class="h-item__link d-flex-c"
-                                        style="padding-left: 0">
-                                        <span class="text-16-underline
-                                            primary-text"> 4,9 </span>
+                                    <a href="" class="h-item__link d-flex-c" style="padding-left: 0">
+                                        <span class="text-16-underline primary-text"> 4,9 </span>
                                         <ul class="h-list primary-text">
                                             <li class="h-item">
                                                 <i class="fa-solid fa-star"></i>
@@ -178,16 +160,13 @@
                                 </li>
                                 <li class="h-item h-item--separation">
                                     <a href="" class="h-item__link">
-                                        <span class="text-16-underline"> 1,6k
-                                        </span>
-                                        <span class="sank-text"> Đánh giá
-                                        </span>
+                                        <span class="text-16-underline"> 1,6k </span>
+                                        <span class="sank-text"> Đánh giá </span>
                                     </a>
                                 </li>
                                 <li class="h-item h-item--separation">
                                     <a href="" class="h-item__link">
-                                        <span class="text-16-underline"> 4,6k
-                                        </span>
+                                        <span class="text-16-underline"> 4,6k </span>
                                         <span class="sank-text"> Đã bán </span>
                                     </a>
                                 </li>
@@ -207,614 +186,375 @@
                             </h2>
                         </div>
                         <div class="product-info-price__list mr-r-10">
-                            <li class="product-info-price__item source-price">
-                                {{ product.sourcePrice | currency : "VND" }}
-                            </li>
-                            <li class="product-info-price__item buy-price">
-                                {{ product.buyPrice | currency : "VND" }}
-                            </li>
-                            <li class="product-info-price__item discount">
-                                Giảm {{ product.discountPercent }}%
-                            </li>
-                        </div>
-                        <div class="row mr-t-10">
-                            <div class="col l-2">
-                                <span class="sank-text"> Vận chuyển </span>
-                            </div>
-                            <div class="col l-10 d-flex-c">
-                                <div class="shipper-icon-wrapper">
-                                    <i class="fa-solid fa-truck sank-text"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="row">
-                                        <div class="col l-3">
-                                            <span class="sank-text"> Vận chuyển
-                                                tới </span>
-                                        </div>
-                                        <div class="col l-9">
-                                            <div class="d-flex-c
-                                                align-items-center-c">
-                                                <span class="pd-r-5 f-w-500">Phường
-                                                    Đông Hoà, Thành Phố Dĩ An</span>
-                                                <svg width="10px" height="10px"
-                                                    enable-background="new
+            <li class="product-info-price__item source-price">
+                {{ product.sourcePrice | currency : "VND" }}
+            </li>
+            <li class="product-info-price__item buy-price">
+                {{ product.buyPrice | currency : "VND" }}
+            </li>
+            <li class="product-info-price__item discount">
+                Giảm {{ product.discountPercent }}%
+            </li>
+    </div>
+    <div class="row mr-t-10">
+        <div class="col l-2">
+            <span class="sank-text"> Vận chuyển </span>
+        </div>
+        <div class="col l-10 d-flex-c">
+            <div class="shipper-icon-wrapper">
+                <i class="fa-solid fa-truck sank-text"></i>
+            </div>
+            <div class="flex-1">
+                <div class="row">
+                    <div class="col l-3">
+                        <span class="sank-text"> Vận chuyển tới </span>
+                    </div>
+                    <div class="col l-9">
+                        <div class="d-flex-c align-items-center-c">
+                            <span class="pd-r-5 f-w-500">Phường Đông Hoà, Thành Phố Dĩ An</span>
+                            <svg width="10px" height="10px" enable-background="new
                                                     0 0 11 11" viewBox="0 0
-                                                    11 11" x="0" y="0"
-                                                    class="toyfair-svg-icon
-                                                    icon-arrow-down">
-                                                    <g>
-                                                        <path d="m11
+                                                    11 11" x="0" y="0" class="toyfair-svg-icon icon-arrow-down">
+                                <g>
+                                    <path d="m11
                                                             2.5c0
                                                             .1 0
                                                             .2-.1.3l-5
                                                             6c-.1.1-.3.2-.4.2s-.3-.1-.4-.2l-5-6c-.2-.2-.1-.5.1-.7s.5-.1.7.1l4.6
                                                             5.5
-                                                            4.6-5.5c.2-.2.5-.2.7-.1.1.1.2.3.2.4z">
-                                                        </path>
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col l-3">
-                                            <span class="sank-text"> Phí vận
-                                                chuyển </span>
-                                        </div>
-                                        <div class="col l-9">
-                                            <div class="d-flex-c
-                                                align-items-center-c">
-                                                <span class="pd-r-5
-                                                    primary-text--hover">đ8.000-đ22.000</span>
-                                                <svg width="10px" height="10px"
-                                                    enable-background="new
+                                                            4.6-5.5c.2-.2.5-.2.7-.1.1.1.2.3.2.4z"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l-3">
+                        <span class="sank-text"> Phí vận chuyển </span>
+                    </div>
+                    <div class="col l-9">
+                        <div class="d-flex-c align-items-center-c">
+                            <span class="pd-r-5 primary-text--hover">đ8.000-đ22.000</span>
+                            <svg width="10px" height="10px" enable-background="new
                                                     0 0 11 11" viewBox="0 0
-                                                    11 11" x="0" y="0"
-                                                    class="toyfair-svg-icon
-                                                    icon-arrow-down">
-                                                    <g>
-                                                        <path d="m11
+                                                    11 11" x="0" y="0" class="toyfair-svg-icon icon-arrow-down">
+                                <g>
+                                    <path d="m11
                                                             2.5c0
                                                             .1 0
                                                             .2-.1.3l-5
                                                             6c-.1.1-.3.2-.4.2s-.3-.1-.4-.2l-5-6c-.2-.2-.1-.5.1-.7s.5-.1.7.1l4.6
                                                             5.5
-                                                            4.6-5.5c.2-.2.5-.2.7-.1.1.1.2.3.2.4z">
-                                                        </path>
-                                                    </g>
-                                                </svg>
-                                            </div>
+                                                            4.6-5.5c.2-.2.5-.2.7-.1.1.1.2.3.2.4z"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mr-t-10">
+        <div class="col l-2">
+            <span class="sank-text">Số lượng</span>
+        </div>
+        <div class="col l-10">
+            <input #quantityTemplateVar class="product-count-input" type="number" value="1" min="1" />
+            <span class="sank-text"> 14999883 sản phẩm có sẵn </span>
+        </div>
+    </div>
+    <div class="d-flex mr-t-10">
+        <button class="btn btn-l btn-raised primary-text" style="margin-left: 0"
+            (click)="onClickAddToCart(quantityTemplateVar)">
+            <i class="fa-solid fa-cart-plus"></i>
+            Thêm vào giỏ hàng
+        </button>
+        <button class="btn btn-l primary-btn btn-raised" (click)="onClickBuyNow()">
+            Mua ngay
+        </button>
+    </div>
+    </div>
+    </div>
+    </li>
+    <li class="page-product__section row" *ngIf="shop$ | async as shop">
+        <div class="col l-5 c-12" [routerLink]="['/buyer/shop', shop.id]" style="margin: auto 0">
+            <div class="shop-inf">
+                <div class="stop-avatar">
+                    <img src="assets/img/product/3.png" alt="" />
+                </div>
+                <div class="shop-more">
+                    <div class="shop-name">{{ shop.name }}</div>
+                    <div>Online 29 giờ trước</div>
+                    <div class="shop-active">
+                        <button class="btn btn-sm btn-raised primary-text" style="margin-left: 0">
+                            Chat ngay
+                        </button>
+                        <button class="btn btn-sm btn-raised">Xem shop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l-7 c-12" style="margin: auto 0">
+            <div class="row">
+                <div class="col l-3">
+                    <div class="d-flex-c mr-b-10">
+                        <span class="sank-text mr-r-10">Đánh giá</span>
+                        <span class="primary-text">9,5k</span>
+                    </div>
+                    <div class="d-flex-c">
+                        <span class="sank-text mr-r-10">Sản phẩm</span>
+                        <span class="primary-text">81</span>
+                    </div>
+                </div>
+                <div class="col l-5">
+                    <div class="d-flex-c mr-b-10">
+                        <span class="sank-text mr-r-10">Tỉ Lệ Phản Hồi</span>
+                        <span class="primary-text">92%</span>
+                    </div>
+                    <div class="d-flex-c">
+                        <span class="sank-text mr-r-10">Thời Gian Phản Hồi</span>
+                        <span class="primary-text">Trong vài giờ</span>
+                    </div>
+                </div>
+                <div class="col l-4">
+                    <div class="d-flex-c mr-b-10">
+                        <span class="sank-text mr-r-10">Tham Gia</span>
+                        <span class="primary-text">17 tháng trước</span>
+                    </div>
+                    <div class="d-flex-c">
+                        <span class="sank-text mr-r-10">Người Theo Dõi</span>
+                        <span class="primary-text">44,8k</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="page-product__section">
+        <div class="page-product__section__header">
+            <div class="page-product__section__header-title">
+                Chi tiết sản phẩm
+            </div>
+        </div>
+        <div class="page-product__section__content page-product__detail">
+            <ng-container *ngIf="product$ | async as product">
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Danh mục</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.category.name }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Chất liệu</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.material.name }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Xuất sứ</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.origin.name }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Kho hàng</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.repository }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Trạng thái</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.status.name }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">
+                            Độ tuổi khuyến nghị
+                        </div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.recommend.name }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Cân nặng</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.size.weight }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Chiều dài</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.size.length }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Chiều rộng</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.size.width }}</div>
+                    </div>
+                </div>
+                <div class="row page-product__detail__row">
+                    <div class="col l-2">
+                        <div class="page-product__detail__label">Chiều cao</div>
+                    </div>
+                    <div class="col l-10">
+                        <div>{{ product.size.height }}</div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </li>
+    <li class="page-product__section">
+        <div class="page-product__section__header">
+            <div class="page-product__section__header-title">Mô tả sản phẩm</div>
+        </div>
+        <div class="page-product__section__content">
+            <p>{{ product.description || "" }}</p>
+        </div>
+    </li>
+    <li class="page-product__section page-product__section__rate">
+        <div class="page-product__section__header">
+            <div class="page-product__section__header-title">
+                Đánh giá sản phẩm
+            </div>
+        </div>
+        <div class="page-product__section__content">
+            <div class="product-rating-overview">
+                <div class="row">
+                    <div class="col l-2 d-flex-c align-items-center-c">
+                        <div class="product-rating-over__briefing">
+                            <div class="product-rating-overview__score-wrapper">
+                                <span class="product-rating-overview__rating-score">4.8</span>
+                                <span class="product-rating-overview__rating-score-out-of">
+                                    trên 5
+                                </span>
+                            </div>
+                            <div class="toyfair-rating-stars product-rating-overview_stars">
+                                <div class="toyfair-rating-stars__stars">
+                                    <div class="toyfair-rating-stars__star-wrapper">
+                                        <div class="toyfair-rating-stars__lit">
+                                            <app-star></app-star>
                                         </div>
+                                        <svg enable-background="new 0 0
+                                                    15 15" viewBox="0 0 15 15" x="0" y="0"
+                                            class="toyfair-svg-icon toyfair-rating-stars__hollow-star icon-rating">
+                                            <polygon fill="none" points="7.5 .8 9.7 5.4
+                                                        14.5 5.9 10.7 9.1 11.8
+                                                        14.2 7.5 11.6 3.2 14.2
+                                                        4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+                                        </svg>
+                                    </div>
+                                    <div class="toyfair-rating-stars__star-wrapper">
+                                        <div class="toyfair-rating-stars__lit">
+                                            <app-star></app-star>
+                                        </div>
+                                        <svg enable-background="new 0 0
+                                                    15 15" viewBox="0 0 15 15" x="0" y="0"
+                                            class="toyfair-svg-icon toyfair-rating-stars__hollow-star icon-rating">
+                                            <polygon fill="none" points="7.5 .8 9.7 5.4
+                                                        14.5 5.9 10.7 9.1 11.8
+                                                        14.2 7.5 11.6 3.2 14.2
+                                                        4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+                                        </svg>
+                                    </div>
+                                    <div class="toyfair-rating-stars__star-wrapper">
+                                        <div class="toyfair-rating-stars__lit">
+                                            <app-star></app-star>
+                                        </div>
+                                        <svg enable-background="new 0 0
+                                                    15 15" viewBox="0 0 15 15" x="0" y="0"
+                                            class="toyfair-svg-icon toyfair-rating-stars__hollow-star icon-rating">
+                                            <polygon fill="none" points="7.5 .8 9.7 5.4
+                                                        14.5 5.9 10.7 9.1 11.8
+                                                        14.2 7.5 11.6 3.2 14.2
+                                                        4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+                                        </svg>
+                                    </div>
+                                    <div class="toyfair-rating-stars__star-wrapper">
+                                        <div class="toyfair-rating-stars__lit">
+                                            <app-star></app-star>
+                                        </div>
+                                        <svg enable-background="new 0 0
+                                                    15 15" viewBox="0 0 15 15" x="0" y="0"
+                                            class="toyfair-svg-icon toyfair-rating-stars__hollow-star icon-rating">
+                                            <polygon fill="none" points="7.5 .8 9.7 5.4
+                                                        14.5 5.9 10.7 9.1 11.8
+                                                        14.2 7.5 11.6 3.2 14.2
+                                                        4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+                                        </svg>
+                                    </div>
+                                    <div class="toyfair-rating-stars__star-wrapper">
+                                        <div class="toyfair-rating-stars__lit">
+                                            <app-star></app-star>
+                                        </div>
+                                        <svg enable-background="new 0 0
+                                                    15 15" viewBox="0 0 15 15" x="0" y="0"
+                                            class="toyfair-svg-icon toyfair-rating-stars__hollow-star icon-rating">
+                                            <polygon fill="none" points="7.5 .8 9.7 5.4
+                                                        14.5 5.9 10.7 9.1 11.8
+                                                        14.2 7.5 11.6 3.2 14.2
+                                                        4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+                                        </svg>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mr-t-10">
-                            <div class="col l-2">
-                                <span class="sank-text">Số lượng</span>
-                            </div>
-                            <div class="col l-10">
-                                <input #quantityTemplateVar
-                                    class="product-count-input" type="number"
-                                    value="1" min="1" />
-                                <span class="sank-text"> 14999883 sản phẩm có
-                                    sẵn </span>
-                            </div>
-                        </div>
-                        <div class="d-flex mr-t-10">
-                            <button class="btn btn-l btn-raised primary-text"
-                                style="margin-left: 0"
-                                (click)="onClickAddToCart(quantityTemplateVar)">
-                                <i class="fa-solid fa-cart-plus"></i>
-                                Thêm vào giỏ hàng
-                            </button>
-                            <button class="btn btn-l primary-btn btn-raised"
-                                (click)="onClickBuyNow()">
-                                Mua ngay
-                            </button>
-                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="page-product__section row " *ngIf="shop$ | async as
-                shop">
-                <div class="col l-5 c-12" [routerLink]="['/buyer/shop',
-                    shop.id]" style="margin: auto 0">
-                    <div class="shop-inf">
-                        <div class="stop-avatar">
-                            <img src="assets/img/product/3.png" alt="" />
-                        </div>
-                        <div class="shop-more">
-                            <div class="shop-name">{{ shop.name }}</div>
-                            <div>Online 29 giờ trước</div>
-                            <div class="shop-active">
-                                <button class="btn btn-sm btn-raised
-                                    primary-text" style="margin-left: 0">
-                                    Chat ngay
-                                </button>
-                                <button class="btn btn-sm btn-raised">Xem shop</button>
+                    <div class="col l-10">
+                        <div class="product-rating-overview__filters">
+                            <div class="product-rating-overview__filter product-rating-overview__filter--active">
+                                tất cả
+                            </div>
+                            <div class="product-rating-overview__filter">5 sao</div>
+                            <div class="product-rating-overview__filter">4 sao</div>
+                            <div class="product-rating-overview__filter">3 sao</div>
+                            <div class="product-rating-overview__filter">2 sao</div>
+                            <div class="product-rating-overview__filter">1 sao</div>
+                            <div class="product-rating-overview__filter">
+                                có bình luận
+                            </div>
+                            <div class="product-rating-overview__filter">
+                                có hình ảnh/ video
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col l-7 c-12" style="margin: auto 0">
-                    <div class="row">
-                        <div class="col l-3">
-                            <div class="d-flex-c mr-b-10">
-                                <span class="sank-text mr-r-10">Đánh giá</span>
-                                <span class="primary-text">9,5k</span>
-                            </div>
-                            <div class="d-flex-c">
-                                <span class="sank-text mr-r-10">Sản phẩm</span>
-                                <span class="primary-text">81</span>
-                            </div>
-                        </div>
-                        <div class="col l-5">
-                            <div class="d-flex-c mr-b-10">
-                                <span class="sank-text mr-r-10">Tỉ Lệ Phản Hồi</span>
-                                <span class="primary-text">92%</span>
-                            </div>
-                            <div class="d-flex-c">
-                                <span class="sank-text mr-r-10">Thời Gian Phản
-                                    Hồi</span>
-                                <span class="primary-text">Trong vài giờ</span>
-                            </div>
-                        </div>
-                        <div class="col l-4">
-                            <div class="d-flex-c mr-b-10">
-                                <span class="sank-text mr-r-10">Tham Gia</span>
-                                <span class="primary-text">17 tháng trước</span>
-                            </div>
-                            <div class="d-flex-c">
-                                <span class="sank-text mr-r-10">Người Theo Dõi</span>
-                                <span class="primary-text">44,8k</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="page-product__section ">
-                <div class="page-product__section__header">
-                    <div class="page-product__section__header-title">
-                        Chi tiết sản phẩm
-                    </div>
-                </div>
-                <div class="page-product__section__content
-                    page-product__detail">
-                    <ng-container *ngIf="product$ | async as product">
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Danh
-                                    mục</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.category.name }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Chất
-                                    liệu</div>
-
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.material.name }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Xuất sứ</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.origin.name }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Kho
-                                    hàng</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.repository }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Trạng
-                                    thái</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.status.name }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Độ tuổi
-                                    khuyến nghị</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.recommend.name }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Cân
-                                    nặng</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.size.weight }}</div>
-
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Chiều
-                                    dài</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.size.length }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Chiều
-                                    rộng</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.size.width }}</div>
-                            </div>
-                        </div>
-                        <div class=" row page-product__detail__row">
-                            <div class="col l-2">
-                                <div class="page-product__detail__label">Chiều
-                                    cao</div>
-                            </div>
-                            <div class="col l-10">
-                                <div>{{ product.size.height }}</div>
-                            </div>
-                        </div>
+            </div>
+            <div class="product-rating__list">
+                <div class="toyfair-product-comment-list">
+                    <ng-container  *ngFor="let i of [1, 1, 1]">
+                        <app-product-rating-comment></app-product-rating-comment>
                     </ng-container>
                 </div>
-            </li>
-            <li class="page-product__section ">
-                <div class="page-product__section__header">
-                    <div class="page-product__section__header-title">
-                        Mô tả sản phẩm
-                    </div>
-                </div>
-                <div class="page-product__section__content">
-                    <p>{{ product.description || ''}}</p>
-                </div>
-            </li>
-            <li class="page-product__section page-product__section__rate">
-                <div class="page-product__section__header">
-                    <div class="page-product__section__header-title">
-                        Đánh giá sản phẩm
-                    </div>
-                </div>
-                <div class="page-product__section__content">
-                    <div class="product-rating-overview">
-                        <div class="row">
-                            <div class="col l-2 d-flex-c align-items-center-c">
-                                <div class="product-rating-over__briefing">
-                                    <div
-                                        class="product-rating-overview__score-wrapper">
-                                        <span
-                                            class="product-rating-overview__rating-score">4.8</span>
-                                        <span
-                                            class="product-rating-overview__rating-score-out-of">
-                                            trên 5
-                                        </span>
-                                    </div>
-                                    <div class="toyfair-rating-stars
-                                        product-rating-overview_stars">
-                                        <div
-                                            class="toyfair-rating-stars__stars">
-                                            <div
-                                                class="toyfair-rating-stars__star-wrapper">
-                                                <div
-                                                    class="toyfair-rating-stars__lit">
-                                                    <app-star></app-star>
-                                                </div>
-                                                <svg enable-background="new 0 0
-                                                    15 15" viewBox="0 0 15 15"
-                                                    x="0" y="0"
-                                                    class="toyfair-svg-icon
-                                                    toyfair-rating-stars__hollow-star
-                                                    icon-rating">
-                                                    <polygon fill="none"
-                                                        points="7.5 .8 9.7 5.4
-                                                        14.5 5.9 10.7 9.1 11.8
-                                                        14.2 7.5 11.6 3.2 14.2
-                                                        4.3 9.1 .5 5.9 5.3 5.4"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-miterlimit="10">
-                                                    </polygon>
-                                                </svg>
-                                            </div>
-                                            <div
-                                                class="toyfair-rating-stars__star-wrapper">
-                                                <div
-                                                    class="toyfair-rating-stars__lit">
-                                                    <app-star></app-star>
-                                                </div>
-                                                <svg enable-background="new 0 0
-                                                    15 15" viewBox="0 0 15 15"
-                                                    x="0" y="0"
-                                                    class="toyfair-svg-icon
-                                                    toyfair-rating-stars__hollow-star
-                                                    icon-rating">
-                                                    <polygon fill="none"
-                                                        points="7.5 .8 9.7 5.4
-                                                        14.5 5.9 10.7 9.1 11.8
-                                                        14.2 7.5 11.6 3.2 14.2
-                                                        4.3 9.1 .5 5.9 5.3 5.4"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-miterlimit="10"></polygon>
-                                                </svg>
-                                            </div>
-                                            <div
-                                                class="toyfair-rating-stars__star-wrapper">
-                                                <div
-                                                    class="toyfair-rating-stars__lit">
-                                                    <app-star></app-star>
-                                                </div>
-                                                <svg enable-background="new 0 0
-                                                    15 15" viewBox="0 0 15 15"
-                                                    x="0" y="0"
-                                                    class="toyfair-svg-icon
-                                                    toyfair-rating-stars__hollow-star
-                                                    icon-rating">
-                                                    <polygon fill="none"
-                                                        points="7.5 .8 9.7 5.4
-                                                        14.5 5.9 10.7 9.1 11.8
-                                                        14.2 7.5 11.6 3.2 14.2
-                                                        4.3 9.1 .5 5.9 5.3 5.4"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-miterlimit="10"></polygon>
-                                                </svg>
-                                            </div>
-                                            <div
-                                                class="toyfair-rating-stars__star-wrapper">
-                                                <div
-                                                    class="toyfair-rating-stars__lit">
-                                                    <app-star></app-star>
-                                                </div>
-                                                <svg enable-background="new 0 0
-                                                    15 15" viewBox="0 0 15 15"
-                                                    x="0" y="0"
-                                                    class="toyfair-svg-icon
-                                                    toyfair-rating-stars__hollow-star
-                                                    icon-rating">
-                                                    <polygon fill="none"
-                                                        points="7.5 .8 9.7 5.4
-                                                        14.5 5.9 10.7 9.1 11.8
-                                                        14.2 7.5 11.6 3.2 14.2
-                                                        4.3 9.1 .5 5.9 5.3 5.4"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-miterlimit="10"></polygon>
-                                                </svg>
-                                            </div>
-                                            <div
-                                                class="toyfair-rating-stars__star-wrapper">
-                                                <div
-                                                    class="toyfair-rating-stars__lit">
-                                                    <app-star></app-star>
-                                                </div>
-                                                <svg enable-background="new 0 0
-                                                    15 15" viewBox="0 0 15 15"
-                                                    x="0" y="0"
-                                                    class="toyfair-svg-icon
-                                                    toyfair-rating-stars__hollow-star
-                                                    icon-rating">
-                                                    <polygon fill="none"
-                                                        points="7.5 .8 9.7 5.4
-                                                        14.5 5.9 10.7 9.1 11.8
-                                                        14.2 7.5 11.6 3.2 14.2
-                                                        4.3 9.1 .5 5.9 5.3 5.4"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-miterlimit="10"></polygon>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col l-10">
-                                <div class="product-rating-overview__filters">
-                                    <div class="product-rating-overview__filter
-                                        product-rating-overview__filter--active">tất
-                                        cả</div>
-                                    <div
-                                        class="product-rating-overview__filter">5
-                                        sao</div>
-                                    <div
-                                        class="product-rating-overview__filter">4
-                                        sao</div>
-                                    <div
-                                        class="product-rating-overview__filter">3
-                                        sao</div>
-                                    <div
-                                        class="product-rating-overview__filter">2
-                                        sao</div>
-                                    <div
-                                        class="product-rating-overview__filter">1
-                                        sao</div>
-                                    <div
-                                        class="product-rating-overview__filter">có
-                                        bình luận</div>
-                                    <div
-                                        class="product-rating-overview__filter">có
-                                        hình ảnh/ video</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-rating__list">
-                        <div class="toyfair-product-comment-list">
-                            <div class="toyfair-product-rating" *ngFor="let i of [1,1,1]">
-                                <div class="toyfair-product-rating__avatar">
-                                    <div class="toyfair-avatar">
-                                        <div
-                                            class="toyfair-avatar__placeholder">
-                                            <svg enable-background="new 0 0 15
-                                                15" viewBox="0 0 15 15" x="0"
-                                                y="0" class="toyfair-svg-icon
-                                                icon-headshot">
-                                                <g>
-                                                    <circle cx="7.5" cy="4.5"
-                                                        fill="none" r="3.8"
-                                                        stroke-miterlimit="10">
-                                                    </circle>
-                                                    <path
-                                                        d="m1.5 14.2c0-3.3 2.7-6
-                                                        6-6s6 2.7 6 6"
-                                                        fill="none"
-                                                        stroke-linecap="round"
-                                                        stroke-miterlimit="10">
-                                                    </path>
-                                                </g>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="toyfair-product-rating__main">
-                                    <a
-                                        class="toyfair-product-rating__author-name">gia
-                                        huy</a>
-                                    <div
-                                        class="toyfair-product-rating__rating">
-                                        <app-star></app-star>
-                                        <app-star></app-star>
-                                        <app-star></app-star>
-                                        <app-star></app-star>
-                                        <app-star></app-star>
-                                    </div>
-                                    <div class="toyfair-product-rating__time">
-                                        2021-11-05 18:29
-                                    </div>
-                                    <p>Giày đẹp shop gửi đúng hàng nhưng đế cứng
-                                        phải đi nhiều dưới 100k rất ok nha</p>
-                                    <div
-                                        class="toyfair-product-rating__image-list-wrapper">
-                                        <div class="rating-media-list">
-                                            <div
-                                                class="rating-media-list__container">
-                                                <div (click)="a(idx)"
-                                                    class="rating-media-list__image-wrapper"
-                                                    [class.rating-media-list__image-wrapper--active]="sltRatingImageIdx
-                                                    === idx"
-                                                    [class.rating-media-list__image-wrapper--inactive]="sltRatingImageIdx
-                                                    !== idx" *ngFor="let i of
-                                                    [1,1,1], index as idx">
-                                                    <div
-                                                        class="toyfair-rating-media-list__image-wrapper">
-                                                        <div
-                                                            class="toyfair-rating-media-list__image-wrapper__placeholder"></div>
-                                                        <div
-                                                            class="toyfair-rating-media-list__image-wrapper__content">
-                                                            <img
-                                                                src="https://cf.shopee.vn/file/vn-11134103-22120-tyvvtyn1qjlv96_tn"
-                                                                alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="rating-media-list__zoomed-image"
-                                                [class.rating-media-list__zoomed-image--active]="isZoomedRatingImage"></div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="toyfair-product-rating__actions
-                                        d-flex-c center--space-between-flex-c">
-                                        <div class="d-flex-c">
-                                            <div
-                                                class="toyfair-product-rating__like-button">
-                                                <svg width="14px" height="13px"
-                                                    viewBox="0 0 14 13"
-                                                    version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg"><defs></defs><g
-                                                        stroke="none"
-                                                        stroke-width="1"
-                                                        fill-rule="evenodd"><g
-                                                            id="Product-Ratings-Working"
-                                                            transform="translate(-245.000000,
-                                                            -855.000000)"
-                                                            fill-rule="nonzero"><g
-                                                                transform="translate(155.000000,
-                                                                92.000000)"><g
-                                                                    transform="translate(40.000000,
-                                                                    184.000000)"><g
-                                                                        transform="translate(0.000000,
-                                                                        326.000000)"><g
-                                                                            transform="translate(50.000000,
-                                                                            253.000000)"><g><path
-                                                                                    d="M0,12.7272727
-                                                                                    L2.54545455,12.7272727
-                                                                                    L2.54545455,5.09090909
-                                                                                    L0,5.09090909
-                                                                                    L0,12.7272727
-                                                                                    Z
-                                                                                    M14,5.72727273
-                                                                                    C14,5.02727273
-                                                                                    13.4272727,4.45454545
-                                                                                    12.7272727,4.45454545
-                                                                                    L8.71818182,4.45454545
-                                                                                    L9.35454545,1.52727273
-                                                                                    L9.35454545,1.33636364
-                                                                                    C9.35454545,1.08181818
-                                                                                    9.22727273,0.827272727
-                                                                                    9.1,0.636363636
-                                                                                    L8.4,0
-                                                                                    L4.2,4.2
-                                                                                    C3.94545455,4.39090909
-                                                                                    3.81818182,4.70909091
-                                                                                    3.81818182,5.09090909
-                                                                                    L3.81818182,11.4545455
-                                                                                    C3.81818182,12.1545455
-                                                                                    4.39090909,12.7272727
-                                                                                    5.09090909,12.7272727
-                                                                                    L10.8181818,12.7272727
-                                                                                    C11.3272727,12.7272727
-                                                                                    11.7727273,12.4090909
-                                                                                    11.9636364,11.9636364
-                                                                                    L13.8727273,7.44545455
-                                                                                    C13.9363636,7.31818182
-                                                                                    13.9363636,7.12727273
-                                                                                    13.9363636,7
-                                                                                    L13.9363636,5.72727273
-                                                                                    L14,5.72727273
-                                                                                    C14,5.79090909
-                                                                                    14,5.72727273
-                                                                                    14,5.72727273
-                                                                                    Z"></path></g></g></g></g></g></g></g></svg>
-                                            </div>
-                                            <div
-                                                class="toyfair-product-rating__like-count">12</div>
-                                        </div>
-                                        <div
-                                            class="toyfair-product-rating__report-menu-button">
-                                            <i class="fa-solid
-                                                fa-ellipsis-vertical"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-</mat-paginator>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                    aria-label="Select page">
+                </mat-paginator>
+            </div>
+        </div>
+    </li>
+    </ul>
     </div>
 </ng-container>

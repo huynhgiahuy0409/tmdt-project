@@ -56,18 +56,8 @@ export interface validator1 {
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'Toy Store';
+  
   constructor(private activeRoute: ActivatedRoute, private fb: UntypedFormBuilder, private ps: PostService) {
-    const os1$ = fromEvent<MouseEvent>(document, 'mousemove')
-    os1$.pipe(
-      map(
-        (v: MouseEvent) => v.clientX
-      ),
-      throttleTime(5000)
-    ).subscribe(
-      v => {
-        console.log(v);
-      }
-    )
   }
   ngAfterViewInit(): void {}
   ngOnInit(): void {

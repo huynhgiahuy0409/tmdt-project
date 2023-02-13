@@ -1,92 +1,105 @@
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   ElementRef,
   Injectable,
-  Input,
+  OnInit,
   QueryList,
-  ViewChild,
-  ViewChildren,
 } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CarouselService {
-  private imageCarouselList!: ElementRef<HTMLUListElement>;
-  private imageCarouselItem!: QueryList<any>;
-  private carouselItemIdx = 0;
-  positionX = 0;
+export class CarouselService implements OnInit {
+  isConstructView: boolean = false;
+  private carouselList!: ElementRef<HTMLUListElement>;
+  private carouselItems!: QueryList<any>;
+  curIdx = 0;
+  lastIdx!: number;
+  isLastIdx: boolean = false;
   private carouselIntervalId!: number;
-  private autoTimer = 0
   nextCarouselTime: number = 5000;
+  private totalItem: number = 0;
+  private curIdxSubject!: BehaviorSubject<number>;
+  curIdx$: Observable<number>;
+  private timer!: number
+  private remainderItemWidth: number = 0
+  nextCurIdxSubject(value: number) {
+    this.curIdxSubject.next(value);
+  }
+  getValueCurIdxSub(): number {
+    return this.curIdxSubject.value;
+  }
 
   constructor() {
+    this.curIdxSubject = new BehaviorSubject<number>(0);
+    this.curIdx$ = this.curIdxSubject.asObservable();
   }
-
-  processCarousel(action: '+' | '-') {
-    let isAuto = false
-    if(this.carouselIntervalId){
+  ngOnInit(): void {}
+  initCarousel(
+    imageCarouselList: ElementRef<HTMLUListElement>,
+    imageCarouselItem: QueryList<any>,
+    ms?: number
+  ) {
+    this.isConstructView = true;
+    this.carouselList = imageCarouselList;
+    this.carouselItems = imageCarouselItem;
+    this.totalItem = this.carouselItems.length;
+    if(ms){
+      this.timer = ms
+      this.carouselIntervalId = setInterval(() => {
+        this.curIdx++
+        this.processCarousel(this.curIdx)
+      }, ms)
+    }
+    this.recomputeResponsive()
+  }
+  processCarousel(sltIdx: number) {
+     this.recomputeResponsive()
+    if (sltIdx < 0) {
+      this.curIdx = this.lastIdx;
+    } else if (sltIdx > this.lastIdx) {
+      this.curIdx = 0;
+    } else {
+      this.curIdx = sltIdx;
+    }
+    let isAuto = false;
+    if (this.carouselIntervalId) {
       clearInterval(this.carouselIntervalId);
-      isAuto = true
+      isAuto = true;
     }
-    let lastSliderItemIdx: number;
-    const sliderItem: ElementRef = this.imageCarouselItem.first;
-    const sliderItemWidth: number = sliderItem.nativeElement.offsetWidth;
-    const sliderListWidth: number =
-      this.imageCarouselList.nativeElement.offsetWidth;
-    const length: number = this.imageCarouselItem.length;
-    const totalWidth = sliderItemWidth * length;
-    const remainderWidth = totalWidth % sliderListWidth;
-
-    if (remainderWidth === 0) {
-      lastSliderItemIdx = totalWidth / sliderListWidth - 1;
-    } else {
-      lastSliderItemIdx = Math.floor(totalWidth / sliderListWidth);
-    }
-
-    if (action == '+') {
-      this.carouselItemIdx++;
-    } else {
-      this.carouselItemIdx--;
-    }
-    if (this.carouselItemIdx > lastSliderItemIdx) {
-      this.carouselItemIdx = 0;
-    } else if (this.carouselItemIdx < 0) {
-      this.carouselItemIdx = lastSliderItemIdx;
-    }
-
-    if (this.carouselItemIdx === lastSliderItemIdx) {
-      if (remainderWidth > 0) {
-        this.positionX = -((this.carouselItemIdx - 1) * 100);
+    let positionX = -this.curIdx * 100;
+    if (this.curIdx === this.lastIdx) {
+      if (this.remainderItemWidth != 0) {
+        positionX = -(this.curIdx - 1) * 100;
+        this.carouselList.nativeElement.style.transform = `translateX(calc(${positionX}% - ${this.remainderItemWidth}px))`;
       } else {
-        this.positionX = -(this.carouselItemIdx * 100);
+        this.carouselList.nativeElement.style.transform = `translateX(${positionX}%)`;
       }
-      this.imageCarouselList.nativeElement.style.transform = `translateX(calc(${this.positionX}% - ${remainderWidth}px))`;
     } else {
-      this.positionX = -this.carouselItemIdx * 100;
-      this.imageCarouselList.nativeElement.style.transform = `translateX(calc(${this.positionX}%))`;
+      this.carouselList.nativeElement.style.transform = `translateX(${positionX}%)`;
     }
-    if(isAuto){
-      this.activeCarousel(this.autoTimer)
+    if (isAuto) {
+      this.carouselIntervalId = setInterval(() => {
+        this.curIdx++
+        this.processCarousel(this.curIdx)
+      }, this.timer)
     }
   }
-
-  set setImageCarouselList(imageCarouselList: ElementRef<HTMLUListElement>) {
-    this.imageCarouselList = imageCarouselList;
+  isCarouselListExist(): boolean {
+    return this.carouselList ? true : false;
   }
-  set setImageCarouselItem(imageCarouselItem: QueryList<any>) {
-    this.imageCarouselItem = imageCarouselItem;
+  isCarouselItemExist(): boolean {
+    return this.carouselItems ? true : false;
   }
-  set setAutoTimer(ms: number){
-    this.autoTimer = ms
+  get getCurIdx(){
+    return this.curIdx
   }
-  get getCarouselItemIdx(){
-    return this.carouselItemIdx
+  recomputeResponsive(){
+    let listWidth = this.carouselList.nativeElement.offsetWidth;
+    let itemWidth = this.carouselItems.first.nativeElement.offsetWidth;
+    let totalListWidth = itemWidth * this.totalItem;
+    this.remainderItemWidth = totalListWidth % listWidth;
+    let partNumber = Math.floor(totalListWidth / listWidth);
+    this.lastIdx = this.remainderItemWidth === 0 ? partNumber - 1 : partNumber;
   }
-  activeCarousel(ms: number){
-    this.setAutoTimer = ms
-    this.carouselIntervalId =  setInterval(() => {
-      this.processCarousel("+")
-    }, ms)
-  }
-  
 }

@@ -15,10 +15,10 @@
             </li>
         </ul>
     </div>
-    <div #carouselArrowPrev class="carousel-arrow carousel-arrow--hint  carousel-arrow--prev carousel-arrow--hidden" (click)="carouselService.processCarousel('-')">
+    <div #carouselArrowPrev class="carousel-arrow carousel-arrow--hint carousel-arrow--prev"[class.carousel-arrow--hidden]="sltIdx === 0" (click)="processCarousel('-')">
         <i class="fa-solid fa-chevron-left"></i>
     </div>
-    <div #carouselArrowNext class="carousel-arrow carousel-arrow--hint  carousel-arrow--next" (click)="carouselService.processCarousel('+')">
+    <div #carouselArrowNext class="carousel-arrow carousel-arrow--hint carousel-arrow--next" [class.carousel-arrow--hidden]="isLastIdx" (click)="processCarousel('+')">
         <i class="fa-solid fa-chevron-right"></i>
     </div>
 </div>

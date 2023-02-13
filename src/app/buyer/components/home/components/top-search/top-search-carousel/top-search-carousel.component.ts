@@ -13,13 +13,28 @@ export class TopSearchCarouselComponent implements OnInit {
   imageCarouselList!: ElementRef<HTMLUListElement>;
   @ViewChildren('imageCarouselItem')
   imageCarouselItem!: QueryList<any>;
+  sltIdx!: number
+  lastIdx!: number
+  isLastIdx = false
   constructor(public carouselService: CarouselService) { }
-
   ngOnInit(): void {
+    this.carouselService.curIdx$.subscribe(value => {
+      if(this.carouselService.isConstructView){
+        this.carouselService.processCarousel(value)
+      }
+    })
   }
-  ngAfterViewInit(){
-    this.carouselService.setImageCarouselItem = this.imageCarouselItem
-    this.carouselService.setImageCarouselList = this.imageCarouselList
+  ngAfterViewInit() {
+    this.carouselService.initCarousel(
+      this.imageCarouselList,
+      this.imageCarouselItem
+    );
+    this.lastIdx = this.carouselService.lastIdx
   }
-  
+  processCarousel(action: '+' | '-') {
+    this.sltIdx = this.carouselService.getValueCurIdxSub();
+    action === '+'? this.sltIdx++ : this.sltIdx--
+    this.isLastIdx = this.sltIdx === this.lastIdx ? true : false
+    this.carouselService.nextCurIdxSubject(this.sltIdx);
+  }
 }
